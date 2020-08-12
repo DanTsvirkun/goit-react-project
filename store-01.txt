@@ -40,3 +40,26 @@
     },
   ],
 };
+
+dev: git checkout -b SBC-03;
+
+SBC-03: git add .
+        git commit -m "..."
+        git push
+
+        git pull origin dev
+
+if(conflicts) {
+    решаем конфликты
+    git add .
+    git commit -m "..."
+    git push
+} 
+
+await pull request
+
+SBC-03: git checkout dev
+
+dev: git pull origin dev;
+
+заново
