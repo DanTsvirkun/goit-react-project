@@ -1,0 +1,42 @@
+{
+  error: "", // создано
+  loader: "", // создано
+  auth: {
+    email: "",
+    token: "",
+  },
+  projects: [
+    {
+      title,
+      description,
+      members: [
+          email,
+          email,
+          email,
+      ] // доп. задача
+    },
+  ],
+  sprints: [
+    {
+      projectId,
+      title,
+      startDate,
+      endDate,
+      duration,
+    },
+  ],
+  tasks: [
+    {
+      sprintId,
+      title,
+      hoursPlanned,
+      hoursWasted,
+      hoursWastedPerDay: [
+        {
+          currentDay,
+          singleHoursWasted,
+        },
+      ],
+    },
+  ],
+};
