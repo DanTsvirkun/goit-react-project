@@ -3,14 +3,14 @@ import styles from "./App.module.css";
 import Registration from "../../containers/Registration/Registration";
 import SprintPage from "../../containers/Sprint/Sprint";
 const App = () => {
-	return (
-		<div className={styles.wrapper}>
-			<div className={styles.container}>
-				{/* <Registration /> */}
-				<SprintPage />
-			</div>
-		</div>
-	);
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        {/* <Registration /> */}
+        <SprintPage />
+      </div>
+    </div>
+  );
 };
 
 export default App;
