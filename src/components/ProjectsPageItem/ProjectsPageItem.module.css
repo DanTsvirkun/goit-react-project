@@ -198,23 +198,29 @@
 }
 
 /* ========== */
-.itemTitle {
+.itemTitle {   
   margin-bottom: 20px;
   font-family: "Montserrat";
   font-weight: 800;
   font-size: 26px;
   line-height: 32px;
   letter-spacing: 0.04em;
-  color: #ffffff;
+  color: #ffffff; 
+}
+
+.item:hover .itemDescription{
+  opacity: 1;
 }
 
 .itemDescription {
+  opacity: 0;
   font-family: "Montserrat";
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #ffffff;
+  transition: 250ms;
 }
 
 .itemTrashBtn {
