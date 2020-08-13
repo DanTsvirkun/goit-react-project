@@ -1,5 +1,6 @@
 .header {
     padding: 19px 0;
+    margin-bottom: 1px;
 }
 
 .header::after {
