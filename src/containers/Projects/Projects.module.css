@@ -1,0 +1,51 @@
+.headBar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.headBarTitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.headBarBtn {
+  width: 44px;
+  height: 44px;
+  margin-right: 20px;
+  background: #ff6b08;
+  border: none;
+  border-radius: 25px;
+  font-family: "Montserrat"; 
+  font-weight: 500;
+  font-size: 43px;
+  line-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.headBarBtn:hover,
+.headBarBtn:focus{
+  outline: none;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+}
+
+.headBarLabel {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
