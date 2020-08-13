@@ -1,20 +1,20 @@
-.registration_form_wrapper {
+.auth_wrapper {
     position: relative;
-    padding: 120px 0 122px;
+    padding: 183px 0 141px;
+    text-align: center;
 }
 
-.registaration_form {
-    padding: 61px 0 59px;
-    text-align: center;
+.auth {
     margin: 0 auto;
     width: 570px;
-    height: 538px;
+    height: 444px;
     background: #FAFAFA;
     box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
     border-radius: 5px;
+    padding: 63px 0 83px;
 }
 
-.registaration_title {
+.auth_title {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
@@ -22,10 +22,10 @@
     line-height: 44px;
     letter-spacing: 0.04em;
     color: #181C27;
-    margin-bottom: 57px;
+    margin-bottom: 53px;
 }
 
-.registaration_input {
+.auth_input {
     display: block;
     margin: 0 auto 57px;
     width: 429px;
@@ -34,6 +34,7 @@
     border-bottom: 1px solid rgba(24, 28, 39, 0.2);
     outline: none;
 
+
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
@@ -44,18 +45,15 @@
     background: #FAFAFA;
 }
 
-
-
-.registration_btn {
+.auth_btn {
     cursor: pointer;
-    width: 260px;
+    width: 154px;
     height: 44px;
-    margin-bottom: 17px;
     background: #FF6B08;
-    border: none;
     box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
     border-radius: 25px;
     outline: none;
+    border: none;
 
     font-family: Montserrat;
     font-style: normal;
@@ -63,32 +61,11 @@
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
-
+    letter-spacing: 0.04em;
     transition: all 300ms linear;
 }
 
-.registration_btn:hover {
-    color: #FF6B08;
+.auth_btn:hover {
     background: #FFFFFF;
-}
-
-.account {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: 0.04em;
-    color: rgba(24, 28, 39, 0.6);
-}
-
-.account_link {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: 0.04em;
-    color: rgba(24, 28, 39, 0.6);
-    text-decoration: underline;
+    color: #FF6B08;
 }
