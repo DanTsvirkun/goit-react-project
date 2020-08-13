@@ -3,18 +3,6 @@
 @value colorGreen from '../App/App.module.css';
 @value colorBlue from '../App/App.module.css';
 
-.item {
-  position: relative;
-  width: 270px;
-  height: 270px;
-  padding: 28px 30px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 150ms linear;
-  overflow: hidden;
-}
-
 @media (min-width: 1170px){
   .item:not(:nth-child(4n)) {
     margin-right: 24px;
@@ -44,6 +32,19 @@
     margin-bottom: 30px;
   }
 }
+
+.item {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  padding: 28px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 150ms linear;
+  overflow: hidden;
+}
+
 
 /* colors for tasks */
 
@@ -119,56 +120,45 @@
 
 /* Waves */
 
-.item:nth-child(4n+1)::before {
-  content: url("./projectImg/Wave_1-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
-}
-.item:nth-child(4n+1)::after {
-  content: url("./projectImg/Wave_1-2.png");
+.item:nth-child(4n+1)::before,
+.item:nth-child(4n+1)::after,
+.item:nth-child(4n-2)::before,
+.item:nth-child(4n-2)::after,
+.item:nth-child(4n-1)::before,
+.item:nth-child(4n-1)::after,
+.item:nth-child(4n)::before,
+.item:nth-child(4n)::after{
   position: absolute;
   left: 0;
   top: 76px;
 }
 
+.item:nth-child(4n+1)::before {
+  content: url("./projectImg/Wave_1-1.png"); 
+}
+.item:nth-child(4n+1)::after {
+  content: url("./projectImg/Wave_1-2.png");  
+}
+
 .item:nth-child(4n-2)::before {
-  content: url("./projectImg/Wave_2-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_2-1.png"); 
 }
 .item:nth-child(4n-2)::after {
-  content: url("./projectImg/Wave_2-2.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_2-2.png"); 
 }
 
 .item:nth-child(4n-1)::before {
   content: url("./projectImg/Wave_3-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
 }
 .item:nth-child(4n-1)::after {
-  content: url("./projectImg/Wave_3-2.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_3-2.png"); 
 }
 
 .item:nth-child(4n)::before {
   content: url("./projectImg/Wave_4-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
 }
 .item:nth-child(4n)::after {
-  content: url("./projectImg/Wave_4-2.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_4-2.png"); 
 }
 
 /* ======= */
