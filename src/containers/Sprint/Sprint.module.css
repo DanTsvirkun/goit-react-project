@@ -1,0 +1,8 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sprint {
+	/* padding: 20px 0 0 0; */
+}
