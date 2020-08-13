@@ -10,8 +10,8 @@ const App = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-        {/* <Registration /> */}
-        <Login />
+        <Registration />
+        {/* <Login /> */}
         {/* <SprintPage /> */}
       </div>
     </div>
