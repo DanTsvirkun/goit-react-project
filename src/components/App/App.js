@@ -1,16 +1,18 @@
 import React from "react";
-import styles from "./App.module.css";
-import Registration from "../../containers/Registration/Registration";
-import SprintPage from "../../containers/Sprint/Sprint";
 import Header from "../Header/Header";
+import Registration from "../../containers/Registration/Registration";
+import Login from "../../containers/Login/Login";
+import SprintPage from "../../containers/Sprint/Sprint";
+import styles from "./App.module.css";
 
 const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-        <SprintPage />
         {/* <Registration /> */}
+        {/* <Login /> */}
+        {/* <SprintPage /> */}
       </div>
     </div>
   );
