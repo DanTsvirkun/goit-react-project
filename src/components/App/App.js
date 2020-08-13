@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./App.module.css";
+import Registration from "../../containers/Registration/Registration";
 import SprintPage from "../../containers/Sprint/Sprint";
-
 const App = () => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
+				{/* <Registration /> */}
 				<SprintPage />
 			</div>
 		</div>
@@ -13,10 +14,6 @@ const App = () => {
 };
 
 export default App;
-<Rote
-	path="/projects/:projecId/sprints"
-	component={SprintPage}
-/>;
 
 // http://localhost:3000/projects/project/sprints?sprint=1
 // /projects/:projecId/sprints/:sprintId
