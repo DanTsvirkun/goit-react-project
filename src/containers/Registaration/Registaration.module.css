@@ -1,41 +1,74 @@
-.registration_wrapper {
-    position: relative;
+.test_header {
+    height: 80px;
+    background-color: khaki;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 80px;
+    text-align: center;
 }
 
 .elipse1 {
     position: absolute;
+    width: 298px;
+    height: 298px;
     bottom: 0;
-    left: 90px;
-    z-index: 1;
+    left: 145px;
+    z-index: 0;
 }
 
 .elipse2 {
     position: absolute;
+    width: 252px;
+    height: 252px;
     bottom: 0;
-    left: 128px;
+    left: 183px;
     z-index: 1;
 }
 
 .elipse3 {
     position: absolute;
-    top: 287px;
-    left: 56px;
+    width: 118px;
+    height: 118px;
+    top: 367px;
+    left: 111px;
 }
 
 .elipse4 {
     position: absolute;
-    top: 160px;
-    left: 175px;
+    width: 48px;
+    height: 48px;
+    top: 240px;
+    left: 230px;
 }
 
 .elipse5 {
     position: absolute;
-    top: 23px;
-    left: 822px;
+    width: 78px;
+    height: 78px;
+    top: 103px;
+    left: 877px;
 }
 
 .elipse6 {
     position: absolute;
-    top: 49px;
-    left: 1000px;
+    width: 26px;
+    height: 26px;
+    top: 129px;
+    left: 1055px;
+}
+
+.union_white {
+    position: absolute;
+    left: 752px;
+    top: 199.17px;
+    /* bottom: 0;
+    right: 0; */
+}
+
+.union_orange {
+    position: absolute;
+    left: 770px;
+    top: 233px;
+    /* bottom: 33px;
+    right: 0; */
 }
