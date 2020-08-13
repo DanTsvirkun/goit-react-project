@@ -1,0 +1,94 @@
+.registration_form_wrapper {
+    position: relative;
+    padding: 120px 0 122px;
+}
+
+.registaration_form {
+    padding: 61px 0 59px;
+    text-align: center;
+    margin: 0 auto;
+    width: 570px;
+    height: 538px;
+    background: #FAFAFA;
+    box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+    border-radius: 5px;
+}
+
+.registaration_title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: 0.04em;
+    color: #181C27;
+    margin-bottom: 57px;
+}
+
+.registaration_input {
+    display: block;
+    margin: 0 auto 57px;
+    width: 429px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+    outline: none;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+    background: #FAFAFA;
+}
+
+
+
+.registration_btn {
+    cursor: pointer;
+    width: 260px;
+    height: 44px;
+    margin-bottom: 17px;
+    background: #FF6B08;
+    border: none;
+    box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+    border-radius: 25px;
+    outline: none;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+
+    transition: all 300ms linear;
+}
+
+.registration_btn:hover {
+    color: #FF6B08;
+    background: #FFFFFF;
+}
+
+.account {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+}
+
+.account_link {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+    text-decoration: underline;
+}
