@@ -20,7 +20,7 @@ import { rootReducer } from "./reducers/root";
 const persistConfig = {
   key: "token",
   storage,
-  whitelist: ["token"],
+  whitelist: ["auth"],
 };
 
 const defaultMiddleware = getDefaultMiddleware({
@@ -30,7 +30,7 @@ const defaultMiddleware = getDefaultMiddleware({
 });
 
 const store = configureStore({
-  reducer: { rootReducer /* auth: persistReducer(persistConfig, auth) */ },
+  reducer: persistReducer(persistConfig, rootReducer),
   middleware: [...defaultMiddleware, thunk],
 });
 

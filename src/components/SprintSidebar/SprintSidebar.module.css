@@ -1,8 +1,9 @@
 .sprint-sidebar__wrapper {
-  width: 255px;
+  width: 200px;
   box-sizing: border-box;
   position: relative;
 }
+
 .sprint-sidebar__wrapper::before {
   position: absolute;
   content: '';
@@ -10,11 +11,12 @@
   height: 100%;
   border: 1px solid rgba(24, 28, 39, 0.1);
 }
+
 .sprint-sidebar__wrapper-link {
   width: 170px;
-  margin: 0 auto;
   text-align: left;
 }
+
 .sprint-sidebar__link {
   width: 120px;
   padding: 0 0px 0 50px;
@@ -30,6 +32,7 @@
   display: block;
   margin-bottom: 102px;
 }
+
 .sprint-sidebar__link::before {
   position: absolute;
   top: 50%;
@@ -44,9 +47,9 @@
 .sprint-sidebar__add-wrapper {
   width: 162px;
   height: 76px;
-  margin: 0 auto;
   margin-bottom: 50px;
 }
+
 .sprint-sidebar__add-btn {
   display: block;
   margin: 0 auto;
@@ -62,6 +65,7 @@
   cursor: pointer;
   background-image: url('./Btn.svg');
 }
+
 .sprint-sidebar__add-description {
   font-family: Montserrat;
   font-style: normal;

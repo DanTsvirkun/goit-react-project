@@ -1,18 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import css from './SprintsSidebarList.module.css';
-const SprintsSidebarList = () => {
+const SprintsSidebarList = ({ match = 'test' }) => {
   return (
     <ul className={css['sprint__sidebar-list']}>
       {[
-        { title: 'Sprint Burndown Chart 1' },
-        { title: 'Sprint Burndown Chart 2' },
-        { title: 'Sprint Burndown Chart 3' },
-        { title: 'Sprint Burndown Chart 4' },
+        {
+          title: 'Sprint Burndown Chart 1',
+          id: 1,
+        },
+        {
+          title: 'Sprint Burndown Chart 2',
+          id: 2,
+        },
+        {
+          title: 'Sprint Burndown Chart 3',
+          id: 3,
+        },
+        {
+          title: 'Sprint Burndown Chart 4',
+          id: 4,
+        },
       ].map(item => (
-        <li className={css['sprint__sidebar-item']}>
+        <li key={item.id} className={css['sprint__sidebar-item']}>
           <NavLink
-            to="/"
+            to={{
+              pathname: match.url,
+              search: `?sprint=${item.id}`,
+            }}
             activeClassName={css['sprint__sidebar-link--active']}
             className={css['sprint__sidebar-link']}
           >
