@@ -1,9 +1,10 @@
 import React from "react";
-import "./ProjectPage.css";
+import styles from "./ProjectPage.module.css";
+import pencil from "../../Icons/pencil.svg";
 
 const ProjectPage = () => {
   return (
-    // Header///
+    // Header start///
     <>
       <div className="header">
         <a href="#default" className="logo">
@@ -18,6 +19,15 @@ const ProjectPage = () => {
         </div>
       </div>
       <hr />
+      {/* Header end*/}
+      <h1 className={styles.projectHeader}>Project 1</h1>
+      <img
+        className={styles.Icon}
+        src={pencil}
+        alt="pencil"
+        height="20"
+        width="20"
+      />
     </>
   );
 };
