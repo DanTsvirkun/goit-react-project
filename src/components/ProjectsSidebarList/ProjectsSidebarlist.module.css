@@ -1,0 +1,72 @@
+@value colorBlue: #4394f1;
+@value colorPurple: #8c72df;
+@value colorRed: #ff765f;
+@value colorGreen: #71df87;
+
+.project__sidebar-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 170px;
+  margin: 220px 0 220px;
+  list-style: none;
+}
+
+.project__sidebar-item {
+  text-align: left;
+  width: 170px;
+}
+
+.project__sidebar-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.project__sidebar-link {
+  width: 120px;
+  padding: 0 0px 0 50px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  text-decoration: none;
+  position: relative;
+  display: block;
+}
+
+.project__sidebar-link--active {
+  font-weight: bold;
+}
+
+.project__sidebar-link:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.project__sidebar-link::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  border-radius: 5px;
+}
+
+.project__sidebar-link:nth-child(4n + 1)::before {
+  background-color: #8c72df;
+}
+
+.project__sidebar-link:nth-child(4n - 2)::before {
+  background-color: #ff765f;
+}
+
+.project__sidebar-link:nth-child(4n - 1)::before {
+  background-color: #71df87;
+}
+
+.project__sidebar-link:nth-child(4n)::before {
+  background-color: #4394f1;
+}
