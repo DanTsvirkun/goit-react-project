@@ -1,8 +1,11 @@
+@value colorBlue: #4394f1;
+
 .wrapper {
-  background-color: #e5e5e5;
+  background-color: #F1F2F7;
 }
 
 .container {
   max-width: 1170px;
   margin: 0 auto;
 }
+
