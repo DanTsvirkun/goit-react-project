@@ -1,18 +1,9 @@
-.test_header {
-    height: 80px;
-    background-color: khaki;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 80px;
-    text-align: center;
-}
-
 .elipse1 {
     position: absolute;
     width: 298px;
     height: 298px;
-    bottom: 0;
-    left: 145px;
+    top: 490px;
+    left: 325px;
     z-index: 0;
 }
 
@@ -20,8 +11,8 @@
     position: absolute;
     width: 252px;
     height: 252px;
-    bottom: 0;
-    left: 183px;
+    top: 516px;
+    left: 360px;
     opacity: 0.9;
     z-index: 1;
 }
@@ -47,7 +38,8 @@
     width: 78px;
     height: 78px;
     top: 103px;
-    left: 877px;
+    /* left: 877px; */
+    right: 475px;
 }
 
 .elipse6 {
@@ -55,18 +47,20 @@
     width: 26px;
     height: 26px;
     top: 129px;
-    left: 1055px;
+    /* left: 1055px; */
+    right: 225px;
 }
 
 .union_white {
     position: absolute;
-    left: 752px;
+    /* left: 752px; */
+    right: 0;
     top: 199.17px;
-
 }
 
 .union_orange {
     position: absolute;
-    left: 770px;
+    /* left: 770px; */
     top: 233px;
+    right: 0;
 }
