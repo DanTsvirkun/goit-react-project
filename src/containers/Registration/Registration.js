@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Registaration.module.css";
+import styles from "./Registration.module.css";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 
 import elipse1 from "./images/Ellipse 1.svg";
