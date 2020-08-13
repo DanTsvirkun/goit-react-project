@@ -14,8 +14,6 @@ import union_orange from "./images/Union.orange.svg";
 const Registaration = () => {
   return (
     <>
-      <div className={styles.test_header}>Test version of header</div>
-
       <img src={elipse1} alt="" className={styles.elipse1} />
       <img src={elipse2} alt="" className={styles.elipse2} />
       <img src={elipse3} alt="" className={styles.elipse3} />
