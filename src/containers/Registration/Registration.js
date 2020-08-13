@@ -14,14 +14,12 @@ import union_orange from "./images/Union.orange.svg";
 const Registaration = () => {
   return (
     <>
-      <div className={styles.test_header}>Test version of header</div>
-
-      <img src={elipse1} alt="" className={styles.elipse1} />
-      <img src={elipse2} alt="" className={styles.elipse2} />
-      <img src={elipse3} alt="" className={styles.elipse3} />
-      <img src={elipse4} alt="" className={styles.elipse4} />
-      <img src={elipse5} alt="" className={styles.elipse5} />
-      <img src={elipse6} alt="" className={styles.elipse6} />
+      <img src={elipse1} alt="white-ball" className={styles.elipse1} />
+      <img src={elipse2} alt="orange-ball" className={styles.elipse2} />
+      <img src={elipse3} alt="whire-ball" className={styles.elipse3} />
+      <img src={elipse4} alt="white-ball" className={styles.elipse4} />
+      <img src={elipse5} alt="orange-ball" className={styles.elipse5} />
+      <img src={elipse6} alt="orange-ball" className={styles.elipse6} />
       <img src={union_white} alt="" className={styles.union_white} />
       <img src={union_orange} alt="" className={styles.union_orange} />
       <RegistrationForm />
