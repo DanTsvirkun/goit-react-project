@@ -1,0 +1,226 @@
+@value colorPurple from '../App/App.module.css';
+@value colorRed from '../App/App.module.css';
+@value colorGreen from '../App/App.module.css';
+@value colorBlue from '../App/App.module.css';
+
+.item {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  padding: 28px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 150ms linear;
+  overflow: hidden;
+}
+
+@media (min-width: 1170px){
+  .item:not(:nth-child(4n)) {
+    margin-right: 24px;
+  }
+  
+  .item:not(:nth-last-child(-n+4)) {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 1168px){
+  .item:not(:nth-child(3n)) {
+    margin-right: 24px;
+  }
+  
+  .item:not(:nth-last-child(-n+3)) {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 868px){
+  .item:not(:nth-child(2n)) {
+    margin-right: 24px;
+  }
+  
+  .item:not(:nth-last-child(-n+2)) {
+    margin-bottom: 30px;
+  }
+}
+
+/* colors for tasks */
+
+.item:nth-child(4n+1) {
+  background-color: colorPurple;
+}
+
+.item:nth-child(4n-2) {
+  background-color: colorRed;
+}
+
+.item:nth-child(4n-1) {
+  background-color: colorGreen;
+}
+
+.item:nth-child(4n) {
+  background-color: colorBlue;
+}
+
+/* ====== */
+
+/* Shadows */
+
+.item:nth-child(4n+1):hover {
+  box-shadow: 4px 8px 10px colorPurple;
+}
+
+.item:nth-child(4n-2):hover {
+  box-shadow: 4px 8px 10px colorRed;
+}
+
+.item:nth-child(4n-1):hover {
+  box-shadow: 4px 8px 10px colorGreen;
+}
+
+.item:nth-child(4n):hover {
+  box-shadow: 4px 8px 10px colorBlue;
+}
+/* ===== */
+
+/* Waves */
+
+.item:nth-child(4n+1)::before {
+  content: url("./projectImg/Wave_1-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n+1)::after {
+  content: url("./projectImg/Wave_1-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+.item:nth-child(4n-2)::before {
+  content: url("./projectImg/Wave_2-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n-2)::after {
+  content: url("./projectImg/Wave_2-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+.item:nth-child(4n-1)::before {
+  content: url("./projectImg/Wave_3-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n-1)::after {
+  content: url("./projectImg/Wave_3-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+.item:nth-child(4n)::before {
+  content: url("./projectImg/Wave_4-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n)::after {
+  content: url("./projectImg/Wave_4-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+/* ======= */
+
+/* trashBtn */
+
+.item:nth-child(4n+1) .itemTrashBtn {
+  background-color: colorPurple;
+}
+
+.item:nth-child(4n-2) .itemTrashBtn {
+  background-color: colorRed;
+}
+
+.item:nth-child(4n-1) .itemTrashBtn {
+  background-color: colorGreen;
+}
+
+.item:nth-child(4n) .itemTrashBtn {
+  background-color: colorBlue;
+}
+
+/* ========== */
+.itemTitle {
+  margin-bottom: 20px;
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.itemDescription {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.itemTrashBtn {
+  outline: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: #ffffff;
+  border-radius: 50%; 
+  background-image: url("./projectImg/delete.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -22px;
+  cursor: pointer;
+  z-index: 1;
+  transition: 150ms linear;
+}
+
+/* trashBtnHover */
+
+.item:nth-child(4n+1) .itemTrashBtn:hover,
+.item:nth-child(4n+1) .itemTrashBtn:focus {  
+  background-size: 92px;  
+  box-shadow: 1px 2px 20px colorPurple;
+}
+
+.item:nth-child(4n-2) .itemTrashBtn:hover,
+.item:nth-child(4n-2) .itemTrashBtn:focus {  
+  background-size: 92px;
+  box-shadow: 1px 2px 20px colorRed;
+}
+
+.item:nth-child(4n-1) .itemTrashBtn:hover,
+.item:nth-child(4n-1) .itemTrashBtn:focus {  
+  background-size: 92px;
+  box-shadow: 1px 2px 20px #53b967;
+}
+
+.item:nth-child(4n) .itemTrashBtn:hover,
+.item:nth-child(4n) .itemTrashBtn:focus {
+  background-size: 92px;
+  box-shadow: 1px 2px 20px colorBlue;
+}
+
+/* ============== */

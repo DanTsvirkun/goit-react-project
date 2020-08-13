@@ -1,3 +1,8 @@
+@value colorBlue: #4394f1;
+@value colorPurple: #8c72df;
+@value colorRed: #ff765f;
+@value colorGreen: #71df87;
+
 .wrapper {
   background-color: #f1f2f7;
   height: 100vh;
@@ -7,3 +12,4 @@
   max-width: 1170px;
   margin: 0 auto;
 }
+
