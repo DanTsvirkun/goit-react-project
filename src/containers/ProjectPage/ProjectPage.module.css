@@ -1,54 +1,61 @@
 .header {
-  overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: grey;
+  height: 80px;
+  width: 1170px;
 }
 
-.header a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 25px;
-  border-radius: 4px;
-}
-
-.header a.logo {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.header a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-
-.header-right {
-  float: right;
-}
-
-.projectHeader {
+.project__header {
   font-family: "Montserrat";
   font-weight: 500;
   font-size: 36px;
   line-height: 44px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   letter-spacing: 0.04em;
   color: #181c27;
   display: inline-block;
   margin-right: 20px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+.projectWrapper {
+  margin: 0 auto;
+  width: 970px;
+  padding-left: 70px;
+  padding-right: 30px;
+  border-left: 1px solid rgba(24, 28, 39, 0.1);
+}
+.project__button__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  border: none;
+  background: none;
+  margin-right: 20px;
+}
+
+.pencil {
+  margin-top: 14px;
 }
 
 .Icon {
   display: inline-block;
+}
+
+.sprintTxt {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  display: inline-block;
+  margin-right: 80px;
+}
+
+.project__header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
