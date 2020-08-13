@@ -1,9 +1,9 @@
-.registration_form_wrapper {
-  position: relative;
-  padding: 120px 0 122px;
-}
-
 .registaration_form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
   padding: 61px 0 59px;
   text-align: center;
   margin: 0 auto;
