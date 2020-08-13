@@ -1,33 +1,41 @@
 import React from "react";
 import styles from "./ProjectPage.module.css";
 import pencil from "../../Icons/pencil.svg";
+import plus from "../../Icons/plus.svg";
 
 const ProjectPage = () => {
   return (
     // Header start///
     <>
-      <div className="header">
-        <a href="#default" className="logo">
-          CompanyLogo
-        </a>
-        <div className="header-right">
-          <a className="active" href="#home">
-            Home
-          </a>
-          <a href="#contact">Contact</a>
-          <a href="#about">About</a>
+      {/* Header end*/}
+      <div className={styles.projectWrapper}>
+        <div className={styles.project__header__wrapper}>
+          <div className={styles.project__button__wrapper}>
+            <h1 className={styles.project__header}>Project 1</h1>
+            <button className={`${styles.button} ${styles.pencil}`}>
+              <img
+                className={`${styles.Icon}`}
+                src={pencil}
+                alt="pencil"
+                height="20"
+                width="20"
+              />
+            </button>
+          </div>
+          <div className={styles.btnWrapper}>
+            <button className={styles.button}>
+              <img
+                className={`${styles.Icon}`}
+                src={plus}
+                alt="pencil"
+                height="44"
+                width="44"
+              />
+            </button>
+            <p className={styles.sprintTxt}>Створити спринт</p>
+          </div>
         </div>
       </div>
-      <hr />
-      {/* Header end*/}
-      <h1 className={styles.projectHeader}>Project 1</h1>
-      <img
-        className={styles.Icon}
-        src={pencil}
-        alt="pencil"
-        height="20"
-        width="20"
-      />
     </>
   );
 };
