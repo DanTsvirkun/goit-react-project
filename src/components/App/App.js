@@ -10,8 +10,8 @@ const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <ProjectPage />
         <Header />
+        <ProjectPage />
         {/* <Registration /> */}
         {/* <Login /> */}
         {/* <SprintPage /> */}
