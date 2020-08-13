@@ -1,10 +1,9 @@
-.auth_wrapper {
-  position: relative;
-  margin: 183px 0 141px;
-  text-align: center;
-}
-
 .auth {
+  position: absolute;
+  left: 30%;
+  top: 183px;
+
+  text-align: center;
   margin: 0 auto;
   width: 570px;
   height: 444px;
