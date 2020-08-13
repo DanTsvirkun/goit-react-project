@@ -47,26 +47,6 @@
 
 /* colors for tasks */
 
-/* .item:nth-child(4n+1) {
-  background-color: colorPurple;
-}
-
-.item:nth-child(4n-2) {
-  background-color: colorRed;
-}
-
-.item:nth-child(4n-1) {
-  background-color: colorGreen;
-}
-
-.item:nth-child(4n) {
-  background-color: colorBlue;
-} */
-
-/* ====== */
-
-
-
 .item:nth-child(8n+1) {
   background-color: colorPurple;
 }
@@ -84,7 +64,7 @@
 }
 
 .item:nth-child(8n-3) {
-  background-color: rgb(243, 207, 46);
+  background-color: rgb(203, 206, 47);
 }
 
 .item:nth-child(8n-2) {
@@ -92,35 +72,16 @@
 }
 
 .item:nth-child(8n-1) {
-  background-color: rgb(182, 201, 79);
+  background-color: rgb(247, 163, 53);
 }
 
 .item:nth-child(8n) {
-  background-color: rgb(214, 143, 35);
+  background-color: rgb(212, 85, 53);
 }
 
-
-
+/* ====== */
 
 /* Shadows */
-
-/* .item:nth-child(4n+1):hover {
-  box-shadow: 4px 8px 10px colorPurple;
-}
-
-.item:nth-child(4n-2):hover {
-  box-shadow: 4px 8px 10px colorRed;
-}
-
-.item:nth-child(4n-1):hover {
-  box-shadow: 4px 8px 10px colorGreen;
-}
-
-.item:nth-child(4n):hover {
-  box-shadow: 4px 8px 10px colorBlue;
-} */
-
-
 
 .item:nth-child(8n+1):hover {
   box-shadow: 4px 8px 10px colorPurple;
@@ -147,15 +108,12 @@
 }
 
 .item:nth-child(8n-1):hover {
-  box-shadow: 4px 8px 10px rgb(182, 201, 79);
+  box-shadow: 4px 8px 10px rgb(247, 163, 53);
 }
 
 .item:nth-child(8n):hover {
-  box-shadow: 4px 8px 10px rgb(214, 143, 35);
+  box-shadow: 4px 8px 10px rgb(212, 85, 53);
 }
-
-
-
 
 /* ===== */
 
@@ -217,24 +175,6 @@
 
 /* trashBtn */
 
-/* .item:nth-child(4n+1) .itemTrashBtn {
-  background-color: colorPurple;
-}
-
-.item:nth-child(4n-2) .itemTrashBtn {
-  background-color: colorRed;
-}
-
-.item:nth-child(4n-1) .itemTrashBtn {
-  background-color: colorGreen;
-}
-
-.item:nth-child(4n) .itemTrashBtn {
-  background-color: colorBlue;
-} */
-
-
-
 .item:nth-child(8n+1) .itemTrashBtn {
   background-color: colorPurple;
 }
@@ -260,15 +200,12 @@
 }
 
 .item:nth-child(8n-1) .itemTrashBtn {
-  background-color: rgb(182, 201, 79);
+  background-color: rgb(247, 163, 53);
 }
 
 .item:nth-child(8n) .itemTrashBtn {
-  background-color: rgb(214, 143, 35);
+  background-color: rgb(212, 85, 53);
 }
-
-
-
 
 /* ========== */
 .itemTitle {
@@ -309,42 +246,9 @@
   transition: 150ms linear;
 }
 
-/* trashBtnHover */
-
 .itemTrashBtn:hover,
 .itemTrashBtn:focus {
   width: 32px;
   height: 32px; 
   box-shadow: 0px 0px 25px white;
 }
-
-
-/* .item:nth-child(4n+1) .itemTrashBtn:hover,
-.item:nth-child(4n+1) .itemTrashBtn:focus {
-  width: 32px;
-  height: 32px; 
-  box-shadow: 1px 2px 20px colorPurple;
-}
-
-.item:nth-child(4n-2) .itemTrashBtn:hover,
-.item:nth-child(4n-2) .itemTrashBtn:focus { 
-  width: 32px;
-  height: 32px; 
-  box-shadow: 1px 2px 20px colorRed;
-}
-
-.item:nth-child(4n-1) .itemTrashBtn:hover,
-.item:nth-child(4n-1) .itemTrashBtn:focus { 
-  width: 32px;
-  height: 32px; 
-  box-shadow: 1px 2px 20px colorGreen;
-}
-
-.item:nth-child(4n) .itemTrashBtn:hover,
-.item:nth-child(4n) .itemTrashBtn:focus {
-  width: 32px;
-  height: 32px; 
-  box-shadow: 1px 2px 20px colorBlue;
-} */
-
-/* ============== */
