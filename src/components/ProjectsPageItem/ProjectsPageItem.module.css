@@ -1,3 +1,6 @@
+@value colorPurple from '../App/App.module.css';
+@value colorRed from '../App/App.module.css';
+@value colorGreen from '../App/App.module.css';
 @value colorBlue from '../App/App.module.css';
 
 .item {
@@ -12,26 +15,48 @@
   overflow: hidden;
 }
 
-.item:not(:nth-child(4n)) {
-  margin-right: 24px;
+@media (min-width: 1170px){
+  .item:not(:nth-child(4n)) {
+    margin-right: 24px;
+  }
+  
+  .item:not(:nth-last-child(-n+4)) {
+    margin-bottom: 30px;
+  }
 }
 
-.item:not(:nth-last-child(-n+4)) {
-  margin-bottom: 30px;
+@media (max-width: 1168px){
+  .item:not(:nth-child(3n)) {
+    margin-right: 24px;
+  }
+  
+  .item:not(:nth-last-child(-n+3)) {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 868px){
+  .item:not(:nth-child(2n)) {
+    margin-right: 24px;
+  }
+  
+  .item:not(:nth-last-child(-n+2)) {
+    margin-bottom: 30px;
+  }
 }
 
 /* colors for tasks */
 
 .item:nth-child(4n+1) {
-  background-color: #8c72df;
+  background-color: colorPurple;
 }
 
 .item:nth-child(4n-2) {
-  background-color: #ff765f;
+  background-color: colorRed;
 }
 
 .item:nth-child(4n-1) {
-  background-color: #71df87;
+  background-color: colorGreen;
 }
 
 .item:nth-child(4n) {
@@ -43,19 +68,19 @@
 /* Shadows */
 
 .item:nth-child(4n+1):hover {
-  box-shadow: 4px 8px 10px rgba(140, 114, 223, 0.6);
+  box-shadow: 4px 8px 10px colorPurple;
 }
 
 .item:nth-child(4n-2):hover {
-  box-shadow: 4px 8px 10px rgba(255, 118, 95, 0.6);
+  box-shadow: 4px 8px 10px colorRed;
 }
 
 .item:nth-child(4n-1):hover {
-  box-shadow: 4px 8px 10px rgba(113, 223, 135, 0.6);
+  box-shadow: 4px 8px 10px colorGreen;
 }
 
 .item:nth-child(4n):hover {
-  box-shadow: 4px 8px 10px rgba(231, 235, 43, 0.6);
+  box-shadow: 4px 8px 10px colorBlue;
 }
 /* ===== */
 
@@ -118,19 +143,19 @@
 /* trashBtn */
 
 .item:nth-child(4n+1) .itemTrashBtn {
-  background-color: #8c72df;
+  background-color: colorPurple;
 }
 
 .item:nth-child(4n-2) .itemTrashBtn {
-  background-color: #ff765f;
+  background-color: colorRed;
 }
 
 .item:nth-child(4n-1) .itemTrashBtn {
-  background-color: #71df87;
+  background-color: colorGreen;
 }
 
 .item:nth-child(4n) .itemTrashBtn {
-  background-color: #e7eb2b;
+  background-color: colorBlue;
 }
 
 /* ========== */
@@ -154,6 +179,7 @@
 }
 
 .itemTrashBtn {
+  outline: none;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -161,8 +187,7 @@
   height: 34px;
   border: none;
   background: #ffffff;
-  border-radius: 50%;
-  /* background-image: url("./projectImg/trashBtn.png"); */
+  border-radius: 50%; 
   background-image: url("./projectImg/delete.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -174,20 +199,28 @@
 
 /* trashBtnHover */
 
-.item:nth-child(4n+1) .itemTrashBtn:hover {
-  box-shadow: 1px 2px 10px #523aa3;
+.item:nth-child(4n+1) .itemTrashBtn:hover,
+.item:nth-child(4n+1) .itemTrashBtn:focus {  
+  background-size: 92px;  
+  box-shadow: 1px 2px 20px colorPurple;
 }
 
-.item:nth-child(4n-2) .itemTrashBtn:hover {
-  box-shadow: 1px 2px 10px #ad412e;
+.item:nth-child(4n-2) .itemTrashBtn:hover,
+.item:nth-child(4n-2) .itemTrashBtn:focus {  
+  background-size: 92px;
+  box-shadow: 1px 2px 20px colorRed;
 }
 
-.item:nth-child(4n-1) .itemTrashBtn:hover {
-  box-shadow: 1px 2px 10px #359b49;
+.item:nth-child(4n-1) .itemTrashBtn:hover,
+.item:nth-child(4n-1) .itemTrashBtn:focus {  
+  background-size: 92px;
+  box-shadow: 1px 2px 20px #53b967;
 }
 
-.item:nth-child(4n) .itemTrashBtn:hover {
-  box-shadow: 1px 2px 10px #a9ac20;
+.item:nth-child(4n) .itemTrashBtn:hover,
+.item:nth-child(4n) .itemTrashBtn:focus {
+  background-size: 92px;
+  box-shadow: 1px 2px 20px colorBlue;
 }
 
 /* ============== */
