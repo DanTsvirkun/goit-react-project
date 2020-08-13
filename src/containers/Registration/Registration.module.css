@@ -22,6 +22,7 @@
     height: 252px;
     bottom: 0;
     left: 183px;
+    opacity: 0.9;
     z-index: 1;
 }
 
@@ -61,14 +62,11 @@
     position: absolute;
     left: 752px;
     top: 199.17px;
-    /* bottom: 0;
-    right: 0; */
+
 }
 
 .union_orange {
     position: absolute;
     left: 770px;
     top: 233px;
-    /* bottom: 33px;
-    right: 0; */
 }
