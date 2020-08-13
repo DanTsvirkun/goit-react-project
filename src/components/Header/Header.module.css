@@ -1,6 +1,5 @@
 .header {
   padding: 19px 0;
-  z-index: 2;
 }
 
 .header::after {

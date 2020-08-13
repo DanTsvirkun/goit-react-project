@@ -8,7 +8,7 @@ const ProjectPage = () => {
   return (
     <>
       <div className={styles.page_wrapper}>
-        {/* <SprintSidebar /> */}
+        <SprintSidebar />
         <div className={styles.projectWrapper}>
           <div className={styles.project__header__wrapper}>
             <div
