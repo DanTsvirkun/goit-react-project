@@ -1,11 +1,13 @@
 import React from 'react';
-import ProjectList from "./ProjectsPageList.module.css"
+import ProjectsPageItem from "../ProjectsPageItem/ProjectsPageItem"
+
+import listStyle from "./ProjectsPageList.module.css"
 
 const ProjectsPageList = () => {
   return (
-    <div>
-      
-    </div>
+    <ul className={listStyle.list}>
+      <ProjectsPageItem/>
+    </ul>
   );
 };
 

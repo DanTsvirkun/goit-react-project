@@ -1,0 +1,193 @@
+@value colorBlue from '../App/App.module.css';
+
+.item {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  padding: 28px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 150ms linear;
+  overflow: hidden;
+}
+
+.item:not(:nth-child(4n)) {
+  margin-right: 24px;
+}
+
+.item:not(:nth-last-child(-n+4)) {
+  margin-bottom: 30px;
+}
+
+/* colors for tasks */
+
+.item:nth-child(4n+1) {
+  background-color: #8c72df;
+}
+
+.item:nth-child(4n-2) {
+  background-color: #ff765f;
+}
+
+.item:nth-child(4n-1) {
+  background-color: #71df87;
+}
+
+.item:nth-child(4n) {
+  background-color: colorBlue;
+}
+
+/* ====== */
+
+/* Shadows */
+
+.item:nth-child(4n+1):hover {
+  box-shadow: 4px 8px 10px rgba(140, 114, 223, 0.6);
+}
+
+.item:nth-child(4n-2):hover {
+  box-shadow: 4px 8px 10px rgba(255, 118, 95, 0.6);
+}
+
+.item:nth-child(4n-1):hover {
+  box-shadow: 4px 8px 10px rgba(113, 223, 135, 0.6);
+}
+
+.item:nth-child(4n):hover {
+  box-shadow: 4px 8px 10px rgba(231, 235, 43, 0.6);
+}
+/* ===== */
+
+/* Waves */
+
+.item:nth-child(4n+1)::before {
+  content: url("./projectImg/Wave_1-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n+1)::after {
+  content: url("./projectImg/Wave_1-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+.item:nth-child(4n-2)::before {
+  content: url("./projectImg/Wave_2-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n-2)::after {
+  content: url("./projectImg/Wave_2-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+.item:nth-child(4n-1)::before {
+  content: url("./projectImg/Wave_3-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n-1)::after {
+  content: url("./projectImg/Wave_3-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+.item:nth-child(4n)::before {
+  content: url("./projectImg/Wave_4-1.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+.item:nth-child(4n)::after {
+  content: url("./projectImg/Wave_4-2.png");
+  position: absolute;
+  left: 0;
+  top: 76px;
+}
+
+/* ======= */
+
+/* trashBtn */
+
+.item:nth-child(4n+1) .itemTrashBtn {
+  background-color: #8c72df;
+}
+
+.item:nth-child(4n-2) .itemTrashBtn {
+  background-color: #ff765f;
+}
+
+.item:nth-child(4n-1) .itemTrashBtn {
+  background-color: #71df87;
+}
+
+.item:nth-child(4n) .itemTrashBtn {
+  background-color: #e7eb2b;
+}
+
+/* ========== */
+.itemTitle {
+  margin-bottom: 20px;
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.itemDescription {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.itemTrashBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: #ffffff;
+  border-radius: 50%;
+  /* background-image: url("./projectImg/trashBtn.png"); */
+  background-image: url("./projectImg/delete.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -22px;
+  cursor: pointer;
+  z-index: 1;
+  transition: 150ms linear;
+}
+
+/* trashBtnHover */
+
+.item:nth-child(4n+1) .itemTrashBtn:hover {
+  box-shadow: 1px 2px 10px #523aa3;
+}
+
+.item:nth-child(4n-2) .itemTrashBtn:hover {
+  box-shadow: 1px 2px 10px #ad412e;
+}
+
+.item:nth-child(4n-1) .itemTrashBtn:hover {
+  box-shadow: 1px 2px 10px #359b49;
+}
+
+.item:nth-child(4n) .itemTrashBtn:hover {
+  box-shadow: 1px 2px 10px #a9ac20;
+}
+
+/* ============== */
