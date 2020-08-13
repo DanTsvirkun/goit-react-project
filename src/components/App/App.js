@@ -9,8 +9,8 @@ const App = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-        <SprintPage />
-        {/* <Registration /> */}
+        {/* <SprintPage /> */}
+        <Registration />
       </div>
     </div>
   );
