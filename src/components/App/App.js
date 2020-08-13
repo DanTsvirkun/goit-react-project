@@ -5,11 +5,17 @@ import Login from "../../containers/Login/Login";
 import SprintPage from "../../containers/Sprint/Sprint";
 import styles from "./App.module.css";
 
+//
+import Projects from "../../containers/Projects/Projects.js"
+//
+
 const App = () => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div className={styles.container}>       
         <Header />
+        <Projects/>
+        {/* <SprintPage /> */}
         {/* <Registration /> */}
         {/* <Login /> */}
         {/* <SprintPage /> */}
