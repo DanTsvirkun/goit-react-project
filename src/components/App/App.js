@@ -4,17 +4,19 @@ import Registration from "../../containers/Registration/Registration";
 import Login from "../../containers/Login/Login";
 import SprintPage from "../../containers/Sprint/Sprint";
 import styles from "./App.module.css";
+import ProjectPage from "../../containers/ProjectPage/ProjectPage";
 
 //
-import Projects from "../../containers/Projects/Projects.js"
+import Projects from "../../containers/Projects/Projects.js";
 //
 
 const App = () => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>       
+      <div className={styles.container}>
         <Header />
-        <Projects/>
+        {/* <ProjectPage /> */}
+        {/* <Projects /> */}
         {/* <SprintPage /> */}
         {/* <Registration /> */}
         {/* <Login /> */}
