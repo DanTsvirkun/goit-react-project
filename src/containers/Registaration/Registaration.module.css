@@ -1,3 +1,41 @@
 .registration_wrapper {
-    padding: 56px 0 94px;
+    position: relative;
+}
+
+.elipse1 {
+    position: absolute;
+    bottom: 0;
+    left: 90px;
+    z-index: 1;
+}
+
+.elipse2 {
+    position: absolute;
+    bottom: 0;
+    left: 128px;
+    z-index: 1;
+}
+
+.elipse3 {
+    position: absolute;
+    top: 287px;
+    left: 56px;
+}
+
+.elipse4 {
+    position: absolute;
+    top: 160px;
+    left: 175px;
+}
+
+.elipse5 {
+    position: absolute;
+    top: 23px;
+    left: 822px;
+}
+
+.elipse6 {
+    position: absolute;
+    top: 49px;
+    left: 1000px;
 }
