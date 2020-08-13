@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./App.module.css";
-import Registration from "../../containers/Registration/Registration";
-import SprintPage from "../../containers/Sprint/Sprint";
 import Header from "../Header/Header";
+import Registration from "../../containers/Registration/Registration";
+import Login from "../../containers/Login/Login";
+import SprintPage from "../../containers/Sprint/Sprint";
+import styles from "./App.module.css";
 
 //
 import Projects from "../../containers/Projects/Projects.js"
@@ -14,8 +15,10 @@ const App = () => {
       <div className={styles.container}>       
         <Header />
         <Projects/>
-        <SprintPage />
+        {/* <SprintPage /> */}
         {/* <Registration /> */}
+        {/* <Login /> */}
+        {/* <SprintPage /> */}
       </div>
     </div>
   );
