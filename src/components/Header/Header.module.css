@@ -12,3 +12,8 @@
     top: 80px;
     left: 0;
 }
+
+.logo_link {
+    display: block;
+    width: max-content;
+}
