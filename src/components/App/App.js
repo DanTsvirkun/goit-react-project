@@ -1,7 +1,11 @@
-import React from "react";
-
+import React from 'react';
+import SprintPage from '../../containers/Sprint/Sprint';
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <SprintPage />
+    </>
+  );
 };
 
 export default App;

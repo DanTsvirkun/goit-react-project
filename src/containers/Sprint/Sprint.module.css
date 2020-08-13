@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sprint {
+  padding: 20px 0 0 0;
+  background: #f1f2f7;
+}
