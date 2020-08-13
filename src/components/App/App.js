@@ -2,12 +2,15 @@ import React from "react";
 import styles from "./App.module.css";
 import Registration from "../../containers/Registration/Registration";
 import SprintPage from "../../containers/Sprint/Sprint";
+import Header from "../Header/Header";
+
 const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        {/* <Registration /> */}
+        <Header />
         <SprintPage />
+        {/* <Registration /> */}
       </div>
     </div>
   );
