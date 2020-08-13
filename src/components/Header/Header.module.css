@@ -1,0 +1,14 @@
+.header {
+    padding: 19px 0;
+}
+
+.header::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 1px;
+    background-color: rgba(24, 28, 39, 0.1);
+    top: 80px;
+    left: 0;
+}
