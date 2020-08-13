@@ -1,8 +1,6 @@
 .sprint__sidebar-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
   width: 170px;
   margin-bottom: 110px;
   list-style: none;
@@ -12,6 +10,7 @@
   text-align: left;
   width: 170px;
 }
+
 .sprint__sidebar-item:not(:last-child) {
   margin-bottom: 30px;
 }
@@ -30,12 +29,15 @@
   position: relative;
   display: block;
 }
+
 .sprint__sidebar-link--active {
   font-weight: bold;
 }
+
 .sprint__sidebar-link:not(:last-child) {
   margin-bottom: 30px;
 }
+
 .sprint__sidebar-link::before {
   position: absolute;
   content: '';

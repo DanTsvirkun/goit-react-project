@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import css from './SprintSidebar.module.css';
 import SprintsSidebarList from '../SprintsSidebarList/SprintsSidebarList';
-const SprintSidebar = () => {
+const SprintSidebar = ({ match = 'test' }) => {
   return (
     <div className={css['sprint-sidebar__wrapper']}>
       <div className={css['sprint-sidebar__wrapper-link']}>
@@ -10,9 +10,9 @@ const SprintSidebar = () => {
           Показати проекти
         </NavLink>
       </div>
-      <SprintsSidebarList />
+      <SprintsSidebarList match={match} />
       <div className={css['sprint-sidebar__add-wrapper']}>
-        <button className={css['sprint-sidebar__add-btn']}></button>
+        <button className={css['sprint-sidebar__add-btn']}> </button>
         <p className={css['sprint-sidebar__add-description']}>
           Створити спринт
         </p>
