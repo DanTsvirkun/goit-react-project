@@ -1,34 +1,38 @@
-@value colorPurple from '../App/App.module.css';
-@value colorRed from '../App/App.module.css';
-@value colorGreen from '../App/App.module.css';
-@value colorBlue from '../App/App.module.css';
+@value color_1 from '../App/App.module.css';
+@value color_2 from '../App/App.module.css';
+@value color_3 from '../App/App.module.css';
+@value color_4 from '../App/App.module.css';
+@value color_5 from '../App/App.module.css';
+@value color_6 from '../App/App.module.css';
+@value color_7 from '../App/App.module.css';
+@value color_8 from '../App/App.module.css';
 
-@media (min-width: 1170px){
+@media (min-width: 1170px) {
   .item:not(:nth-child(4n)) {
     margin-right: 24px;
   }
-  
-  .item:not(:nth-last-child(-n+4)) {
+
+  .item:not(:nth-last-child(-n + 4)) {
     margin-bottom: 30px;
   }
 }
 
-@media (max-width: 1168px){
+@media (max-width: 1168px) {
   .item:not(:nth-child(3n)) {
     margin-right: 24px;
   }
-  
-  .item:not(:nth-last-child(-n+3)) {
+
+  .item:not(:nth-last-child(-n + 3)) {
     margin-bottom: 30px;
   }
 }
 
-@media (max-width: 868px){
+@media (max-width: 868px) {
   .item:not(:nth-child(2n)) {
     margin-right: 24px;
   }
-  
-  .item:not(:nth-last-child(-n+2)) {
+
+  .item:not(:nth-last-child(-n + 2)) {
     margin-bottom: 30px;
   }
 }
@@ -45,170 +49,167 @@
   overflow: hidden;
 }
 
-
-/* colors for tasks */
-
-.item:nth-child(8n+1) {
-  background-color: colorPurple;
+.item:nth-child(8n + 1) {
+  background-color: color_1;
 }
 
-.item:nth-child(8n-6) {
-  background-color: colorRed;
+.item:nth-child(8n + 2) {
+  background-color: color_2;
 }
 
-.item:nth-child(8n-5) {
-  background-color: colorGreen;
+.item:nth-child(8n + 3) {
+  background-color: color_3;
 }
 
-.item:nth-child(8n-4) {
-  background-color: colorBlue;
+.item:nth-child(8n + 4) {
+  background-color: color_4;
 }
 
-.item:nth-child(8n-3) {
-  background-color: rgb(203, 206, 47);
+.item:nth-child(8n + 5) {
+  background-color: color_5;
 }
 
-.item:nth-child(8n-2) {
-  background-color: rgb(228, 108, 222);
+.item:nth-child(8n + 6) {
+  background-color: color_6;
 }
 
-.item:nth-child(8n-1) {
-  background-color: rgb(247, 163, 53);
+.item:nth-child(8n + 7) {
+  background-color: color_7;  
 }
 
-.item:nth-child(8n) {
-  background-color: rgb(212, 85, 53);
+.item:nth-child(8n + 8) {
+  background-color: color_8;
 }
 
 /* ====== */
 
 /* Shadows */
 
-.item:nth-child(8n+1):hover {
-  box-shadow: 4px 8px 10px colorPurple;
+.item:nth-child(8n + 1):hover {
+  box-shadow: 1px 6px 10px color_1;
 }
 
-.item:nth-child(8n-6):hover {
-  box-shadow: 4px 8px 10px colorRed;
+.item:nth-child(8n + 2):hover {
+  box-shadow: 1px 6px 10px color_2;
 }
 
-.item:nth-child(8n-5):hover {
-  box-shadow: 4px 8px 10px colorGreen;
+.item:nth-child(8n + 3):hover {
+  box-shadow: 1px 6px 10px color_3;
 }
 
-.item:nth-child(8n-4):hover {
-  box-shadow: 4px 8px 10px colorBlue;
+.item:nth-child(8n + 4):hover {
+  box-shadow: 1px 6px 10px color_4;
 }
 
-.item:nth-child(8n-3):hover {
-  box-shadow: 4px 8px 10px rgb(243, 207, 46);
+.item:nth-child(8n + 5):hover {
+  box-shadow: 1px 6px 10px color_5;
 }
 
-.item:nth-child(8n-2):hover {
-  box-shadow: 4px 8px 10px rgb(228, 108, 222);
+.item:nth-child(8n + 6):hover {
+  box-shadow: 1px 6px 10px color_6;
 }
 
-.item:nth-child(8n-1):hover {
-  box-shadow: 4px 8px 10px rgb(247, 163, 53);
+.item:nth-child(8n + 7):hover {
+  box-shadow: 1px 6px 10px color_7;
 }
 
-.item:nth-child(8n):hover {
-  box-shadow: 4px 8px 10px rgb(212, 85, 53);
+.item:nth-child(8n + 8):hover {
+  box-shadow: 1px 6px 10px color_8;
 }
 
 /* ===== */
 
 /* Waves */
 
-.item:nth-child(4n+1)::before,
-.item:nth-child(4n+1)::after,
-.item:nth-child(4n-2)::before,
-.item:nth-child(4n-2)::after,
-.item:nth-child(4n-1)::before,
-.item:nth-child(4n-1)::after,
-.item:nth-child(4n)::before,
-.item:nth-child(4n)::after{
+.item:nth-child(4n + 1)::before,
+.item:nth-child(4n + 1)::after,
+.item:nth-child(4n + 2)::before,
+.item:nth-child(4n + 2)::after,
+.item:nth-child(4n + 3)::before,
+.item:nth-child(4n + 3)::after,
+.item:nth-child(4n + 4)::before,
+.item:nth-child(4n + 4)::after {
   position: absolute;
   left: 0;
   top: 76px;
 }
 
-.item:nth-child(4n+1)::before {
-  content: url("./projectImg/Wave_1-1.png"); 
+.item:nth-child(4n + 1)::before {
+  content: url("./projectImg/Wave_1-1.png");
 }
-.item:nth-child(4n+1)::after {
-  content: url("./projectImg/Wave_1-2.png");  
-}
-
-.item:nth-child(4n-2)::before {
-  content: url("./projectImg/Wave_2-1.png"); 
-}
-.item:nth-child(4n-2)::after {
-  content: url("./projectImg/Wave_2-2.png"); 
+.item:nth-child(4n + 1)::after {
+  content: url("./projectImg/Wave_1-2.png");
 }
 
-.item:nth-child(4n-1)::before {
+.item:nth-child(4n+2)::before {
+  content: url("./projectImg/Wave_2-1.png");
+}
+.item:nth-child(4n+2)::after {
+  content: url("./projectImg/Wave_2-2.png");
+}
+
+.item:nth-child(4n+3)::before {
   content: url("./projectImg/Wave_3-1.png");
 }
-.item:nth-child(4n-1)::after {
-  content: url("./projectImg/Wave_3-2.png"); 
+.item:nth-child(4n+3)::after {
+  content: url("./projectImg/Wave_3-2.png");
 }
 
-.item:nth-child(4n)::before {
+.item:nth-child(4n+4)::before {
   content: url("./projectImg/Wave_4-1.png");
 }
-.item:nth-child(4n)::after {
-  content: url("./projectImg/Wave_4-2.png"); 
+.item:nth-child(4n+4)::after {
+  content: url("./projectImg/Wave_4-2.png");
 }
 
 /* ======= */
 
 /* trashBtn */
 
-.item:nth-child(8n+1) .itemTrashBtn {
-  background-color: colorPurple;
+.item:nth-child(8n + 1) .itemTrashBtn {
+  background-color: color_1;
 }
 
-.item:nth-child(8n-6) .itemTrashBtn {
-  background-color: colorRed;
+.item:nth-child(8n+2) .itemTrashBtn {
+  background-color: color_2;
 }
 
-.item:nth-child(8n-5) .itemTrashBtn {
-  background-color: colorGreen;
+.item:nth-child(8n+3) .itemTrashBtn {
+  background-color: color_3;
 }
 
-.item:nth-child(8n-4) .itemTrashBtn {
-  background-color: colorBlue;
+.item:nth-child(8n+4) .itemTrashBtn {
+  background-color: color_4;
 }
 
-.item:nth-child(8n-3) .itemTrashBtn {
-  background-color: rgb(243, 207, 46);
+.item:nth-child(8n+5) .itemTrashBtn {
+  background-color: color_5;
 }
 
-.item:nth-child(8n-2) .itemTrashBtn {
-  background-color: rgb(228, 108, 222);
+.item:nth-child(8n+6) .itemTrashBtn {
+  background-color: color_6;
 }
 
-.item:nth-child(8n-1) .itemTrashBtn {
-  background-color: rgb(247, 163, 53);
+.item:nth-child(8n+7) .itemTrashBtn {
+  background-color: color_7;
 }
 
-.item:nth-child(8n) .itemTrashBtn {
-  background-color: rgb(212, 85, 53);
+.item:nth-child(8n+8) .itemTrashBtn {
+  background-color: color_8;
 }
 
 /* ========== */
-.itemTitle {   
+.itemTitle {
   margin-bottom: 20px;
   font-family: "Montserrat";
   font-weight: 800;
   font-size: 26px;
   line-height: 32px;
   letter-spacing: 0.04em;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
-.item:hover .itemDescription{
+.item:hover .itemDescription {
   opacity: 1;
 }
 
@@ -232,7 +233,7 @@
   height: 34px;
   border: none;
   background: #ffffff;
-  border-radius: 50%; 
+  border-radius: 50%;
   background-image: url("./projectImg/delete.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -245,6 +246,6 @@
 .itemTrashBtn:hover,
 .itemTrashBtn:focus {
   width: 32px;
-  height: 32px; 
-  box-shadow: 0px 0px 25px white;
+  height: 32px;
+  box-shadow: 0px 0px 25px #ffffff;
 }
