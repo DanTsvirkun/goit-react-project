@@ -40,10 +40,3 @@ class BurndownChartModalWindow extends Component {
 }
 
 export default BurndownChartModalWindow;
-
-{
-  /* <BurndownChartBtn openModal={this.toggleGraphicModal} />;
-{
-  showModal && <BurndownChartModalWindow onClose={this.toggleGraphicModal} />;
-} */
-}
