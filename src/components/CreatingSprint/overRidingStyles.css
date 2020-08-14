@@ -1,0 +1,97 @@
+.react-datepicker__month {
+  background: transparent !important;
+  /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
+  backdrop-filter: blur(24px);
+  margin: 0rem;
+
+  /* Note: backdrop-filter has minimal browser support */
+}
+
+.react-datepicker {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7) !important;
+  /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
+  backdrop-filter: blur(24px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 20px;
+  width: 280px;
+  min-height: 260px;
+  max-height: 300px;
+}
+
+.react-datepicker__header {
+  background: transparent !important;
+  /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
+  backdrop-filter: blur(24px);
+  border-radius: 20px 20px 0px 0px;
+  /* Note: backdrop-filter has minimal browser support */
+}
+
+.react-datepicker__month-container {
+  border-radius: 20px;
+  font-family: "Montserrat";
+  border-radius: 20px 20px 0px 0px;
+  background: transparent !important;
+  width: 280px;
+  height: 220px;
+}
+
+.react-datepicker__week,
+.react-datepicker__day {
+  /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
+  backdrop-filter: blur(24px);
+  margin: 0rem;
+}
+
+.react-datepicker__day {
+  width: 32px;
+  height: 32px;
+}
+
+.react-datepicker__day:focus {
+  outline: none;
+}
+
+.react-datepicker__day:hover {
+  backdrop-filter: blur(24px);
+  border-radius: 50%;
+  /* width: 24px;
+  height: 24px; */
+  /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
+}
+
+.react-datepicker__header {
+  background: transparent;
+  /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
+  backdrop-filter: blur(24px);
+  text-transform: capitalize;
+}
+
+.react-datepicker__triangle,
+.react-datepicker__navigation {
+  display: none;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--selected:hover {
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  transform: translate(1px, 1px);
+  background: #ff6b08;
+  border-radius: 50%;
+  position: center;
+}
+
+.react-datepicker__day-name {
+  text-transform: uppercase;
+  color: #ff6b08;
+  font-size: 12px;
+}
+
+.react-datepicker__current-month {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
