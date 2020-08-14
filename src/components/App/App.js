@@ -16,7 +16,7 @@ const App = () => {
       <div className={styles.container}>
         <Header />
         {/* <ProjectPage /> */}
-        <Projects />
+        {/* <Projects /> */}
         {/* <SprintPage /> */}
         {/* <Registration /> */}
         {/* <Login /> */}
