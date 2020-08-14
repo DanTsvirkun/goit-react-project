@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./RegistrationForm.module.css";
+import { Registration } from "../../redux/operations/RegistarationOperation";
 
 const initialState = { email: "", password: "", repeat_password: "" };
 
@@ -18,7 +19,7 @@ const RegistrationForm = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(form);
+    Registration(form);
     setForm(initialState);
   };
 
