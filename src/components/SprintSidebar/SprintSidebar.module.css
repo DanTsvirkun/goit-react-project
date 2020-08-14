@@ -1,87 +1,78 @@
 .sprint-sidebar__wrapper {
-	width: 200px;
-	padding: 20px 0 0 0;
-	position: relative;
+  width: 200px;
+  padding: 20px 0 0 0;
+  position: relative;
 }
 
 .sprint-sidebar__wrapper::before {
-	content: "";
-	position: absolute;
-	height: 100%;
-
-	width: 1px;
-	background-color: rgba(
-		24,
-		28,
-		39,
-		0.1
-	);
-
-	top: 0;
-	right: 0;
+  content: "";
+  position: absolute;
+  min-height: 100%;
+  width: 1px;
+  background-color: rgba(24, 28, 39, 0.1);
+  top: 0;
+  right: 0;
 }
 
 .sprint-sidebar__wrapper-link {
-	width: 170px;
-	text-align: left;
+  width: 170px;
+  text-align: left;
 }
 
 .sprint-sidebar__link {
-	width: 120px;
-	padding: 0 0px 0 50px;
-	font-family: "Montserrat";
-	font-style: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 17px;
-	letter-spacing: 0.04em;
-	color: #181c27;
-	text-decoration: none;
-	position: relative;
-	display: block;
-	margin-bottom: 102px;
+  width: 120px;
+  padding: 0 0px 0 50px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  margin-bottom: 102px;
 }
 
 .sprint-sidebar__link::before {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	content: "";
-	background-image: url("./Arrow.svg");
-	width: 30px;
-	height: 8px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  content: "";
+  background-image: url("./Arrow.svg");
+  width: 30px;
+  height: 8px;
 }
 
 .sprint-sidebar__add-wrapper {
-	width: 162px;
-	height: 76px;
-	margin-bottom: 50px;
+  width: 162px;
+  height: 76px;
+  margin-bottom: 50px;
 }
 
 .sprint-sidebar__add-btn {
-	display: block;
-	margin: 0 auto;
-	width: 44px;
-	height: 44px;
-	box-shadow: 0px 3px 4px
-		rgba(255, 107, 8, 0.3);
-	border-radius: 25px;
-	border: none;
-	background-position: top;
-	background-repeat: no-repeat;
-	margin-bottom: 14px;
-	cursor: pointer;
-	background-image: url("../../containers/Sprint/images/Btn.svg");
+  display: block;
+  margin: 0 auto;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+  border-radius: 25px;
+  border: none;
+  background-repeat: no-repeat;
+  margin-bottom: 14px;
+  cursor: pointer;
+  background-image: url("../../Icons/plus.svg");
 }
 
 .sprint-sidebar__add-description {
-	font-family: Montserrat;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 17px;
-	text-align: center;
-	letter-spacing: 0.04em;
-	color: #181c27;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: #181c27;
 }
