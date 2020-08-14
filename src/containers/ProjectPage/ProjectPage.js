@@ -3,12 +3,14 @@ import styles from "./ProjectPage.module.css";
 import pencil from "../../Icons/pencil.svg";
 import plus from "../../Icons/plus.svg";
 import SprintSidebar from "../../components/SprintSidebar/SprintSidebar";
+import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
 
 const ProjectPage = () => {
   return (
     <>
       <div className={styles.page_wrapper}>
         {/* <SprintSidebar /> */}
+        <CreatingSprint />
         <div className={styles.projectWrapper}>
           <div className={styles.project__header__wrapper}>
             <div
