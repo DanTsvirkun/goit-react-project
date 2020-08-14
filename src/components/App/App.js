@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Registration from '../../containers/Registration/Registration';
 import Login from '../../containers/Login/Login';
@@ -9,26 +10,17 @@ import Projects from '../../containers/Projects/Projects.js';
 import ProjectSidebar from '../../components/ProjectSidebar/ProjectSidebar';
 
 const App = () => {
-  return ( <
-    div className = {
-      styles.wrapper
-    } >
-    <
-    div className = {
-      styles.container
-    } >
-    <
-    Header / > {
-      /* <ProjectPage /> */ } {
-      /* <Projects /> */ } {
-      /* <SprintPage /> */ } {
-      /* <Registration /> */ } {
-      /* <Login /> */ } {
-      < SprintPage / >
-    } {
-      /*<ProjectSidebar />*/ } <
-    /div> <
-    /div>
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <Header /> {/* <ProjectPage /> */} {/* <Projects /> */}
+        {/* <SprintPage /> */} {/* <Registration /> */} {/* <Login /> */}
+        {/*<ProjectSidebar />*/}
+        <Switch>
+          <Route path="/projects/:projectId/sprints" component={SprintPage} />
+        </Switch>
+      </div>
+    </div>
   );
 };
 
