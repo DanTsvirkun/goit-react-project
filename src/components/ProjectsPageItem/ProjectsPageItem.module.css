@@ -3,18 +3,6 @@
 @value colorGreen from '../App/App.module.css';
 @value colorBlue from '../App/App.module.css';
 
-.item {
-  position: relative;
-  width: 270px;
-  height: 270px;
-  padding: 28px 30px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 150ms linear;
-  overflow: hidden;
-}
-
 @media (min-width: 1170px){
   .item:not(:nth-child(4n)) {
     margin-right: 24px;
@@ -45,117 +33,168 @@
   }
 }
 
+.item {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  padding: 28px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 150ms linear;
+  overflow: hidden;
+}
+
+
 /* colors for tasks */
 
-.item:nth-child(4n+1) {
+.item:nth-child(8n+1) {
   background-color: colorPurple;
 }
 
-.item:nth-child(4n-2) {
+.item:nth-child(8n-6) {
   background-color: colorRed;
 }
 
-.item:nth-child(4n-1) {
+.item:nth-child(8n-5) {
   background-color: colorGreen;
 }
 
-.item:nth-child(4n) {
+.item:nth-child(8n-4) {
   background-color: colorBlue;
+}
+
+.item:nth-child(8n-3) {
+  background-color: rgb(203, 206, 47);
+}
+
+.item:nth-child(8n-2) {
+  background-color: rgb(228, 108, 222);
+}
+
+.item:nth-child(8n-1) {
+  background-color: rgb(247, 163, 53);
+}
+
+.item:nth-child(8n) {
+  background-color: rgb(212, 85, 53);
 }
 
 /* ====== */
 
 /* Shadows */
 
-.item:nth-child(4n+1):hover {
+.item:nth-child(8n+1):hover {
   box-shadow: 4px 8px 10px colorPurple;
 }
 
-.item:nth-child(4n-2):hover {
+.item:nth-child(8n-6):hover {
   box-shadow: 4px 8px 10px colorRed;
 }
 
-.item:nth-child(4n-1):hover {
+.item:nth-child(8n-5):hover {
   box-shadow: 4px 8px 10px colorGreen;
 }
 
-.item:nth-child(4n):hover {
+.item:nth-child(8n-4):hover {
   box-shadow: 4px 8px 10px colorBlue;
 }
+
+.item:nth-child(8n-3):hover {
+  box-shadow: 4px 8px 10px rgb(243, 207, 46);
+}
+
+.item:nth-child(8n-2):hover {
+  box-shadow: 4px 8px 10px rgb(228, 108, 222);
+}
+
+.item:nth-child(8n-1):hover {
+  box-shadow: 4px 8px 10px rgb(247, 163, 53);
+}
+
+.item:nth-child(8n):hover {
+  box-shadow: 4px 8px 10px rgb(212, 85, 53);
+}
+
 /* ===== */
 
 /* Waves */
 
-.item:nth-child(4n+1)::before {
-  content: url("./projectImg/Wave_1-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
-}
-.item:nth-child(4n+1)::after {
-  content: url("./projectImg/Wave_1-2.png");
+.item:nth-child(4n+1)::before,
+.item:nth-child(4n+1)::after,
+.item:nth-child(4n-2)::before,
+.item:nth-child(4n-2)::after,
+.item:nth-child(4n-1)::before,
+.item:nth-child(4n-1)::after,
+.item:nth-child(4n)::before,
+.item:nth-child(4n)::after{
   position: absolute;
   left: 0;
   top: 76px;
 }
 
+.item:nth-child(4n+1)::before {
+  content: url("./projectImg/Wave_1-1.png"); 
+}
+.item:nth-child(4n+1)::after {
+  content: url("./projectImg/Wave_1-2.png");  
+}
+
 .item:nth-child(4n-2)::before {
-  content: url("./projectImg/Wave_2-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_2-1.png"); 
 }
 .item:nth-child(4n-2)::after {
-  content: url("./projectImg/Wave_2-2.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_2-2.png"); 
 }
 
 .item:nth-child(4n-1)::before {
   content: url("./projectImg/Wave_3-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
 }
 .item:nth-child(4n-1)::after {
-  content: url("./projectImg/Wave_3-2.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_3-2.png"); 
 }
 
 .item:nth-child(4n)::before {
   content: url("./projectImg/Wave_4-1.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
 }
 .item:nth-child(4n)::after {
-  content: url("./projectImg/Wave_4-2.png");
-  position: absolute;
-  left: 0;
-  top: 76px;
+  content: url("./projectImg/Wave_4-2.png"); 
 }
 
 /* ======= */
 
 /* trashBtn */
 
-.item:nth-child(4n+1) .itemTrashBtn {
+.item:nth-child(8n+1) .itemTrashBtn {
   background-color: colorPurple;
 }
 
-.item:nth-child(4n-2) .itemTrashBtn {
+.item:nth-child(8n-6) .itemTrashBtn {
   background-color: colorRed;
 }
 
-.item:nth-child(4n-1) .itemTrashBtn {
+.item:nth-child(8n-5) .itemTrashBtn {
   background-color: colorGreen;
 }
 
-.item:nth-child(4n) .itemTrashBtn {
+.item:nth-child(8n-4) .itemTrashBtn {
   background-color: colorBlue;
+}
+
+.item:nth-child(8n-3) .itemTrashBtn {
+  background-color: rgb(243, 207, 46);
+}
+
+.item:nth-child(8n-2) .itemTrashBtn {
+  background-color: rgb(228, 108, 222);
+}
+
+.item:nth-child(8n-1) .itemTrashBtn {
+  background-color: rgb(247, 163, 53);
+}
+
+.item:nth-child(8n) .itemTrashBtn {
+  background-color: rgb(212, 85, 53);
 }
 
 /* ========== */
@@ -197,30 +236,9 @@
   transition: 150ms linear;
 }
 
-/* trashBtnHover */
-
-.item:nth-child(4n+1) .itemTrashBtn:hover,
-.item:nth-child(4n+1) .itemTrashBtn:focus {  
-  background-size: 92px;  
-  box-shadow: 1px 2px 20px colorPurple;
+.itemTrashBtn:hover,
+.itemTrashBtn:focus {
+  width: 32px;
+  height: 32px; 
+  box-shadow: 0px 0px 25px white;
 }
-
-.item:nth-child(4n-2) .itemTrashBtn:hover,
-.item:nth-child(4n-2) .itemTrashBtn:focus {  
-  background-size: 92px;
-  box-shadow: 1px 2px 20px colorRed;
-}
-
-.item:nth-child(4n-1) .itemTrashBtn:hover,
-.item:nth-child(4n-1) .itemTrashBtn:focus {  
-  background-size: 92px;
-  box-shadow: 1px 2px 20px #53b967;
-}
-
-.item:nth-child(4n) .itemTrashBtn:hover,
-.item:nth-child(4n) .itemTrashBtn:focus {
-  background-size: 92px;
-  box-shadow: 1px 2px 20px colorBlue;
-}
-
-/* ============== */

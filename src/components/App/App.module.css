@@ -5,11 +5,10 @@
 
 .wrapper {
   background-color: #f1f2f7;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1170px;
   margin: 0 auto;
 }
-
