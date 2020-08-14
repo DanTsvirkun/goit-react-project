@@ -1,0 +1,21 @@
+.modal__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.modal__overlay {
+  background-color: rgba(24, 28, 39, 0.25);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal__sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 530px;
+  height: 100vh;
+  background-color: #fff;
+}

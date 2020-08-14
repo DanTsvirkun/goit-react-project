@@ -8,11 +8,13 @@ import styles from './App.module.css';
 import ProjectPage from '../../containers/ProjectPage/ProjectPage';
 import Projects from '../../containers/Projects/Projects.js';
 import ProjectSidebar from '../../components/ProjectSidebar/ProjectSidebar';
+import ModalSidebar from '../ModalSidebar/ModalSidebar';
 
 const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
+        <ModalSidebar><h2>Test</h2></ModalSidebar>
         <Header /> {/* <ProjectPage /> */} {/* <Projects /> */}
         {/* <SprintPage /> */} {/* <Registration /> */} {/* <Login /> */}
         {/*<ProjectSidebar />*/}
