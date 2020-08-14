@@ -1,0 +1,71 @@
+.elipse1 {
+  position: absolute;
+  width: 298px;
+  height: 298px;
+  /* top: 490px; */
+  bottom: 0;
+  left: 325px;
+  z-index: 0;
+}
+
+.elipse2 {
+  position: absolute;
+  width: 252px;
+  height: 252px;
+  /* top: 516px; */
+  left: 360px;
+  bottom: 0;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.elipse3 {
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  top: 367px;
+  left: 111px;
+}
+
+.elipse4 {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 240px;
+  left: 230px;
+}
+
+.elipse5 {
+  position: absolute;
+  width: 78px;
+  height: 78px;
+  /* top: 103px; */
+  /* left: 877px; */
+  top: 155px;
+  right: 475px;
+}
+
+.elipse6 {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 129px;
+  /* left: 1055px; */
+  right: 225px;
+}
+
+.union_white {
+  position: absolute;
+  /* left: 752px; */
+  /* top: 199.17px; */
+  right: 0;
+  bottom: 0;
+}
+
+.union_orange {
+  position: absolute;
+  /* left: 770px; */
+  /* top: 233px; */
+  right: 0;
+  bottom: 33px;
+}
