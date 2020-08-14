@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <Header /> {/* <ProjectPage /> */} {/* <Projects /> */}
+       <Header /> {/* <ProjectPage /> */} {/* <Projects /> */}
         {/* <SprintPage /> */} {/* <Registration /> */} {/* <Login /> */}
         {/*<ProjectSidebar />*/}
         <Switch>
