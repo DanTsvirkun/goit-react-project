@@ -1,0 +1,53 @@
+.headBar {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between; 
+  z-index: 2;
+  background-color: #F1F2F7; 
+  padding: 40px 9px 30px 0; 
+}
+
+.headBarTitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.headBarBtn {
+  width: 44px;
+  height: 44px;
+  margin-right: 20px;
+  background: #ff6b08;
+  border: none;
+  border-radius: 25px;
+  background-image: url("../../Icons/plus.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 150ms linear;
+}
+
+.headBarBtn:hover,
+.headBarBtn:focus{
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(255, 107, 8);
+}
+
+.headBarLabel {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
