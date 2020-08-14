@@ -14,6 +14,7 @@
 .project__sidebar-item {
   text-align: left;
   width: 170px;
+  position: relative;
 }
 
 .project__sidebar-item:not(:last-child) {
@@ -21,7 +22,7 @@
 }
 
 .project__sidebar-link {
-  width: 120px;
+  width: 140px;
   padding: 0 0px 0 50px;
   font-family: "Montserrat";
   font-style: normal;
@@ -43,7 +44,7 @@
   margin-bottom: 30px;
 }
 
-.project__sidebar-link::before {
+.project__sidebar-item::before {
   position: absolute;
   content: "";
   top: 50%;
@@ -55,18 +56,23 @@
   border-radius: 5px;
 }
 
-.project__sidebar-link:nth-child(4n + 1)::before {
-  background-color: #8c72df;
+.project__sidebar-item:nth-child(4n + 1)::before {
+  background-color: colorPurple;
 }
 
-.project__sidebar-link:nth-child(4n - 2)::before {
-  background-color: #ff765f;
+.project__sidebar-item:nth-child(4n + 2)::before {
+  background-color: colorRed;
 }
 
-.project__sidebar-link:nth-child(4n - 1)::before {
-  background-color: #71df87;
+.project__sidebar-item:nth-child(4n + 3)::before {
+  background-color: colorGreen;
 }
 
-.project__sidebar-link:nth-child(4n)::before {
-  background-color: #4394f1;
+.project__sidebar-item:nth-child(4n + 4)::before {
+  background-color: colorBlue;
 }
+
+/* @value colorBlue: #4394f1;
+@value colorPurple: #8c72df;
+@value colorRed: #ff765f;
+@value colorGreen: #71df87; */

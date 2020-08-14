@@ -7,7 +7,7 @@
 .project-sidebar__wrapper::before {
   content: "";
   position: absolute;
-  height: 101.5%;
+  height: 100vw;
   width: 1px;
   background-color: rgba(24, 28, 39, 0.1);
   top: 0;
