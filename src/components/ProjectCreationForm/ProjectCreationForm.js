@@ -37,7 +37,7 @@ const DescriptionTextField = withStyles({
       marginBottom: "60px",
       fontFamily: "Montserrat",
       fontWeight: "normal",
-      fontSize: "26px",
+      fontSize: "18px",
       lineHeight: "22px",
       outline: "none",
     },
@@ -56,9 +56,9 @@ const ProjectCreationForm = () => {
       <DescriptionTextField
         id="custom-css-standard-input"
         label="Опис"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        // InputLabelProps={{
+        //   shrink: true,
+        // }}
       />
 
       <button className={formStyles.completeBtn}>Готово</button>
