@@ -1,16 +1,18 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import formStyles from "./ProjectCreationForm.module.css";
 
-const useStyles = makeStyles((theme) => ({
+
+
+const NameTextField = withStyles({
   root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
+    "& label.Mui-focused": {
+      color: "#181c2799",
     },
-  },
-  nameField: {
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#181c2799",         
+    },    
     "& > *": {
       width: "430px",
       marginBottom: "50px",
@@ -20,42 +22,45 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "22px",
     },
   },
-  descriptionField: {
+})(TextField);
+
+const DescriptionTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "#181c2799",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#181c2799",
+    },
     "& > *": {
       width: "430px",
-      marginBottom: "60px", 
+      marginBottom: "60px",
       fontFamily: "Montserrat",
       fontWeight: "normal",
       fontSize: "26px",
-      lineHeight: "22px",          
-    },    
+      lineHeight: "22px",
+      outline: "none",
+    },
   },
-}));
+})(TextField);
 
-const ProjectCreationForm = () => {
-  const classes = useStyles();
+const ProjectCreationForm = () => { 
 
   return (
-    <form
-      className={(classes.root, formStyles.form)}
-      noValidate
-      autoComplete="off"
-    >
+    <form className={formStyles.form} noValidate autoComplete="off">
       <h2 className={formStyles.formTitle}>Створення проекту</h2>
-      <TextField
-        id="standard-basic"
-        label="Назва проекту"
-        className={classes.nameField}
-      />
-      {/* <p className={formStyles.descrTitle}>Опис</p> */}
-      <TextField
-        id="standard-basic"
+     
+
+      <NameTextField id="custom-css-standard-input" label="Назва проекту" />
+
+      <DescriptionTextField
+        id="custom-css-standard-input"
         label="Опис"
-        className={classes.descriptionField}        
-        InputLabelProps={{         
-          shrink: true,                        
+        InputLabelProps={{
+          shrink: true,
         }}
       />
+
       <button className={formStyles.completeBtn}>Готово</button>
       <button className={formStyles.exitBtn}>Відміна</button>
     </form>
@@ -63,5 +68,3 @@ const ProjectCreationForm = () => {
 };
 
 export default ProjectCreationForm;
-
-// #181c2799

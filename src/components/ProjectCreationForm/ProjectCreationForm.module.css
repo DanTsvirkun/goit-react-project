@@ -1,17 +1,30 @@
-.form{
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.formTitle{  
+.form > input::after:focus,
+.form > input::before:hover {
+  outline: none;
+}
+
+/* .form > div > label{
+  color: rgb(202, 44, 44);
+} */
+
+/* .form > div > label .MuiFormLabel-root{  
+  color: #181C27;
+} */
+
+.formTitle {
   font-family: "Montserrat";
   font-weight: 500;
   font-size: 36px;
-  line-height: 44px; 
-  letter-spacing: 0.04em; 
-  color: #181C27;
+  line-height: 44px;
+  letter-spacing: 0.04em;
+  color: #181c27;
   margin-bottom: 46px;
 }
 
@@ -24,35 +37,35 @@
   color: rgba(24, 28, 39, 0.6);
 } */
 
-.completeBtn{
-padding: 11px 44px;
-width: 154px;
-height: 44px;
-border: none;
-background: #FF6B08;
-box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
-border-radius: 25px;
+.completeBtn {
+  padding: 11px 44px;
+  width: 154px;
+  height: 44px;
+  border: none;
+  background: #ff6b08;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+  border-radius: 25px;
 
-font-family: "Montserrat";
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-text-align: center;
-letter-spacing: 0.04em;
-color: #FFFFFF;
-margin-bottom: 30px;
-cursor: pointer;
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin-bottom: 30px;
+  cursor: pointer;
 }
 
-.exitBtn{
-font-family: "Montserrat";
-font-weight: 400;
-font-size: 18px;
-line-height: 22px;
-text-align: center;
-letter-spacing: 0.04em;
-text-decoration-line: underline;
-color: rgba(24, 28, 39, 0.6);
-border: none;
-cursor: pointer;
+.exitBtn {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-decoration-line: underline;
+  color: rgba(24, 28, 39, 0.6);
+  border: none;
+  cursor: pointer;
 }
