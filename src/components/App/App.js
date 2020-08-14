@@ -15,11 +15,11 @@ const App = () => {
         <Header />
         {/* <ProjectPage /> */}
         {/* <Projects /> */}
-        <SprintPage />
+        {/* <SprintPage /> */}
         {/* <Registration /> */}
         {/* <Login /> */}
         {/* <SprintPage /> */}
-        {/* <ProjectSidebar /> */}
+        <ProjectSidebar />
       </div>
     </div>
   );
