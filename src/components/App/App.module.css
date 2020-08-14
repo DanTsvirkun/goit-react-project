@@ -1,15 +1,19 @@
-@value colorBlue: #4394f1;
-@value colorPurple: #8c72df;
-@value colorRed: #ff765f;
-@value colorGreen: #71df87;
+
+@value color_1: #8c72df;
+@value color_2: #ff765f;
+@value color_3: #71df87;
+@value color_4: #f78335;
+@value color_5: #f3be2e;
+@value color_6: #e46cde;
+@value color_7: #4394f1;
+@value color_8: #d45535;
 
 .wrapper {
   background-color: #f1f2f7;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1170px;
   margin: 0 auto;
 }
-
