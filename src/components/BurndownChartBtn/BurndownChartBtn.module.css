@@ -1,0 +1,20 @@
+.graphicBtn {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  display: block;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+  border-radius: 25px;
+  border: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("./iconBCB/analyticsFull.svg");
+}
+
+.graphicBtn:hover,
+.graphicBtn:focus {
+  box-shadow: 2px 2px 8px rgba(77, 76, 76, 0.986);
+}
