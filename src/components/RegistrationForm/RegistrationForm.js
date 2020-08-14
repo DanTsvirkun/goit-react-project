@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./RegistrationForm.module.css";
 import { Registration } from "../../redux/operations/RegistarationOperation";
+import { useDispatch } from "react-redux";
 
 const initialState = { email: "", password: "", repeat_password: "" };
 
 const RegistrationForm = () => {
   const [form, setForm] = useState(initialState);
+  const dispatch = useDispatch();
 
   const inputHandler = ({ target }) => {
     const { name, value } = target;
@@ -19,7 +21,7 @@ const RegistrationForm = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    Registration(form);
+    dispatch(Registration(form));
     setForm(initialState);
   };
 
