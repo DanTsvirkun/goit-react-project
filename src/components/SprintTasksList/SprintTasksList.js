@@ -1,110 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SprintTask from '../SprintTask/SprintTask';
 import css from './SprintTasksList.module.css';
 const SprintTasksList = () => {
+  const [toggleAnalytic, setToggleAnalytic] = useState(false);
+  const handleToggleAnalytic = () => {
+    setToggleAnalytic(state => !state);
+  };
   return (
     <div className={css.wrapper}>
       <ul className={css['sprint__tasks-list']}>
-        <li className={css['sprint__tasks-item']}>
-          <ul className={css['sprint__task-list']}>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-name']}>
-                KN-1 Configure project
-              </p>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-plan']}>8</p>{' '}
-            </li>
-            <li className={css['sprint__task-item']}>
-              <label>
-                <input
-                  className={css['sprints__task-spent']}
-                  type="text"
-                  placeholder="0"
-                  value={'6'}
-                />
-              </label>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-total']}>0</p>
-            </li>
-          </ul>
-        </li>
-        <li className={css['sprint__tasks-item']}>
-          <ul className={css['sprint__task-list']}>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-name']}>
-                KN-3 Create Button Component
-              </p>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-plan']}>8</p>{' '}
-            </li>
-            <li className={css['sprint__task-item']}>
-              <label>
-                <input
-                  className={css['sprints__task-spent']}
-                  type="text"
-                  placeholder="0"
-                  value={'6'}
-                />
-              </label>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-total']}>0</p>
-            </li>
-          </ul>
-        </li>
-        <li className={css['sprint__tasks-item']}>
-          <ul className={css['sprint__task-list']}>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-name']}>
-                KN-3 Create Button Component
-              </p>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-plan']}>8</p>{' '}
-            </li>
-            <li className={css['sprint__task-item']}>
-              <label>
-                <input
-                  className={css['sprints__task-spent']}
-                  type="text"
-                  placeholder="0"
-                  value={'6'}
-                />
-              </label>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-total']}>0</p>
-            </li>
-          </ul>
-        </li>
-        <li className={css['sprint__tasks-item']}>
-          <ul className={css['sprint__task-list']}>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-name']}>
-                KN-3 Create Button Component
-              </p>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-plan']}>8</p>{' '}
-            </li>
-            <li className={css['sprint__task-item']}>
-              <label>
-                <input
-                  className={css['sprints__task-spent']}
-                  type="text"
-                  placeholder="0"
-                  value={'6'}
-                />
-              </label>
-            </li>
-            <li className={css['sprint__task-item']}>
-              <p className={css['sprint__tasks-total']}>0</p>
-            </li>
-          </ul>
-        </li>
+        {[
+          { title: 'KN-1 Configure project' },
+          { title: 'KN-3 Create Button Component' },
+          { title: 'KN-3 Create Button Component' },
+          { title: 'KN-3 Create Button Component' },
+        ].map(task => (
+          <SprintTask {...task} />
+        ))}
       </ul>
+      <button
+        onClick={handleToggleAnalytic}
+        className={css['sprint__analytic-btn']}
+      >
+        {toggleAnalytic && <div> put here your component</div>}
+      </button>
     </div>
   );
 };

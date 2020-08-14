@@ -74,7 +74,7 @@
   background-size: contain;
   background-color: transparent;
   cursor: pointer;
-  background-image: url('../../containers/Sprint/images/Vector.svg');
+  background-image: url('../../Icons/pencil.svg');
 }
 
 .sprint__add-task-wrapper {
@@ -94,7 +94,7 @@
   border: none;
   background-repeat: no-repeat;
   cursor: pointer;
-  background-image: url('../../containers/Sprint/images/Btn.svg');
+  background-image: url('../../Icons/plus.svg');
 }
 
 .sprint__add-task-offer {
