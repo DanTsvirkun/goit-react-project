@@ -5,7 +5,7 @@
 
 .wrapper {
   background-color: #f1f2f7;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
