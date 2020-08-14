@@ -53,7 +53,7 @@ const RegistrationForm = () => {
       />
       <CssTextField
         type="password"
-        id="standard-password-input"
+        id="1"
         label="Пароль"
         name="password"
         value={form.password}
