@@ -95,3 +95,12 @@
   font-size: 18px;
   line-height: 22px;
 }
+.react-datepicker__input-container input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+  font-family: "Montserrat";
+}
