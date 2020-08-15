@@ -1,0 +1,44 @@
+.menu_container {
+    display: flex;
+    align-items: center;
+}
+
+.user_email {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #181C27;
+    margin-right: 77px;
+}
+
+.log_out {
+    display: flex;
+    align-content: center;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 300ms linear;
+}
+
+.log_out::before {
+    content: url("./images/Vector.svg");
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.log_out:hover {
+    color: #ff6b08;
+}
