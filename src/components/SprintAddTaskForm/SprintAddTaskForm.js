@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { addTaskOperation } from '../../redux/operations/TasksOperatins';
 import css from './SprintAddTaskForm.module.css';
 import ModalTest from '../ModalTest/ModalTest';
-const SprintAddTaskForm = ({ duration = 40 }) => {
-  const [taskItem, setTaskItem] = useState({
-    title: '',
-    hoursPlanned: '',
-  });
+const initialState = { title: '', hoursPlanned: '' };
+const SprintAddTaskForm = ({ duration = 12, addTask }) => {
+  const [taskItem, setTaskItem] = useState(initialState);
   const handleChangeInput = ({ target }) => {
     const { name, value } = target;
     setTaskItem(state => ({
@@ -22,7 +22,7 @@ const SprintAddTaskForm = ({ duration = 40 }) => {
         singleHoursWasted: 0,
       });
     }
-    fnTest(sprintDay);
+    // fnTest(sprintDay);
     return sprintDay;
   };
   const fnTest = sprintDay => {
@@ -38,15 +38,13 @@ const SprintAddTaskForm = ({ duration = 40 }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
-    // console.log(moment().add(10, 'days').format('ll'));
-    // console.log(moment().format('ll'));
-
     const correctValue = isNaN(hoursPlanned);
     if (correctValue) {
       console.log('NaN');
       return;
     }
     const task = {
+      sprintId: Date.now(),
       title,
       hoursPlanned,
       hoursWasted: 0,
@@ -54,6 +52,8 @@ const SprintAddTaskForm = ({ duration = 40 }) => {
     };
 
     console.log(task);
+    addTask(task);
+    setTaskItem(initialState);
   };
   return (
     <ModalTest>
@@ -87,7 +87,24 @@ const SprintAddTaskForm = ({ duration = 40 }) => {
   );
 };
 
-export default SprintAddTaskForm;
+// {
+//       sprintId,
+//       title,
+//       hoursPlanned,
+//       hoursWasted,
+//       hoursWastedPerDay: [
+//         {
+//           currentDay,
+//           singleHoursWasted,
+//         },
+//       ],
+//     },
+
+const mapDispatchToProps = {
+  addTask: addTaskOperation,
+};
+
+export default connect(null, mapDispatchToProps)(SprintAddTaskForm);
 
 // Человека перебрасывает на текущею дату. Если он возращается назад, эту дату надо изменить на -1, можно использовать
 // moment().subtract(1, 'days').calendar(); --- привязать к индексу массива?? add--- moment().add(1, 'days').calendar()

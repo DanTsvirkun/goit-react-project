@@ -3,8 +3,7 @@
   align-items: flex-end;
 }
 
-.sprint__task-item {
-}
+.sprint__task-item {}
 
 .sprint__task-item:first-child {
   width: 170px;
@@ -55,18 +54,7 @@
   line-height: 17px;
 }
 
-.sprints__task-spent {
-  padding-left: 10px;
-  width: 100%;
-  border: none;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: #181c27;
-}
+
 
 .sprints__task-spent::placeholder {
   font-family: 'Montserrat';
