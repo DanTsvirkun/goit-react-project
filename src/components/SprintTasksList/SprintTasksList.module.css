@@ -1,5 +1,6 @@
 .wrapper {
   padding: 20px 0 0;
+  position: relative;
 }
 
 .sprint__tasks-list {
@@ -15,6 +16,10 @@
   color: #181c27;
 }
 
+/* .sprint__analytic-btn-wrapper {
+  transform: translateZ(10px);
+  position: relative;
+} */
 .sprint__analytic-btn {
   width: 44px;
   height: 44px;
@@ -28,7 +33,10 @@
   background-image: url('./analytics.svg');
   box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
   border-radius: 25px;
-  top: 78.5%;
+  bottom: 11%;
   right: 9.3%;
   position: fixed;
+  outline: none;
+  /* margin: 0 0 0 59vw; */
+  /* overflow: hidden; */
 }

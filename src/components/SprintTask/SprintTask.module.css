@@ -97,4 +97,5 @@
   background-color: transparent;
   cursor: pointer;
   background-image: url('./delete.svg');
+  outline: none;
 }

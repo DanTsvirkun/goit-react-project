@@ -1,13 +1,15 @@
 .sprint-sidebar__wrapper {
 	width: 200px;
 	padding: 20px 0 0 0;
+	/* height: 100vh; */
 	position: relative;
 }
 
 .sprint-sidebar__wrapper::before {
 	content: "";
 	position: absolute;
-	height: 100%;
+	height: calc(100vh - 80px);
+	/* height: 100%; */
 	width: 1px;
 	background-color: rgba(24,
 			28,
@@ -47,6 +49,7 @@
 	background-image: url("./Arrow.svg");
 	width: 30px;
 	height: 8px;
+	outline: none;
 }
 
 .sprint-sidebar__add-wrapper {
@@ -67,6 +70,7 @@
 	margin-bottom: 14px;
 	cursor: pointer;
 	background-image: url("../../Icons/plus.svg");
+	outline: none;
 }
 
 .sprint-sidebar__add-description {

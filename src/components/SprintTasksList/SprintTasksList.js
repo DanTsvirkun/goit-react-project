@@ -10,10 +10,18 @@ const SprintTasksList = () => {
     <div className={css.wrapper}>
       <ul className={css['sprint__tasks-list']}>
         {[
-          { title: 'KN-1 Configure project' },
-          { title: 'KN-3 Create Button Component' },
-          { title: 'KN-3 Create Button Component' },
-          { title: 'KN-3 Create Button Component' },
+          {
+            title: 'KN-1 Configure project',
+          },
+          {
+            title: 'KN-3 Create Button Component',
+          },
+          {
+            title: 'KN-3 Create Button Component',
+          },
+          {
+            title: 'KN-3 Create Button Component',
+          },
         ].map(task => (
           <SprintTask {...task} />
         ))}
@@ -22,7 +30,7 @@ const SprintTasksList = () => {
         onClick={handleToggleAnalytic}
         className={css['sprint__analytic-btn']}
       >
-        {toggleAnalytic && <div> put here your component</div>}
+        {toggleAnalytic && <div> put here your component </div>}
       </button>
     </div>
   );
