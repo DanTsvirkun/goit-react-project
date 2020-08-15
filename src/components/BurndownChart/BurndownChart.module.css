@@ -1,0 +1,10 @@
+.graphicWrapper {
+  max-width: 930px;
+  max-height: 460px;
+  border-radius: 5px;
+}
+
+.graphicImg {
+  max-width: 100%;
+  height: auto;
+}

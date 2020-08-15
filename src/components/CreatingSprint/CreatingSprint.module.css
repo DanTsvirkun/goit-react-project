@@ -1,0 +1,202 @@
+.sprint__window__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: var(--mainTransition);
+  background: rgba(24, 28, 39, 0.25);
+  z-index: 2;
+
+  /* visibility: hidden; */
+}
+.sprint__window {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  z-index: 3;
+  background: #ffffff;
+  box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  border-radius: 0px;
+  padding: 1.5rem;
+  transition: var(--mainTransition);
+  /* transform: translateX(100%); */
+}
+.showsprint__window {
+  transform: translateX(0);
+}
+.transparentBcg {
+  visibility: visible;
+}
+
+@media screen and (min-width: 768px) {
+  .sprint__window {
+    width: 530px;
+    min-width: 450px;
+  }
+}
+
+.close__sprint__window {
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+.sprint__window__header {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  margin: 120px 10px 80px 45px;
+}
+
+.close__sprint__window {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-left: 470px;
+  margin-bottom: 40px;
+  border: none;
+  outline: none;
+  background-color: white;
+  background-position: top;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("../../Icons/delete.svg");
+}
+
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+  font-family: "Montserrat";
+}
+.input__name {
+  width: 430px;
+}
+
+.group__start {
+  margin-right: 30px;
+}
+
+.group__inline {
+  display: inline-block;
+  width: 200px;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  font-family: "Montserrat";
+}
+
+/* active state */
+input:focus ~ label,
+input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #999;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 22px;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 430px;
+  margin: 0 auto;
+}
+
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+input:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+.button__ready {
+  width: 154px;
+  height: 44px;
+  background: #ff6b08;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+  border-radius: 25px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  outline: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  background-image: url("../../Icons/ready.svg");
+}
+
+.button__decline {
+  width: 154px;
+  height: 44px;
+  background-color: white;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  outline: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("../../Icons/decline.svg");
+}
