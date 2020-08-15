@@ -29,10 +29,14 @@ class CreatingSprint extends Component {
           <div className={css.sprint__window__content}>
             <form className={css.sprint__form}>
               <div className={css.group}>
-                <input type="text" required className={css.input__name} />
+                <input
+                  type="text"
+                  required
+                  className={`${css.input__field} ${css.input__name}`}
+                />
                 <span className={css.highlight}></span>
                 <span className={css.bar}></span>
-                <label>Назва спринта</label>
+                <label className={css.sprint_label}>Назва спринта</label>
               </div>
               <div
                 className={`${css.group} ${css.group__inline} ${css.group__start}`}
@@ -49,13 +53,17 @@ class CreatingSprint extends Component {
                 />
                 <span className={css.highlight}></span>
                 <span className={css.bar}></span>
-                <label></label>
+                <label className={css.sprint_label}></label>
               </div>
               <div className={`${css.group} ${css.group__inline}`}>
-                <input type="text" required className={css.input__duration} />
+                <input
+                  type="text"
+                  required
+                  className={`${css.input__field} ${css.input__duration}`}
+                />
                 <span className={css.highlight}></span>
                 <span className={css.bar}></span>
-                <label>Тривалість</label>
+                <label className={css.sprint_label}>Тривалість</label>
               </div>
               <div className={css.button__wrapper}>
                 <button className={css.button__ready}></button>
