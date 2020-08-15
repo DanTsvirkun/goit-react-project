@@ -1,0 +1,71 @@
+.single__item {
+  list-style: none;
+  margin-top: 30px;
+}
+
+.single__chart {
+  width: 270px;
+  height: 224px;
+  background: #ffffff;
+  box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  border-radius: 5px;
+  font-family: "Montserrat";
+  position: relative;
+}
+
+.chart__header {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  text-align: left;
+  padding-top: 18px;
+  width: 210px;
+  padding-left: 30px;
+}
+
+.sprint__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.chart__content {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.chart__content_header {
+  text-align: left;
+}
+
+.chart__content_info,
+.chart__content_duration {
+  text-align: right;
+}
+
+.chart__button {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../../Icons/trash.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background-color: transparent;
+}
+
+/* .chart__content_duration {
+  margin-left: 104px;
+} */

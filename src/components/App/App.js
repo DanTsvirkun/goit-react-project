@@ -19,7 +19,7 @@ const App = () => {
         {/* <Registration /> */}
         {/* <Login /> */}
         {/* <SprintPage /> */}
-        <ProjectSidebar />
+        {/* <ProjectSidebar /> */}
       </div>
     </div>
   );
