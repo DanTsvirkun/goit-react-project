@@ -1,5 +1,19 @@
 import React, { useState } from "react";
 import styles from "./LogInForm.module.css";
+import { withStyles, TextField } from "@material-ui/core";
+
+const CssTextField = withStyles((theme) => ({
+  root: {
+    width: "429px",
+    marginBottom: theme.spacing(5),
+    "& label.Mui-focused": {
+      color: "#ff6b08",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#ff6b08",
+    },
+  },
+}))(TextField);
 
 const initialState = { email: "", password: "" };
 
@@ -23,17 +37,19 @@ const LogInForm = () => {
   return (
     <form className={styles.auth} onSubmit={submitForm}>
       <h1 className={styles.auth_title}>Вхід</h1>
-      <input
+      <CssTextField
         type="email"
-        placeholder="E-mail"
+        id="standard-basic"
+        label="E-mail"
         name="email"
         onChange={inputHandler}
         value={form.email}
         className={styles.auth_input}
       />
-      <input
+      <CssTextField
         type="password"
-        placeholder="Пароль"
+        id="standard-password-input"
+        label="Пароль"
         name="password"
         onChange={inputHandler}
         value={form.password}
