@@ -8,6 +8,13 @@
 @value color_7: #4394f1;
 @value color_8: #d45535;
 
+@value primaryColor: #f09d51;
+@value mainWhite: #fff;
+@value mainBlack: #222;
+@value mainGrey: #ececec;
+@value mainSpacing: 0.1rem;
+@value mainTransition: all 0.3s linear;
+
 .wrapper {
   background-color: #f1f2f7;
   min-height: 100vh;
