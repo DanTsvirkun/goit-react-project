@@ -3,8 +3,7 @@
   align-items: flex-end;
 }
 
-.sprint__task-item {
-}
+.sprint__task-item {}
 
 .sprint__task-item:first-child {
   width: 170px;
@@ -29,11 +28,13 @@
 }
 
 .sprint__task-item:not(:nth-child(2))::after {
-  margin-top: 8px;
+  /* margin-top: 8px; */
+  padding-top: 7px;
   display: block;
   content: '';
   width: 106px;
-  border: 1px solid rgba(24, 28, 39, 0.2);
+  /* border: 1px solid rgba(24, 28, 39, 0.2); */
+  border-bottom: 1px solid rgba(24, 28, 39, 0.2);
 }
 
 .sprint__task-item:nth-child(4) {
@@ -49,24 +50,14 @@
 }
 
 .sprint__tasks-plan {
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
+  padding-bottom: 12px;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
 }
 
-.sprints__task-spent {
-  padding-left: 10px;
-  width: 100%;
-  border: none;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: #181c27;
-}
+
 
 .sprints__task-spent::placeholder {
   font-family: 'Montserrat';
@@ -97,4 +88,5 @@
   background-color: transparent;
   cursor: pointer;
   background-image: url('./delete.svg');
+  outline: none;
 }

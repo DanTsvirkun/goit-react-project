@@ -1,30 +1,33 @@
 import React from 'react';
+import SprintTaskInput from '../SprintTaskInput/SprintTaskInput';
 import css from './SprintTask.module.css';
-const SprintTask = ({ title }) => {
+const SprintTask = ({
+  title,
+  hoursPlanned,
+  hoursWasted,
+  index,
+  hoursWastedPerDay,
+}) => {
   return (
     <li className={css['sprint__tasks-item']}>
       <ul className={css['sprint__task-list']}>
         <li className={css['sprint__task-item']}>
-          <p className={css['sprint__tasks-name']}>{title}</p>
+          <p className={css['sprint__tasks-name']}> {title} </p>
         </li>
         <li className={css['sprint__task-item']}>
-          <p className={css['sprint__tasks-plan']}>8</p>
+          <p className={css['sprint__tasks-plan']}> {hoursPlanned} </p>
         </li>
         <li className={css['sprint__task-item']}>
-          <label>
-            <input
-              className={css['sprints__task-spent']}
-              type="text"
-              placeholder="0"
-              value={'6'}
-            />
-          </label>
+          <SprintTaskInput
+            index={index}
+            hoursWastedPerDay={hoursWastedPerDay}
+          />
         </li>
         <li className={css['sprint__task-item']}>
-          <p className={css['sprint__tasks-total']}>0</p>
+          <p className={css['sprint__tasks-total']}> {hoursWasted} </p>
         </li>
         <li className={` ${css['sprint__task-item-delete']}`}>
-          <button className={css['sprint__task-delete-btn']}></button>
+          <button className={css['sprint__task-delete-btn']}> </button>
         </li>
       </ul>
     </li>
