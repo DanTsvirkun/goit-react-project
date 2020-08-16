@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProjectsPageList from "../../components/ProjectsPageList/ProjectsPageList";
+import ProjectCreationForm from "../../components/ProjectCreationForm/ProjectCreationForm"
 
 import projectStyles from "./Projects.module.css";
 
@@ -18,7 +19,8 @@ class Projects extends Component {
             Створити проект
           </label>
         </div>
-        <ProjectsPageList />
+        <ProjectCreationForm/>
+        <ProjectsPageList />    
       </>
     );
   }
