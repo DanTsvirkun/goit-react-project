@@ -19,8 +19,8 @@ class Projects extends Component {
             Створити проект
           </label>
         </div>
-        {/* <ProjectsPageList /> */}
-        {/* <ProjectCreationForm/> */}
+        <ProjectCreationForm/>
+        <ProjectsPageList />    
       </>
     );
   }
