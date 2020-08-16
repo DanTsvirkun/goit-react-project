@@ -13,9 +13,13 @@ const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-       <Header /> {/* <ProjectPage /> */} {/* <Projects /> */}
-        {/* <SprintPage /> */} {/* <Registration /> */} {/* <Login /> */}
+        <Header />
+         {/* <ProjectPage /> */} 
+        {/* <SprintPage /> */}
+         {/* <Registration />  */}
+         {/* <Login /> */}
         {/*<ProjectSidebar />*/}
+        {/*<Projects />*/}
         <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
         </Switch>

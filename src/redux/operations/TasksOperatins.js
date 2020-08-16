@@ -1,12 +1,21 @@
-import { db } from '../../config';
+import {
+  db
+} from '../../config';
 import {
   getTasks,
   addTask,
   deleteTask,
   changeTask,
+  showModalAddTaskAction,
 } from '../actions/sprintTasksActions';
-import { errorOn, errorOff } from '../actions/errorActions';
-import { loaderOn, loaderOff } from '../actions/loaderActions';
+import {
+  errorOn,
+  errorOff
+} from '../actions/errorActions';
+import {
+  loaderOn,
+  loaderOff
+} from '../actions/loaderActions';
 
 export const getTasksOperation = () => async dispatch => {
   try {
@@ -36,6 +45,7 @@ export const addTaskOperation = task => async dispatch => {
       id: result.id,
     };
     dispatch(addTask(answer));
+    dispatch(showModalAddTaskAction(false))
   } catch (error) {
     dispatch(errorOn());
   } finally {

@@ -78,7 +78,10 @@
   position: relative;
   margin-bottom: 45px;
 }
-input {
+
+/* input */
+
+.input__field {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
@@ -87,6 +90,7 @@ input {
   border-bottom: 1px solid rgba(24, 28, 39, 0.2);
   font-family: "Montserrat";
 }
+
 .input__name {
   width: 430px;
 }
@@ -100,12 +104,12 @@ input {
   width: 200px;
 }
 
-input:focus {
+.input__field:focus {
   outline: none;
 }
 
 /* LABEL ======================================= */
-label {
+.sprint_label {
   color: #999;
   font-size: 18px;
   font-weight: normal;
@@ -120,8 +124,8 @@ label {
 }
 
 /* active state */
-input:focus ~ label,
-input:valid ~ label {
+.input__field:focus ~ .sprint_label,
+.input__field:valid ~ .sprint_label {
   top: -20px;
   font-size: 14px;
   color: #999;
@@ -147,8 +151,8 @@ input:valid ~ label {
 }
 
 /* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
+.input__field:focus ~ .bar:before,
+.input__field:focus ~ .bar:after {
   width: 50%;
 }
 
@@ -163,7 +167,7 @@ input:focus ~ .bar:after {
   opacity: 0.5;
 }
 
-input:focus ~ .highlight {
+.input__field:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
 }
 
