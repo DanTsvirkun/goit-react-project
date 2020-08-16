@@ -38,6 +38,8 @@
 
 .chart__content {
   font-size: 14px;
+  letter-spacing: 0.04em;
+
   line-height: 17px;
 }
 
