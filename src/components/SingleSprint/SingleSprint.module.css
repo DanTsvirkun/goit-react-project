@@ -43,11 +43,12 @@
 
 .chart__content_header {
   text-align: left;
+  margin-bottom: 20px;
 }
 
-.chart__content_info,
-.chart__content_duration {
+.chart__content_info {
   text-align: right;
+  margin-bottom: 20px;
 }
 
 .chart__button {
