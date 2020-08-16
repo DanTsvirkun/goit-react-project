@@ -20,7 +20,7 @@ class Projects extends Component {
           </label>
         </div>
         {/* <ProjectsPageList /> */}
-        <ProjectCreationForm/>
+        {/* <ProjectCreationForm/> */}
       </>
     );
   }
