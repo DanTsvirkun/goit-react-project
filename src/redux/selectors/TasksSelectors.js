@@ -1,10 +1,13 @@
 import moment from 'moment';
-import { createSelector } from '@reduxjs/toolkit';
+import {
+    createSelector
+} from '@reduxjs/toolkit';
 const currentDate = moment().format('ll');
 // console.log(currentDate);
 
 export const tasksSelector = state => state.tasks;
 export const itemsSelector = state => tasksSelector(state).items;
+export const showModalSelector = state => tasksSelector(state).showModalAddTask
 // export const hoursWastedPerDay = createSelector([itemsSelector], items =>
 //   items.map(item => {
 //     const res = item.hoursWastedPerDay.find((el, idx) => {

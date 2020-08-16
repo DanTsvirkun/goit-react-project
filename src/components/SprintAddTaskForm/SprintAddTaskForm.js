@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { addTaskOperation } from '../../redux/operations/TasksOperatins';
 import css from './SprintAddTaskForm.module.css';
 import ModalTest from '../ModalTest/ModalTest';
-const initialState = { title: '', hoursPlanned: '' };
+const initialState = {
+  title: '',
+  hoursPlanned: '',
+};
 const SprintAddTaskForm = ({ duration = 12, addTask }) => {
   const [taskItem, setTaskItem] = useState(initialState);
   const handleChangeInput = ({ target }) => {
@@ -25,21 +28,19 @@ const SprintAddTaskForm = ({ duration = 12, addTask }) => {
     // fnTest(sprintDay);
     return sprintDay;
   };
-  const fnTest = sprintDay => {
-    const res = sprintDay.findIndex(item => {
-      console.log(item.currentDay);
-      return item.currentDay === 'Aug 18, 2020';
-    });
-    console.log(res);
-    // console.log(
-    //   moment().add(sprintDay[0].currentDay, res).calendar().format('LL'),
-    // );
-  };
+  // const fnTest = sprintDay => {
+  //   const res = sprintDay.findIndex(item => {
+  //     console.log(item.currentDay);
+  //     return item.currentDay === 'Aug 18, 2020';
+  //   });
+  //   console.log(res);
+  // };
   const handleSubmit = e => {
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const correctValue = isNaN(hoursPlanned);
-    if (correctValue) {
+    if (correctValue || hoursPlanned <= 0) {
+      alert('невірне число');
       console.log('NaN');
       return;
     }
@@ -59,28 +60,37 @@ const SprintAddTaskForm = ({ duration = 12, addTask }) => {
     <ModalTest>
       <div className={css['sprint__form-wrapper']}>
         <form className={css['sprint__form']} onSubmit={handleSubmit}>
-          <label>
-            Title
-            <input
-              type="text"
-              value={taskItem.title}
-              name="title"
-              onChange={handleChangeInput}
-              minLength="3"
-              required
-            />
-          </label>
-          <label>
-            Number
-            <input
-              type="text"
-              value={taskItem.hoursPlanned}
-              name="hoursPlanned"
-              onChange={handleChangeInput}
-              required
-            />
-          </label>
-          <button> add Task </button>
+          <h3 className={css['sprint__form-title']}> Створення задачі </h3>
+          <ul className={css['sprint__form-list']}>
+            <li className={css['sprint__form-item']}>
+              <label>
+                <input
+                  className={css['sprint__form-field']}
+                  type="text"
+                  value={taskItem.title}
+                  name="title"
+                  onChange={handleChangeInput}
+                  required
+                  placeholder="Назва задачі"
+                />
+              </label>
+            </li>
+            <li className={css['sprint__form-item']}>
+              <label>
+                <input
+                  className={css['sprint__form-field']}
+                  type="text"
+                  value={taskItem.hoursPlanned}
+                  name="hoursPlanned"
+                  onChange={handleChangeInput}
+                  required
+                  placeholder="Заплановано годин"
+                />
+              </label>
+            </li>
+          </ul>
+          <button className={css['sprint__form-add-btn']}> Готово </button>
+          <button className={css['sprint__form-cancel-btn']}> Відміна </button>
         </form>
       </div>
     </ModalTest>

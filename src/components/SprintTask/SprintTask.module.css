@@ -28,11 +28,13 @@
 }
 
 .sprint__task-item:not(:nth-child(2))::after {
-  margin-top: 8px;
+  /* margin-top: 8px; */
+  padding-top: 7px;
   display: block;
   content: '';
   width: 106px;
-  border: 1px solid rgba(24, 28, 39, 0.2);
+  /* border: 1px solid rgba(24, 28, 39, 0.2); */
+  border-bottom: 1px solid rgba(24, 28, 39, 0.2);
 }
 
 .sprint__task-item:nth-child(4) {
@@ -48,7 +50,8 @@
 }
 
 .sprint__tasks-plan {
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
+  padding-bottom: 12px;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;

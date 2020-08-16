@@ -1,3 +1,101 @@
 .sprint__form-wrapper {
-  width: 600px;
+  width: 530px;
+  height: 768px;
+  box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  margin: 0 auto;
+  padding: 120px 50px 296px;
+}
+
+.sprint__form-title {
+  text-align: center;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  margin-bottom: 50px;
+}
+
+.sprint__form-list {
+  list-style: none;
+}
+
+.sprint__form-item:first-child {
+  margin-bottom: 48px;
+  width: 430px;
+}
+
+.sprint__form-item:last-child {
+  margin-bottom: 40px;
+  width: 220px;
+}
+.button {
+  display: block;
+  margin: 0 auto;
+  width: 154px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  outline: none;
+}
+
+.sprint__form-field {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  width: 100%;
+  padding: 0 10px 8px;
+  border: none;
+  border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+  outline: none;
+}
+.sprint__form-field::placeholder {
+  content: '';
+  color: rgba(24, 28, 39, 0.6);
+}
+/* .sprint__form-field:required:focus:valid:not(:placeholder-shown) {
+  outline: 1px solid rgb(0, 255, 0);
+  outline-offset: 0px;
+}
+
+.sprint__form-field:required:focus:invalid:not(:placeholder-shown) {
+  outline: 1px solid rgb(255, 0, 0);
+  outline-offset: 0px;
+} */
+
+.sprint__form-add-btn {
+  composes: button;
+  height: 44px;
+  background: #ff6b08;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+  border-radius: 25px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 20px;
+  transition: all 300ms linear;
+}
+
+.sprint__form-cancel-btn {
+  composes: button;
+  font-weight: normal;
+  text-decoration: underline;
+  color: rgba(24, 28, 39, 0.6);
+  background-color: transparent;
+}
+
+.sprint__form-add-btn:hover,
+.sprint__form-add-btn:focus {
+  background: #ffffff;
+  color: #ff6b08;
 }

@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import css from './SprintHeader.module.css';
-import SprintTableTitle from '../SprintTableTitle/SprintTableTitle';
+import { showModalAddTaskAction } from '../../redux/actions/sprintTasksActions';
+import {
+  itemsSelector,
+  showModalSelector,
+} from '../../redux/selectors/TasksSelectors';
 import SprintAddTaskForm from '../SprintAddTaskForm/SprintAddTaskForm';
-const SprintHeader = ({ title = 'Sprint Burndown Chart 1' }) => {
-  const [modalToggle, setModalToggle] = useState(false);
+const SprintHeader = ({
+  title = 'Sprint Burndown Chart 1',
+  tasks,
+  isShowModal,
+  showModalAction,
+}) => {
+  // const [modalToggle, setModalToggle] = useState(false);
+  // const [isArrayTasksChanged, setisArrayTasksChanged] = useState(false);
+  // useEffect(() => {
+  //   setModalToggle(false);
+  //   console.log('change array');
+  // }, [tasks]);
   const showModal = () => {
-    setModalToggle(state => !state);
+    showModalAction(true);
   };
   return (
     <div className={css.container}>
@@ -31,9 +46,16 @@ const SprintHeader = ({ title = 'Sprint Burndown Chart 1' }) => {
           <p className={css['sprint__add-task-offer']}> Створити задачу </p>
         </div>
       </div>
-      {modalToggle && <SprintAddTaskForm />}
+      {isShowModal && <SprintAddTaskForm />}
     </div>
   );
 };
+const mapStateToProps = state => ({
+  tasks: itemsSelector(state),
+  isShowModal: showModalSelector(state),
+});
+const mapDispatchToPorps = {
+  showModalAction: showModalAddTaskAction,
+};
 
-export default SprintHeader;
+export default connect(mapStateToProps, mapDispatchToPorps)(SprintHeader);
