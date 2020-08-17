@@ -7,6 +7,8 @@ const SprintTask = ({
   hoursWasted,
   index,
   hoursWastedPerDay,
+  id,
+  tasks,
 }) => {
   return (
     <li className={css['sprint__tasks-item']}>
@@ -19,7 +21,8 @@ const SprintTask = ({
         </li>
         <li className={css['sprint__task-item']}>
           <SprintTaskInput
-            index={index}
+            taskId={id}
+            indexArray={index}
             hoursWastedPerDay={hoursWastedPerDay}
           />
         </li>
