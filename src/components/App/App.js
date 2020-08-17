@@ -14,15 +14,17 @@ const App = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-         {/* <ProjectPage /> */} 
+        {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
-         {/* <Registration />  */}
-         {/* <Login /> */}
-        {/*<ProjectSidebar />*/}
+        {/* <Registration /> */}
+        <Login />
+        {/* <Registration /> */}
+        {/* <Login /> */}
+        {/* <ProjectSidebar /> */}
         {/*<Projects />*/}
-        <Switch>
+        {/* <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
-        </Switch>
+        </Switch> */}
       </div>
     </div>
   );

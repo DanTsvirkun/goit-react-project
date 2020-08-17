@@ -48,11 +48,11 @@ export const getTasksOperation = sprintId => async dispatch => {
   }
 };
 
-export const addTaskOperation = task => async dispatch => {
+export const addTaskOperation = (task) => async (dispatch) => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
-    const result = await db.collection('tasks').add(task);
+    const result = await db.collection("tasks").add(task);
     const answer = {
       ...task,
       id: result.id,
