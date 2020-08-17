@@ -1,12 +1,14 @@
 import {
   db
 } from '../../config';
+import firebase from 'firebase';
 import {
   getTasks,
   addTask,
   deleteTask,
   changeTask,
   showModalAddTaskAction,
+  indexDayAction,
 } from '../actions/sprintTasksActions';
 import {
   errorOn,
@@ -16,17 +18,28 @@ import {
   loaderOn,
   loaderOff
 } from '../actions/loaderActions';
+import {
+  objToBackEnd,
+  newState
+} from '../../helpers/newArrayTasks';
 
-export const getTasksOperation = () => async dispatch => {
+export const getTasksOperation = sprintId => async dispatch => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
     const result = await db.collection('tasks').get();
-    console.log(result);
-    const answer = result.docs.map(doc => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
+    const answer = result.docs.reduce((acc, doc) => {
+      const item = doc.data();
+      if (item.sprintId === Number(sprintId)) {
+        acc.push({
+          ...item,
+          id: doc.id,
+        });
+      }
+      return acc;
+    }, []);
+
+    // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     dispatch(getTasks(answer));
   } catch (error) {
     dispatch(errorOn());
@@ -45,7 +58,30 @@ export const addTaskOperation = task => async dispatch => {
       id: result.id,
     };
     dispatch(addTask(answer));
-    dispatch(showModalAddTaskAction(false))
+    dispatch(showModalAddTaskAction(false));
+  } catch (error) {
+    dispatch(errorOn());
+  } finally {
+    dispatch(loaderOff());
+  }
+};
+
+export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
+  try {
+    dispatch(errorOff());
+    dispatch(loaderOn());
+    const tasks = [...getTasks().tasks.items];
+    const newStateObj = newState(tasks, item);
+    console.log(newStateObj[item.indexArray]);
+    dispatch(changeTask(newStateObj));
+    await db
+      .collection('tasks')
+      .doc(item.taskId)
+      .set({
+        ...newStateObj[item.indexArray],
+      });
+
+    // dispatch(indexDayAction(item.idx));
   } catch (error) {
     dispatch(errorOn());
   } finally {

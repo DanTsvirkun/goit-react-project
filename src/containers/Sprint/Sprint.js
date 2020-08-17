@@ -5,7 +5,7 @@ import css from './Sprint.module.css';
 import SprintHeader from '../../components/SprintHeader/SprintHeader';
 import SprintTableTitle from '../../components/SprintTableTitle/SprintTableTitle';
 import SprintTasksList from '../../components/SprintTasksList/SprintTasksList';
-const Sprint = () => {
+const Sprint = ({ match }) => {
   return (
     <section className={css.sprint}>
       <div className={css.container}>
@@ -13,10 +13,7 @@ const Sprint = () => {
         <div className={css['sprint__main-wrapper']}>
           <SprintHeader />
           <SprintTableTitle />
-          <Route
-            path="/projects/:projectName/sprints/:sprintId"
-            component={SprintTasksList}
-          />
+          <Route path={`${match.path}/:sprintId`} component={SprintTasksList} />
         </div>
       </div>
     </section>
