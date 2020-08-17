@@ -1,4 +1,4 @@
-import React, { useState, createRef, useRef } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./RegistrationForm.module.css";
 import { Registration } from "../../redux/operations/RegistarationOperation";
@@ -27,7 +27,16 @@ const RegistrationForm = () => {
   const [toggle, setToggle] = useState(false);
   const error = useSelector((state) => state.error);
   const dispatch = useDispatch();
-  const amountComp = useRef();
+
+  const errorMessage = (error) => {
+    if (error === "Password should be at least 6 characters") {
+      return "Пароль повинен містити не менше 6 символів";
+    } else if (
+      error === "The email address is already in use by another account."
+    ) {
+      return "Адреса електронної пошти вже використовується іншим обліковим записом";
+    }
+  };
 
   const inputHandler = ({ target }) => {
     const { name, value } = target;
@@ -78,7 +87,7 @@ const RegistrationForm = () => {
         value={form.repeat_password}
         onChange={inputHandler}
       />
-      {error !== false && <p className={styles.wrong}>{error}</p>}
+      {error !== false && <p className={styles.wrong}>{errorMessage(error)}</p>}
       {toggle && <p className={styles.wrong}>Паролі не співпадають</p>}
       <button type="submit" className={styles.registration_btn}>
         Зареєструватися
