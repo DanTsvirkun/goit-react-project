@@ -74,6 +74,11 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
     const newStateObj = newState(tasks, item);
     console.log(newStateObj[item.indexArray]);
     dispatch(changeTask(newStateObj));
+    if (item.numValue <= 0) {
+      alert('введіть число більше 0')
+      return
+    }
+
     await db
       .collection('tasks')
       .doc(item.taskId)
