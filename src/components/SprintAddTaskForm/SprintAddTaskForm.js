@@ -10,7 +10,7 @@ const initialState = {
 };
 const SprintAddTaskForm = ({
   startDate = 1597224600000,
-  duration = 9,
+  duration = 12,
   endDate = 1598002200000,
   addTask,
 }) => {
@@ -28,10 +28,21 @@ const SprintAddTaskForm = ({
       sprintDay.push({
         currentDay: moment(startDate).add(i, 'days').format('DD.MM.YYYY'),
         singleHoursWasted: 0,
+        dayWeek: moment(startDate).add(i, 'days').format('dddd'),
       });
     }
+    const res = sprintDay.filter(el => {
+      if (el.dayWeek === 'Saturday') {
+        return false;
+      }
+      if (el.dayWeek === 'Sunday') {
+        return false;
+      }
+      return true;
+    });
+    // filter by day
     // fnTest(sprintDay);
-    return sprintDay;
+    return res;
   };
   // const fnTest = sprintDay => {
   //   const res = sprintDay.findIndex(item => {
