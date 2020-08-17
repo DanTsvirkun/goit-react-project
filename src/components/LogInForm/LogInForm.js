@@ -3,6 +3,7 @@ import styles from "./LogInForm.module.css";
 import { withStyles, TextField } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import LogIn from "../../redux/operations/LogInOperation";
+import { errorOff } from "../../redux/actions/errorActions";
 
 const CssTextField = withStyles((theme) => ({
   root: {
@@ -42,6 +43,7 @@ const LogInForm = () => {
   };
 
   const inputHandler = ({ target }) => {
+    dispatch(errorOff());
     const { name, value } = target;
     setForm((state) => ({
       ...state,
@@ -66,6 +68,7 @@ const LogInForm = () => {
         onChange={inputHandler}
         value={form.email}
         className={styles.auth_input}
+        required={true}
       />
       <CssTextField
         type="password"
@@ -75,6 +78,7 @@ const LogInForm = () => {
         onChange={inputHandler}
         value={form.password}
         className={styles.auth_input}
+        required={true}
       />
       {error !== false && <p className={styles.wrong}>{errorMessage(error)}</p>}
       <button className={styles.auth_btn}>Увійти</button>
