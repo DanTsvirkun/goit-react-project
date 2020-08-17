@@ -23,7 +23,7 @@ const App = () => {
         {/* <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
         </Switch>{" "}
-        */
+        */}
       </div>
     </div>
   );
