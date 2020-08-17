@@ -1,13 +1,15 @@
 .sprint-sidebar__wrapper {
   width: 200px;
   padding: 20px 0 0 0;
+  /* height: 100vh; */
   position: relative;
 }
 
 .sprint-sidebar__wrapper::before {
-  content: "";
+  content: '';
   position: absolute;
-  min-height: 100%;
+  height: calc(100vh - 80px);
+  /* height: 100%; */
   width: 1px;
   background-color: rgba(24, 28, 39, 0.1);
   top: 0;
@@ -22,7 +24,7 @@
 .sprint-sidebar__link {
   width: 120px;
   padding: 0 0px 0 50px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -40,10 +42,11 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  content: "";
-  background-image: url("./Arrow.svg");
+  content: '';
+  background-image: url('./Arrow.svg');
   width: 30px;
   height: 8px;
+  outline: none;
 }
 
 .sprint-sidebar__add-wrapper {
@@ -63,11 +66,12 @@
   background-repeat: no-repeat;
   margin-bottom: 14px;
   cursor: pointer;
-  background-image: url("../../Icons/plus.svg");
+  background-image: url('../../Icons/plus.svg');
+  outline: none;
 }
 
 .sprint-sidebar__add-description {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
