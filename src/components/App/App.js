@@ -18,11 +18,11 @@ const App = () => {
         {/* <SprintPage /> */}
         <Registration />
         {/* <Login /> */}
-        {/*<ProjectSidebar />*/}
+        {/* <ProjectSidebar /> */}
         {/*<Projects />*/}
-        <Switch>
+        {/* <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
-        </Switch>
+        </Switch> */}
       </div>
     </div>
   );
