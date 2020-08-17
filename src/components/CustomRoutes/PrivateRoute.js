@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import { isAuthenticated } from "../../redux/selectors/AuthSelector";
+import withRouterHOC from "./withRouterHOC";
 
 /**
  * - Если маршрут приватный и пользователь залогинен, рендерит компонент
@@ -25,8 +23,4 @@ const PrivateRoute = ({
   />
 );
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: isAuthenticated(state),
-});
-
-export default connect(mapStateToProps)(withRouter(PrivateRoute));
+export default withRouterHOC(PrivateRoute);
