@@ -35,6 +35,8 @@ const RegistrationForm = () => {
       error === "The email address is already in use by another account."
     ) {
       return "Адреса електронної пошти вже використовується іншим обліковим записом";
+    } else if (error === "The email address is badly formatted.") {
+      return "Адреса електронної пошти неправильно відформатована.";
     }
   };
 
