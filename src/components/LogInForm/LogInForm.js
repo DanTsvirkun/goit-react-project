@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./LogInForm.module.css";
 import { withStyles, TextField } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import LogIn from "../../redux/operations/LogInOperation";
 
 const CssTextField = withStyles((theme) => ({
   root: {
@@ -19,6 +21,7 @@ const initialState = { email: "", password: "" };
 
 const LogInForm = () => {
   const [form, setForm] = useState(initialState);
+  const dispatch = useDispatch();
 
   const inputHandler = ({ target }) => {
     const { name, value } = target;
@@ -30,7 +33,7 @@ const LogInForm = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(form);
+    dispatch(LogIn(form));
     setForm(initialState);
   };
 
