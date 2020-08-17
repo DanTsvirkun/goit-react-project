@@ -72,6 +72,7 @@ const RegistrationForm = () => {
         name="email"
         value={form.email}
         onChange={inputHandler}
+        required={true}
       />
       <CssTextField
         type="password"
@@ -80,6 +81,7 @@ const RegistrationForm = () => {
         name="password"
         value={form.password}
         onChange={inputHandler}
+        required={true}
       />
       <CssTextField
         type="password"
@@ -88,6 +90,7 @@ const RegistrationForm = () => {
         name="repeat_password"
         value={form.repeat_password}
         onChange={inputHandler}
+        required={true}
       />
       {error !== false && <p className={styles.wrong}>{errorMessage(error)}</p>}
       {toggle && <p className={styles.wrong}>Паролі не співпадають</p>}
