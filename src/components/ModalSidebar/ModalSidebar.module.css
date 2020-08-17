@@ -21,6 +21,10 @@
   padding-top: 120px;
 }
 
+.modal__buttonWrapper {
+  padding: 40px 0;
+}
+
 .modal__buttonReady,
 .modal__buttonCanceling {
   display: block;

@@ -14,15 +14,6 @@ const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <ModalSidebar>
-          <>
-            {/* <h2>Створення проекту</h2>
-            <form>
-              <input type="Text" placeholder="Назва проекту"/>
-              <input type="Text" placeholder="Опис"/>
-            </form> */}
-          </>
-        </ModalSidebar>
         <Header /> {/* <ProjectPage /> */} {/* <Projects /> */}
         {/* <SprintPage /> */} {/* <Registration /> */} {/* <Login /> */}
         {/*<ProjectSidebar />*/}
