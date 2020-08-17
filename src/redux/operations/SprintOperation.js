@@ -1,9 +1,10 @@
 import { db } from "../../config";
 import { loaderOn, loaderOff } from "../actions/loaderActions";
 import { errorOn, errorOff } from "../actions/errorActions";
+import moment from "moment";
 import {
   getSprints,
-  AddSprint,
+  addSprint,
   deleteSprints,
   showModalAddSprintAction,
 } from "../actions/sprintActions";
@@ -12,13 +13,14 @@ export const addSprintOperation = (sprint) => async (dispatch) => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
-    const result = await db.collection("sprints").add(sprint);
-    const answer = {
+    const formatedSprint = {
       ...sprint,
-      id: result.id,
+      startDate: moment(sprint.startDate).format("DD.MM.YYYY"),
     };
-    console.log(answer);
-    dispatch(AddSprint(answer));
+    console.log(formatedSprint);
+    const result = await db.collection("sprints").add(formatedSprint);
+    const answer = { ...formatedSprint, id: result.id };
+    dispatch(addSprint(answer));
     dispatch(showModalAddSprintAction(false));
   } catch (error) {
     dispatch(errorOn());

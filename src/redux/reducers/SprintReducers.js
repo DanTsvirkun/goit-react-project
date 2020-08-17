@@ -1,7 +1,7 @@
 import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import {
   getSprints,
-  AddSprint,
+  addSprint,
   deleteSprints,
   showModalAddSprintAction,
 } from "../actions/sprintActions";
@@ -9,7 +9,10 @@ import {
 const initialState = [];
 
 const items = createReducer(initialState, {
-  [AddSprint]: (state, { payload }) => [...state, payload],
+  [addSprint]: (state, { payload }) => {
+    console.log(payload);
+    return [...state, payload];
+  },
   [getSprints]: (_, { payload }) => payload,
   [deleteSprints]: (state, { payload }) =>
     state.filter((item) => item.id !== payload),

@@ -12,18 +12,23 @@ import "./overRidingStyles.css";
 
 registerLocale("uk", uk);
 
-const CreatingSprint = (addSprint) => {
+const CreatingSprint = ({ addSprint }) => {
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [duration, setDuration] = useState("");
+
+  const handleStartDate = (date) => {
+    return setStartDate(date);
+  };
 
   const handleTitle = ({ target }) => {
     const { value } = target;
     setTitle(value);
   };
 
-  const handleStartDate = (date) => {
-    setStartDate(date);
+  const isWeekday = (date) => {
+    const day = date.getDay(date);
+    return day !== 0 && day !== 6;
   };
 
   const handleDuration = ({ target }) => {
@@ -33,9 +38,9 @@ const CreatingSprint = (addSprint) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const sprintsId = Date.now();
     //гет запрос от Вани (description, projectId)
     const sprint = { title, startDate, duration };
+    addSprint(sprint);
   };
 
   return (
@@ -44,7 +49,7 @@ const CreatingSprint = (addSprint) => {
         <button className={css.close__sprint__window}> </button>
         <div className={css.sprint__window__content}>
           <h2 className={css.sprint__window__header}> Створення спринта </h2>
-          <form className={css.sprint__form}>
+          <form className={css.sprint__form} onSubmit={handleSubmit}>
             <div className={css.group}>
               <input
                 type="text"
@@ -60,12 +65,12 @@ const CreatingSprint = (addSprint) => {
               className={`${css.group} ${css.group__inline} ${css.group__start}`}
             >
               <DatePicker
-                popperClassName={css.some_custom_class}
                 selected={startDate}
                 onChange={handleStartDate}
                 locale="uk"
                 dateFormat="dd.MM.yyyy"
                 placeholderText="Дата початку"
+                filterDate={isWeekday}
                 showMonthPicker
               />
               <span className={css.highlight}> </span>
@@ -94,7 +99,9 @@ const CreatingSprint = (addSprint) => {
   );
 };
 
-// const mapStateToProps = {};
+const mapStateToProps = {
+  // projectId:
+};
 
 const mapDispatchToProps = {
   addSprint: addSprintOperation,
