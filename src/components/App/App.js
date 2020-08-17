@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Registration from "../../containers/Registration/Registration";
 import Login from "../../containers/Login/Login";
@@ -14,12 +15,14 @@ const App = () => {
       <div className={styles.container}>
         <Header />
         <ProjectPage />
-        {/* <Projects /> */}
         {/* <SprintPage /> */}
-        {/* <Registration /> */}
+        {/* <Registration />  */}
         {/* <Login /> */}
-        {/* <SprintPage /> */}
-        {/* <ProjectSidebar /> */}
+        {/*<ProjectSidebar />*/}
+        {/*<Projects />*/}
+        <Switch>
+          <Route path="/projects/:projectId/sprints" component={SprintPage} />
+        </Switch>
       </div>
     </div>
   );
