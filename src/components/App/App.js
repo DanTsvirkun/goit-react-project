@@ -18,6 +18,8 @@ const App = () => {
         {/* <SprintPage /> */}
         {/* <Registration /> */}
         <Login />
+        {/* <Registration /> */}
+        {/* <Login /> */}
         {/* <ProjectSidebar /> */}
         {/*<Projects />*/}
         {/* <Switch>
