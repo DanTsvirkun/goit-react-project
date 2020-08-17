@@ -14,10 +14,10 @@ const App = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-         {/* <ProjectPage /> */} 
+        <ProjectPage />
         {/* <SprintPage /> */}
-         {/* <Registration />  */}
-         {/* <Login /> */}
+        {/* <Registration />  */}
+        {/* <Login /> */}
         {/*<ProjectSidebar />*/}
         {/*<Projects />*/}
         <Switch>
