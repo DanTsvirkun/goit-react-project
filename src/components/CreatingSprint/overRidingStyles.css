@@ -15,7 +15,6 @@
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 20px;
   width: 280px;
-  min-height: 260px;
   max-height: 300px;
 }
 
@@ -33,7 +32,7 @@
   border-radius: 20px 20px 0px 0px;
   background: transparent !important;
   width: 280px;
-  height: 220px;
+  max-height: 300px;
 }
 
 .react-datepicker__week,
@@ -67,13 +66,18 @@
   text-transform: capitalize;
 }
 
-.react-datepicker__triangle,
-.react-datepicker__navigation {
+.react-datepicker__triangle {
   display: none;
 }
 
+/* .react-datepicker__triangle,
+.react-datepicker__navigation {
+  display: none;
+} */
+
 .react-datepicker__day--selected,
-.react-datepicker__day--selected:hover {
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--keyboard-selected {
   width: 24px;
   height: 24px;
   background-position: center;
