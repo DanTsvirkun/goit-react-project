@@ -22,9 +22,7 @@ const ProjectsPageList = ({ projects = [], getProjects }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    loader: state.loader,
-    error: state.error,
+  return {  
     projects: projectsSelectors.projectsSelector(state),
   }
 };

@@ -39,26 +39,17 @@ const getProjectsOperation = () => async (dispatch) => {
   }
 };
 
-const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
-  console.log("ID:", id);
+const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => { 
   try {
     dispatch(loaderOn());
-    const result = await db.collection("projects").doc(id).delete();
-    console.log("delete_result", result);
+    const result = await db.collection("projects").doc(id).delete();    
     dispatch(projectsActions.deleteProject(id));
-  } catch (error) {
-    console.log(error);
-    // dispatch(errorOn());
+  } catch (error) {    
+    dispatch(errorOn());
   } finally {
     dispatch(loaderOff());
   }
 };
-
-// db.collection("cities").doc("DC").delete().then(function() {
-//   console.log("Document successfully deleted!");
-// }).catch(function(error) {
-//   console.error("Error removing document: ", error);
-// });
 
 export default {
   addProjectOperation,
