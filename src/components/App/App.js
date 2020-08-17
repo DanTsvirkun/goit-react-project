@@ -16,7 +16,9 @@ const App = () => {
         <Header />
         {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
-        <Registration />
+        {/* <Registration /> */}
+        <Login />
+        {/* <Registration /> */}
         {/* <Login /> */}
         {/* <ProjectSidebar /> */}
         {/*<Projects />*/}
