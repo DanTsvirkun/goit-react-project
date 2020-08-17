@@ -6,8 +6,7 @@ import ProjectsPageItem from "../ProjectsPageItem/ProjectsPageItem";
 
 import listStyle from "./ProjectsPageList.module.css";
 
-const ProjectsPageList = ({ projects = [], getProjects }) => {
-  console.log("projects", projects);
+const ProjectsPageList = ({ projects = [], getProjects }) => { 
 
   useEffect(() => {
     getProjects();
@@ -16,7 +15,7 @@ const ProjectsPageList = ({ projects = [], getProjects }) => {
   return (
     <ul className={listStyle.list}>
       {projects.map((project) => (
-        <ProjectsPageItem key={project.id} {...project} />
+        <ProjectsPageItem key={project.id} id={project.id} project={project} />
       ))}
     </ul>
   );
@@ -31,7 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getProjects: projectsOperations.getPRojectsOperation,
+  getProjects: projectsOperations.getProjectsOperation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPageList);
