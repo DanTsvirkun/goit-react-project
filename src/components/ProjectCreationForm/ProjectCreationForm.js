@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import  projectsOperations  from "../../redux/operations/projectsOperations";
+import projectsOperations from "../../redux/operations/projectsOperations";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -70,7 +70,7 @@ const ProjectCreationForm = ({ addProject }) => {
       title,
       description,
     };
-    
+
     addProject(project);
     setProjectItem(initialState);
   };
@@ -90,6 +90,7 @@ const ProjectCreationForm = ({ addProject }) => {
         name="title"
         value={projectItem.title}
         onChange={handleInput}
+        required
       />
 
       <DescriptionTextField
@@ -98,6 +99,7 @@ const ProjectCreationForm = ({ addProject }) => {
         name="description"
         value={projectItem.description}
         onChange={handleInput}
+        required
         // InputLabelProps={{
         //   shrink: true,
         // }}
