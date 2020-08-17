@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import SprintTask from '../SprintTask/SprintTask';
-import css from './SprintTasksList.module.css';
-import BurndownChartBtn from '../BurndownChartBtn/BurndownChartBtn';
-import BurndownChartModalWindow from '../BurndownChartModalWindow/BurndownChartModalWindow';
-import { getTasksOperation } from '../../redux/operations/TasksOperatins';
-import { itemsSelector } from '../../redux/selectors/TasksSelectors';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import SprintTask from "../SprintTask/SprintTask";
+import css from "./SprintTasksList.module.css";
+import BurndownChartBtn from "../BurndownChartBtn/BurndownChartBtn";
+import BurndownChartModalWindow from "../BurndownChartModalWindow/BurndownChartModalWindow";
+import { getTasksOperation } from "../../redux/operations/TasksOperatins";
+import { itemsSelector } from "../../redux/selectors/TasksSelectors";
 const SprintTasksList = ({ tasks, getTasks, loader, error }) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
 
@@ -14,14 +14,15 @@ const SprintTasksList = ({ tasks, getTasks, loader, error }) => {
   }, []);
 
   const handleToggleAnalytic = () => {
-    setToggleAnalytic(state => !state);
+    setToggleAnalytic((state) => !state);
+    document.querySelector("body").style.overflow = "hidden";
   };
 
   return (
     <>
       {!loader && !error && (
         <div className={css.wrapper}>
-          <ul className={css['sprint__tasks-list']}>
+          <ul className={css["sprint__tasks-list"]}>
             {tasks.map((task, idx) => (
               <SprintTask key={task.id} {...task} index={idx} />
             ))}
@@ -37,7 +38,7 @@ const SprintTasksList = ({ tasks, getTasks, loader, error }) => {
     </>
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loader: state.loader,
   error: state.error,
   tasks: itemsSelector(state),
