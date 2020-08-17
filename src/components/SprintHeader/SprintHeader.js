@@ -1,18 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import css from './SprintHeader.module.css';
-import { showModalAddTaskAction } from '../../redux/actions/sprintTasksActions';
+import {
+  showModalAddTaskAction,
+  indexDayAction,
+} from '../../redux/actions/sprintTasksActions';
 import {
   itemsSelector,
   showModalSelector,
+  currentIdxDaySelector,
 } from '../../redux/selectors/TasksSelectors';
 import SprintAddTaskForm from '../SprintAddTaskForm/SprintAddTaskForm';
+const currentDate = moment().format('DD.MM.YYYY');
 const SprintHeader = ({
   title = 'Sprint Burndown Chart 1',
   tasks,
   isShowModal,
   showModalAction,
+  currentDayIdx,
+  loader,
+  indexDayAction,
 }) => {
+  const [rightArrow, setRightArrow] = useState(false);
+  const [leftArrow, setLeftArrow] = useState(false);
+
+  const taskDay = () => {
+    if (tasks.length > 0) {
+      return tasks[0].hoursWastedPerDay[currentDayIdx].currentDay;
+    }
+    return null;
+  };
+
   // const [modalToggle, setModalToggle] = useState(false);
   // const [isArrayTasksChanged, setisArrayTasksChanged] = useState(false);
   // useEffect(() => {
@@ -22,16 +41,65 @@ const SprintHeader = ({
   const showModal = () => {
     showModalAction(true);
   };
+  const plusIdx = () => {
+    setLeftArrow(false);
+    setRightArrow(true);
+    if (tasks[0].hoursWastedPerDay.length === currentDayIdx + 1) {
+      return;
+    }
+    const newIdx = currentDayIdx + 1;
+    console.log(newIdx);
+
+    indexDayAction(newIdx);
+  };
+
+  const minusIdx = () => {
+    setRightArrow(false);
+    setLeftArrow(true);
+    if (currentDayIdx === 0) {
+      return;
+    }
+    const newIdx = currentDayIdx - 1;
+    console.log(newIdx);
+
+    indexDayAction(newIdx);
+  };
   return (
     <div className={css.container}>
       <div className={css['sprint__date']}>
-        <p className={css['sprint__date-sprint']}>
-          2
-          <span span className={css['sprint__date-sprint--span']}>
-            / 12
-          </span>
-        </p>
-        <p className={css['sprint__current-date']}> 08.08 .2020 </p>
+        {!loader && tasks.length > 0 && (
+          <>
+            <p className={css['sprint__date-sprint']}>
+              {currentDayIdx !== 0 && (
+                <span
+                  onClick={minusIdx}
+                  className={
+                    leftArrow
+                      ? `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}`
+                      : css['sprint__date-arrow']
+                  }
+                ></span>
+              )}
+
+              {tasks.length > 0 ? currentDayIdx + 1 : null}
+              <span span className={css['sprint__date-sprint--span']}>
+                {tasks.length > 0 && '/'}
+                {tasks.length > 0 ? tasks[0].hoursWastedPerDay.length : null}
+              </span>
+              {tasks[0].hoursWastedPerDay.length !== currentDayIdx + 1 && (
+                <span
+                  onClick={plusIdx}
+                  className={
+                    rightArrow
+                      ? `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}`
+                      : css['sprint__date-arrow']
+                  }
+                ></span>
+              )}
+            </p>
+            <p className={css['sprint__current-date']}> {taskDay()} </p>
+          </>
+        )}
       </div>
       <div className={css['sprint__header-wrapper']}>
         <div className={css['sprint__title-wrapper']}>
@@ -53,9 +121,13 @@ const SprintHeader = ({
 const mapStateToProps = state => ({
   tasks: itemsSelector(state),
   isShowModal: showModalSelector(state),
+  currentDayIdx: currentIdxDaySelector(state),
+  loader: state.loader,
+  error: state.error,
 });
 const mapDispatchToPorps = {
   showModalAction: showModalAddTaskAction,
+  indexDayAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToPorps)(SprintHeader);
