@@ -38,8 +38,10 @@ const CreatingSprint = ({ addSprint }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //гет запрос от Вани (description, projectId)
-    const sprint = { title, startDate, duration };
+    const endDate = moment(startDate).add(duration, "days").toDate();
+    const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
+
+    const sprint = { title, startDate, duration, endDate: formatedEndDate };
     addSprint(sprint);
   };
 
@@ -99,9 +101,9 @@ const CreatingSprint = ({ addSprint }) => {
   );
 };
 
-const mapStateToProps = {
-  // projectId:
-};
+// const mapStateToProps = (state) => ({
+//   projects: state.projects,
+// });
 
 const mapDispatchToProps = {
   addSprint: addSprintOperation,

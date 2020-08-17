@@ -18,13 +18,13 @@ const items = createReducer(initialState, {
     state.filter((item) => item.id !== payload),
 });
 
-const showModalAddTask = createReducer(false, {
+const showModalAddSprint = createReducer(false, {
   [showModalAddSprintAction]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
   items,
-  showModalAddTask,
+  showModalAddSprint,
 });
 
 // {
