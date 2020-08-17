@@ -11,7 +11,7 @@
 }
 
 .sprint__date-sprint {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -22,7 +22,7 @@
 }
 
 .sprint__date-sprint--span {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -32,7 +32,7 @@
 }
 
 .sprint__current-date {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -55,7 +55,7 @@
 }
 
 .sprint__title {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -74,7 +74,8 @@
   background-size: contain;
   background-color: transparent;
   cursor: pointer;
-  background-image: url("../../Icons/pencil.svg");
+  outline: none;
+  background-image: url('../../Icons/pencil.svg');
 }
 
 .sprint__add-task-wrapper {
@@ -94,11 +95,12 @@
   border: none;
   background-repeat: no-repeat;
   cursor: pointer;
-  background-image: url("../../Icons/plus.svg");
+  background-image: url('../../Icons/plus.svg');
+  outline: none;
 }
 
 .sprint__add-task-offer {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
