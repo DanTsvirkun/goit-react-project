@@ -22,26 +22,7 @@
   line-height: 44px;
   letter-spacing: 0.04em;
   color: #181c27;
-  margin-bottom: 57px;
-}
-
-.registaration_input {
-  display: block;
-  margin: 0 auto 57px;
-  width: 429px;
-  height: 30px;
-  border: none;
-  border-bottom: 1px solid rgba(24, 28, 39, 0.2);
-  outline: none;
-
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: rgba(24, 28, 39, 0.6);
-  background: #fafafa;
+  margin-bottom: 30px;
 }
 
 .registration_btn {

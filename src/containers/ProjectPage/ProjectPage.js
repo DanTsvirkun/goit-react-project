@@ -16,28 +16,16 @@ const ProjectPage = () => {
               className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
             >
               <h1 className={styles.project__header}>Project 1</h1>
-              <button className={`${styles.button} ${styles.button__pencil}`}>
-                <img
-                  className={`${styles.icon}`}
-                  src={pencil}
-                  alt="pencil"
-                  height="20"
-                  width="20"
-                />
-              </button>
+              <button
+                className={`${styles.button} ${styles.button__pencil}`}
+              ></button>
             </div>
             <div
               className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
             >
-              <button className={styles.button}>
-                <img
-                  className={`${styles.icon}`}
-                  src={plus}
-                  alt="pencil"
-                  height="44"
-                  width="44"
-                />
-              </button>
+              <button
+                className={`${styles.button} ${styles.button__plus}`}
+              ></button>
               <p className={styles.sprint_text}>Створити спринт</p>
             </div>
           </div>
