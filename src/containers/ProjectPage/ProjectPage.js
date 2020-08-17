@@ -2,14 +2,14 @@ import React from "react";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import SingleSprint from "../../components/SingleSprint/SingleSprint";
 import styles from "./ProjectPage.module.css";
-import pencil from "../../Icons/pencil.svg";
-import plus from "../../Icons/plus.svg";
+import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
 
 const ProjectPage = () => {
   return (
     <>
       <div className={styles.page_wrapper}>
         <ProjectSidebar />
+        <CreatingSprint />
         <div className={styles.projectWrapper}>
           <div className={styles.project__header__wrapper}>
             <div
