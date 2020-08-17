@@ -9,9 +9,9 @@ const firebaseConfig = {
   projectId: "goit-react-project",
   storageBucket: "goit-react-project.appspot.com",
   messagingSenderId: "665112245664",
-  appId: "1:665112245664:web:9d8b3109f8ed175f6820c5"
+  appId: "1:665112245664:web:9d8b3109f8ed175f6820c5",
 };
-
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();

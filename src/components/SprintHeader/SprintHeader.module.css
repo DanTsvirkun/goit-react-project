@@ -74,6 +74,7 @@
   background-size: contain;
   background-color: transparent;
   cursor: pointer;
+  outline: none;
   background-image: url('../../Icons/pencil.svg');
 }
 
@@ -95,6 +96,7 @@
   background-repeat: no-repeat;
   cursor: pointer;
   background-image: url('../../Icons/plus.svg');
+  outline: none;
 }
 
 .sprint__add-task-offer {

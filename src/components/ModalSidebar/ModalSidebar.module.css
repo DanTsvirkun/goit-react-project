@@ -1,14 +1,20 @@
 .modal__container {
-  position: absolute;
+  position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   z-index: 1000;
 }
 
 .modal__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
   background-color: rgba(24, 28, 39, 0.25);
-  width: 100vw;
-  height: 100vh;
 }
 
 .modal__sidebar {
@@ -16,7 +22,7 @@
   top: 0;
   right: 0;
   width: 530px;
-  height: 100vh;
+  height: 100%;
   background-color: #fff;
   padding-top: 120px;
 }
@@ -58,7 +64,7 @@
 .modal__buttonReady:hover,
 .modal__buttonReady:focus {
   background: rgba(24, 28, 39, 0.6);
-  box-shadow: 0px 0px 0px
+  box-shadow: 0px 0px 0px;
 }
 
 .modal__buttonCanceling:hover,
