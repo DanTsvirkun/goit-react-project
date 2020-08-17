@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import css from './CreatingSprint.module.css';
-import DatePicker from 'react-datepicker';
-import uk from 'date-fns/locale/uk';
-import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import React, { Component } from "react";
+import css from "./CreatingSprint.module.css";
+import DatePicker from "react-datepicker";
+import uk from "date-fns/locale/uk";
+import { registerLocale, setDefaultLocale } from "react-datepicker";
 
-import 'react-datepicker/dist/react-datepicker.css';
-import './overRidingStyles.css';
+import "react-datepicker/dist/react-datepicker.css";
+import "./overRidingStyles.css";
 
-registerLocale('uk', uk);
+registerLocale("uk", uk);
 
 class CreatingSprint extends Component {
   state = {
     startDate: new Date(),
   };
 
-  handleChange = date => {
+  handleChange = (date) => {
     this.setState({
       startDate: date,
     });
@@ -67,9 +67,9 @@ class CreatingSprint extends Component {
               </div>
               <div className={css.button__wrapper}>
                 <button className={css.button__ready}> </button>
-                <button className={css.button__decline}> </button>
               </div>
             </form>
+            <button className={css.button__decline}> </button>
           </div>
         </div>
       </div>
