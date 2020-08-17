@@ -40,7 +40,6 @@ const CreatingSprint = ({ addSprint }) => {
     e.preventDefault();
     const endDate = moment(startDate).add(duration, "days").toDate();
     const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
-
     const sprint = { title, startDate, duration, endDate: formatedEndDate };
     addSprint(sprint);
   };
