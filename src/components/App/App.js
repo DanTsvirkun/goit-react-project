@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,31 +11,25 @@ import ProjectPage from "../../containers/ProjectPage/ProjectPage";
 import Projects from "../../containers/Projects/Projects.js";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
-import modalTransition from '../ModalSidebar/transitions/Modal.module.css'
-
-import { modalOn } from '../../redux/actions/modalAction';
 
 const App = () => {
-  const modalStatus = useSelector(state => state.modal)
-  const dispatch = useDispatch()
+  //Приммер подключения модального окна\\
+  // const [modal, setModal] = useState(false)
 
-  const toggleOn = () => {
-    dispatch(modalOn(true))
-  }
+  // const modalToggle = () => {
+  //   setModal(state => !state)
+  // }
+  //Приммер подключения модального окна\\
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <button onClick={toggleOn}>ON</button>
 
-        <CSSTransition in={modalStatus} timeout={400} classNames={modalTransition} unmountOnExit>
-          {stage => {
-            return (
-              <ModalSidebar stage={stage}></ModalSidebar>
-            )
-          }
-          }
-        </CSSTransition>
+        {/* Приммер подключения модального окна */}
+        {/* <button onClick={modalToggle}>ON</button> */}
+        {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
+        {/* Приммер подключения модального окна */}
+
         <Header />
         {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
