@@ -1,5 +1,14 @@
-import { db } from '../../config';
-import firebase from 'firebase';
+<< << << < HEAD
+import {
+  db
+} from '../../config';
+import firebase from 'firebase'; ===
+=== =
+import {
+  db
+} from "../../config";
+import firebase from "firebase"; >>>
+>>> > 3532 d9e8bbbfafe34c9aff3298323f4eb77cfd6f
 import {
   getTasks,
   addTask,
@@ -7,16 +16,47 @@ import {
   changeTask,
   showModalAddTaskAction,
   indexDayAction,
+  <<
+  << << < HEAD
 } from '../actions/sprintTasksActions';
-import { errorOn, errorOff } from '../actions/errorActions';
-import { loaderOn, loaderOff } from '../actions/loaderActions';
-import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
+import {
+  errorOn,
+  errorOff
+} from '../actions/errorActions';
+import {
+  loaderOn,
+  loaderOff
+} from '../actions/loaderActions';
+import {
+  newState,
+  findCurrentDay
+} from '../../helpers/newArrayTasks';
 
 export const getTasksOperation = sprintId => async dispatch => {
+  ===
+  === =
+}
+from "../actions/sprintTasksActions";
+import {
+  errorOn,
+  errorOff
+} from "../actions/errorActions";
+import {
+  loaderOn,
+  loaderOff
+} from "../actions/loaderActions";
+import {
+  newState,
+  findCurrentDay
+} from "../../helpers/newArrayTasks";
+
+export const getTasksOperation = (sprintId) => async (dispatch) => {
+  >>>
+  >>> > 3532 d9e8bbbfafe34c9aff3298323f4eb77cfd6f
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
-    const result = await db.collection('tasks').get();
+    const result = await db.collection("tasks").get();
     const answer = result.docs.reduce((acc, doc) => {
       const item = doc.data();
       if (item.sprintId === Number(sprintId)) {
@@ -38,11 +78,11 @@ export const getTasksOperation = sprintId => async dispatch => {
   }
 };
 
-export const addTaskOperation = task => async dispatch => {
+export const addTaskOperation = (task) => async (dispatch) => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
-    const result = await db.collection('tasks').add(task);
+    const result = await db.collection("tasks").add(task);
     const answer = {
       ...task,
       id: result.id,
@@ -56,7 +96,7 @@ export const addTaskOperation = task => async dispatch => {
   }
 };
 
-export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
+export const changeTaskSingleHour = (item) => async (dispatch, getTasks) => {
   try {
     const num = getTasks().tasks.items[item.indexArray].hoursWastedPerDay[
       item.idx
@@ -76,9 +116,8 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
     const newTask = newState(task, item);
     tasks.splice(item.indexArray, 1, newTask);
     dispatch(changeTask(tasks));
-
     await db
-      .collection('tasks')
+      .collection("tasks")
       .doc(item.taskId)
       .set({
         ...newTask,
@@ -92,12 +131,12 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
   }
 };
 
-export const deleteTaskOperation = (idTask, index) => async dispatch => {
+export const deleteTaskOperation = (idTask, index) => async (dispatch) => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
-    await db.collection('tasks').doc(idTask).delete();
-    console.log('wwwwww');
+    await db.collection("tasks").doc(idTask).delete();
+    console.log("wwwwww");
 
     dispatch(deleteTask(index));
   } catch (error) {
