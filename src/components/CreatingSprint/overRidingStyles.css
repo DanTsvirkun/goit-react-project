@@ -124,3 +124,7 @@
   border-bottom: 1px solid rgba(24, 28, 39, 0.2);
   font-family: "Montserrat";
 }
+
+.react-datepicker__input-container input {
+  cursor: pointer;
+}

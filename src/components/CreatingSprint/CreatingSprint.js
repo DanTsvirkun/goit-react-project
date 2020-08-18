@@ -6,7 +6,6 @@ import uk from "date-fns/locale/uk";
 import { connect } from "react-redux";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { addSprintOperation } from "../../redux/operations/SprintOperation";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "./overRidingStyles.css";
 
@@ -18,9 +17,11 @@ const CreatingSprint = ({ addSprint }) => {
   const [duration, setDuration] = useState("");
   const [titleErr, setTitleErr] = useState("");
   const [durationErr, setDurationErr] = useState("");
+  const [dateErr, setDateErr] = useState("");
 
   const handleStartDate = (date) => {
     setStartDate(date);
+    setDateErr("");
   };
 
   const handleTitle = ({ target }) => {
@@ -43,6 +44,7 @@ const CreatingSprint = ({ addSprint }) => {
   const formValidation = () => {
     let titleValid = true;
     let durationValid = true;
+    let dateValid = true;
 
     if (title.trim().length < 5) {
       setTitleErr("Будь ласка, введіть коректну назву спринту.");
@@ -52,7 +54,11 @@ const CreatingSprint = ({ addSprint }) => {
       setDurationErr("Будь ласка, оберіть тривалість спринта.");
       durationValid = false;
     }
-    return titleValid && durationValid;
+    if (!startDate) {
+      setDateErr("Будь ласка, введіть релевантний день початку спринта.");
+      dateValid = false;
+    }
+    return titleValid && durationValid && dateValid;
   };
 
   const handleSubmit = (e) => {
@@ -61,9 +67,8 @@ const CreatingSprint = ({ addSprint }) => {
       var moment = require("moment-business-days");
       const formatedStartDate = new Date(startDate);
       const endDate = moment(formatedStartDate, "DD-MM-YYYY").businessAdd(
-        duration
+        duration - 1
       )._d;
-      console.log(endDate);
       const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
       const sprint = {
         title,
@@ -109,7 +114,7 @@ const CreatingSprint = ({ addSprint }) => {
                 minDate={moment().toDate()}
                 showMonthPicker
               />
-
+              {dateErr ? <div className={css.error}>{dateErr}</div> : ""}
               <span className={css.highlight}> </span>
               <span className={css.bar}> </span>
               <label className={css.sprint_label}> </label>
