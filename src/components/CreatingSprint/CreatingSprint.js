@@ -65,7 +65,12 @@ const CreatingSprint = ({ addSprint }) => {
       )._d;
       console.log(endDate);
       const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
-      const sprint = { title, startDate, duration, endDate: formatedEndDate };
+      const sprint = {
+        title,
+        startDate: formatedStartDate,
+        duration,
+        endDate: formatedEndDate,
+      };
       addSprint(sprint);
     } else {
       return;
