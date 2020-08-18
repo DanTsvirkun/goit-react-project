@@ -5,7 +5,6 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 import formStyles from "./ProjectCreationForm.module.css";
-import { blue } from "@material-ui/core/colors";
 
 const NameTextField = withStyles({
   root: {
@@ -50,7 +49,7 @@ const DescriptionTextField = withStyles({
     "& .MuiInput-underline:after": {
       borderBottomColor: "#181c2799",
     },
-    "& .MuiFormHelperText-root.Mui-error": { 
+    "& .MuiFormHelperText-root.Mui-error": {      
       marginBottom: "60px",  
       color: "red",
       fontSize: "12px"
@@ -89,23 +88,18 @@ const ProjectCreationForm = ({ addProject }) => {
     if (title.length < 3) {
       errors.title = "Title length is too short";
     }
-
     if (title.length > 20) {
       errors.title = "Title length is too long";
     }
-
     if (description.length < 2) {
       errors.description = "Description length is too short";
     }
-
     if (description.length > 100) {
       errors.description = "Description length is too long";
     }
-
     if (title.length === 0) {
       errors.title = "Required field";
     }
-
     if (description.length === 0) {
       errors.description = "Required field";
     }
@@ -126,6 +120,7 @@ const ProjectCreationForm = ({ addProject }) => {
     };
 
     const result = validate(title, description);
+    
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
