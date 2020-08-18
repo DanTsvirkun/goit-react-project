@@ -14,19 +14,19 @@ registerLocale("uk", uk);
 
 const CreatingSprint = ({ addSprint }) => {
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(Date.now());
   const [duration, setDuration] = useState("");
-  const [titleErr, setTitleErr] = useState({});
-  const [dateErr, setDateErr] = useState({});
-  const [durationErr, setDurationErr] = useState({});
+  const [titleErr, setTitleErr] = useState("");
+  const [durationErr, setDurationErr] = useState("");
 
   const handleStartDate = (date) => {
-    return setStartDate(date);
+    setStartDate(date);
   };
 
   const handleTitle = ({ target }) => {
     const { value } = target;
     setTitle(value);
+    setTitleErr("");
   };
 
   const isWeekday = (date) => {
@@ -37,36 +37,39 @@ const CreatingSprint = ({ addSprint }) => {
   const handleDuration = ({ target }) => {
     const { value } = target;
     setDuration(value);
+    setDurationErr("");
   };
 
   const formValidation = () => {
-    const titleErr = {};
-    const dateErr = {};
-    const durationErr = {};
-    let isValid = true;
+    let titleValid = true;
+    let durationValid = true;
+
     if (title.trim().length < 5) {
-      titleErr.titleErrShort = "Будь ласка, введіть коректну назву спринту.";
-      isValid = false;
+      setTitleErr("Будь ласка, введіть коректну назву спринту.");
+      titleValid = false;
     }
-    if (typeof startDate !== "object") {
-      dateErr.dateNotChosen =
-        "Будь ласка, введіть релевантний день початку спринту.";
-      isValid = false;
+    if (!Number(duration)) {
+      setDurationErr("Будь ласка, оберіть тривалість спринта.");
+      durationValid = false;
     }
-    if (typeof startDate !== "object") {
-      dateErr.dateNotChosen =
-        "Будь ласка, введіть релевантний день початку спринту.";
-      isValid = false;
-    }
+    return titleValid && durationValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isValid = formValidation();
-    const endDate = moment(startDate).add(duration, "days").toDate();
-    const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
-    const sprint = { title, startDate, duration, endDate: formatedEndDate };
-    addSprint(sprint);
+    if (formValidation()) {
+      var moment = require("moment-business-days");
+      const formatedStartDate = new Date(startDate);
+      const endDate = moment(formatedStartDate, "DD-MM-YYYY").businessAdd(
+        duration
+      )._d;
+      console.log(endDate);
+      const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
+      const sprint = { title, startDate, duration, endDate: formatedEndDate };
+      addSprint(sprint);
+    } else {
+      return;
+    }
   };
 
   return (
@@ -83,6 +86,7 @@ const CreatingSprint = ({ addSprint }) => {
                 className={`${css.input__field} ${css.input__name}`}
                 onChange={handleTitle}
               />
+              {titleErr ? <div className={css.error}>{titleErr}</div> : ""}
               <span className={css.highlight}> </span>
               <span className={css.bar}> </span>
               <label className={css.sprint_label}> Назва спринта </label>
@@ -100,6 +104,7 @@ const CreatingSprint = ({ addSprint }) => {
                 minDate={moment().toDate()}
                 showMonthPicker
               />
+
               <span className={css.highlight}> </span>
               <span className={css.bar}> </span>
               <label className={css.sprint_label}> </label>
@@ -111,6 +116,12 @@ const CreatingSprint = ({ addSprint }) => {
                 className={`${css.input__field} ${css.input__duration}`}
                 onChange={handleDuration}
               />
+
+              {durationErr ? (
+                <div className={css.error}>{durationErr}</div>
+              ) : (
+                ""
+              )}
               <span className={css.highlight}> </span>
               <span className={css.bar}> </span>
               <label className={css.sprint_label}> Тривалість </label>
@@ -125,10 +136,6 @@ const CreatingSprint = ({ addSprint }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   projects: state.projects,
-// });
 
 const mapDispatchToProps = {
   addSprint: addSprintOperation,

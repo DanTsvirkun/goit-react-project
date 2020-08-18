@@ -45,9 +45,12 @@ const items = createReducer(initialState, {
     payload
   }) => payload,
   [deleteTask]: (state, {
-      payload
-    }) =>
-    state.filter(item => item.id !== payload),
+    payload
+  }) => {
+    const newArray = [...state]
+    newArray.splice(payload, 1)
+    return newArray
+  },
   [changeTask]: (state, {
     payload
   }) => payload,

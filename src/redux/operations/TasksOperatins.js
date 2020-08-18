@@ -10,7 +10,7 @@ import {
 } from "../actions/sprintTasksActions";
 import { errorOn, errorOff } from "../actions/errorActions";
 import { loaderOn, loaderOff } from "../actions/loaderActions";
-import { objToBackEnd, newState } from "../../helpers/newArrayTasks";
+import { newState, findCurrentDay } from "../../helpers/newArrayTasks";
 
 export const getTasksOperation = (sprintId) => async (dispatch) => {
   try {
@@ -30,8 +30,9 @@ export const getTasksOperation = (sprintId) => async (dispatch) => {
 
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     dispatch(getTasks(answer));
+    dispatch(indexDayAction(findCurrentDay(answer)));
   } catch (error) {
-    dispatch(errorOn());
+    dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
   }
@@ -49,7 +50,7 @@ export const addTaskOperation = (task) => async (dispatch) => {
     dispatch(addTask(answer));
     dispatch(showModalAddTaskAction(false));
   } catch (error) {
-    dispatch(errorOn());
+    dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
   }
@@ -61,10 +62,10 @@ export const changeTaskSingleHour = (item) => async (dispatch, getTasks) => {
     dispatch(loaderOn());
     const tasks = [...getTasks().tasks.items];
     const task = {
-      ...tasks[item.indexArray]
-    }
-    const newTask = newState(task, item)
-    tasks.splice(item.indexArray, 1, newTask)
+      ...tasks[item.indexArray],
+    };
+    const newTask = newState(task, item);
+    tasks.splice(item.indexArray, 1, newTask);
     dispatch(changeTask(tasks));
     if (item.numValue <= 0) {
       alert("введіть число більше 0");
@@ -78,6 +79,21 @@ export const changeTaskSingleHour = (item) => async (dispatch, getTasks) => {
       });
 
     dispatch(indexDayAction(item.idx));
+  } catch (error) {
+    dispatch(errorOn(error));
+  } finally {
+    dispatch(loaderOff());
+  }
+};
+
+export const deleteTaskOperation = (idTask, index) => async (dispatch) => {
+  try {
+    dispatch(errorOff());
+    dispatch(loaderOn());
+    await db.collection("tasks").doc(idTask).delete();
+    console.log("wwwwww");
+
+    dispatch(deleteTask(index));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
