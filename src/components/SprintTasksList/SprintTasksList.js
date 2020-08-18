@@ -6,7 +6,10 @@ import css from './SprintTasksList.module.css';
 import BurndownChartBtn from '../BurndownChartBtn/BurndownChartBtn';
 import BurndownChartModalWindow from '../BurndownChartModalWindow/BurndownChartModalWindow';
 import { getTasksOperation } from '../../redux/operations/TasksOperatins';
-import { filterTasksAction } from '../../redux/actions/sprintTasksActions';
+import {
+  filterTasksAction,
+  toggleFilterAction,
+} from '../../redux/actions/sprintTasksActions';
 import {
   itemsSelector,
   filteredTasksSelector,
@@ -19,30 +22,30 @@ const SprintTasksList = ({
   match,
   location,
   filterAction,
+  history,
+  toggleFilterAction,
 }) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
 
   useEffect(() => {
     const { sprintId } = match.params;
-    // getTasks(sprintId);
+    getTasks(sprintId);
+    console.log(match.params);
+  }, [match.params.sprintId]);
+
+  useEffect(() => {
     const parsed = queryString.parse(location.search);
     const { task } = parsed;
+    console.log(location.search);
+
     if (task) {
       filterAction(task);
     }
-  }, []);
-
-  useEffect(() => {
-    const { sprintId } = match.params;
-    console.log(sprintId);
-    getTasks(sprintId);
-    console.log(match.params);
-    const parsed = queryString.parse(location.search);
-    const { task } = parsed;
     if (!task) {
+      toggleFilterAction(false);
       filterAction('');
     }
-  }, [match]);
+  }, [match.params.sprintId]);
 
   const handleToggleAnalytic = () => {
     setToggleAnalytic(state => !state);
@@ -50,21 +53,23 @@ const SprintTasksList = ({
 
   return (
     <>
+      {' '}
       {!loader && !error && (
         <div className={css.wrapper}>
           <ul className={css['sprint__tasks-list']}>
+            {' '}
             {tasks.map((task, idx) => (
               <SprintTask key={task.id} {...task} index={idx} />
-            ))}
-          </ul>
+            ))}{' '}
+          </ul>{' '}
           {!toggleAnalytic && (
             <BurndownChartBtn openModal={handleToggleAnalytic} />
-          )}
+          )}{' '}
           {toggleAnalytic && (
             <BurndownChartModalWindow onClose={handleToggleAnalytic} />
-          )}
+          )}{' '}
         </div>
-      )}
+      )}{' '}
     </>
   );
 };
@@ -76,6 +81,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getTasks: getTasksOperation,
   filterAction: filterTasksAction,
+  toggleFilterAction,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SprintTasksList);
 

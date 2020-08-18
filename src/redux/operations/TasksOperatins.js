@@ -1,6 +1,4 @@
-import {
-  db
-} from '../../config';
+import { db } from '../../config';
 import firebase from 'firebase';
 import {
   getTasks,
@@ -10,20 +8,11 @@ import {
   showModalAddTaskAction,
   indexDayAction,
 } from '../actions/sprintTasksActions';
-import {
-  errorOn,
-  errorOff
-} from '../actions/errorActions';
-import {
-  loaderOn,
-  loaderOff
-} from '../actions/loaderActions';
-import {
-  newState,
-  findCurrentDay
-} from '../../helpers/newArrayTasks';
+import { errorOn, errorOff } from '../actions/errorActions';
+import { loaderOn, loaderOff } from '../actions/loaderActions';
+import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
 
-export const getTasksOperation = sprintId => async (dispatch) => {
+export const getTasksOperation = sprintId => async dispatch => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
@@ -41,8 +30,7 @@ export const getTasksOperation = sprintId => async (dispatch) => {
 
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     dispatch(getTasks(answer));
-    dispatch(indexDayAction(findCurrentDay(answer)))
-
+    dispatch(indexDayAction(findCurrentDay(answer)));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -70,6 +58,15 @@ export const addTaskOperation = task => async dispatch => {
 
 export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
   try {
+    const num = getTasks().tasks.items[item.indexArray].hoursWastedPerDay[
+      item.idx
+    ].singleHoursWasted;
+    if (num === item.numValue) {
+      return;
+    }
+    console.log('nummmmm', num);
+    console.log('item.numValue', item.numValue);
+
     dispatch(errorOff());
     dispatch(loaderOn());
     const tasks = [...getTasks().tasks.items];
@@ -79,10 +76,7 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
     const newTask = newState(task, item);
     tasks.splice(item.indexArray, 1, newTask);
     dispatch(changeTask(tasks));
-    if (item.numValue <= 0) {
-      alert('введіть число більше 0');
-      return;
-    }
+
     await db
       .collection('tasks')
       .doc(item.taskId)

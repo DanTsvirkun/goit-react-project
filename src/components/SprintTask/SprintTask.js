@@ -18,7 +18,9 @@ const SprintTask = ({
     <li className={css['sprint__tasks-item']}>
       <ul className={css['sprint__task-list']}>
         <li className={css['sprint__task-item']}>
-          <p className={css['sprint__tasks-name']}> {title} </p>
+          <p className={css['sprint__tasks-name']}>
+            {title.length > 40 ? `${title.slice(0, 33)}...` : title}
+          </p>
         </li>
         <li className={css['sprint__task-item']}>
           <p className={css['sprint__tasks-plan']}> {hoursPlanned} </p>

@@ -3,12 +3,21 @@ import { Route } from 'react-router-dom';
 import SprintSidebar from '../../components/SprintSidebar/SprintSidebar';
 import css from './Sprint.module.css';
 import SprintHeader from '../../components/SprintHeader/SprintHeader';
+import { toggleFilterAction } from '../../redux/actions/sprintTasksActions';
 import SprintTableTitle from '../../components/SprintTableTitle/SprintTableTitle';
 import SprintTasksList from '../../components/SprintTasksList/SprintTasksList';
-const Sprint = ({ match }) => {
+import { connect } from 'react-redux';
+const Sprint = ({ match, toggleFilterAction }) => {
+  const handleCloseFilter = e => {
+    console.log(e.target.nodeName);
+    if (e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'BUTTON') {
+      toggleFilterAction(false);
+      return;
+    }
+  };
   return (
     <section className={css.sprint}>
-      <div className={css.container}>
+      <div className={css.container} onClick={handleCloseFilter}>
         <SprintSidebar />
         <div className={css['sprint__main-wrapper']}>
           <SprintHeader />
@@ -19,5 +28,7 @@ const Sprint = ({ match }) => {
     </section>
   );
 };
-
-export default Sprint;
+const mapDispatchToProps = {
+  toggleFilterAction,
+};
+export default connect(null, mapDispatchToProps)(Sprint);
