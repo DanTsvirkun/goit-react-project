@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Line } from "react-chartjs-2";
-import moment from "moment";
+// import moment from "moment";
 import styles from "./BurndownChart.module.css";
 import { itemsSelector } from "../../redux/selectors/TasksSelectors";
 
@@ -14,9 +14,8 @@ const BurndawnChart = ({
   const [chartData, setChartData] = useState({});
   const duration = hoursWastedPerDay - 1;
   const sprinHoursPerDay = hoursPlanned / duration;
-  console.log("hoursWastedPerDay :>> ", hoursWastedPerDay);
 
-  const getArrey = () => {
+  const redLine = () => {
     const result = [hoursPlanned];
     let currentHours = hoursPlanned;
     for (let i = 0; i < duration; i += 1) {
@@ -25,37 +24,37 @@ const BurndawnChart = ({
     }
     return result;
   };
-  console.log(getArrey());
+  console.log(redLine());
 
-  const getArrForBlueLine = () => {
-    const result = [];
-    let total = 0;
-    for (let j = 0; j < hoursWastedPerDay; j += 1) {
-      total = 0;
-      for (let i = 0; i < blueLine.length; i += 1) {
-        total += blueLine[i].hoursWastedPerDay[j].singleHoursWasted;
-        if (i + 1 === blueLine.length) {
-          result.push(total);
-        }
-      }
-    }
-    return result;
-  };
-  console.log(getArrForBlueLine());
+  // const getSumArrOfSingleHoursPerDay = () => {
+  //   const result = [];
+  //   let total = 0;
+  //   for (let j = 0; j < hoursWastedPerDay; j += 1) {
+  //     total = 0;
+  //     for (let i = 0; i < blueLine.length; i += 1) {
+  //       total += blueLine[i].hoursWastedPerDay[j].singleHoursWasted;
+  //       if (i + 1 === blueLine.length) {
+  //         result.push(total);
+  //       }
+  //     }
+  //   }
+  //   return result;
+  // };
+  // console.log(getSumArrOfSingleHoursPerDay());
 
-  const getSingleDay = () => {
-    const result = [];
-    let currentHours = hoursPlanned;
-    const singleHours = getArrForBlueLine();
-    for (let i = 0; i < duration + 1; i += 1) {
-      const singleHour = singleHours[i];
-      result.push((currentHours - singleHour).toFixed(1));
-      currentHours -= singleHour;
-    }
-    return result;
-  };
+  // const getBlueLine = () => {
+  //   const result = [];
+  //   let currentHours = hoursPlanned;
+  //   const singleHours = getSumArrOfSingleHoursPerDay();
+  //   for (let i = 0; i < duration + 1; i += 1) {
+  //     const singleHour = singleHours[i];
+  //     result.push((currentHours - singleHour).toFixed(1));
+  //     currentHours -= singleHour;
+  //   }
+  //   return result;
+  // };
 
-  console.log(getSingleDay());
+  // console.log(getBlueLine());
 
   // const getData = () => {
   //   const result = [];
@@ -77,14 +76,14 @@ const BurndawnChart = ({
           backgroundColor: "transparent",
           borderColor: "rgb(255, 0, 0)",
           borderWidth: 2,
-          data: getArrey(),
+          data: redLine(),
         },
         {
           label: "Запланований залишок трудовитрат в годинах",
           borderColor: "rgb(0, 89, 255)",
           backgroundColor: "transparent",
           borderWidth: 2,
-          data: getSingleDay(),
+          data: [],
         },
       ],
     });
