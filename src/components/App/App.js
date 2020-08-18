@@ -37,7 +37,6 @@ const App = () => {
         {/* <Login /> */}
         {/* <ProjectSidebar /> */}
         {/* <Projects /> */}
-
         <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
         </Switch>

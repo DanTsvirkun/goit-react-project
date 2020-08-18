@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import projectsOperations from "../../redux/operations/projectsOperations";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import ModalSidebar from "../ModalSidebar/ModalSidebar";
 
 import formStyles from "./ProjectCreationForm.module.css";
-import { blue } from "@material-ui/core/colors";
 
 const NameTextField = withStyles({
   root: {
@@ -21,13 +21,14 @@ const NameTextField = withStyles({
     "& .MuiInput-underline:after": {
       borderBottomColor: "#181c2799",
     },
-    "& .MuiFormHelperText-root.Mui-error": { 
-      marginBottom: "50px",    
+    "& .MuiFormHelperText-root.Mui-error": {
+      marginBottom: "50px",
+      fontFamily: "Montserrat",
       color: "red",
-      fontSize: "12px"
+      fontSize: "12px",
     },
     "& > *": {
-      width: "430px",      
+      width: "430px",
       fontFamily: "Montserrat",
       fontWeight: "normal",
       fontSize: "18px",
@@ -50,13 +51,14 @@ const DescriptionTextField = withStyles({
     "& .MuiInput-underline:after": {
       borderBottomColor: "#181c2799",
     },
-    "& .MuiFormHelperText-root.Mui-error": { 
-      marginBottom: "60px",  
+    "& .MuiFormHelperText-root.Mui-error": {
+      marginBottom: "60px",
+      fontFamily: "Montserrat",
       color: "red",
-      fontSize: "12px"
+      fontSize: "12px",
     },
     "& > *": {
-      width: "430px",     
+      width: "430px",
       fontFamily: "Montserrat",
       fontWeight: "normal",
       fontSize: "18px",
@@ -71,7 +73,7 @@ const initialState = {
   description: "",
 };
 
-const ProjectCreationForm = ({ addProject }) => {
+const ProjectCreationForm = ({ addProject, status, onClose }) => {
   const [projectItem, setProjectItem] = useState(initialState);
   const [errors, setErrors] = useState({});
 
@@ -129,43 +131,41 @@ const ProjectCreationForm = ({ addProject }) => {
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
+      onClose()
     }
   };
 
   return (
-    <form
-      className={formStyles.form}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <h2 className={formStyles.formTitle}>Створення проекту</h2>
+    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={onClose}>
+      <form
+        className={formStyles.form}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <h2 className={formStyles.formTitle}>Створення проекту</h2>
 
-      <NameTextField
-        id="custom-css-standard-input"
-        label="Назва проекту"
-        name="title"
-        value={projectItem.title}
-        onChange={handleInput}
-        error={errors.title ? true : undefined}
-        helperText={errors.title}
-      />
+        <NameTextField
+          id="custom-css-standard-input"
+          label="Назва проекту"
+          name="title"
+          value={projectItem.title}
+          onChange={handleInput}
+          error={errors.title ? true : undefined}
+          helperText={errors.title}
+        />
 
-      <DescriptionTextField
-        id="custom-css-standard-input"
-        label="Опис"
-        name="description"
-        value={projectItem.description}
-        onChange={handleInput}
-        error={errors.description ? true : undefined}
-        helperText={errors.description}
-      />
-
-      <button type="submit" className={formStyles.completeBtn}>
-        Готово
-      </button>
-      <button className={formStyles.exitBtn}>Відміна</button>
-    </form>
+        <DescriptionTextField
+          id="custom-css-standard-input"
+          label="Опис"
+          name="description"
+          value={projectItem.description}
+          onChange={handleInput}
+          error={errors.description ? true : undefined}
+          helperText={errors.description}
+        />
+      </form>
+    </ModalSidebar>
   );
 };
 
