@@ -26,35 +26,35 @@ const BurndawnChart = ({
   };
   console.log(redLine());
 
-  // const getSumArrOfSingleHoursPerDay = () => {
-  //   const result = [];
-  //   let total = 0;
-  //   for (let j = 0; j < hoursWastedPerDay; j += 1) {
-  //     total = 0;
-  //     for (let i = 0; i < blueLine.length; i += 1) {
-  //       total += blueLine[i].hoursWastedPerDay[j].singleHoursWasted;
-  //       if (i + 1 === blueLine.length) {
-  //         result.push(total);
-  //       }
-  //     }
-  //   }
-  //   return result;
-  // };
-  // console.log(getSumArrOfSingleHoursPerDay());
+  const getSumArrOfSingleHoursPerDay = () => {
+    const result = [];
+    let total = 0;
+    for (let j = 0; j < hoursWastedPerDay; j += 1) {
+      total = 0;
+      for (let i = 0; i < blueLine.length; i += 1) {
+        total += blueLine[i].hoursWastedPerDay[j].singleHoursWasted;
+        if (i + 1 === blueLine.length) {
+          result.push(total);
+        }
+      }
+    }
+    return result;
+  };
+  console.log(getSumArrOfSingleHoursPerDay());
 
-  // const getBlueLine = () => {
-  //   const result = [];
-  //   let currentHours = hoursPlanned;
-  //   const singleHours = getSumArrOfSingleHoursPerDay();
-  //   for (let i = 0; i < duration + 1; i += 1) {
-  //     const singleHour = singleHours[i];
-  //     result.push((currentHours - singleHour).toFixed(1));
-  //     currentHours -= singleHour;
-  //   }
-  //   return result;
-  // };
+  const getBlueLine = () => {
+    const result = [];
+    let currentHours = hoursPlanned;
+    const singleHours = getSumArrOfSingleHoursPerDay();
+    for (let i = 0; i < duration + 1; i += 1) {
+      const singleHour = singleHours[i];
+      result.push((currentHours - singleHour).toFixed(1));
+      currentHours -= singleHour;
+    }
+    return result;
+  };
 
-  // console.log(getBlueLine());
+  console.log(getBlueLine());
 
   // const getData = () => {
   //   const result = [];
@@ -83,7 +83,7 @@ const BurndawnChart = ({
           borderColor: "rgb(0, 89, 255)",
           backgroundColor: "transparent",
           borderWidth: 2,
-          data: [],
+          data: getBlueLine(),
         },
       ],
     });
