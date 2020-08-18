@@ -37,18 +37,6 @@
   }
 }
 
-.item {
-  position: relative;
-  width: 270px;
-  height: 270px;
-  padding: 28px 30px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 150ms linear;
-  overflow: hidden;
-}
-
 .item:nth-child(8n + 1) {
   background-color: color_1;
 }
@@ -199,8 +187,21 @@
 }
 
 /* ========== */
-.itemTitle {
-  margin-bottom: 20px;
+
+.item {
+  position: relative;  
+  width: 270px;
+  height: 270px;
+  padding: 28px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 150ms linear;
+  overflow: hidden;
+}
+
+.itemTitle {  
+  word-wrap: break-word;
   font-family: "Montserrat";
   font-weight: 800;
   font-size: 26px;
@@ -214,6 +215,7 @@
 }
 
 .itemDescription {
+  word-wrap: break-word;
   opacity: 0;
   font-family: "Montserrat";
   font-weight: 400;
