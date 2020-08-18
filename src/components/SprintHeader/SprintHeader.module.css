@@ -19,6 +19,7 @@
   letter-spacing: 0.04em;
   color: #181c27;
   margin-right: 30px;
+  position: relative;
 }
 
 .sprint__date-sprint--span {
@@ -107,4 +108,28 @@
   line-height: 22px;
   letter-spacing: 0.04em;
   color: #181c27;
+}
+
+.sprint__date-arrow {
+  cursor: pointer;
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-size: cover;
+  background-image: url('../SprintSidebar/Arrow.svg');
+  opacity: 0.3;
+}
+.sprint__date-arrow--active {
+  opacity: 1;
+}
+
+.sprint__date-arrow:first-child {
+  right: 30px;
+  top: 4px;
+}
+
+.sprint__date-arrow:last-child {
+  transform: rotate(180deg);
+  left: 30px;
+  top: 4px;
 }
