@@ -32,13 +32,12 @@ const App = () => {
         {/* Приммер подключения модального окна */}
 
         <Header />
-        {/* <ProjectPage /> */}
+        <ProjectPage />
         {/* <SprintPage /> */}
         {/* <Registration />  */}
         {/* <Login /> */}
         {/* <ProjectSidebar /> */}
-        <Projects />
-
+        {/* <Projects /> */}
         <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
         </Switch>
