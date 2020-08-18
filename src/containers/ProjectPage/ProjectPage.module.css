@@ -77,6 +77,13 @@
   margin-right: 20px;
   cursor: pointer;
   background-image: url("../../Icons/plus.svg");
+  transition: 300ms;
+}
+
+.button__plus:hover,
+.button__plus:focus {
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(255, 107, 8);
 }
 
 .button__pencil {

@@ -37,10 +37,6 @@ const ModalSidebar = ({ children, onSubmit, status, onClose }) => {
               src={closeBtn}
               alt="modal close icon"
             />
-<<<<<<< HEAD
-=======
-
->>>>>>> ccb15a1d6cfd3efcc48a178117839e6ecb095797
             {children}
 
             <div className={css.modal__buttonWrapper}>

@@ -4,7 +4,6 @@ import SingleSprint from "../../components/SingleSprint/SingleSprint";
 import styles from "./ProjectPage.module.css";
 import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
 import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
-// import ProjectCreationModal from "../../components/";
 
 const ProjectPage = () => {
   const [modal, setModal] = useState(false);
@@ -42,7 +41,6 @@ const ProjectPage = () => {
           <ul className={styles.sprints_container}>
             <SingleSprint />
             <SprintCreationModal status={modal} onClose={modalToggle} />
-            {/* <ProjectCreationModal /> */}
           </ul>
         </div>
       </div>
