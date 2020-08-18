@@ -67,9 +67,9 @@ class CreatingSprint extends Component {
               </div>
               <div className={css.button__wrapper}>
                 <button className={css.button__ready}> </button>
-                <button className={css.button__decline}> </button>
               </div>
             </form>
+            <button className={css.button__decline}> </button>
           </div>
         </div>
       </div>
