@@ -17,7 +17,6 @@ export const addSprintOperation = (sprint) => async (dispatch) => {
       ...sprint,
       startDate: moment(sprint.startDate).format("DD.MM.YYYY"),
     };
-    console.log(formatedSprint);
     const result = await db.collection("sprints").add(formatedSprint);
     const answer = { ...formatedSprint, id: result.id };
     dispatch(addSprint(answer));

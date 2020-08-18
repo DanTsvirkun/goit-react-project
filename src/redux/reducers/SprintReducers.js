@@ -10,7 +10,6 @@ const initialState = [];
 
 const items = createReducer(initialState, {
   [addSprint]: (state, { payload }) => {
-    console.log(payload);
     return [...state, payload];
   },
   [getSprints]: (_, { payload }) => payload,

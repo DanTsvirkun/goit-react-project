@@ -16,6 +16,9 @@ const CreatingSprint = ({ addSprint }) => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [duration, setDuration] = useState("");
+  const [titleErr, setTitleErr] = useState({});
+  const [dateErr, setDateErr] = useState({});
+  const [durationErr, setDurationErr] = useState({});
 
   const handleStartDate = (date) => {
     return setStartDate(date);
@@ -36,8 +39,30 @@ const CreatingSprint = ({ addSprint }) => {
     setDuration(value);
   };
 
+  const formValidation = () => {
+    const titleErr = {};
+    const dateErr = {};
+    const durationErr = {};
+    let isValid = true;
+    if (title.trim().length < 5) {
+      titleErr.titleErrShort = "Будь ласка, введіть коректну назву спринту.";
+      isValid = false;
+    }
+    if (typeof startDate !== "object") {
+      dateErr.dateNotChosen =
+        "Будь ласка, введіть релевантний день початку спринту.";
+      isValid = false;
+    }
+    if (typeof startDate !== "object") {
+      dateErr.dateNotChosen =
+        "Будь ласка, введіть релевантний день початку спринту.";
+      isValid = false;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isValid = formValidation();
     const endDate = moment(startDate).add(duration, "days").toDate();
     const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
     const sprint = { title, startDate, duration, endDate: formatedEndDate };
@@ -50,7 +75,7 @@ const CreatingSprint = ({ addSprint }) => {
         <button className={css.close__sprint__window}> </button>
         <div className={css.sprint__window__content}>
           <h2 className={css.sprint__window__header}> Створення спринта </h2>
-          <form className={css.sprint__form} onSubmit={handleSubmit}>
+          <form className={css.sprint__form} onSubmit={handleSubmit} noValidate>
             <div className={css.group}>
               <input
                 type="text"
@@ -72,6 +97,7 @@ const CreatingSprint = ({ addSprint }) => {
                 dateFormat="dd.MM.yyyy"
                 placeholderText="Дата початку"
                 filterDate={isWeekday}
+                minDate={moment().toDate()}
                 showMonthPicker
               />
               <span className={css.highlight}> </span>
