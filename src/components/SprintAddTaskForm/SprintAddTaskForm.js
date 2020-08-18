@@ -8,7 +8,12 @@ const initialState = {
   title: '',
   hoursPlanned: '',
 };
-const SprintAddTaskForm = ({ duration = 12, addTask }) => {
+const SprintAddTaskForm = ({
+  startDate = 1597224600000,
+  duration = 12,
+  endDate = 1598002200000,
+  addTask,
+}) => {
   const [taskItem, setTaskItem] = useState(initialState);
   const handleChangeInput = ({ target }) => {
     const { name, value } = target;
@@ -21,12 +26,23 @@ const SprintAddTaskForm = ({ duration = 12, addTask }) => {
     let sprintDay = [];
     for (let i = 0; i < duration; i++) {
       sprintDay.push({
-        currentDay: moment().add(i, 'days').format('ll'),
+        currentDay: moment(startDate).add(i, 'days').format('DD.MM.YYYY'),
         singleHoursWasted: 0,
+        dayWeek: moment(startDate).add(i, 'days').format('dddd'),
       });
     }
+    const res = sprintDay.filter(el => {
+      if (el.dayWeek === 'Saturday') {
+        return false;
+      }
+      if (el.dayWeek === 'Sunday') {
+        return false;
+      }
+      return true;
+    });
+    // filter by day
     // fnTest(sprintDay);
-    return sprintDay;
+    return res;
   };
   // const fnTest = sprintDay => {
   //   const res = sprintDay.findIndex(item => {
@@ -45,7 +61,7 @@ const SprintAddTaskForm = ({ duration = 12, addTask }) => {
       return;
     }
     const task = {
-      sprintId: Date.now(),
+      sprintId: 2,
       title,
       hoursPlanned,
       hoursWasted: 0,
@@ -97,24 +113,8 @@ const SprintAddTaskForm = ({ duration = 12, addTask }) => {
   );
 };
 
-// {
-//       sprintId,
-//       title,
-//       hoursPlanned,
-//       hoursWasted,
-//       hoursWastedPerDay: [
-//         {
-//           currentDay,
-//           singleHoursWasted,
-//         },
-//       ],
-//     },
-
 const mapDispatchToProps = {
   addTask: addTaskOperation,
 };
 
 export default connect(null, mapDispatchToProps)(SprintAddTaskForm);
-
-// Человека перебрасывает на текущею дату. Если он возращается назад, эту дату надо изменить на -1, можно использовать
-// moment().subtract(1, 'days').calendar(); --- привязать к индексу массива?? add--- moment().add(1, 'days').calendar()

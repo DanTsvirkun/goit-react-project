@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Registration from "../../containers/Registration/Registration";
@@ -8,6 +8,7 @@ import styles from "./App.module.css";
 import ProjectPage from "../../containers/ProjectPage/ProjectPage";
 import Projects from "../../containers/Projects/Projects.js";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
+import routes from "../../routes";
 
 const App = () => {
   return (
@@ -17,14 +18,24 @@ const App = () => {
         {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
         {/* <Registration /> */}
-        {/* <Login /> */}
         {/* <Registration /> */}
-        {/* <Login /> */}
         {/* <ProjectSidebar /> */}
-        <Projects />
-        {/* <Switch>
+        {/*<Projects />*/}
+        <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
-        </Switch> */}
+        </Switch>
+
+        {/* <Suspense fallback={<h1>Loading...</h1>}>
+          <Switch>
+            {routes.map((route) =>
+              route.private ? (
+                <PrivateRoute key={route.label} {...route} />
+              ) : (
+                <PublicRoute key={route.label} {...route} />
+              )
+            )}
+          </Switch>
+        </Suspense> */}
       </div>
     </div>
   );

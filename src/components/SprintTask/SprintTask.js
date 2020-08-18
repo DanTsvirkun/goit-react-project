@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SprintTaskInput from '../SprintTaskInput/SprintTaskInput';
+import { deleteTaskOperation } from '../../redux/operations/TasksOperatins';
 import css from './SprintTask.module.css';
 const SprintTask = ({
   title,
@@ -7,7 +9,11 @@ const SprintTask = ({
   hoursWasted,
   index,
   hoursWastedPerDay,
+  id,
+  tasks,
+  deleteTaskOperation,
 }) => {
+  const deleteTask = () => deleteTaskOperation(id, index);
   return (
     <li className={css['sprint__tasks-item']}>
       <ul className={css['sprint__task-list']}>
@@ -19,7 +25,8 @@ const SprintTask = ({
         </li>
         <li className={css['sprint__task-item']}>
           <SprintTaskInput
-            index={index}
+            taskId={id}
+            indexArray={index}
             hoursWastedPerDay={hoursWastedPerDay}
           />
         </li>
@@ -27,11 +34,18 @@ const SprintTask = ({
           <p className={css['sprint__tasks-total']}> {hoursWasted} </p>
         </li>
         <li className={` ${css['sprint__task-item-delete']}`}>
-          <button className={css['sprint__task-delete-btn']}> </button>
+          <button
+            className={css['sprint__task-delete-btn']}
+            onClick={deleteTask}
+          ></button>
         </li>
       </ul>
     </li>
   );
 };
 
-export default SprintTask;
+const mapDispatchToProps = {
+  deleteTaskOperation,
+};
+
+export default connect(null, mapDispatchToProps)(SprintTask);
