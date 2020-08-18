@@ -1,15 +1,17 @@
-.sprint__window__overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  transition: var(--mainTransition);
-  background: rgba(24, 28, 39, 0.25);
-  z-index: 2;
-
-  /* visibility: hidden; */
+.error {
+  color: red;
+  letter-spacing: 0.04em;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-size: 12px;
+  opacity: 0.6;
 }
+
+.sprint__form,
+.CreatingSprint_input__name {
+  text-align: center;
+}
+
 .sprint__window {
   position: fixed;
   top: 0;
@@ -44,17 +46,19 @@
   cursor: pointer;
 }
 .sprint__window__header {
+  /* display: block; */
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
   line-height: 44px;
   display: flex;
+  justify-content: center;
   align-items: center;
   text-align: center;
   letter-spacing: 0.04em;
   color: #181c27;
-  margin: 120px 10px 80px 45px;
+  margin-bottom: 80px;
 }
 
 .close__sprint__window {
@@ -89,6 +93,7 @@
   border: none;
   border-bottom: 1px solid rgba(24, 28, 39, 0.2);
   font-family: "Montserrat";
+  margin: 0 auto;
 }
 
 .input__name {
@@ -109,13 +114,13 @@
 }
 
 /* LABEL ======================================= */
-.sprint_label {
+.sprint_label,
+.sprint_label_duration {
   color: #999;
   font-size: 18px;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 5px;
   top: 10px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
@@ -123,6 +128,13 @@
   font-family: "Montserrat";
 }
 
+.sprint_label {
+  left: 54px;
+}
+
+.sprint_label_duration {
+  left: 3px;
+}
 /* active state */
 .input__field:focus ~ .sprint_label,
 .input__field:valid ~ .sprint_label {
