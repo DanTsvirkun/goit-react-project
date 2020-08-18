@@ -8,8 +8,8 @@
 .sprint-sidebar__wrapper::before {
   content: '';
   position: absolute;
-  height: calc(100vh - 80px);
-  /* height: 100%; */
+  /* height: calc(100vh - 80px); */
+  height: 100%;
   width: 1px;
   background-color: rgba(24, 28, 39, 0.1);
   top: 0;

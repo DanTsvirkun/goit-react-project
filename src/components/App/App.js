@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,6 +11,7 @@ import ProjectPage from "../../containers/ProjectPage/ProjectPage";
 import Projects from "../../containers/Projects/Projects.js";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import routes from "../../routes";
 
 const App = () => {
   //Приммер подключения модального окна\\
@@ -37,9 +38,22 @@ const App = () => {
         {/* <Login /> */}
         {/* <ProjectSidebar /> */}
         <Projects />
-        {/* <Switch>
+
+        <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
-        </Switch> */}
+        </Switch>
+
+        {/* <Suspense fallback={<h1>Loading...</h1>}>
+          <Switch>
+            {routes.map((route) =>
+              route.private ? (
+                <PrivateRoute key={route.label} {...route} />
+              ) : (
+                <PublicRoute key={route.label} {...route} />
+              )
+            )}
+          </Switch>
+        </Suspense> */}
       </div>
     </div >
   );

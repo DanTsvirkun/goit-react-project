@@ -22,7 +22,7 @@
   line-height: 44px;
   letter-spacing: 0.04em;
   color: #181c27;
-  margin-bottom: 53px;
+  margin-bottom: 47px;
 }
 
 .auth_input {
@@ -67,4 +67,21 @@
 .auth_btn:hover {
   background: #ffffff;
   color: #ff6b08;
+}
+
+.wrong {
+  position: absolute;
+  top: 290px;
+  left: 70px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  /* color: rgba(24, 28, 39, 0.6); */
+  color: red;
+  text-align: left;
+
 }

@@ -1,107 +1,36 @@
 import React from "react";
+import { connect } from "react-redux";
+import projectsOperations from "../../redux/operations/projectsOperations.js";
 
 import itemStyle from "./ProjectsPageItem.module.css";
 
-import imgDel from "./projectImg/delete.svg"
+import imgDel from "./projectImg/delete.svg";
 
-const ProjectsPageItem = () => {
+const ProjectsPageItem = ({project: { title, description, id}, deleteProject }) => {
   return (
     <>
       <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}>
-          {/* <img src={imgDel} className={itemStyle.img}/> */}
-        </button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
-      </li>
-      <li className={itemStyle.item}>
-        <h2 className={itemStyle.itemTitle}>Project 1</h2>
-        <p className={itemStyle.itemDescription}>
-          Короткий опис проекту, що з’являється при ховері на плитку.
-        </p>
-        <button type="button" className={itemStyle.itemTrashBtn}></button>
+        <h2 className={itemStyle.itemTitle}>{title}</h2>
+        <p className={itemStyle.itemDescription}>{description}</p>
+        <button
+          type="button"
+          onClick={deleteProject}
+          className={itemStyle.itemTrashBtn}
+          id={id}
+        ></button>
       </li>
     </>
   );
 };
 
-export default ProjectsPageItem;
+const mapStateToProps = (state, {id}) => {
+  const project = state.projects.find((item) => item.id === id)  
+  return project ;
+  
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteProject: (e) => dispatch(projectsOperations.deleteProjectOperation(e)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPageItem);
