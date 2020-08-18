@@ -71,3 +71,19 @@
   color: rgba(24, 28, 39, 0.6);
   text-decoration: underline;
 }
+
+.wrong {
+  position: absolute;
+  top: 366px;
+  left: 70px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  /* color: rgba(24, 28, 39, 0.6); */
+  color: red;
+  text-align: left;
+}

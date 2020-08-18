@@ -1,17 +1,48 @@
 import React, { useState, useEffect } from "react";
+import queryString from "query-string";
 import { connect } from "react-redux";
 import SprintTask from "../SprintTask/SprintTask";
 import css from "./SprintTasksList.module.css";
 import BurndownChartBtn from "../BurndownChartBtn/BurndownChartBtn";
 import BurndownChartModalWindow from "../BurndownChartModalWindow/BurndownChartModalWindow";
 import { getTasksOperation } from "../../redux/operations/TasksOperatins";
-import { itemsSelector } from "../../redux/selectors/TasksSelectors";
-const SprintTasksList = ({ tasks, getTasks, loader, error }) => {
+import { filterTasksAction } from "../../redux/actions/sprintTasksActions";
+import {
+  itemsSelector,
+  filteredTasksSelector,
+} from "../../redux/selectors/TasksSelectors";
+const SprintTasksList = ({
+  tasks,
+  getTasks,
+  loader,
+  error,
+  match,
+  location,
+  filterAction,
+}) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
 
   useEffect(() => {
-    getTasks();
+    const { sprintId } = match.params;
+    // getTasks(sprintId);
+    const parsed = queryString.parse(location.search);
+    const { task } = parsed;
+    if (task) {
+      filterAction(task);
+    }
   }, []);
+
+  useEffect(() => {
+    const { sprintId } = match.params;
+    console.log(sprintId);
+    getTasks(sprintId);
+    console.log(match.params);
+    const parsed = queryString.parse(location.search);
+    const { task } = parsed;
+    if (!task) {
+      filterAction("");
+    }
+  }, [match]);
 
   const handleToggleAnalytic = () => {
     setToggleAnalytic((state) => !state);
@@ -41,10 +72,11 @@ const SprintTasksList = ({ tasks, getTasks, loader, error }) => {
 const mapStateToProps = (state) => ({
   loader: state.loader,
   error: state.error,
-  tasks: itemsSelector(state),
+  tasks: filteredTasksSelector(state),
 });
 const mapDispatchToProps = {
   getTasks: getTasksOperation,
+  filterAction: filterTasksAction,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SprintTasksList);
 
