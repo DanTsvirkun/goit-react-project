@@ -5,11 +5,16 @@ import moment from "moment";
 import styles from "./BurndownChart.module.css";
 import { itemsSelector } from "../../redux/selectors/TasksSelectors";
 
-const BurndawnChart = ({ hoursPlanned, hoursWastedPerDay, chartDays }) => {
+const BurndawnChart = ({
+  hoursPlanned,
+  hoursWastedPerDay,
+  chartDays,
+  blueLine,
+}) => {
   const [chartData, setChartData] = useState({});
   const duration = hoursWastedPerDay - 1;
   const sprinHoursPerDay = hoursPlanned / duration;
-  console.log(chartDays);
+  console.log("hoursWastedPerDay :>> ", hoursWastedPerDay);
 
   const getArrey = () => {
     const result = [hoursPlanned];
@@ -20,6 +25,37 @@ const BurndawnChart = ({ hoursPlanned, hoursWastedPerDay, chartDays }) => {
     }
     return result;
   };
+  console.log(getArrey());
+
+  const getArrForBlueLine = () => {
+    const result = [];
+    let total = 0;
+    for (let j = 0; j < hoursWastedPerDay; j += 1) {
+      total = 0;
+      for (let i = 0; i < blueLine.length; i += 1) {
+        total += blueLine[i].hoursWastedPerDay[j].singleHoursWasted;
+        if (i + 1 === blueLine.length) {
+          result.push(total);
+        }
+      }
+    }
+    return result;
+  };
+  console.log(getArrForBlueLine());
+
+  const getSingleDay = () => {
+    const result = [];
+    let currentHours = hoursPlanned;
+    const singleHours = getArrForBlueLine();
+    for (let i = 0; i < duration + 1; i += 1) {
+      const singleHour = singleHours[i];
+      result.push((currentHours - singleHour).toFixed(1));
+      currentHours -= singleHour;
+    }
+    return result;
+  };
+
+  console.log(getSingleDay());
 
   // const getData = () => {
   //   const result = [];
@@ -48,7 +84,7 @@ const BurndawnChart = ({ hoursPlanned, hoursWastedPerDay, chartDays }) => {
           borderColor: "rgb(0, 89, 255)",
           backgroundColor: "transparent",
           borderWidth: 2,
-          data: [151, 123, 102, 84, 64, 40, 12, 0],
+          data: getSingleDay(),
         },
       ],
     });
@@ -102,7 +138,7 @@ const BurndawnChart = ({ hoursPlanned, hoursWastedPerDay, chartDays }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   hoursPlanned: itemsSelector(state)
     .map((task) => Number(task.hoursPlanned))
     .reduce((acc, taskValue) => {
@@ -113,6 +149,7 @@ const mapStateToProps = (state, ownProps) => ({
     // const daysFormat = moment(task.currentDay);
     return task.currentDay;
   }),
+  blueLine: itemsSelector(state),
 });
 
 export default connect(mapStateToProps)(BurndawnChart);
