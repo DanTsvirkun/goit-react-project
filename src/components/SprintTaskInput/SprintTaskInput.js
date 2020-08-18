@@ -20,7 +20,7 @@ import {
 } from '../../redux/operations/TasksOperatins';
 import css from './SprintTaskInput.module.css';
 moment.locale('ru')
-const currentDate = moment().format('DD.MM.YYYY');
+
 // const test = moment('2016-05-03T22:15:01+02:00').add(20, 'days').format('DD.MM.YYYY')
 
 
@@ -36,22 +36,23 @@ const SprintTaskInput = ({
 }) => {
   // console.log(currentIdx);
 
-  const findCurrentDay = () => {
-    const res = hoursWastedPerDay.findIndex((el, idx) => {
-      const isCorrectDay = el.currentDay === currentDate;
+  // const findCurrentDay = () => {
+  //   const currentDate = moment().format('DD.MM.YYYY');
+  //   const res = hoursWastedPerDay.findIndex((el, idx) => {
+  //     const isCorrectDay = el.currentDay === currentDate;
 
-      if (isCorrectDay) {
-        return el;
-      }
-      if (hoursWastedPerDay.length === idx + 1 && !isCorrectDay) {
-        return hoursWastedPerDay[idx];
-      }
-    });
-    return res;
-  };
-  useEffect(() => {
-    indexDayAction(findCurrentDay());
-  }, []);
+  //     if (isCorrectDay) {
+  //       return el;
+  //     }
+  //     if (hoursWastedPerDay.length === idx + 1 && !isCorrectDay) {
+  //       return hoursWastedPerDay[idx];
+  //     }
+  //   });
+  //   return res;
+  // };
+  // useEffect(() => {
+  //   indexDayAction(findCurrentDay());
+  // }, []);
 
   const handleOnChange = ({
     target: {
