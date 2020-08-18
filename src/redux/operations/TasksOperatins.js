@@ -60,24 +60,26 @@ export const changeTaskSingleHour = (item) => async (dispatch, getTasks) => {
     dispatch(errorOff());
     dispatch(loaderOn());
     const tasks = [...getTasks().tasks.items];
-    const newStateObj = newState(tasks, item);
-    console.log(newStateObj[item.indexArray]);
-    dispatch(changeTask(newStateObj));
+    const task = {
+      ...tasks[item.indexArray]
+    }
+    const newTask = newState(task, item)
+    tasks.splice(item.indexArray, 1, newTask)
+    dispatch(changeTask(tasks));
     if (item.numValue <= 0) {
       alert("введіть число більше 0");
       return;
     }
-
     await db
       .collection("tasks")
       .doc(item.taskId)
       .set({
-        ...newStateObj[item.indexArray],
+        ...newTask,
       });
 
-    // dispatch(indexDayAction(item.idx));
+    dispatch(indexDayAction(item.idx));
   } catch (error) {
-    dispatch(errorOn());
+    dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
   }
