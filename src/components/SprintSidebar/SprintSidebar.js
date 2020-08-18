@@ -6,7 +6,7 @@ const SprintSidebar = ({ match = 'test' }) => {
   return (
     <div className={css['sprint-sidebar__wrapper']}>
       <div className={css['sprint-sidebar__wrapper-link']}>
-        <NavLink to="/" className={css['sprint-sidebar__link']}>
+        <NavLink to="/projects" className={css['sprint-sidebar__link']}>
           Показати проекти
         </NavLink>
       </div>

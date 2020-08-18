@@ -10,6 +10,7 @@ import {
   filterTasksAction,
   showModalAddTaskAction,
   indexDayAction,
+  toggleFilterAction,
 } from '../actions/sprintTasksActions';
 
 // const changeTaskFn = (state, payload) => {
@@ -47,9 +48,9 @@ const items = createReducer(initialState, {
   [deleteTask]: (state, {
     payload
   }) => {
-    const newArray = [...state]
-    newArray.splice(payload, 1)
-    return newArray
+    const newArray = [...state];
+    newArray.splice(payload, 1);
+    return newArray;
   },
   [changeTask]: (state, {
     payload
@@ -72,12 +73,18 @@ const indexCurrentDay = createReducer(0, {
     payload
   }) => payload,
 });
+const toggleFilter = createReducer(false, {
+  [toggleFilterAction]: (state, {
+    payload
+  }) => payload,
+});
 
 export default combineReducers({
   items,
   filterTasks,
   showModalAddTask,
   indexCurrentDay,
+  toggleFilter,
 });
 
 // {

@@ -5,6 +5,7 @@ const CHANGE_TASK = '@tasks/changeTask';
 const FILTER_TASKS = '@tasks/filterTasks';
 const SHOW_MODAL_ADD_TASK = '@tasks/showModalAddTask'
 const CURRENT_DAY_INDEX = '@tasks/currentDayIndex'
+const TOGGLE_FILTER = '@tasks/filterTasksToggle'
 export default {
   ADD_TASK,
   GET_TASKS,
@@ -12,5 +13,6 @@ export default {
   CHANGE_TASK,
   FILTER_TASKS,
   SHOW_MODAL_ADD_TASK,
-  CURRENT_DAY_INDEX
+  CURRENT_DAY_INDEX,
+  TOGGLE_FILTER
 };
