@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import Header from "../Header/Header";
 import Registration from "../../containers/Registration/Registration";
 import Login from "../../containers/Login/Login";
@@ -25,7 +25,6 @@ const App = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-
         {/* Приммер подключения модального окна */}
         {/* <button onClick={modalToggle}>ON</button> */}
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
@@ -54,7 +53,7 @@ const App = () => {
           </Switch>
         </Suspense> */}
       </div>
-    </div >
+    </div>
   );
 };
 
