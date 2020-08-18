@@ -11,11 +11,9 @@ import {
     auth
 } from "./registrationReducer";
 import tasks from './TasksReducers'
-import modal from './modalReducers'
 export const rootReducer = combineReducers({
     loader,
     error,
     auth,
     tasks,
-    modal
 });
