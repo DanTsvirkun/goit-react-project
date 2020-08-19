@@ -48,38 +48,51 @@ const MembersForm = ({ addMember, status, onClose }) => {
   };
 
   const validate = (email) => {
-    const errors = {};
+    const errorsObj = {};
 
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      errors.title = "Введіть існуючий email";
+      errorsObj.title = "Введіть існуючий email";
     }
 
     if (email.length === 0) {
-      errors.description = "Це поле є обов'язковим";
+      errorsObj.title = "Це поле є обов'язковим";
     }
 
-    setErrors(errors);
+    setErrors(errorsObj);
 
-    return !!Object.keys(errors).length;
+    return !!Object.keys(errorsObj).length;
   };
 
-  const handleSubmit = (event) => {
+  function customOnClose() {
+    onClose();
+    setErrors({});
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(email);
+
     const projectId = newLocation.pathname.split("/")[2];
     const value = { projectId, email };
 
     const result = validate(email);
 
     if (!result) {
-      addMember(value);
-      setEmail("");
-      onClose();
+      const answer = await addMember(value);
+      if (answer === "Цей користувач вже є учасником") {
+        setErrors({ title: "Цей користувач вже є учасником" });
+      } else {
+        setEmail("");
+        customOnClose();
+      }
     }
   };
 
   return (
-    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={onClose}>
+    <ModalSidebar
+      onSubmit={handleSubmit}
+      status={status}
+      onClose={customOnClose}
+    >
       <form
         className={formStyles.form}
         noValidate
@@ -96,7 +109,6 @@ const MembersForm = ({ addMember, status, onClose }) => {
           onChange={handleInput}
           error={errors.title ? true : undefined}
           helperText={errors.title}
-          type="email"
         />
       </form>
     </ModalSidebar>
