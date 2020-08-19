@@ -1,6 +1,9 @@
 .sprint__task-list {
   display: flex;
   align-items: flex-end;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  /* text-align: center; */
 }
 
 .sprint__task-item {}
@@ -51,23 +54,19 @@
 
 .sprint__tasks-plan {
   /* margin-bottom: 12px; */
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-}
-
-
-
-.sprints__task-spent::placeholder {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
-  letter-spacing: 0.04em;
-  color: #181c27;
+  text-align: center;
 }
+
+
+.sprint__tasks-name {
+  word-wrap: break-word;
+}
+
+
 
 .sprint__tasks-total {
   padding-left: 10px;

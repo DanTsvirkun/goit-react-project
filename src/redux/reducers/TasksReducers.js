@@ -1,7 +1,4 @@
-import {
-  createReducer,
-  combineReducers
-} from '@reduxjs/toolkit';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import {
   getTasks,
   addTask,
@@ -10,6 +7,7 @@ import {
   filterTasksAction,
   showModalAddTaskAction,
   indexDayAction,
+  toggleFilterAction,
 } from '../actions/sprintTasksActions';
 
 // const changeTaskFn = (state, payload) => {
@@ -38,39 +36,28 @@ import {
 
 const initialState = [];
 const items = createReducer(initialState, {
-  [addTask]: (state, {
-    payload
-  }) => [...state, payload],
-  [getTasks]: (_, {
-    payload
-  }) => payload,
-  [deleteTask]: (state, {
-    payload
-  }) => {
-    const newArray = [...state]
-    newArray.splice(payload, 1)
-    return newArray
+  [addTask]: (state, { payload }) => [...state, payload],
+  [getTasks]: (_, { payload }) => payload,
+  [deleteTask]: (state, { payload }) => {
+    const newArray = [...state];
+    newArray.splice(payload, 1);
+    return newArray;
   },
-  [changeTask]: (state, {
-    payload
-  }) => payload,
+  [changeTask]: (state, { payload }) => payload,
 });
 
 const filterTasks = createReducer('', {
-  [filterTasksAction]: (_, {
-    payload
-  }) => payload,
+  [filterTasksAction]: (_, { payload }) => payload,
 });
 const showModalAddTask = createReducer(false, {
-  [showModalAddTaskAction]: (_, {
-    payload
-  }) => payload,
+  [showModalAddTaskAction]: (state, { payload }) => !state,
 });
 
 const indexCurrentDay = createReducer(0, {
-  [indexDayAction]: (state, {
-    payload
-  }) => payload,
+  [indexDayAction]: (state, { payload }) => payload,
+});
+const toggleFilter = createReducer(false, {
+  [toggleFilterAction]: (state, { payload }) => payload,
 });
 
 export default combineReducers({
@@ -78,6 +65,7 @@ export default combineReducers({
   filterTasks,
   showModalAddTask,
   indexCurrentDay,
+  toggleFilter,
 });
 
 // {
