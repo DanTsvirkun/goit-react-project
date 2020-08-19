@@ -1,28 +1,28 @@
-import moment from 'moment';
-import {
-    createSelector
-} from '@reduxjs/toolkit';
-const currentDate = moment().format('ll');
+import moment from "moment";
+import { createSelector } from "@reduxjs/toolkit";
+// const currentDate = moment().format('ll');
 // console.log(currentDate);
 
-export const tasksSelector = state => state.tasks;
-export const itemsSelector = state => tasksSelector(state).items;
-export const showModalSelector = state => tasksSelector(state).showModalAddTask;
-export const currentIdxDaySelector = state =>
-    tasksSelector(state).indexCurrentDay;
-export const filterSelector = state => tasksSelector(state).filterTasks;
+export const tasksSelector = (state) => state.tasks;
+export const itemsSelector = (state) => tasksSelector(state).items;
+export const showModalSelector = (state) =>
+  tasksSelector(state).showModalAddTask;
+export const currentIdxDaySelector = (state) =>
+  tasksSelector(state).indexCurrentDay;
+export const filterSelector = (state) => tasksSelector(state).filterTasks;
 export const filteredTasksSelector = createSelector(
-    [itemsSelector, filterSelector],
-    (items, filterValue) => {
-        return filterValue ?
-            items.filter(el =>
-                el.title.toLowerCase().includes(filterValue.toLowerCase())
-            ) : items
-    }
+  [itemsSelector, filterSelector],
+  (items, filterValue) => {
+    return filterValue
+      ? items.filter((el) =>
+          el.title.toLowerCase().includes(filterValue.toLowerCase())
+        )
+      : items;
+  }
 );
 export const validHourSelector = createSelector(
-    [(state, hoursWastedPerDay) => hoursWastedPerDay, currentIdxDaySelector],
-    (hoursWastedPerDay, idx) => hoursWastedPerDay[idx].singleHoursWasted,
+  [(state, hoursWastedPerDay) => hoursWastedPerDay, currentIdxDaySelector],
+  (hoursWastedPerDay, idx) => hoursWastedPerDay[idx].singleHoursWasted
 );
 
 // const findCurrentDay = () => {
