@@ -97,7 +97,7 @@
   outline-offset: 0px;
 } */
 
-.sprint__form-add-btn {
+/* .sprint__form-add-btn {
   composes: button;
   height: 44px;
   background: #ff6b08;
@@ -121,4 +121,4 @@
 .sprint__form-add-btn:focus {
   background: #ffffff;
   color: #ff6b08;
-}
+} */
