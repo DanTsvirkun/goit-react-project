@@ -47,6 +47,7 @@ const SprintTasksList = ({
 
   const handleToggleAnalytic = () => {
     setToggleAnalytic(state => !state);
+    document.querySelector('body').style.overflow = 'hidden';
   };
 
   return (

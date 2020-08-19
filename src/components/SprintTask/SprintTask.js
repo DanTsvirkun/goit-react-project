@@ -14,6 +14,7 @@ const SprintTask = ({
   deleteTaskOperation,
 }) => {
   const deleteTask = () => deleteTaskOperation(id, index);
+
   return (
     <li className={css['sprint__tasks-item']}>
       <ul className={css['sprint__task-list']}>
