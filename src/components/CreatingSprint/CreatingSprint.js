@@ -81,7 +81,6 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
         endDate: formatedEndDate,
         projectId,
       };
-      console.log(sprint);
       addSprint(sprint);
       onClose();
     } else {
@@ -130,7 +129,6 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             className={`${css.input__field} ${css.input__duration}`}
             onChange={handleDuration}
           />
-
           {durationErr ? <div className={css.error}>{durationErr}</div> : ""}
           <span className={css.highlight}> </span>
           <span className={css.bar}> </span>
@@ -140,13 +138,6 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
     </ModalSidebar>
   );
 };
-
-// const mapStateToProps = (state, ownProps) => {
-//   console.log(newLocation);
-//   return {
-//     projectId: newLocation.pathname.split("/")[2],
-//   };
-// };
 
 const mapDispatchToProps = {
   addSprint: addSprintOperation,

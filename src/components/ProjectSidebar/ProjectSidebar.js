@@ -5,7 +5,7 @@ import ProjectCreationModal from "../../components/ProjectCreationModal/ProjectC
 import css from "./ProjectSidebar.module.css";
 import projectsOperations from "../../redux/operations/projectsOperations";
 
-const ProjectSidebar = ({ match, getProjects }) => {
+const ProjectSidebar = ({ getProjects }) => {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ProjectSidebar = ({ match, getProjects }) => {
     <>
       <div className={css["project-sidebar__wrapper"]}>
         <div className={css["project-sidebar__wrapper-link"]}></div>
-        <ProjectsSidebarList match={match} />
+        <ProjectsSidebarList />
         <div className={css["project-sidebar__add-wrapper"]}>
           <button
             className={css["project-sidebar__add-btn"]}
