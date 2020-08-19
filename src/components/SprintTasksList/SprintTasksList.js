@@ -30,16 +30,14 @@ const SprintTasksList = ({
   useEffect(() => {
     const { sprintId } = match.params;
     getTasks(sprintId);
-    console.log(match.params);
   }, [match.params.sprintId]);
 
   useEffect(() => {
     const parsed = queryString.parse(location.search);
     const { task } = parsed;
-    console.log(location.search);
-
     if (task) {
       filterAction(task);
+      toggleFilterAction(true);
     }
     if (!task) {
       toggleFilterAction(false);
@@ -53,23 +51,21 @@ const SprintTasksList = ({
 
   return (
     <>
-      {' '}
       {!loader && !error && (
         <div className={css.wrapper}>
           <ul className={css['sprint__tasks-list']}>
-            {' '}
             {tasks.map((task, idx) => (
               <SprintTask key={task.id} {...task} index={idx} />
-            ))}{' '}
-          </ul>{' '}
+            ))}
+          </ul>
           {!toggleAnalytic && (
             <BurndownChartBtn openModal={handleToggleAnalytic} />
-          )}{' '}
+          )}
           {toggleAnalytic && (
             <BurndownChartModalWindow onClose={handleToggleAnalytic} />
-          )}{' '}
+          )}
         </div>
-      )}{' '}
+      )}
     </>
   );
 };

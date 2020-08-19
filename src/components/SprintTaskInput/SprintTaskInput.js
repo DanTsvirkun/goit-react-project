@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import WeekDays from 'moment-business-days';
 import moment from 'moment';
 import {} from '../../redux/operations/TasksOperatins';
 import {
@@ -10,9 +11,6 @@ import {
 import { indexDayAction } from '../../redux/actions/sprintTasksActions';
 import { changeTaskSingleHour } from '../../redux/operations/TasksOperatins';
 import css from './SprintTaskInput.module.css';
-moment.locale('ru');
-
-// const test = moment('2016-05-03T22:15:01+02:00').add(20, 'days').format('DD.MM.YYYY')
 
 const SprintTaskInput = ({
   hoursWastedPerDay,
@@ -27,53 +25,51 @@ const SprintTaskInput = ({
   const [noValid, setNoValid] = useState('');
   const validation = value => {
     const num = Number(value);
-    if (!num) {
-      console.log('введіть число');
-      return 0;
-    }
-    const correctValue = isNaN(num);
-    if (correctValue) {
-      console.log('NaN');
-      return 0;
-    }
-    if (num.toString().length > 7) {
-      console.log('жаль, но люди так долго не живут');
-      return;
-    }
-    if (num < 0) {
-      // alert('введіть число більше 0');
-      console.log('введіть число більше 0');
+
+    if (num <= 0) {
       setNoValid('введіть число більше 0');
-      return 0;
+      return false;
+    }
+    if (!num) {
+      setNoValid('введіть число');
+      return false;
     }
 
-    return num;
+    if (num.toString().length > 6) {
+      setNoValid('Занадто велика цифра');
+      return false;
+    }
+    setNoValid('');
+    return true;
   };
 
   const handleOnChange = ({ target: { value } }) => {
-    console.log(value);
-    const numValue = validation(value);
-    console.log(numValue);
+    const isValid = validation(value);
 
+    const numValue = value;
     changeTaskSingleHour({
       taskId,
       idx: currentIdx,
       numValue,
       hoursWastedPerDay,
       indexArray,
+      isValid,
     });
   };
   return (
-    <>
+    <label className={css['sprints__task-spent-label']}>
       <input
         className={css['sprints__task-spent']}
         type="text"
         name="single_hours_wasted"
         value={validHour}
         onChange={handleOnChange}
-        title="Используйте числовой формат"
+        maxLength="7"
       />
-    </>
+      {noValid && (
+        <div className={css['sprints__task-spent--validation']}>{noValid} </div>
+      )}
+    </label>
   );
 };
 

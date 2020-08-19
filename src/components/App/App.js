@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import Registration from '../../containers/Registration/Registration';
 import Login from '../../containers/Login/Login';
+import SprintPage from '../../containers/Sprint/Sprint';
 import styles from './App.module.css';
 import ProjectPage from '../../containers/ProjectPage/ProjectPage';
 import Projects from '../../containers/Projects/Projects.js';
@@ -31,24 +32,29 @@ const App = () => {
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
         {/* Приммер подключения модального окна */}
         <Header />
-        <ProjectPage />
+        {/*<ProjectPage />*/}
         {/* <SprintPage /> */}
         {/* <Registration />  */}
         {/* <Login /> */}
         {/* <ProjectSidebar /> */}
         {/* <Projects /> */}
-
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <Switch>
-            {routes.map(route =>
-              route.private ? (
-                <PrivateRoute key={route.label} {...route} />
-              ) : (
-                <PublicRoute key={route.label} {...route} />
-              ),
-            )}
-          </Switch>
-        </Suspense>
+        <Switch>
+          <Route
+            path="/projects/:projectId/sprints/:sprintId"
+            component={SprintPage}
+          />
+        </Switch>
+        {/* <Suspense fallback={<h1>Loading...</h1>}>
+                <Switch>
+                  {routes.map((route) =>
+                    route.private ? (
+                      <PrivateRoute key={route.label} {...route} />
+                    ) : (
+                      <PublicRoute key={route.label} {...route} />
+                    )
+                  )}
+                </Switch>
+              </Suspense> */}
       </div>
     </div>
   );

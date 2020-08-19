@@ -60,6 +60,7 @@ const SprintTableTitle = ({
           <button
             onClick={handleToggle}
             className={`${css['sprint__filter-task-btn']}`}
+            data-filter="filter"
           ></button>
 
           <CSSTransition
@@ -75,6 +76,7 @@ const SprintTableTitle = ({
               value={filter}
               name="taskFilter"
               onChange={handleTaskFilter}
+              data-filter="filter"
             />
           </CSSTransition>
         </li>

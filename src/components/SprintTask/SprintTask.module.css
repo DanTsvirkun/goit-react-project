@@ -54,11 +54,11 @@
 
 .sprint__tasks-plan {
   /* margin-bottom: 12px; */
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  /* text-align: center; */
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
 }
 
 
