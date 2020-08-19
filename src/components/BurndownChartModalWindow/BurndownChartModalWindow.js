@@ -13,14 +13,21 @@ class BurndownChartModalWindow extends Component {
 
   handleKeyDown = (e) => {
     e.code === "Escape" && this.props.onClose();
+    this.changeScrollStyle();
   };
 
   handleClickOnOverlay = (e) => {
     e.target.nodeName === "DIV" && this.props.onClose();
+    this.changeScrollStyle();
   };
 
   handleClickOnCloseBtn = (e) => {
     e.target.nodeName === "BUTTON" && this.props.onClose();
+    this.changeScrollStyle();
+  };
+
+  changeScrollStyle = () => {
+    document.querySelector("body").style.overflow = "unset";
   };
 
   render() {
