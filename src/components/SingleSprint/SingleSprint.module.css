@@ -3,6 +3,10 @@
   margin-top: 30px;
 }
 
+.single__item:not(:last-child) {
+  margin-right: 30px;
+}
+
 .single__chart {
   width: 270px;
   height: 224px;
@@ -38,7 +42,7 @@
 
 .chart__content {
   font-size: 14px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   line-height: 17px;
 }
 

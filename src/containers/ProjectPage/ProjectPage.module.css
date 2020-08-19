@@ -97,3 +97,9 @@
   cursor: pointer;
   background-image: url("../../Icons/pencil.svg");
 }
+
+.sprints_container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+}

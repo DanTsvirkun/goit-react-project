@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import SingleSprint from "../../components/SingleSprint/SingleSprint";
-import styles from "./ProjectPage.module.css";
 import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
 import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
+import { getSprints } from "../../redux/actions/sprintActions";
+import { itemsSelector } from "../../redux/selectors/SprintsSelector";
+import { connect } from "react-redux";
+import styles from "./ProjectPage.module.css";
+import { getSprintsOperation } from "../../redux/operations/SprintOperation";
 
-const ProjectPage = () => {
+const ProjectPage = ({ sprints = [], getSprints }) => {
   const [modal, setModal] = useState(false);
 
   const modalToggle = () => {
     setModal((state) => !state);
   };
+
+  useEffect(() => {
+    getSprints();
+  }, []);
 
   return (
     <>
@@ -39,13 +47,25 @@ const ProjectPage = () => {
           </div>
           <div className={styles.project__info}></div>
           <ul className={styles.sprints_container}>
-            <SingleSprint />
-            <SprintCreationModal status={modal} onClose={modalToggle} />
+            {sprints.map((sprint) => (
+              <SingleSprint key={sprint.id} id={sprint.id} sprint={sprint} />
+            ))}
           </ul>
+          <SprintCreationModal status={modal} onClose={modalToggle} />
         </div>
       </div>
     </>
   );
 };
 
-export default ProjectPage;
+const mapStateToProps = (state) => {
+  return {
+    sprints: itemsSelector(state),
+  };
+};
+
+const mapDispatchToProps = {
+  getSprints: getSprintsOperation,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
