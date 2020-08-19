@@ -22,7 +22,7 @@ const ProjectPage = ({
   sprints = [],
   getSprints,
   project = {},
-  location = {},
+  location,
   getSprintByProjectId,
   projectId,
 }) => {
