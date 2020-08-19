@@ -78,6 +78,7 @@ const CreatingSprint = ({ addSprint, status, onClose, projectId }) => {
         endDate: formatedEndDate,
         projectId,
       };
+      console.log(sprint);
       addSprint(sprint);
       onClose();
     } else {
