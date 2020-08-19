@@ -1,7 +1,8 @@
-import { lazy } from "react";
+import {
+  lazy
+} from "react";
 
-export default [
-  {
+export default [{
     path: "/",
     label: "Registration",
     exact: true,
