@@ -44,7 +44,7 @@ const App = () => {
         </Switch> */}
 
         <Header />
-        {/* <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
             {routes.map((route) =>
               route.private ? (
@@ -54,7 +54,7 @@ const App = () => {
               )
             )}
           </Switch>
-        </Suspense> */}
+        </Suspense>
       </div>
     </div>
   );

@@ -2,18 +2,26 @@ import { lazy } from "react";
 
 export default [
   {
-    path: "/login",
-    label: "Login",
+    path: "/",
+    label: "Registration",
     exact: true,
-    component: lazy(() => import("./containers/Login/Login")),
+    component: lazy(() => import("./containers/Registration/Registration")),
     private: false,
     restricted: true,
   },
   {
     path: "/registration",
     label: "Registration",
-    exact: true,
+    exact: false,
     component: lazy(() => import("./containers/Registration/Registration")),
+    private: false,
+    restricted: true,
+  },
+  {
+    path: "/login",
+    label: "Login",
+    exact: false,
+    component: lazy(() => import("./containers/Login/Login")),
     private: false,
     restricted: true,
   },
@@ -36,7 +44,7 @@ export default [
   {
     path: "/projects/:projectId/sprints/:sprintId",
     label: "SingleSprint",
-    exact: true,
+    exact: false,
     component: lazy(() => import("./containers/Sprint/Sprint")),
     private: true,
     restricted: false,
