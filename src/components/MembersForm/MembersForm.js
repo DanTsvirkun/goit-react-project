@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import projectsOperations from "../../redux/operations/projectsOperations";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import { useLocation } from "react-router-dom";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
-import projectsSelectors from "../../redux/selectors/projectsSelectors";
 import formStyles from "../ProjectCreationForm/ProjectCreationForm.module.css";
+import addMember from "../../redux/operations/addMember";
 
 const EmailTextField = withStyles({
   root: {
@@ -37,48 +37,25 @@ const EmailTextField = withStyles({
   },
 })(TextField);
 
-const initialState = {
-  title: "",
-  description: "",
-};
-
-const MembersForm = ({ addProject, status, onClose, email }) => {
-  const [projectItem, setProjectItem] = useState(initialState);
+const MembersForm = ({ addMember, status, onClose }) => {
+  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({});
+  let newLocation = useLocation();
 
   const handleInput = ({ target }) => {
-    const { name, value } = target;
-    setProjectItem((state) => ({
-      ...state,
-      [name]: value,
-    }));
+    const { value } = target;
+    setEmail(value);
   };
 
-  const validate = (title, description) => {
+  const validate = (email) => {
     const errors = {};
 
-    if (title.length < 2) {
-      errors.title = "Title length is too short";
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      errors.title = "Введіть існуючий email";
     }
 
-    if (title.length > 40) {
-      errors.title = "Title length is too long";
-    }
-
-    if (description.length < 2) {
-      errors.description = "Description length is too short";
-    }
-
-    if (description.length > 160) {
-      errors.description = "Description length is too long";
-    }
-
-    if (title.length === 0) {
-      errors.title = "Required field";
-    }
-
-    if (description.length === 0) {
-      errors.description = "Required field";
+    if (email.length === 0) {
+      errors.description = "Це поле є обов'язковим";
     }
 
     setErrors(errors);
@@ -88,19 +65,15 @@ const MembersForm = ({ addProject, status, onClose, email }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(email);
+    const projectId = newLocation.pathname.split("/")[2];
+    const value = { projectId, email };
 
-    const { title, description } = projectItem;
+    const result = validate(email);
 
-    const project = {
-      title,
-      description,
-      members: [email],
-    };
-
-    const result = validate(title, description);
     if (!result) {
-      addProject(project);
-      setProjectItem(initialState);
+      addMember(value);
+      setEmail("");
       onClose();
     }
   };
@@ -119,22 +92,19 @@ const MembersForm = ({ addProject, status, onClose, email }) => {
           id="custom-css-standard-input"
           label="E-mail учасника"
           name="title"
-          value={projectItem.title}
+          value={email}
           onChange={handleInput}
           error={errors.title ? true : undefined}
           helperText={errors.title}
+          type="email"
         />
       </form>
     </ModalSidebar>
   );
 };
 
-const mapStateToProps = (state) => ({
-  email: projectsSelectors.authEmailSelector(state),
+const mapDispatchToProps = (dispatch) => ({
+  addMember: (value) => dispatch(addMember(value)),
 });
 
-const mapDispatchToProps = {
-  addProject: projectsOperations.addProjectOperation,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MembersForm);
+export default connect(null, mapDispatchToProps)(MembersForm);
