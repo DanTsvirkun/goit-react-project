@@ -22,7 +22,7 @@ const SignInGoogle = () => {
 
   return (
     <button type="button" className={styles.google} onClick={signIn}>
-      Увійти з Google Acount
+      Увійти з Google Account
     </button>
   );
 };

@@ -105,7 +105,6 @@ const RegistrationForm = () => {
           Увійти
         </NavLink>
       </p>
-      <SignInGoogle />
     </form>
   );
 };
