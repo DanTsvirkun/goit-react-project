@@ -121,7 +121,7 @@
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  top: 10px;
+  bottom: 10px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -138,6 +138,17 @@
 /* active state */
 .input__field:focus ~ .sprint_label,
 .input__field:valid ~ .sprint_label {
+  top: -20px;
+  font-size: 14px;
+  color: #999;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 22px;
+}
+
+.input__field:focus ~ .sprint_label_duration,
+.input__field:valid ~ .sprint_label_duration {
   top: -20px;
   font-size: 14px;
   color: #999;
