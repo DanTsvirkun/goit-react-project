@@ -191,13 +191,22 @@
 .item {
   position: relative;  
   width: 270px;
-  height: 270px;
-  padding: 28px 30px;
+  height: 270px;  
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 5px;  
   transition: 150ms linear;
   overflow: hidden;
+}
+
+.overlay{
+  position: absolute;
+  padding: 28px 30px;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 270px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .itemTitle {  

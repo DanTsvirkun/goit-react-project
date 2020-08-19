@@ -13,7 +13,7 @@ const addProjectOperation = (project) => async (dispatch) => {
     };
     dispatch(projectsActions.addProject(answer));   
   } catch (error) {
-    dispatch(errorOn());
+    dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
   }
@@ -29,7 +29,7 @@ const getProjectsOperation = () => async (dispatch) => {
     }));
     dispatch(projectsActions.getProjects(answer));    
   } catch (error) {
-    dispatch(errorOn());
+    dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
   }
@@ -41,7 +41,7 @@ const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
     const result = await db.collection("projects").doc(id).delete();    
     dispatch(projectsActions.deleteProject(id));
   } catch (error) {    
-    dispatch(errorOn());
+    dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
   }
