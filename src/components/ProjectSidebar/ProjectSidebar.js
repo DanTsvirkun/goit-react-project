@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import ProjectsSidebarList from "../ProjectsSidebarList/ProjectsSidebarlist";
-import css from "./ProjectSidebar.module.css";
 import ProjectCreationModal from "../../components/ProjectCreationModal/ProjectCreationModal";
+import css from "./ProjectSidebar.module.css";
+import projectsOperations from "../../redux/operations/projectsOperations";
 
-const ProjectSidebar = ({ match = "test" }) => {
+const ProjectSidebar = ({ match, getProjects }) => {
   const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    getProjects();
+  }, [getProjects]);
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -30,4 +36,8 @@ const ProjectSidebar = ({ match = "test" }) => {
   );
 };
 
-export default ProjectSidebar;
+const mapDispatchToProps = {
+  getProjects: projectsOperations.getProjectsOperation,
+};
+
+export default connect(null, mapDispatchToProps)(ProjectSidebar);

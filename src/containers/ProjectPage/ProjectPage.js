@@ -1,36 +1,55 @@
 import React, { useState, useEffect } from "react";
+import queryString from "query-string";
+import { connect } from "react-redux";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import SingleSprint from "../../components/SingleSprint/SingleSprint";
 import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
 import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
 import { getSprints } from "../../redux/actions/sprintActions";
-import { itemsSelector } from "../../redux/selectors/SprintsSelector";
-import { connect } from "react-redux";
-import styles from "./ProjectPage.module.css";
-import { getSprintsOperation } from "../../redux/operations/SprintOperation";
+import {
+  itemsSelector,
+  itemIdSelector,
+} from "../../redux/selectors/SprintsSelector";
+import {
+  getSprintsOperation,
+  getSprintByProjectId,
+} from "../../redux/operations/SprintOperation";
+import { useLocation } from "react-router-dom";
 
-const ProjectPage = ({ sprints = [], getSprints }) => {
+import styles from "./ProjectPage.module.css";
+
+const ProjectPage = ({
+  sprints = [],
+  getSprints,
+  project = {},
+  location = {},
+  getSprintByProjectId,
+  projectId,
+}) => {
   const [modal, setModal] = useState(false);
 
   const modalToggle = () => {
     setModal((state) => !state);
   };
 
+  let newLocation = useLocation();
+
   useEffect(() => {
     getSprints();
-  }, []);
+    // getSprintByProjectId(id);
+  }, [getSprints]);
 
   return (
     <>
       <div className={styles.page_wrapper}>
         <ProjectSidebar />
-        <CreatingSprint />
+        <CreatingSprint location={newLocation} />
         <div className={styles.projectWrapper}>
           <div className={styles.project__header__wrapper}>
             <div
               className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
             >
-              <h1 className={styles.project__header}>Project 1</h1>
+              <h1 className={styles.project__header}>{project.title}</h1>
               <button
                 className={`${styles.button} ${styles.button__pencil}`}
               ></button>
@@ -58,14 +77,18 @@ const ProjectPage = ({ sprints = [], getSprints }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     sprints: itemsSelector(state),
+    project: itemIdSelector(state, ownProps.location.pathname.split("/")[2]),
+    location: ownProps.location,
+    projectId: ownProps.location.pathname.split("/")[2],
   };
 };
 
 const mapDispatchToProps = {
   getSprints: getSprintsOperation,
+  // getSprintByProjectId,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);

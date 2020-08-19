@@ -1,4 +1,5 @@
 import { db } from "../../config";
+import firebase from "firebase";
 import { loaderOn, loaderOff } from "../actions/loaderActions";
 import { errorOn, errorOff } from "../actions/errorActions";
 import moment from "moment";
@@ -38,6 +39,31 @@ export const getSprintsOperation = () => async (dispatch) => {
       id: doc.id,
     }));
     dispatch(getSprints(answer));
+  } catch (error) {
+    dispatch(errorOn());
+  } finally {
+    dispatch(loaderOff());
+  }
+};
+
+export const getSprintByProjectId = (key) => async (dispatch) => {
+  console.log(key);
+  try {
+    dispatch(loaderOn());
+    const result = await db
+      .collection("sprints")
+      .orderByChild("projectId")
+      .equalTo(key);
+    // const result = await firebase
+    //   .database()
+    //   .ref("sprints")
+    //   .orderByKey("mU19eFAvHLgWycZecPMf");
+    console.log(result);
+    // const answer = result.docs.map((doc) => ({
+    //   ...doc.data(),
+    //   id: doc.id,
+    // }));
+    // dispatch(getSprints(answer));
   } catch (error) {
     dispatch(errorOn());
   } finally {
