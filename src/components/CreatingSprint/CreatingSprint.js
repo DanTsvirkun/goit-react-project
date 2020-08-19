@@ -12,7 +12,7 @@ import "./overRidingStyles.css";
 
 registerLocale("uk", uk);
 
-const CreatingSprint = ({ addSprint, status, onClose }) => {
+const CreatingSprint = ({ addSprint, status, onClose, projectId }) => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
   const [duration, setDuration] = useState("");
@@ -76,6 +76,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
         startDate: formatedStartDate,
         duration,
         endDate: formatedEndDate,
+        projectId,
       };
       addSprint(sprint);
       onClose();
@@ -136,8 +137,18 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   );
 };
 
+const mapStateToProps = (state, ownProps) => {
+  console.log("ownPro", ownProps);
+
+  return {
+    projectId: ownProps.location
+      ? ownProps.location.pathname.split("/")[2]
+      : "",
+  };
+};
+
 const mapDispatchToProps = {
   addSprint: addSprintOperation,
 };
 
-export default connect(null, mapDispatchToProps)(CreatingSprint);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatingSprint);
