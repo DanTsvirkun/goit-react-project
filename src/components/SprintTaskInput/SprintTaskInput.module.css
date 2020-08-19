@@ -11,3 +11,16 @@
     color: #181c27;
     outline: none;
 }
+
+.sprints__task-spent-label {
+    position: relative;
+}
+
+.sprints__task-spent--validation {
+    position: absolute;
+    font-size: 10px;
+    color: red;
+    top: -18px;
+    right: -24px;
+    width: 140px;
+}
