@@ -8,12 +8,18 @@ import { itemsSelector } from "../../redux/selectors/SprintsSelector";
 import { connect } from "react-redux";
 import styles from "./ProjectPage.module.css";
 import { getSprintsOperation } from "../../redux/operations/SprintOperation";
+import MembersCreationModal from "../../components/MembersModal/MembersModal";
 
 const ProjectPage = ({ sprints = [], getSprints }) => {
   const [modal, setModal] = useState(false);
+  const [membersModal, setMembersModal] = useState(false);
 
   const modalToggle = () => {
     setModal((state) => !state);
+  };
+
+  const membersModalToggle = () => {
+    setMembersModal((state) => !state);
   };
 
   useEffect(() => {
@@ -35,14 +41,25 @@ const ProjectPage = ({ sprints = [], getSprints }) => {
                 className={`${styles.button} ${styles.button__pencil}`}
               ></button>
             </div>
-            <div
-              className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
-            >
-              <button
-                className={`${styles.button} ${styles.button__plus}`}
-                onClick={modalToggle}
-              ></button>
-              <p className={styles.sprint_text}>Створити спринт</p>
+            <div className={styles.plusBtnWrapper}>
+              <div
+                className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
+              >
+                <button
+                  className={`${styles.button} ${styles.button__plus}`}
+                  onClick={modalToggle}
+                ></button>
+                <p className={styles.sprint_text}>Створити спринт</p>
+              </div>
+              <div
+                className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
+              >
+                <button
+                  className={`${styles.button} ${styles.button__plus}`}
+                  onClick={membersModalToggle}
+                ></button>
+                <p className={styles.sprint_text}>Додати людей</p>
+              </div>
             </div>
           </div>
           <div className={styles.project__info}></div>
@@ -52,6 +69,10 @@ const ProjectPage = ({ sprints = [], getSprints }) => {
             ))}
           </ul>
           <SprintCreationModal status={modal} onClose={modalToggle} />
+          <MembersCreationModal
+            status={membersModal}
+            onClose={membersModalToggle}
+          />
         </div>
       </div>
     </>
