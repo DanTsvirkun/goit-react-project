@@ -8,6 +8,7 @@ import {
   deleteSprints,
   showModalAddSprintAction,
 } from "../actions/sprintActions";
+import { newState, findCurrentDay } from "../../helpers/newArrayTasks";
 
 export const addSprintOperation = (sprint) => async (dispatch) => {
   try {
@@ -28,12 +29,18 @@ export const addSprintOperation = (sprint) => async (dispatch) => {
   }
 };
 
-//   sprints: [
-//     {
-//       projectId,
-//       title,
-//       startDate,
-//       endDate,
-//       duration,
-//     },
-//   ],
+export const getSprintsOperation = () => async (dispatch) => {
+  try {
+    dispatch(loaderOn());
+    const result = await db.collection("sprints").get();
+    const answer = result.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    dispatch(getSprints(answer));
+  } catch (error) {
+    dispatch(errorOn());
+  } finally {
+    dispatch(loaderOff());
+  }
+};

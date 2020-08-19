@@ -4,6 +4,7 @@ import { withStyles, TextField } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import LogIn from "../../redux/operations/LogInOperation";
 import { errorOff } from "../../redux/actions/errorActions";
+import SignInGoogle from "../SignInGoogle/SignInGoogle";
 
 const CssTextField = withStyles((theme) => ({
   root: {
@@ -82,6 +83,7 @@ const LogInForm = () => {
       />
       {error !== false && <p className={styles.wrong}>{errorMessage(error)}</p>}
       <button className={styles.auth_btn}>Увійти</button>
+      <SignInGoogle />
     </form>
   );
 };
