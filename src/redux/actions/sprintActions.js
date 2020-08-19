@@ -2,7 +2,7 @@ import { createAction } from "@reduxjs/toolkit";
 
 import constants from "../constants/sprintConstants";
 export const addSprint = createAction(constants.ADD_SPRINT, (payload) => ({
-  payload: payload.startDate,
+  payload,
 }));
 export const getSprints = createAction(constants.GET_SPRINTS);
 export const showModalAddSprintAction = createAction(

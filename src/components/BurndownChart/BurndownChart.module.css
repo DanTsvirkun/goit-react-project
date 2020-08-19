@@ -2,4 +2,13 @@
   width: 900px;
   height: auto;
   margin: auto;
+  padding-top: 5px;
+}
+
+.graphicTitle {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 30px;
+  padding: 10px 0;
 }

@@ -11,6 +11,7 @@
   background-position: 50% 12%;
   background-image: url("./iconBCB/analyticsFull.svg");
   cursor: pointer;
+  outline: transparent;
 }
 
 .graphicBtn:hover,
