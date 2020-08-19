@@ -4,10 +4,10 @@
   top: 0;
   left: 0;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   z-index: 2;
-  background-color: #F1F2F7; 
-  padding: 40px 9px 30px 0; 
+  background-color: #f1f2f7;
+  padding: 40px 9px 30px 0;
 }
 
 .headBarTitle {
@@ -34,7 +34,7 @@
 }
 
 .headBarBtn:hover,
-.headBarBtn:focus{
+.headBarBtn:focus {
   outline: none;
   box-shadow: 0px 0px 8px rgba(255, 107, 8);
 }
