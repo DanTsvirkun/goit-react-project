@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLocation } from "react";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
@@ -10,33 +10,24 @@ import {
   itemsSelector,
   itemIdSelector,
 } from "../../redux/selectors/SprintsSelector";
-import {
-  getSprintsOperation,
-  getSprintByProjectId,
-} from "../../redux/operations/SprintOperation";
-import { useLocation } from "react-router-dom";
+import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
 
 import styles from "./ProjectPage.module.css";
 
 const ProjectPage = ({
   sprints = [],
-  getSprints,
   project = {},
+  projectId,
   location,
   getSprintByProjectId,
 }) => {
   const [modal, setModal] = useState(false);
-
   const modalToggle = () => {
     setModal((state) => !state);
   };
-
-  let newLocation = useLocation();
-
   useEffect(() => {
-    getSprints();
-    // getSprintByProjectId(id);
-  }, [getSprints]);
+    getSprintByProjectId(projectId);
+  }, []);
 
   return (
     <>
@@ -86,8 +77,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {
-  getSprints: getSprintsOperation,
-  // getSprintByProjectId,
+  getSprintByProjectId,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
