@@ -15,7 +15,6 @@ const Projects = () => {
     <>
       <div className={projectStyles.headBar}>
         <h1 className={projectStyles.headBarTitle}>Проекти</h1>
-
         <label className={projectStyles.headBarLabel}>
           <button
             name="createProject"
@@ -24,8 +23,8 @@ const Projects = () => {
           ></button>
           Створити проект
         </label>
-      </div>     
-      <ProjectCreationModal status={modal} onClose={modalToggle}/>     
+      </div>
+      <ProjectCreationModal status={modal} onClose={modalToggle} />
       <ProjectsPageList />
     </>
   );
