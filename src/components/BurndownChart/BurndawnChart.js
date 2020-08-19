@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { Line } from "react-chartjs-2";
-import moment from "moment";
-import styles from "./BurndownChart.module.css";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { Line } from 'react-chartjs-2';
+import moment from 'moment';
+import styles from './BurndownChart.module.css';
 import {
   currentIdxDaySelector,
   itemsSelector,
-} from "../../redux/selectors/TasksSelectors";
+} from '../../redux/selectors/TasksSelectors';
 
 const BurndawnChart = ({
   hoursPlanned,
@@ -62,17 +62,17 @@ const BurndawnChart = ({
 
   const getData = () => {
     const formatDate = chartDays
-      .map((data) => {
-        const res = data.split(".");
+      .map(data => {
+        const res = data.split('.');
         const [mounth, day] = res;
         res[0] = day;
         res[1] = mounth;
-        return res.join(".");
+        return res.join('.');
       })
-      .map((el) => moment(el).format("DD MMM"));
+      .map(el => moment(el).format('DD MMM'));
     const planningDay = moment(formatDate[0])
-      .subtract(1, "day")
-      .format("DD MMM");
+      .subtract(1, 'day')
+      .format('DD MMM');
     formatDate.unshift(planningDay);
     return formatDate;
   };
@@ -85,16 +85,16 @@ const BurndawnChart = ({
       labels: getData(),
       datasets: [
         {
-          label: "Актуальний залишок трудовитрат в годинах",
-          backgroundColor: "transparent",
-          borderColor: "rgb(255, 0, 0)",
+          label: 'Актуальний залишок трудовитрат в годинах',
+          backgroundColor: 'transparent',
+          borderColor: 'rgb(255, 0, 0)',
           borderWidth: 2,
           data: redLine(),
         },
         {
-          label: "Запланований залишок трудовитрат в годинах",
-          borderColor: "rgb(0, 89, 255)",
-          backgroundColor: "transparent",
+          label: 'Запланований залишок трудовитрат в годинах',
+          borderColor: 'rgb(0, 89, 255)',
+          backgroundColor: 'transparent',
           borderWidth: 2,
           data: getBlueLine(),
         },
@@ -111,13 +111,13 @@ const BurndawnChart = ({
       <Line
         options={{
           responsive: true,
-          title: { text: "Burndawn Chart (Calendar Team)", display: true },
+          title: { text: 'Burndawn Chart (Calendar Team)', display: true },
           scales: {
             yAxes: [
               {
                 scaleLabel: {
                   display: true,
-                  labelString: "Людино-години",
+                  labelString: 'Людино-години',
                   // fontFamily: "'Montserrat', 'sans-serif'",
                 },
                 ticks: {
@@ -150,15 +150,15 @@ const BurndawnChart = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   hoursPlanned: itemsSelector(state)
-    .map((task) => Number(task.hoursPlanned))
+    .map(task => Number(task.hoursPlanned))
     .reduce((acc, taskValue) => {
       return (acc += taskValue);
     }, 0),
   hoursWastedPerDay: itemsSelector(state)[0].hoursWastedPerDay.length,
   chartDays: itemsSelector(state)[0].hoursWastedPerDay.map(
-    (task) => task.currentDay
+    task => task.currentDay,
   ),
   blueLine: itemsSelector(state),
   indexCurrentDay: currentIdxDaySelector(state),
