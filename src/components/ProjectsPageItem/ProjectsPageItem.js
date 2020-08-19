@@ -5,11 +5,14 @@ import projectsOperations from "../../redux/operations/projectsOperations.js";
 import itemStyle from "./ProjectsPageItem.module.css";
 
 import imgDel from "./projectImg/delete.svg";
+import { NavLink } from "react-router-dom";
 
 const ProjectsPageItem = ({project: { title, description, id}, deleteProject }) => {
   return (
     <>
-      <li className={itemStyle.item}>
+     <NavLink to={`/projects/${id}`} className={itemStyle.item}>
+      <li >
+       
         <h2 className={itemStyle.itemTitle}>{title}</h2>
         <p className={itemStyle.itemDescription}>{description}</p>
         <button
@@ -18,7 +21,9 @@ const ProjectsPageItem = ({project: { title, description, id}, deleteProject }) 
           className={itemStyle.itemTrashBtn}
           id={id}
         ></button>
+     
       </li>
+      </NavLink>
     </>
   );
 };
@@ -34,3 +39,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPageItem);
+
+
+// projectId
