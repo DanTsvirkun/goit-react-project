@@ -2,15 +2,15 @@ import moment from 'moment';
 
 export const newState = (task, item) => {
   const newArray = [...task.hoursWastedPerDay];
+  const numValue = Number(item.numValue)
   const newObj = {
     ...newArray[item.idx],
-    singleHoursWasted: item.numValue,
+    singleHoursWasted: numValue,
   };
   newArray.splice(item.idx, 1, newObj);
   let total;
-  if (!isNaN(item.numValue)) {
-    total = newArray.reduce((acc, el) => acc + Number(el.singleHoursWasted), 0);
-  }
+  total = newArray.reduce((acc, el) => acc + Number(el.singleHoursWasted), 0);
+  // if (!isNaN(item.numValue) && Number(item.numValue) >= 0) {
 
   return {
     ...task,

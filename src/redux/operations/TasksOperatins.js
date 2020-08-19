@@ -90,15 +90,15 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
     tasks.splice(item.indexArray, 1, newTask);
 
     dispatch(changeTask(tasks));
-    if (item.isValid) {
-      console.log('request');
-      await db
-        .collection('tasks')
-        .doc(item.taskId)
-        .set({
-          ...newTask,
-        });
-    }
+
+    console.log('request');
+    await db
+      .collection('tasks')
+      .doc(item.taskId)
+      .set({
+        ...newTask,
+      });
+
 
     dispatch(indexDayAction(item.idx));
   } catch (error) {
@@ -113,7 +113,7 @@ export const deleteTaskOperation = (idTask, index) => async dispatch => {
     dispatch(errorOff());
     dispatch(loaderOn());
     await db.collection('tasks').doc(idTask).delete();
-    console.log('wwwwww');
+
 
     dispatch(deleteTask(index));
   } catch (error) {

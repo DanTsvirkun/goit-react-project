@@ -23,14 +23,26 @@ const SprintTaskInput = ({
   indexArray,
 }) => {
   const [noValid, setNoValid] = useState('');
+  const [inputValue, setInputValue] = useState(validHour);
+
+  useEffect(() => {
+    console.log('setValue');
+
+    setInputValue(validHour);
+  }, [validHour]);
   const validation = value => {
     const num = Number(value);
 
-    if (num <= 0) {
+    if (value.length > 1 && value[0] === '0') {
       setNoValid('введіть число більше 0');
       return false;
     }
-    if (!num) {
+
+    if (num < 0) {
+      setNoValid('введіть число більше 0');
+      return false;
+    }
+    if (isNaN(num)) {
       setNoValid('введіть число');
       return false;
     }
@@ -45,16 +57,18 @@ const SprintTaskInput = ({
 
   const handleOnChange = ({ target: { value } }) => {
     const isValid = validation(value);
-
+    setInputValue(value);
     const numValue = value;
-    changeTaskSingleHour({
-      taskId,
-      idx: currentIdx,
-      numValue,
-      hoursWastedPerDay,
-      indexArray,
-      isValid,
-    });
+    if (isValid) {
+      changeTaskSingleHour({
+        taskId,
+        idx: currentIdx,
+        numValue,
+        hoursWastedPerDay,
+        indexArray,
+        isValid,
+      });
+    }
   };
   return (
     <label className={css['sprints__task-spent-label']}>
@@ -62,12 +76,12 @@ const SprintTaskInput = ({
         className={css['sprints__task-spent']}
         type="text"
         name="single_hours_wasted"
-        value={validHour}
+        value={inputValue}
         onChange={handleOnChange}
         maxLength="7"
       />
       {noValid && (
-        <div className={css['sprints__task-spent--validation']}>{noValid} </div>
+        <div className={css['sprints__task-spent--validation']}>{noValid}</div>
       )}
     </label>
   );
