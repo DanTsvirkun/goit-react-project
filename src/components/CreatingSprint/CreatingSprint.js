@@ -4,6 +4,7 @@ import css from "./CreatingSprint.module.css";
 import DatePicker from "react-datepicker";
 import uk from "date-fns/locale/uk";
 import { connect } from "react-redux";
+import { useLocation, useHistory } from "react-router-dom";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { addSprintOperation } from "../../redux/operations/SprintOperation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
@@ -12,13 +13,15 @@ import "./overRidingStyles.css";
 
 registerLocale("uk", uk);
 
-const CreatingSprint = ({ addSprint, status, onClose, projectId }) => {
+const CreatingSprint = ({ addSprint, status, onClose }) => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
   const [duration, setDuration] = useState("");
   const [titleErr, setTitleErr] = useState("");
   const [durationErr, setDurationErr] = useState("");
   const [dateErr, setDateErr] = useState("");
+  let newLocation = useLocation();
+  const projectId = newLocation.pathname.split("/")[2];
 
   const handleStartDate = (date) => {
     setStartDate(date);
@@ -137,18 +140,15 @@ const CreatingSprint = ({ addSprint, status, onClose, projectId }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log("ownPro", ownProps);
-
-  return {
-    projectId: ownProps.location
-      ? ownProps.location.pathname.split("/")[2]
-      : "",
-  };
-};
+// const mapStateToProps = (state, ownProps) => {
+//   console.log(newLocation);
+//   return {
+//     projectId: newLocation.pathname.split("/")[2],
+//   };
+// };
 
 const mapDispatchToProps = {
   addSprint: addSprintOperation,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatingSprint);
+export default connect(null, mapDispatchToProps)(CreatingSprint);

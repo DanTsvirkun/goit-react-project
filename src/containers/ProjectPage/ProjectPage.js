@@ -22,9 +22,8 @@ const ProjectPage = ({
   sprints = [],
   getSprints,
   project = {},
-  location = {},
+  location,
   getSprintByProjectId,
-  projectId,
 }) => {
   const [modal, setModal] = useState(false);
 
@@ -43,7 +42,7 @@ const ProjectPage = ({
     <>
       <div className={styles.page_wrapper}>
         <ProjectSidebar />
-        <CreatingSprint location={newLocation} />
+        <CreatingSprint location={location} />
         <div className={styles.projectWrapper}>
           <div className={styles.project__header__wrapper}>
             <div
