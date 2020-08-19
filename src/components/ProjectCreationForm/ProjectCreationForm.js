@@ -4,6 +4,7 @@ import projectsOperations from "../../redux/operations/projectsOperations";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import projectsSelectors from "../../redux/selectors/projectsSelectors";
 
 import formStyles from "./ProjectCreationForm.module.css";
 
@@ -73,7 +74,7 @@ const initialState = {
   description: "",
 };
 
-const ProjectCreationForm = ({ addProject, status, onClose }) => {
+const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
   const [projectItem, setProjectItem] = useState(initialState);
   const [errors, setErrors] = useState({});
 
@@ -88,11 +89,11 @@ const ProjectCreationForm = ({ addProject, status, onClose }) => {
   const validate = (title, description) => {
     const errors = {};
 
-    if (title.length < 3) {
+    if (title.length < 2) {
       errors.title = "Title length is too short";
     }
 
-    if (title.length > 20) {
+    if (title.length > 40) {
       errors.title = "Title length is too long";
     }
 
@@ -100,7 +101,7 @@ const ProjectCreationForm = ({ addProject, status, onClose }) => {
       errors.description = "Description length is too short";
     }
 
-    if (description.length > 100) {
+    if (description.length > 160) {
       errors.description = "Description length is too long";
     }
 
@@ -118,20 +119,21 @@ const ProjectCreationForm = ({ addProject, status, onClose }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();   
 
     const { title, description } = projectItem;
 
     const project = {
       title,
       description,
+      members: [email],
     };
 
     const result = validate(title, description);
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
-      onClose()
+      onClose();
     }
   };
 
@@ -169,8 +171,15 @@ const ProjectCreationForm = ({ addProject, status, onClose }) => {
   );
 };
 
+const mapStateToProps = (state) =>( {
+  email: projectsSelectors.authEmailSelector(state),  
+});
+
 const mapDispatchToProps = {
   addProject: projectsOperations.addProjectOperation,
 };
 
-export default connect(null, mapDispatchToProps)(ProjectCreationForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectCreationForm);
