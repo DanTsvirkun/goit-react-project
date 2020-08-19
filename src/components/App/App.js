@@ -14,6 +14,7 @@ import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import routes from "../../routes";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
+import Loader from "../Loader/Loader";
 
 const App = () => {
   //Приммер подключения модального окна\\
