@@ -14,6 +14,7 @@ import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import routes from "../../routes";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
+import Loader from "../Loader/Loader";
 
 const App = () => {
   //Приммер подключения модального окна\\
@@ -32,7 +33,7 @@ const App = () => {
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
         {/* Приммер подключения модального окна */}
         {/* <Header />
-        <ProjectPage /> */}
+         <ProjectPage /> 
         {/* <SprintPage /> */}
         {/* <Registration />  */}
         {/* <Login /> */}
@@ -43,7 +44,7 @@ const App = () => {
         </Switch> */}
 
         <Header />
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={null}>
           <Switch>
             {routes.map((route) =>
               route.private ? (
