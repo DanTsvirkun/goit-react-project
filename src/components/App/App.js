@@ -12,6 +12,9 @@ import Projects from "../../containers/Projects/Projects.js";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import routes from "../../routes";
+import PrivateRoute from "../CustomRoutes/PrivateRoute";
+import PublicRoute from "../CustomRoutes/PublicRoute";
+import Loader from "../Loader/Loader";
 
 const App = () => {
   //Приммер подключения модального окна\\
@@ -29,19 +32,19 @@ const App = () => {
         {/* <button onClick={modalToggle}>ON</button> */}
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
         {/* Приммер подключения модального окна */}
-
-        <Header />
+        {/* <Header /> */}
         {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
         {/* <Registration />  */}
         {/* <Login /> */}
         {/* <ProjectSidebar /> */}
         {/* <Projects /> */}
-        <Switch>
+        {/* <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
-        </Switch>
+        </Switch> */}
 
-        {/* <Suspense fallback={<h1>Loading...</h1>}>
+        <Header />
+        <Suspense fallback={null}>
           <Switch>
             {routes.map((route) =>
               route.private ? (
@@ -51,7 +54,7 @@ const App = () => {
               )
             )}
           </Switch>
-        </Suspense> */}
+        </Suspense>
       </div>
     </div>
   );
