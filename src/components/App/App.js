@@ -31,7 +31,6 @@ const App = () => {
         {/* <button onClick={modalToggle}>ON</button> */}
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
         {/* Приммер подключения модального окна */}
-
         {/* <Header />
         <ProjectPage /> */}
         {/* <SprintPage /> */}
