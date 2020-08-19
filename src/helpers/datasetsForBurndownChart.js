@@ -18,7 +18,7 @@ export const getSumArrOfSingleHoursPerDay = (sprintDuration, itemsArr) => {
   for (let j = 0; j < sprintDuration; j += 1) {
     let total = 0;
     for (let i = 0; i < itemsArr.length; i += 1) {
-      total += itemsArr[i].hoursWastedPerDay[j].singleHoursWasted;
+      total += Math.abs(itemsArr[i].hoursWastedPerDay[j].singleHoursWasted);
       if (i + 1 === itemsArr.length) {
         result.push(total);
       }
