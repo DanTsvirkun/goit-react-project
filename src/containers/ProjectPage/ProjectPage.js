@@ -1,16 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLocation } from "react";
+import queryString from "query-string";
+import { connect } from "react-redux";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import SingleSprint from "../../components/SingleSprint/SingleSprint";
 import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
 import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
 import { getSprints } from "../../redux/actions/sprintActions";
-import { itemsSelector } from "../../redux/selectors/SprintsSelector";
-import { connect } from "react-redux";
+import {
+  itemsSelector,
+  itemIdSelector,
+} from "../../redux/selectors/SprintsSelector";
+import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
+
 import styles from "./ProjectPage.module.css";
 import { getSprintsOperation } from "../../redux/operations/SprintOperation";
 import MembersCreationModal from "../../components/MembersModal/MembersModal";
 
-const ProjectPage = ({ sprints = [], getSprints }) => {
+const ProjectPage = ({
+  sprints = [],
+  project = {},
+  projectId,
+  location,
+  getSprintByProjectId,
+}) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
 
@@ -23,20 +35,20 @@ const ProjectPage = ({ sprints = [], getSprints }) => {
   };
 
   useEffect(() => {
-    getSprints();
+    getSprintByProjectId(projectId);
   }, []);
 
   return (
     <>
       <div className={styles.page_wrapper}>
         <ProjectSidebar />
-        <CreatingSprint />
+        <CreatingSprint location={location} />
         <div className={styles.projectWrapper}>
           <div className={styles.project__header__wrapper}>
             <div
               className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
             >
-              <h1 className={styles.project__header}>Project 1</h1>
+              <h1 className={styles.project__header}>{project.title}</h1>
               <button
                 className={`${styles.button} ${styles.button__pencil}`}
               ></button>
@@ -79,14 +91,17 @@ const ProjectPage = ({ sprints = [], getSprints }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     sprints: itemsSelector(state),
+    project: itemIdSelector(state, ownProps.location.pathname.split("/")[2]),
+    location: ownProps.location,
+    projectId: ownProps.location.pathname.split("/")[2],
   };
 };
 
 const mapDispatchToProps = {
-  getSprints: getSprintsOperation,
+  getSprintByProjectId,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
