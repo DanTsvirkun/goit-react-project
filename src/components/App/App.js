@@ -17,10 +17,10 @@ const App = () => {
         <Header />
         {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
-        {/* <Registration /> */}
+        <Registration />
         {/* <Registration /> */}
         {/* <ProjectSidebar /> */}
-        <Projects />
+        {/* <Projects /> */}
         <Switch>
           <Route path="/projects/:projectId/sprints" component={SprintPage} />
         </Switch>
