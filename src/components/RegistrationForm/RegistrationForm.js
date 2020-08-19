@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { errorOff } from "../../redux/actions/errorActions";
+import SignInGoogle from "../SignInGoogle/SignInGoogle";
 
 const CssTextField = withStyles((theme) => ({
   root: {
@@ -41,8 +42,9 @@ const RegistrationForm = () => {
   };
 
   const inputHandler = ({ target }) => {
+    dispatch(errorOff());
+    setToggle(false);
     const { name, value } = target;
-
     setForm((state) => ({
       ...state,
       [name]: value,
@@ -99,10 +101,11 @@ const RegistrationForm = () => {
       </button>
       <p className={styles.account}>
         Маєте акаунт?{" "}
-        <NavLink className={styles.account_link} to="/">
+        <NavLink className={styles.account_link} to="/login">
           Увійти
         </NavLink>
       </p>
+      <SignInGoogle />
     </form>
   );
 };

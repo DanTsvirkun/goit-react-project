@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import SingleSprint from "../../components/SingleSprint/SingleSprint";
 import styles from "./ProjectPage.module.css";
 import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
+import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
 
 const ProjectPage = () => {
+  const [modal, setModal] = useState(false);
+
+  const modalToggle = () => {
+    setModal((state) => !state);
+  };
+
   return (
     <>
       <div className={styles.page_wrapper}>
@@ -25,6 +32,7 @@ const ProjectPage = () => {
             >
               <button
                 className={`${styles.button} ${styles.button__plus}`}
+                onClick={modalToggle}
               ></button>
               <p className={styles.sprint_text}>Створити спринт</p>
             </div>
@@ -32,6 +40,7 @@ const ProjectPage = () => {
           <div className={styles.project__info}></div>
           <ul className={styles.sprints_container}>
             <SingleSprint />
+            <SprintCreationModal status={modal} onClose={modalToggle} />
           </ul>
         </div>
       </div>
