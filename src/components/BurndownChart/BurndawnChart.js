@@ -21,8 +21,6 @@ const BurndawnChart = ({
 }) => {
   const [chartData, setChartData] = useState({});
 
-  useEffect(() => chart(), []);
-
   console.log(getRedLineArr(hoursPlanned, sprintDuration));
   console.log(getBlueLineArr(hoursPlanned, sprintDuration, itemsArr));
   console.log(formatDateChanger(chartDays));
@@ -48,6 +46,8 @@ const BurndawnChart = ({
       ],
     });
   };
+
+  useEffect(() => chart(), []);
 
   return (
     <div className={styles.graphicWrapper}>
