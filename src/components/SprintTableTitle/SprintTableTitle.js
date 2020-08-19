@@ -1,29 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, useParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { filterSelector } from '../../redux/selectors/TasksSelectors';
-import { filterTasksAction } from '../../redux/actions/sprintTasksActions';
+import {
+  filterTasksAction,
+  toggleFilterAction,
+} from '../../redux/actions/sprintTasksActions';
 import css from './SprintTableTitle.module.css';
 import animation from './animation.module.css';
 
-const SprintTableTitle = ({ filter, filterTasksAction }) => {
-  const [toggleInput, setToggleInput] = useState(false);
+const SprintTableTitle = ({
+  filter,
+  filterTasksAction,
+  toggleFilterAction,
+  filterToggle,
+}) => {
   const history = useHistory();
   const location = useLocation();
   const handleTaskFilter = ({ target }) => {
-    console.log(history);
-    console.log(location);
-    history.push({
-      ...location,
-      search: `task=${target.value}`,
-    });
+    if (!target.value) {
+      console.log('wewe');
+      history.push({
+        ...location,
+        search: '',
+      });
+    }
+    if (target.value) {
+      history.push({
+        ...location,
+        search: `task=${target.value}`,
+      });
+    }
 
     filterTasksAction(target.value);
   };
 
   const handleToggle = () => {
-    setToggleInput(state => !state);
+    toggleFilterAction(!filterToggle);
   };
   return (
     <div className={css.container}>
@@ -46,11 +60,12 @@ const SprintTableTitle = ({ filter, filterTasksAction }) => {
           <button
             onClick={handleToggle}
             className={`${css['sprint__filter-task-btn']}`}
+            data-filter="filter"
           ></button>
 
           <CSSTransition
             classNames={animation}
-            in={toggleInput}
+            in={filterToggle}
             timeout={200}
             unmountOnExit
             mountOnEnter
@@ -61,6 +76,7 @@ const SprintTableTitle = ({ filter, filterTasksAction }) => {
               value={filter}
               name="taskFilter"
               onChange={handleTaskFilter}
+              data-filter="filter"
             />
           </CSSTransition>
         </li>
@@ -70,8 +86,10 @@ const SprintTableTitle = ({ filter, filterTasksAction }) => {
 };
 const mapStateToProps = state => ({
   filter: filterSelector(state),
+  filterToggle: state.tasks.toggleFilter,
 });
 const mapDispatchToProps = {
   filterTasksAction,
+  toggleFilterAction,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SprintTableTitle);
