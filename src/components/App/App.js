@@ -44,7 +44,7 @@ const App = () => {
         </Switch> */}
 
         <Header />
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={null}>
           <Switch>
             {routes.map((route) =>
               route.private ? (
