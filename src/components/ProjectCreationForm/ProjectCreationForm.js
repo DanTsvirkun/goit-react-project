@@ -88,11 +88,11 @@ const ProjectCreationForm = ({ addProject, status, onClose }) => {
   const validate = (title, description) => {
     const errors = {};
 
-    if (title.length < 3) {
+    if (title.length < 2) {
       errors.title = "Title length is too short";
     }
 
-    if (title.length > 20) {
+    if (title.length > 40) {
       errors.title = "Title length is too long";
     }
 
@@ -100,7 +100,7 @@ const ProjectCreationForm = ({ addProject, status, onClose }) => {
       errors.description = "Description length is too short";
     }
 
-    if (description.length > 100) {
+    if (description.length > 160) {
       errors.description = "Description length is too long";
     }
 
