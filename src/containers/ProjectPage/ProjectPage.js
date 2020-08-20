@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
 import SingleSprint from "../../components/SingleSprint/SingleSprint";
 import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
@@ -33,6 +33,7 @@ const ProjectPage = ({
   getSprintsOperation,
   getByEmails,
   email,
+  projects,
 }) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
@@ -46,9 +47,25 @@ const ProjectPage = ({
   };
 
   useEffect(() => {
-    getByEmails(email);
-    getSprintByProjectId(projectId);
+    let currentProjects;
+    async function fetchData() {
+      currentProjects = await getByEmails(email);
+      await getSprintByProjectId(projectId);
+      let currentProject = currentProjects.find(
+        (project) => project.id === projectId
+      );
+      if (currentProject === undefined) {
+        currentProject = { members: [] };
+      }
+      if (!currentProject.members.includes(email)) {
+        history.replace("/projects");
+        alert("Ви не є участником цього проекту.");
+      }
+    }
+    fetchData();
   }, []);
+
+  // http://localhost:3000/projects/L7iOeUSqnngFrL1VRlbv/sprints
 
   return (
     <>
@@ -95,6 +112,12 @@ const ProjectPage = ({
               </div>
               <div className={styles.project__info}></div>
               <ul className={styles.sprints_container}>
+                {!sprints.length && (
+                  <h2 className={styles.emptyList}>
+                    Ваш проект не має спринтів, скористайтесь кнопкою "Створити
+                    спринт"
+                  </h2>
+                )}
                 {sprints.map((sprint) => (
                   <SingleSprint
                     key={sprint.id}
@@ -127,6 +150,7 @@ const mapStateToProps = (state, ownProps) => {
     loader: state.loader,
     error: state.error,
     projectsLength: state.projects.length,
+    projects: state.projects,
     email: projectSelectors.authEmailSelector(state),
   };
 };
