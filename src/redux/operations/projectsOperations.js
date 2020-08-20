@@ -43,9 +43,10 @@ const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
       .where("projectId", "==", id)
       .get();
     await db.collection("projects").doc(id).delete();
-    sprintsToDelete.docs.forEach(
-      async (doc) => await db.collection("sprints").doc(doc.id).delete()
-    );
+    sprintsToDelete.docs.forEach(async (doc) => {
+      await db.collection("sprints").doc(doc.id).delete();
+      await db.collection("tasks").where("sprintId", "==", doc.id).delete();
+    });
     dispatch(projectsActions.deleteProject(id));
   } catch (error) {
     dispatch(errorOn(error));
