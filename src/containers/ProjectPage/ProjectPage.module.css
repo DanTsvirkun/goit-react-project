@@ -7,6 +7,8 @@
   color: #181c27;
   display: inline-block;
   margin-right: 20px;
+  word-wrap: break-word;
+  max-width: 300px;
 }
 
 .projectWrapper {
