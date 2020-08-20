@@ -1,15 +1,16 @@
 .container {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sprint {
-	/* padding: 20px 0 0 0; */
+  /* padding: 20px 0 0 0; */
 }
 
 .sprint__main-wrapper {
-	width: 970px;
-	padding: 20px 30px 20px 70px;
+  width: 970px;
+  padding: 20px 0;
+  position: relative;
 }
 
 /* .sprint__main-wrapper::after {
@@ -23,3 +24,10 @@
 	left: 0;
 	overflow: hidden;
 } */
+
+.sprint__loader-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

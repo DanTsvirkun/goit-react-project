@@ -1,18 +1,16 @@
 .container {
-  padding-bottom: 10px;
   position: relative;
+  border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+  padding: 0 30px 10px 70px;
 }
 
-.container::after {
+/* .container::after {
   content: '';
   position: absolute;
-  width: calc(100vw - 18.4vw - 70px);
-  height: 1px;
-  background-color: rgba(24, 28, 39, 0.1);
-  bottom: 0;
-  left: -70px;
-  overflow: hidden;
-}
+  border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+  padding: 0 30px 10px 70px;
+  width: 100%;
+} */
 
 .sprint__table-list {
   padding: 0 30px 0 30px;
@@ -48,7 +46,7 @@
   font-size: 14px;
   letter-spacing: 0.04em;
   color: #181c27;
-  padding: 2px 0;
+  padding: 2px 0 2px 5px;
   outline: none;
 }
 

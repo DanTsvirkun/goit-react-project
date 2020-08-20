@@ -2,12 +2,14 @@
   /* width: 530px; */
   /* height: 768px; */
   /* box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1); */
- 
+
 }
-.sprint__form{
- margin: 0 auto;
- padding: 0px 50px 0;
+
+.sprint__form {
+  margin: 0 auto;
+  padding: 0px 50px 0;
 }
+
 .sprint__form-title {
   text-align: center;
   font-family: 'Montserrat';
@@ -22,7 +24,7 @@
 
 .sprint__form-list {
   list-style: none;
-  
+
 }
 
 
@@ -78,13 +80,16 @@
   position: absolute;
   top: 38px;
   right: -26px;
+  opacity: 0.6;
 }
-.sprint__form-field--validation-plan{
+
+.sprint__form-field--validation-plan {
   font-size: 16px;
   color: red;
   position: absolute;
   bottom: 0;
   left: 0;
+  opacity: 0.6;
 }
 
 /* .sprint__form-field:required:focus:valid:not(:placeholder-shown) {

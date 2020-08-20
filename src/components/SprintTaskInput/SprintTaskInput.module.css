@@ -10,6 +10,7 @@
     letter-spacing: 0.04em;
     color: #181c27;
     outline: none;
+
 }
 
 .sprints__task-spent-label {
@@ -23,4 +24,5 @@
     top: -18px;
     right: -24px;
     width: 140px;
+    opacity: 0.6;
 }
