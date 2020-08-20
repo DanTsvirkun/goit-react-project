@@ -119,7 +119,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();   
+    event.preventDefault();
 
     const { title, description } = projectItem;
 
@@ -134,6 +134,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
       addProject(project);
       setProjectItem(initialState);
       onClose();
+      setErrors({});
     }
   };
 
@@ -171,8 +172,8 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
   );
 };
 
-const mapStateToProps = (state) =>( {
-  email: projectsSelectors.authEmailSelector(state),  
+const mapStateToProps = (state) => ({
+  email: projectsSelectors.authEmailSelector(state),
 });
 
 const mapDispatchToProps = {
