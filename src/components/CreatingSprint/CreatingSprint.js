@@ -127,7 +127,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             type="text"
             required
             className={`${css.input__field} ${css.input__duration}`}
-            maxlength="3"
+            maxLength="3"
             onChange={handleDuration}
           />
           {durationErr ? <div className={css.error}>{durationErr}</div> : ""}
