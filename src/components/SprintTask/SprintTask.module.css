@@ -4,17 +4,17 @@
   /* align-items: center; */
   flex-wrap: wrap;
   /* text-align: center; */
+  /* justify-content: space-evenly; */
 }
 
-.sprint__task-item {
-}
+.sprint__task-item {}
 
 .sprint__task-item:first-child {
   width: 170px;
 }
 
 .sprint__task-item:not(:first-child) {
-  width: 100px;
+  width: 110px;
 }
 
 .sprint__tasks-item {
