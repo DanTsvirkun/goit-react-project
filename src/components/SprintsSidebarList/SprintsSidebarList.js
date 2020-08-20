@@ -22,7 +22,7 @@ const SprintsSidebarList = ({ match = "test" }) => {
           id: 4,
         },
         {
-          title: "Sprint Burndown Chart 5",
+          title: "Sprint Burndown Chart 1",
           id: 5,
         },
       ].map((item) => (

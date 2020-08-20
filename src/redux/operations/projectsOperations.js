@@ -73,6 +73,7 @@ const getProjectsByEmailOperation = (email) => async (dispatch) => {
       id: doc.id,
     }));
     dispatch(projectsActions.getProjects(answer));
+    return answer;
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
