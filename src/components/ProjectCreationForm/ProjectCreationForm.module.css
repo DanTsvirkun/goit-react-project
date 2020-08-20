@@ -58,7 +58,7 @@
 }
 
 .completeBtn:hover,
-.completeBtn:focus{
+.completeBtn:focus {
   outline: none;
   background: #ffffff;
   color: #ff6b08;

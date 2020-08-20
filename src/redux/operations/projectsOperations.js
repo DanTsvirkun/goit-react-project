@@ -80,9 +80,27 @@ const getProjectsByEmailOperation = (email) => async (dispatch) => {
   }
 };
 
+const getProjectsByEmailOperationCustom = (email) => async (dispatch) => {
+  try {
+    const result = await db
+      .collection("projects")
+      .where("members", "array-contains", email)
+      .get();
+    const answer = result.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    dispatch(projectsActions.getProjects(answer));
+  } catch (error) {
+    dispatch(errorOn(error));
+  } finally {
+  }
+};
+
 export default {
   addProjectOperation,
   getProjectsOperation,
   deleteProjectOperation,
   getProjectsByEmailOperation,
+  getProjectsByEmailOperationCustom,
 };
