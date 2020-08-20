@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useLocation } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
@@ -27,6 +28,8 @@ const ProjectPage = ({
   loader,
   error,
   getSprintByProjectId,
+  projectLength,
+  getSprintsOperation,
 }) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
@@ -40,9 +43,14 @@ const ProjectPage = ({
   };
 
   useEffect(() => {
-    getSprintByProjectId(projectId);
+    console.log(projectLength);
+    if (!projectLength) {
+      getSprintByProjectId(projectId);
+    } else {
+      getSprintsOperation();
+    }
     //чистить массив или лоадер
-  }, []);
+  }, [projectLength, getSprintByProjectId, getSprintsOperation]);
 
   return (
     <>
@@ -61,7 +69,7 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  <h1 className={styles.project__header}>{project.title}</h1>
+                  <h2 className={styles.project__header}>{project.title}</h2>
                   <button
                     className={`${styles.button} ${styles.button__pencil}`}
                   ></button>
@@ -120,6 +128,7 @@ const mapStateToProps = (state, ownProps) => {
     projectId: ownProps.location.pathname.split("/")[2],
     loader: state.loader,
     error: state.error,
+    projectsLength: state.projects.length,
   };
 };
 
