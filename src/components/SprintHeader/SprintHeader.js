@@ -10,17 +10,19 @@ import {
   itemsSelector,
   showModalSelector,
   currentIdxDaySelector,
+  findCurrentSprint,
 } from '../../redux/selectors/TasksSelectors';
 import SprintAddTaskForm from '../SprintAddTaskForm/SprintAddTaskForm';
 const currentDate = moment().format('DD.MM.YYYY');
 const SprintHeader = ({
-  title = 'Sprint Burndown Chart 1',
   tasks,
   isShowModal,
   showModalAction,
   currentDayIdx,
   loader,
   indexDayAction,
+  params,
+  sprint,
 }) => {
   const [rightArrow, setRightArrow] = useState(false);
   const [leftArrow, setLeftArrow] = useState(false);
@@ -31,6 +33,7 @@ const SprintHeader = ({
     }
     return null;
   };
+  console.log(sprint);
 
   const showModal = () => {
     showModalAction();
@@ -61,9 +64,9 @@ const SprintHeader = ({
   return (
     <>
       <div className={css.container}>
-        <div className={css['sprint__date']}>
-          {!loader && tasks.length > 0 && (
-            <>
+        {tasks.length > 0 && sprint && (
+          <>
+            <div className={css['sprint__date']}>
               <p className={css['sprint__date-sprint']}>
                 {currentDayIdx !== 0 && (
                   <span
@@ -75,7 +78,6 @@ const SprintHeader = ({
                     }
                   ></span>
                 )}
-
                 {tasks.length > 0 && currentDayIdx + 1}
                 <span className={css['sprint__date-sprint--span']}>
                   {tasks.length > 0 && '/'}
@@ -93,33 +95,43 @@ const SprintHeader = ({
                 )}
               </p>
               <p className={css['sprint__current-date']}> {taskDay()} </p>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
         <div className={css['sprint__header-wrapper']}>
           <div className={css['sprint__title-wrapper']}>
-            <h1 className={css['sprint__title']}> {title} </h1>
-            <button className={css['sprint__change-name-btn']}> </button>
+            {sprint && (
+              <>
+                <h1 className={css['sprint__title']}> {sprint.title} </h1>
+                <button className={css['sprint__change-name-btn']}> </button>
+              </>
+            )}
           </div>
+
           <div className={css['sprint__add-task-wrapper']}>
             <button
               onClick={showModal}
               className={css['sprint__add-task-btn']}
             ></button>
-            <p className={css['sprint__add-task-offer']}> Створити задачу </p>
+            <p className={css['sprint__add-task-offer']}>Створити задачу</p>
           </div>
         </div>
       </div>
-      <SprintAddTaskForm status={isShowModal} onClose={showModal} />
+      <SprintAddTaskForm
+        status={isShowModal}
+        sprint={sprint}
+        onClose={showModal}
+      />
     </>
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   tasks: itemsSelector(state),
   isShowModal: showModalSelector(state),
   currentDayIdx: currentIdxDaySelector(state),
   loader: state.loader,
   error: state.error,
+  sprint: findCurrentSprint(state, ownProps.params),
 });
 const mapDispatchToPorps = {
   showModalAction: showModalAddTaskAction,
