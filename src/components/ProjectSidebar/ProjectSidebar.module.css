@@ -1,6 +1,6 @@
 .project-sidebar__wrapper {
   width: 200px;
-  padding: 20px 0 0 0;
+  /* padding: 20px 0 0 0; */
   position: relative;
 }
 
@@ -12,11 +12,6 @@
   background-color: rgba(24, 28, 39, 0.1);
   top: 0;
   right: 0;
-}
-
-.project-sidebar__wrapper-link {
-  width: 170px;
-  text-align: left;
 }
 
 .project-sidebar__link {
@@ -38,7 +33,7 @@
 .project-sidebar__add-wrapper {
   width: 162px;
   height: 76px;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 .project-sidebar__add-btn {

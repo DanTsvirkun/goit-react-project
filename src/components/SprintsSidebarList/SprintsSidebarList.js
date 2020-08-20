@@ -21,6 +21,10 @@ const SprintsSidebarList = ({ match = 'test' }) => {
           title: 'Sprint Burndown Chart 4',
           id: 4,
         },
+        {
+          title: 'Sprint Burndown Chart 1',
+          id: 1,
+        },
       ].map(item => (
         <li key={item.id} className={css['sprint__sidebar-item']}>
           <NavLink
