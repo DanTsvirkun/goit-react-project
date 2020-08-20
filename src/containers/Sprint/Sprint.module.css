@@ -10,7 +10,31 @@
 .sprint__main-wrapper {
   width: 970px;
   padding: 20px 0;
+  margin: 0 auto;
+  padding: 30px;
   position: relative;
+  /* border-right: 1px solid rgba(24, 28, 39, 0.1); */
+  min-height: calc(100vh - 81px);
+}
+
+.sprint__main-wrapper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-right: 1px solid rgba(24, 28, 39, 0.1);
+  min-height: calc(100vh - 81px);
+  top: 0;
+  left: 0;
+}
+
+.sprint__main-wrapper::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-right: 1px solid rgba(24, 28, 39, 0.1);
+  min-height: calc(100vh - 81px);
+  top: 0;
+  right: 0;
 }
 
 /* .sprint__main-wrapper::after {

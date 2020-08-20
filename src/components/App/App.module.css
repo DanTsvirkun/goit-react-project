@@ -1,4 +1,3 @@
-
 @value color_1: #8c72df;
 @value color_2: #ff765f;
 @value color_3: #71df87;
@@ -18,6 +17,7 @@
 .wrapper {
   background-color: #f1f2f7;
   min-height: 100vh;
+  /* width: 100vw; */
 }
 
 .container {
