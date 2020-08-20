@@ -132,5 +132,5 @@
 .sprints_container {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
