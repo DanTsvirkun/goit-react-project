@@ -12,6 +12,14 @@
 .projectWrapper {
   width: 970px;
   margin-left: 70px;
+  height: calc(100vh - 80px);
+}
+
+.loader__tuning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .page_wrapper {

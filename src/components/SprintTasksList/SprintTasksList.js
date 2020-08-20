@@ -84,16 +84,3 @@ const mapDispatchToProps = {
   toggleFilterAction,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SprintTasksList);
-
-// [{
-//     title: 'KN-1 Configure project',
-//   },
-//   {
-//     title: 'KN-3 Create Button Component',
-//   },
-//   {
-//     title: 'KN-4 Create Button Component',
-//   },
-//   {
-//     title: 'KN-5 Create Button Component',
-//   },

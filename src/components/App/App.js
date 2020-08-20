@@ -1,20 +1,20 @@
-import React, { Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
-import { useSelector, useDispatch } from 'react-redux';
-import Header from '../Header/Header';
-import Registration from '../../containers/Registration/Registration';
-import Login from '../../containers/Login/Login';
-import SprintPage from '../../containers/Sprint/Sprint';
-import styles from './App.module.css';
-import ProjectPage from '../../containers/ProjectPage/ProjectPage';
-import Projects from '../../containers/Projects/Projects.js';
-import ProjectSidebar from '../../components/ProjectSidebar/ProjectSidebar';
-import ModalSidebar from '../ModalSidebar/ModalSidebar';
-import routes from '../../routes';
-import PrivateRoute from '../CustomRoutes/PrivateRoute';
-import PublicRoute from '../CustomRoutes/PublicRoute';
-import Loader from '../Loader/Loader';
+import React, { Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
+import { useSelector, useDispatch } from "react-redux";
+import Header from "../Header/Header";
+import Registration from "../../containers/Registration/Registration";
+import Login from "../../containers/Login/Login";
+import SprintPage from "../../containers/Sprint/Sprint";
+import styles from "./App.module.css";
+import ProjectPage from "../../containers/ProjectPage/ProjectPage";
+import Projects from "../../containers/Projects/Projects.js";
+import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
+import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import routes from "../../routes";
+import PrivateRoute from "../CustomRoutes/PrivateRoute";
+import PublicRoute from "../CustomRoutes/PublicRoute";
+import Loader from "../Loader/Loader";
 
 const App = () => {
   //Приммер подключения модального окна\\
@@ -33,7 +33,7 @@ const App = () => {
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
         {/* Приммер подключения модального окна */}
         {/* <Header />
-        <ProjectPage /> */}
+         <ProjectPage /> 
         {/* <SprintPage /> */}
         {/* <Registration />  */}
         {/* <Login /> */}
@@ -46,12 +46,12 @@ const App = () => {
         <Header />
         <Suspense fallback={null}>
           <Switch>
-            {routes.map(route =>
+            {routes.map((route) =>
               route.private ? (
                 <PrivateRoute key={route.label} {...route} />
               ) : (
-                <PublicRoute key={route.label} {...route} />
-              ),
+                  <PublicRoute key={route.label} {...route} />
+                )
             )}
           </Switch>
         </Suspense>
