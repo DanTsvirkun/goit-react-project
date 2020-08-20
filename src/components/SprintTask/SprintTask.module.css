@@ -89,3 +89,7 @@
   background-image: url('./delete.svg');
   outline: none;
 }
+
+.sprint__task-React-Tooltiop {
+  width: 400px;
+}
