@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useLocation } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
@@ -11,22 +12,27 @@ import {
   itemIdSelector,
 } from "../../redux/selectors/SprintsSelector";
 import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
-
-import styles from "./ProjectPage.module.css";
 import { getSprintsOperation } from "../../redux/operations/SprintOperation";
 import MembersCreationModal from "../../components/MembersModal/MembersModal";
 import Loader from "../../components/Loader/Loader";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import projectSelectors from "../../redux/selectors/projectsSelectors";
+import styles from "./ProjectPage.module.css";
 
 const ProjectPage = ({
   history,
   match,
   sprints = [],
   project = {},
-  projectId = "kiska",
+  projectId,
   location,
   loader,
   error,
   getSprintByProjectId,
+  projectLength,
+  getSprintsOperation,
+  getByEmails,
+  email,
 }) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
@@ -40,8 +46,8 @@ const ProjectPage = ({
   };
 
   useEffect(() => {
+    getByEmails(email);
     getSprintByProjectId(projectId);
-    //чистить массив или лоадер
   }, []);
 
   return (
@@ -61,7 +67,7 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  <h1 className={styles.project__header}>{project.title}</h1>
+                  <h2 className={styles.project__header}>{project.title}</h2>
                   <button
                     className={`${styles.button} ${styles.button__pencil}`}
                   ></button>
@@ -120,11 +126,14 @@ const mapStateToProps = (state, ownProps) => {
     projectId: ownProps.location.pathname.split("/")[2],
     loader: state.loader,
     error: state.error,
+    projectsLength: state.projects.length,
+    email: projectSelectors.authEmailSelector(state),
   };
 };
 
 const mapDispatchToProps = {
   getSprintByProjectId,
+  getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
