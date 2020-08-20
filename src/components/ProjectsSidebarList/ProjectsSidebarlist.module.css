@@ -5,15 +5,18 @@
 
 .project__sidebar-list {
   display: flex;
+  align-content: flex-start;
   flex-wrap: wrap;
   width: 170px;
-  margin: 220px 0 220px;
+  height: 300px;
+  margin: 70px 0;
   list-style: none;
 }
 
 .project__sidebar-item {
   text-align: left;
   width: 170px;
+  height: 36px;
   position: relative;
 }
 
@@ -23,7 +26,8 @@
 
 .project__sidebar-link {
   width: 140px;
-  padding: 0 0px 0 50px;
+  height: 36px;
+  padding-left: 50px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
@@ -33,7 +37,8 @@
   color: #181c27;
   text-decoration: none;
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
 }
 
 .project__sidebar-link--active {

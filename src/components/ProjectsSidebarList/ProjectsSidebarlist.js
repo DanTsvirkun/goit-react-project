@@ -1,29 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import projectsSelectors from "../../redux/selectors/projectsSelectors";
 import css from "./ProjectsSidebarlist.module.css";
 
-const projectsSidebarList = ({ match = "test" }) => {
+const ProjectsSidebarList = ({ projects }) => {
+  console.log(projects);
   return (
     <ul className={css["project__sidebar-list"]}>
-      {[
-        {
-          title: "Project 1",
-          id: 1,
-        },
-        {
-          title: "Дуже довга назва проекту",
-          id: 2,
-        },
-        {
-          title: "Project 3",
-          id: 3,
-        },
-      ].map((item) => (
+      {projects.map((item) => (
         <li key={item.id} className={css["project__sidebar-item"]}>
           <NavLink
             to={{
-              pathname: match.url,
-              search: `?project=${item.id}`,
+              pathname: `/projects/${item.id}/sprints`,
             }}
             activeClassName={css["project__sidebar-link--active"]}
             className={css["project__sidebar-link"]}
@@ -36,4 +26,18 @@ const projectsSidebarList = ({ match = "test" }) => {
   );
 };
 
-export default projectsSidebarList;
+const mapStateToProps = (state) => {
+  return {
+    email: projectsSelectors.authEmailSelector(state),
+    projects: projectsSelectors.projectsSelector(state),
+  };
+};
+
+const mapDispatchToProps = {
+  getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectsSidebarList);

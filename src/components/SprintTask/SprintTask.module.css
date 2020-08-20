@@ -6,7 +6,8 @@
   /* text-align: center; */
 }
 
-.sprint__task-item {}
+.sprint__task-item {
+}
 
 .sprint__task-item:first-child {
   width: 170px;
@@ -34,7 +35,7 @@
   /* margin-top: 8px; */
   padding-top: 7px;
   display: block;
-  content: '';
+  content: "";
   width: 106px;
   /* border: 1px solid rgba(24, 28, 39, 0.2); */
   border-bottom: 1px solid rgba(24, 28, 39, 0.2);
@@ -61,12 +62,9 @@
   text-align: center;
 }
 
-
 .sprint__tasks-name {
   word-wrap: break-word;
 }
-
-
 
 .sprint__tasks-total {
   padding-left: 10px;
@@ -75,6 +73,9 @@
 
 .sprint__task-item-delete {
   align-self: center;
+  position: absolute;
+  right: 0;
+  transform: translateX(-30px);
 }
 
 .sprint__task-delete-btn {
@@ -86,6 +87,10 @@
   background-size: contain;
   background-color: transparent;
   cursor: pointer;
-  background-image: url('./delete.svg');
+  background-image: url("./delete.svg");
   outline: none;
+}
+
+.sprint__task-React-Tooltiop {
+  width: 400px;
 }

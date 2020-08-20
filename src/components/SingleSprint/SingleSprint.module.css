@@ -5,6 +5,7 @@
 
 .single__item:not(:last-child) {
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .single__chart {

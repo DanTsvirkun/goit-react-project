@@ -1,6 +1,6 @@
 .container {
-  /* width: 970px;
-  padding: 20px 30px 0 70px; */
+  /* width: 970px; */
+  /* padding: 0px 30px 0 70px; */
   margin-bottom: 30px;
 }
 
@@ -8,10 +8,11 @@
   width: 222px;
   display: flex;
   align-items: baseline;
+  margin: 0 0px 20px 20px;
 }
 
 .sprint__date-sprint {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -19,11 +20,12 @@
   letter-spacing: 0.04em;
   color: #181c27;
   margin-right: 30px;
+  /* padding-right: 30px; */
   position: relative;
 }
 
 .sprint__date-sprint--span {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -33,7 +35,7 @@
 }
 
 .sprint__current-date {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -56,7 +58,7 @@
 }
 
 .sprint__title {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -76,7 +78,7 @@
   background-color: transparent;
   cursor: pointer;
   outline: none;
-  background-image: url('../../Icons/pencil.svg');
+  background-image: url("../../Icons/pencil.svg");
 }
 
 .sprint__add-task-wrapper {
@@ -88,7 +90,6 @@
 
 .sprint__add-task-btn {
   display: block;
-  margin: 0 auto;
   width: 44px;
   height: 44px;
   box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
@@ -96,7 +97,7 @@
   border: none;
   background-repeat: no-repeat;
   cursor: pointer;
-  background-image: url('../../Icons/plus.svg');
+  background-image: url("../../Icons/plus.svg");
   outline: none;
   transition: all 300ms linear;
 }
@@ -107,9 +108,8 @@
   box-shadow: 0px 0px 8px rgba(255, 107, 8);
 }
 
-
 .sprint__add-task-offer {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -121,11 +121,13 @@
 .sprint__date-arrow {
   cursor: pointer;
   position: absolute;
-  width: 14px;
-  height: 14px;
+  /* display: inline-block; */
+  width: 12px;
+  height: 12px;
   background-size: cover;
-  background-image: url('../SprintSidebar/Arrow.svg');
+  background-image: url("../SprintSidebar/Arrow.svg");
   opacity: 0.3;
+  /* margin: 0 6px; */
 }
 
 .sprint__date-arrow--active {
@@ -133,12 +135,12 @@
 }
 
 .sprint__date-arrow:first-child {
-  right: 30px;
-  top: 4px;
+  left: -21px;
+  top: 5px;
 }
 
 .sprint__date-arrow:last-child {
   transform: rotate(180deg);
-  left: 30px;
-  top: 4px;
+  right: -20px;
+  top: 5px;
 }

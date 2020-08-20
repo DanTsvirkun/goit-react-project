@@ -1,7 +1,23 @@
 .list {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  /* margin-top: 114px; */
   overflow: hidden;
   padding: 0 9px 60px 9px;
+}
+
+.emptyList {
+  text-align: center;
+  color: rgba(24, 28, 39, 0.3);
+  font-family: "Montserrat";
+  margin-top: 100px;
+  font-size: 24px;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;  
 }
