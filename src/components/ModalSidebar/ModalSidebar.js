@@ -22,7 +22,7 @@ const ModalSidebar = ({ children, onSubmit, status, onClose }) => {
     onSubmit(e);
   };
 
-  const closeWindow = () => {
+  const closeWindow = async () => {
     removeListener();
     onClose();
   };
