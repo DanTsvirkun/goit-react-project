@@ -4,14 +4,14 @@ import { errorOn, errorOff } from "../actions/errorActions";
 import projectsActions from "../actions/projectsActions";
 
 const addProjectOperation = (project) => async (dispatch) => {
-  try {    
+  try {
     dispatch(loaderOn());
     const result = await db.collection("projects").add(project);
     const answer = {
       ...project,
       id: result.id,
     };
-    dispatch(projectsActions.addProject(answer));   
+    dispatch(projectsActions.addProject(answer));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -20,14 +20,14 @@ const addProjectOperation = (project) => async (dispatch) => {
 };
 
 const getProjectsOperation = () => async (dispatch) => {
-  try {    
+  try {
     dispatch(loaderOn());
     const result = await db.collection("projects").get();
     const answer = result.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));
-    dispatch(projectsActions.getProjects(answer));    
+    dispatch(projectsActions.getProjects(answer));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -35,12 +35,17 @@ const getProjectsOperation = () => async (dispatch) => {
   }
 };
 
-const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => { 
+const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    const result = await db.collection("projects").doc(id).delete();    
+    const test = await db
+      .collection("sprints")
+      .where("projectId", "==", id)
+      .get();
+    console.log(test.data());
+    const result = await db.collection("projects").doc(id).delete();
     dispatch(projectsActions.deleteProject(id));
-  } catch (error) {    
+  } catch (error) {
     dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
