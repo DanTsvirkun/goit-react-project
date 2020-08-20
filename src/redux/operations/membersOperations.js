@@ -2,13 +2,12 @@ import { loaderOn, loaderOff } from "../actions/loaderActions";
 import { errorOn } from "../actions/errorActions";
 import { db } from "../../config";
 
-const addMember = ({ projectId, email }) => async (dispatch) => {
+export const addMember = ({ projectId, email }) => async (dispatch) => {
   try {
-    dispatch(loaderOn());
     const result = await db.collection("projects").doc(projectId).get();
     const currentMembers = result.data().members;
     if (currentMembers.find((element) => element === email)) {
-      return "Цей користувач вже є учасником";
+      return "Цей користувач вже є участником";
     } else {
       const newMembers = [...currentMembers, email];
       await db
@@ -18,9 +17,13 @@ const addMember = ({ projectId, email }) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(errorOn(error));
-  } finally {
-    dispatch(loaderOff());
   }
 };
 
-export default addMember;
+export const updateMembers = (members, projectId) => async (dispatch) => {
+  try {
+    await db.collection("projects").doc(projectId).update({ members: members });
+  } catch (error) {
+    dispatch(errorOn(error));
+  }
+};

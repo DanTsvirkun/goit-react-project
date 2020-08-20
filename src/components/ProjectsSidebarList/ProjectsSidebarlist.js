@@ -6,7 +6,6 @@ import projectsSelectors from "../../redux/selectors/projectsSelectors";
 import css from "./ProjectsSidebarlist.module.css";
 
 const ProjectsSidebarList = ({ projects }) => {
-  console.log(projects);
   return (
     <ul className={css["project__sidebar-list"]}>
       {projects.map((item) => (

@@ -16,9 +16,16 @@
 
 .membersItem {
   text-align: center;
-  display: block;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   font-family: "Montserrat";
+}
+
+.membersItem:nth-child(1) .deleteButton {
+  display: none;
 }
 
 .membersItem:not(:last-child) {
@@ -27,8 +34,11 @@
 
 .deleteButton {
   background-color: transparent;
+  width: 20px;
+  height: 20px;
   border: none;
   outline: none;
   margin-left: 20px;
   cursor: pointer;
+  background: url("../../Icons/trash.svg");
 }

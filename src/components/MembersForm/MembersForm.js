@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useLocation } from "react-router-dom";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import formStyles from "../ProjectCreationForm/ProjectCreationForm.module.css";
-import addMember from "../../redux/operations/addMember";
+import { addMember } from "../../redux/operations/membersOperations";
 import MemberList from "../MemberList/MemberList";
+import projects from "../../redux/operations/projectsOperations";
 
 const EmailTextField = withStyles({
   root: {
@@ -38,10 +39,16 @@ const EmailTextField = withStyles({
   },
 })(TextField);
 
-const MembersForm = ({ addMember, status, onClose }) => {
+const MembersForm = ({
+  addMember,
+  getProjects,
+  status,
+  onClose,
+  emailProp,
+}) => {
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({});
-  let newLocation = useLocation();
+  const newLocation = useLocation();
 
   const handleInput = ({ target }) => {
     const { value } = target;
@@ -65,8 +72,9 @@ const MembersForm = ({ addMember, status, onClose }) => {
   };
 
   function customOnClose() {
-    onClose();
+    setEmail("");
     setErrors({});
+    onClose();
   }
 
   const handleSubmit = async (event) => {
@@ -75,15 +83,17 @@ const MembersForm = ({ addMember, status, onClose }) => {
     const projectId = newLocation.pathname.split("/")[2];
     const value = { projectId, email };
 
-    const result = validate(email);
+    const result = await validate(email);
 
     if (!result) {
       const answer = await addMember(value);
-      if (answer === "Цей користувач вже є учасником") {
-        setErrors({ title: "Цей користувач вже є учасником" });
+      console.log(answer);
+      if (answer === "Цей користувач вже є участником") {
+        setErrors({ title: "Цей користувач вже є участником" });
       } else {
         setEmail("");
-        customOnClose();
+        await getProjects(emailProp);
+        setErrors({});
       }
     }
   };
@@ -114,13 +124,22 @@ const MembersForm = ({ addMember, status, onClose }) => {
       </form>
 
       <MemberList />
-
     </ModalSidebar>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addMember: (value) => dispatch(addMember(value)),
+const mapStateToProps = (state) => ({
+  emailProp: state.auth.email,
 });
 
-export default connect(null, mapDispatchToProps)(MembersForm);
+// const mapDispatchToProps = (dispatch) => ({
+//   addMember: (value) => dispatch(addMember(value)),
+//   getProjects: (value) => dispatch(projects.getProjectsByEmailOperation(value)),
+// });
+
+const mapDispatchToProps = {
+  addMember,
+  getProjects: projects.getProjectsByEmailOperationCustom,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MembersForm);
