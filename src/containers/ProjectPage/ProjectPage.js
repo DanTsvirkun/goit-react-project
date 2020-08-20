@@ -15,12 +15,17 @@ import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
 import styles from "./ProjectPage.module.css";
 import { getSprintsOperation } from "../../redux/operations/SprintOperation";
 import MembersCreationModal from "../../components/MembersModal/MembersModal";
+import Loader from "../../components/Loader/Loader";
 
 const ProjectPage = ({
+  history,
+  match,
   sprints = [],
   project = {},
-  projectId,
+  projectId = "kiska",
   location,
+  loader,
+  error,
   getSprintByProjectId,
 }) => {
   const [modal, setModal] = useState(false);
@@ -36,56 +41,72 @@ const ProjectPage = ({
 
   useEffect(() => {
     getSprintByProjectId(projectId);
+    //чистить массив или лоадер
   }, []);
 
   return (
     <>
       <div className={styles.page_wrapper}>
-        <ProjectSidebar />
-        <CreatingSprint location={location} />
-        <div className={styles.projectWrapper}>
-          <div className={styles.project__header__wrapper}>
-            <div
-              className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
-            >
-              <h1 className={styles.project__header}>{project.title}</h1>
-              <button
-                className={`${styles.button} ${styles.button__pencil}`}
-              ></button>
-            </div>
-            <div className={styles.plusBtnWrapper}>
-              <div
-                className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
-              >
-                <button
-                  className={`${styles.button} ${styles.button__plus}`}
-                  onClick={modalToggle}
-                ></button>
-                <p className={styles.sprint_text}>Створити спринт</p>
-              </div>
-              <div
-                className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
-              >
-                <button
-                  className={`${styles.button} ${styles.button__plus}`}
-                  onClick={membersModalToggle}
-                ></button>
-                <p className={styles.sprint_text}>Додати людей</p>
-              </div>
-            </div>
+        {loader && (
+          <div className={styles.loader__tuning}>
+            <Loader />
           </div>
-          <div className={styles.project__info}></div>
-          <ul className={styles.sprints_container}>
-            {sprints.map((sprint) => (
-              <SingleSprint key={sprint.id} id={sprint.id} sprint={sprint} />
-            ))}
-          </ul>
-          <SprintCreationModal status={modal} onClose={modalToggle} />
-          <MembersCreationModal
-            status={membersModal}
-            onClose={membersModalToggle}
-          />
-        </div>
+        )}
+        {!loader && !error && (
+          <>
+            <ProjectSidebar />
+            <CreatingSprint location={location} />
+            <div className={styles.projectWrapper}>
+              <div className={styles.project__header__wrapper}>
+                <div
+                  className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
+                >
+                  <h1 className={styles.project__header}>{project.title}</h1>
+                  <button
+                    className={`${styles.button} ${styles.button__pencil}`}
+                  ></button>
+                </div>
+                <div className={styles.plusBtnWrapper}>
+                  <div
+                    className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
+                  >
+                    <button
+                      className={`${styles.button} ${styles.button__plus}`}
+                      onClick={modalToggle}
+                    ></button>
+                    <p className={styles.sprint_text}>Створити спринт</p>
+                  </div>
+                  <div
+                    className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
+                  >
+                    <button
+                      className={`${styles.button} ${styles.button__plus}`}
+                      onClick={membersModalToggle}
+                    ></button>
+                    <p className={styles.sprint_text}>Додати людей</p>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.project__info}></div>
+              <ul className={styles.sprints_container}>
+                {sprints.map((sprint) => (
+                  <SingleSprint
+                    key={sprint.id}
+                    id={sprint.id}
+                    sprint={sprint}
+                    history={history}
+                    match={match}
+                  />
+                ))}
+              </ul>
+              <SprintCreationModal status={modal} onClose={modalToggle} />
+              <MembersCreationModal
+                status={membersModal}
+                onClose={membersModalToggle}
+              />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
@@ -97,6 +118,8 @@ const mapStateToProps = (state, ownProps) => {
     project: itemIdSelector(state, ownProps.location.pathname.split("/")[2]),
     location: ownProps.location,
     projectId: ownProps.location.pathname.split("/")[2],
+    loader: state.loader,
+    error: state.error,
   };
 };
 
