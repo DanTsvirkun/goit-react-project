@@ -18,6 +18,18 @@ const projectsSidebarList = ({ match = "test" }) => {
           title: "Project 3",
           id: 3,
         },
+        {
+          title: "Project 1",
+          id: 4,
+        },
+        {
+          title: "Дуже довга назва проекту",
+          id: 5,
+        },
+        {
+          title: "Project 3",
+          id: 6,
+        },
       ].map((item) => (
         <li key={item.id} className={css["project__sidebar-item"]}>
           <NavLink
