@@ -55,7 +55,7 @@ export const getTasksOperation = sprintId => async dispatch => {
 export const addTaskOperation = task => async dispatch => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     const result = await db.collection('tasks').add(task);
     const answer = {
       ...task,
@@ -66,7 +66,7 @@ export const addTaskOperation = task => async dispatch => {
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
 
@@ -79,9 +79,8 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
       return;
     }
 
-
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     const tasks = [...getTasks().tasks.items];
     const task = {
       ...tasks[item.indexArray],
@@ -99,26 +98,24 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
         ...newTask,
       });
 
-
-    dispatch(indexDayAction(item.idx));
+    // dispatch(indexDayAction(item.idx));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
 
 export const deleteTaskOperation = (idTask, index) => async dispatch => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     await db.collection('tasks').doc(idTask).delete();
-
 
     dispatch(deleteTask(index));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
