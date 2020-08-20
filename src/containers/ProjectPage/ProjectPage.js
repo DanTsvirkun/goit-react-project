@@ -46,13 +46,8 @@ const ProjectPage = ({
   };
 
   useEffect(() => {
-    if (!projectLength) {
-      console.log(email);
-      getSprintByProjectId(projectId);
-    } else {
-      getByEmails(email);
-    }
-    //чистить массив или лоадер
+    getByEmails(email);
+    getSprintByProjectId(projectId);
   }, []);
 
   return (
