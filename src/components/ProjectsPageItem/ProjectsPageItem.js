@@ -4,7 +4,6 @@ import projectsOperations from "../../redux/operations/projectsOperations.js";
 
 import itemStyle from "./ProjectsPageItem.module.css";
 
-import imgDel from "./projectImg/delete.svg";
 import { NavLink } from "react-router-dom";
 
 const ProjectsPageItem = ({
@@ -14,7 +13,11 @@ const ProjectsPageItem = ({
   return (
     <>
       <li className={itemStyle.item}>
-        <NavLink to={`/projects/${id}/sprints`}>
+        <NavLink
+          to={{
+            pathname: `/projects/${id}/sprints`,            
+          }}
+        >
           <div className={itemStyle.overlay}>
             <h2 className={itemStyle.itemTitle}>{title}</h2>
             <p className={itemStyle.itemDescription}>{description}</p>

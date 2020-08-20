@@ -99,7 +99,7 @@ const RegistrationForm = () => {
       </button>
       <p className={styles.account}>
         Маєте акаунт?{" "}
-        <NavLink className={styles.account_link} to="/">
+        <NavLink className={styles.account_link} to="/login">
           Увійти
         </NavLink>
       </p>
