@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import WeekDays from 'moment-business-days';
 import moment from 'moment';
 import {} from '../../redux/operations/TasksOperatins';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import {
   hoursWastedPerDay,
   currentIdxDaySelector,
@@ -11,6 +13,44 @@ import {
 import { indexDayAction } from '../../redux/actions/sprintTasksActions';
 import { changeTaskSingleHour } from '../../redux/operations/TasksOperatins';
 import css from './SprintTaskInput.module.css';
+
+const HoursWasted = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: ' #181c27',
+      paddingTop: '2px',
+      paddingBottom: '2px',
+    },
+    '&.MuiInputBase-input': {},
+    '& .MuiInputBase-root.Mui-error': {
+      marginBottom: '0px',
+    },
+    '& label.Mui-focused': {
+      color: '#181c2799',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#181c2799',
+    },
+    '& .MuiFormHelperText-root.Mui-error': {
+      marginBottom: '0px',
+      fontFamily: 'Montserrat',
+      color: 'red',
+      fontSize: '10px',
+      position: 'absolute',
+      top: '-18px',
+      right: '-24px',
+      width: '140px',
+    },
+    '& > *': {
+      width: ' 100%',
+      fontFamily: 'Montserrat',
+      fontWeight: 'normal',
+      fontSize: '18px',
+      lineHeight: '22px',
+      outline: 'none',
+    },
+  },
+})(TextField);
 
 const SprintTaskInput = ({
   hoursWastedPerDay,
@@ -47,7 +87,7 @@ const SprintTaskInput = ({
       return false;
     }
 
-    if (num.toString().length > 6) {
+    if (num.toString().length > 2) {
       setNoValid('Занадто велика цифра');
       return false;
     }
@@ -71,21 +111,31 @@ const SprintTaskInput = ({
     }
   };
   return (
-    <label className={css['sprints__task-spent-label']}>
-      <input
-        className={css['sprints__task-spent']}
-        type="text"
-        name="single_hours_wasted"
-        value={inputValue}
-        onChange={handleOnChange}
-        maxLength="7"
-      />
-      {noValid && (
-        <div className={css['sprints__task-spent--validation']}>{noValid}</div>
-      )}
-    </label>
+    <HoursWasted
+      id="custom-css-standard-input"
+      name="single_hours_wasted"
+      value={inputValue}
+      onChange={handleOnChange}
+      error={noValid ? true : undefined}
+      helperText={noValid}
+      margin="none"
+    />
   );
 };
+
+// <input
+//   className={css['sprints__task-spent']}
+//   type="text"
+//   name="single_hours_wasted"
+//   value={inputValue}
+//   onChange={handleOnChange}
+//   maxLength="2"
+// />;
+// {
+//   noValid && (
+//     <div className={css['sprints__task-spent--validation']}>{noValid}</div>
+//   );
+// }
 
 const mapStateToProps = (state, props) => {
   return {

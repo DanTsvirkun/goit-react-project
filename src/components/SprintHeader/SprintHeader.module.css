@@ -51,13 +51,13 @@
 }
 
 .sprint__title-wrapper {
-  width: 400px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
 
 .sprint__title {
+  margin-right: 40px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -65,7 +65,8 @@
   line-height: 44px;
   letter-spacing: 0.04em;
   color: #181c27;
-  width: 338px;
+  max-width: 338px;
+  word-wrap: break-word;
 }
 
 .sprint__change-name-btn {
