@@ -38,16 +38,14 @@ const getProjectsOperation = () => async (dispatch) => {
 const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    const test = await db
+    const sprintsToDelete = await db
       .collection("sprints")
       .where("projectId", "==", id)
       .get();
-    const answer = test.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    console.log(answer);
-    const result = await db.collection("projects").doc(id).delete();
+    await db.collection("projects").doc(id).delete();
+    sprintsToDelete.docs.forEach(
+      async (doc) => await db.collection("sprints").doc(doc.id).delete()
+    );
     dispatch(projectsActions.deleteProject(id));
   } catch (error) {
     dispatch(errorOn(error));
