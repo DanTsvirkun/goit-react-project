@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./LogInForm.module.css";
 import { withStyles, TextField } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +25,21 @@ const LogInForm = () => {
   const [form, setForm] = useState(initialState);
   const error = useSelector((state) => state.error);
   const dispatch = useDispatch();
+  let emailInput = React.createRef();
+  let passwordInput = React.createRef();
+
+  useEffect(() => {
+    if (
+      error === "The password is invalid or the user does not have a password."
+    ) {
+      passwordInput.current.children[0].control.focus();
+    } else if (
+      error ===
+      "There is no user record corresponding to this identifier. The user may have been deleted."
+    ) {
+      emailInput.current.firstChild.control.focus();
+    }
+  }, [error]);
 
   const errorMessage = (error) => {
     if (
@@ -55,7 +70,7 @@ const LogInForm = () => {
   const submitForm = (e) => {
     e.preventDefault();
     dispatch(LogIn(form));
-    setForm(initialState);
+    // setForm(initialState);
   };
 
   return (
@@ -70,6 +85,7 @@ const LogInForm = () => {
         value={form.email}
         className={styles.auth_input}
         required={true}
+        ref={emailInput}
       />
       <CssTextField
         type="password"
@@ -80,6 +96,7 @@ const LogInForm = () => {
         value={form.password}
         className={styles.auth_input}
         required={true}
+        ref={passwordInput}
       />
       {error !== false && <p className={styles.wrong}>{errorMessage(error)}</p>}
       <button className={styles.auth_btn}>Увійти</button>
