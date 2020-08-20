@@ -11,12 +11,12 @@ const ProjectsPageList = ({ projects = [], email, getProjects }) => {
     getProjects(email);
   }, []);
 
-  return (
+  return (  
     <ul className={listStyle.list}>
       {projects.map((project) => (
         <ProjectsPageItem key={project.id} id={project.id} project={project} />
       ))}
-    </ul>
+    </ul>  
   );
 };
 
