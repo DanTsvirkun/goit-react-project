@@ -1,6 +1,6 @@
 .sprint__sidebar-list {
   display: flex;
-  /* align-content: flex-start; */
+  align-content: flex-start;
   flex-wrap: wrap;
   overflow-y: auto;
   width: 170px;
@@ -13,7 +13,6 @@
   text-align: left;
   width: 170px;
   position: relative;
-
 }
 
 .sprint__sidebar-item:first-child {
@@ -22,7 +21,7 @@
 
 .sprint__sidebar-item::before {
   position: absolute;
-  content: '';
+  content: "";
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -40,7 +39,7 @@
 .sprint__sidebar-link {
   width: 120px;
   padding: 0 0px 0 50px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
