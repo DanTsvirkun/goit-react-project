@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 import SprintTaskInput from '../SprintTaskInput/SprintTaskInput';
 import { deleteTaskOperation } from '../../redux/operations/TasksOperatins';
 import css from './SprintTask.module.css';
@@ -14,14 +15,33 @@ const SprintTask = ({
   deleteTaskOperation,
 }) => {
   const deleteTask = () => deleteTaskOperation(id, index);
-
   return (
     <li className={css['sprint__tasks-item']}>
+      {title.length > 40 && (
+        <ReactTooltip
+          className={css['sprint__task-React-Tooltiop']}
+          id={`${id}`}
+          type="dark"
+          effect="solid"
+          place="top"
+        >
+          {title.length > 40 && <span>{title}</span>}
+        </ReactTooltip>
+      )}
       <ul className={css['sprint__task-list']}>
         <li className={css['sprint__task-item']}>
-          <p className={css['sprint__tasks-name']}>
-            {title.length > 40 ? `${title.slice(0, 33)}...` : title}
-          </p>
+          {title.length > 40 ? (
+            <p
+              data-tip
+              data-for={`${id}`}
+              data-iscapture="true"
+              className={css['sprint__tasks-name']}
+            >
+              {`${title.slice(0, 33)}...`}
+            </p>
+          ) : (
+            <p className={css['sprint__tasks-name']}>{title}</p>
+          )}
         </li>
         <li className={css['sprint__task-item']}>
           <p className={css['sprint__tasks-plan']}> {hoursPlanned} </p>

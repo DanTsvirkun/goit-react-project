@@ -14,8 +14,8 @@ const initialState = {
 
 const oneDay = 86400000;
 const SprintAddTaskForm = ({
-  startDate = '12.08.2020',
-  duration = 8,
+  startDate = '12.07.2020',
+  duration = 11,
   endDate = 1598002200000,
   addTask,
   status,
