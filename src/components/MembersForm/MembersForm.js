@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import formStyles from "../ProjectCreationForm/ProjectCreationForm.module.css";
 import addMember from "../../redux/operations/addMember";
+import MemberList from "../MemberList/MemberList";
 
 const EmailTextField = withStyles({
   root: {
@@ -111,6 +112,9 @@ const MembersForm = ({ addMember, status, onClose }) => {
           helperText={errors.title}
         />
       </form>
+
+      <MemberList />
+
     </ModalSidebar>
   );
 };
