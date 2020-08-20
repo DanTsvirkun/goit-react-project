@@ -5,6 +5,7 @@ import { itemsSelector } from "../../redux/selectors/TasksSelectors";
 import {
   chartDaysSelector,
   hoursPlannedSelector,
+  sumHoursWastedSelector,
 } from "../../redux/selectors/BurndownChartSelectors";
 import {
   formatDateChanger,
@@ -13,17 +14,14 @@ import {
 } from "../../helpers/datasetsForBurndownChart";
 import styles from "./BurndownChart.module.css";
 
-const BurndawnChart = ({
+const BurndownChart = ({
   hoursPlanned,
+  hoursWasted,
   sprintDuration,
   chartDays,
   itemsArr,
 }) => {
   const [chartData, setChartData] = useState({});
-
-  console.log(getRedLineArr(hoursPlanned, sprintDuration));
-  console.log(getBlueLineArr(hoursPlanned, sprintDuration, itemsArr));
-  console.log(formatDateChanger(chartDays));
 
   const chart = () => {
     setChartData({
@@ -41,7 +39,12 @@ const BurndawnChart = ({
           borderColor: "rgb(0, 89, 255)",
           backgroundColor: "transparent",
           borderWidth: 2,
-          data: getBlueLineArr(hoursPlanned, sprintDuration, itemsArr),
+          data: getBlueLineArr(
+            hoursPlanned,
+            sprintDuration,
+            itemsArr,
+            hoursWasted
+          ),
         },
       ],
     });
@@ -54,7 +57,7 @@ const BurndawnChart = ({
       <Line
         options={{
           responsive: true,
-          title: { text: "Burndawn Chart (Calendar Team)", display: true },
+          title: { text: "Burndown Chart (Calendar Team)", display: true },
           scales: {
             yAxes: [
               {
@@ -91,6 +94,7 @@ const mapStateToProps = (state) => ({
   sprintDuration: itemsSelector(state)[0].hoursWastedPerDay.length,
   chartDays: chartDaysSelector(state),
   itemsArr: itemsSelector(state),
+  hoursWasted: sumHoursWastedSelector(state),
 });
 
-export default connect(mapStateToProps)(BurndawnChart);
+export default connect(mapStateToProps)(BurndownChart);

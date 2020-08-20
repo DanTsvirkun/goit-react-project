@@ -14,15 +14,29 @@ export const getRedLineArr = (hoursPlanned, sprintDuration) => {
 
 export const getSumArrOfSingleHoursPerDay = (sprintDuration, itemsArr) => {
   const result = [];
-
   for (let j = 0; j < sprintDuration; j += 1) {
     let total = 0;
-    for (let i = 0; i < itemsArr.length; i += 1) {
-      total += Math.abs(itemsArr[i].hoursWastedPerDay[j].singleHoursWasted);
-      if (i + 1 === itemsArr.length) {
-        result.push(total);
+    for (let item of itemsArr) {
+      const itemHoursPlanned = item.hoursPlanned;
+      const itemHoursWasted = item.hoursWasted;
+      let correctArrHoursWastedPerDay;
+
+      if (itemHoursPlanned >= itemHoursWasted) {
+        correctArrHoursWastedPerDay = item.hoursWastedPerDay;
+      } else {
+        correctArrHoursWastedPerDay = item.hoursWastedPerDay.map((el) => ({
+          ...el,
+          singleHoursWasted:
+            (itemHoursPlanned / itemHoursWasted) * el.singleHoursWasted,
+        }));
       }
+
+      const singleHoursWasted = Number(
+        correctArrHoursWastedPerDay[j].singleHoursWasted
+      );
+      total += singleHoursWasted;
     }
+    result.push(total);
   }
   return result;
 };
@@ -31,14 +45,22 @@ export const getBlueLineArr = (hoursPlanned, sprintDuration, itemsArr) => {
   const result = [hoursPlanned];
   let remainingHours = hoursPlanned;
 
-  for (let i = 0; i < sprintDuration; i += 1) {
-    const totalHoursPerSingleDay = getSumArrOfSingleHoursPerDay(
-      sprintDuration,
-      itemsArr
-    )[i];
-    result.push((remainingHours - totalHoursPerSingleDay).toFixed(1));
-    remainingHours -= totalHoursPerSingleDay;
+  //   for (let i = 0; i < sprintDuration; i += 1) {
+  //   const totalHoursPerSingleDay = getSumArrOfSingleHoursPerDay(
+  //     sprintDuration,
+  //     itemsArr
+  //   )[i];
+  const arrOftotalHoursPerDay = getSumArrOfSingleHoursPerDay(
+    sprintDuration,
+    itemsArr
+  );
+
+  for (let hoursPersingleDay of arrOftotalHoursPerDay) {
+    result.push((remainingHours - hoursPersingleDay).toFixed(1));
+    remainingHours -= hoursPersingleDay;
   }
+  //   }
+  console.log("result :>> ", result);
   return result;
 };
 
