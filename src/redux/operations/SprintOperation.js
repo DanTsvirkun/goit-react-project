@@ -71,8 +71,15 @@ export const deleteSprintsOperation = ({ target: { id } }) => async (
 ) => {
   try {
     dispatch(loaderOn());
-    const result = await db.collection("sprints").doc(id).delete();
+    const tasksToDelete = await db
+      .collection("tasks")
+      .where("sprintId", "==", id)
+      .get();
+    await db.collection("sprints").doc(id).delete();
     dispatch(deleteSprints(id));
+    tasksToDelete.docs.forEach(async (task) => {
+      await db.collection("tasks").doc(task.id).delete();
+    });
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
