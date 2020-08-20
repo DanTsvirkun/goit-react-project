@@ -19,7 +19,6 @@ const ProjectSidebar = ({ getProjects }) => {
   return (
     <>
       <div className={css["project-sidebar__wrapper"]}>
-        <div className={css["project-sidebar__wrapper-link"]}></div>
         <ProjectsSidebarList />
         <div className={css["project-sidebar__add-wrapper"]}>
           <button

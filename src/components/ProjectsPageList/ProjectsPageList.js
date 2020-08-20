@@ -6,29 +6,29 @@ import ProjectsPageItem from "../ProjectsPageItem/ProjectsPageItem";
 
 import listStyle from "./ProjectsPageList.module.css";
 
-const ProjectsPageList = ({ projects = [], getProjects }) => { 
-
+const ProjectsPageList = ({ projects = [], email, getProjects }) => {
   useEffect(() => {
-    getProjects();
+    getProjects(email);
   }, []);
 
-  return (
+  return (  
     <ul className={listStyle.list}>
       {projects.map((project) => (
         <ProjectsPageItem key={project.id} id={project.id} project={project} />
       ))}
-    </ul>
+    </ul>  
   );
 };
 
 const mapStateToProps = (state) => {
-  return {  
+  return {
     projects: projectsSelectors.projectsSelector(state),
-  }
+    email: projectsSelectors.authEmailSelector(state),
+  };
 };
 
 const mapDispatchToProps = {
-  getProjects: projectsOperations.getProjectsOperation,
+  getProjects: projectsOperations.getProjectsByEmailOperation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPageList);

@@ -1,8 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import projectSelectors from "../../redux/selectors/projectsSelectors";
 import css from "./ProjectsSidebarlist.module.css";
 
 const projectsSidebarList = ({ match = "test" }) => {
+  // useEffect(() => {
+
+  //   //чистить массив или лоадер
+  // }, []);
+
   return (
     <ul className={css["project__sidebar-list"]}>
       {[
@@ -17,6 +25,18 @@ const projectsSidebarList = ({ match = "test" }) => {
         {
           title: "Project 3",
           id: 3,
+        },
+        {
+          title: "Project 1",
+          id: 4,
+        },
+        {
+          title: "Дуже довга назва проекту",
+          id: 5,
+        },
+        {
+          title: "Project 3",
+          id: 6,
         },
       ].map((item) => (
         <li key={item.id} className={css["project__sidebar-item"]}>
@@ -36,4 +56,17 @@ const projectsSidebarList = ({ match = "test" }) => {
   );
 };
 
-export default projectsSidebarList;
+const mapStateToProps = () => {
+  return {
+    email: projectSelectors.authEmailSelector,
+  };
+};
+
+const mapDispatchToProps = {
+  getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(projectsSidebarList);

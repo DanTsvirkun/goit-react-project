@@ -58,6 +58,7 @@ export const getSprintByProjectId = (key) => async (dispatch) => {
       ...doc.data(),
       id: doc.id,
     }));
+    // console.log("answer", answer);
     dispatch(getSprints(answer));
   } catch (error) {
     dispatch(errorOn());

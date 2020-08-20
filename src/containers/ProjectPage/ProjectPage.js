@@ -12,24 +12,27 @@ import {
   itemIdSelector,
 } from "../../redux/selectors/SprintsSelector";
 import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
-
-import styles from "./ProjectPage.module.css";
 import { getSprintsOperation } from "../../redux/operations/SprintOperation";
 import MembersCreationModal from "../../components/MembersModal/MembersModal";
 import Loader from "../../components/Loader/Loader";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import projectSelectors from "../../redux/selectors/projectsSelectors";
+import styles from "./ProjectPage.module.css";
 
 const ProjectPage = ({
   history,
   match,
   sprints = [],
   project = {},
-  projectId = "kiska",
+  projectId,
   location,
   loader,
   error,
   getSprintByProjectId,
   projectLength,
   getSprintsOperation,
+  getByEmails,
+  email,
 }) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
@@ -43,14 +46,14 @@ const ProjectPage = ({
   };
 
   useEffect(() => {
-    console.log(projectLength);
     if (!projectLength) {
+      console.log(email);
       getSprintByProjectId(projectId);
     } else {
-      getSprintsOperation();
+      getByEmails(email);
     }
     //чистить массив или лоадер
-  }, [projectLength, getSprintByProjectId, getSprintsOperation]);
+  }, []);
 
   return (
     <>
@@ -129,11 +132,13 @@ const mapStateToProps = (state, ownProps) => {
     loader: state.loader,
     error: state.error,
     projectsLength: state.projects.length,
+    email: projectSelectors.authEmailSelector(state),
   };
 };
 
 const mapDispatchToProps = {
   getSprintByProjectId,
+  getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
