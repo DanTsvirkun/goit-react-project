@@ -4,6 +4,7 @@ import css from "./CreatingSprint.module.css";
 import DatePicker from "react-datepicker";
 import uk from "date-fns/locale/uk";
 import { connect } from "react-redux";
+import { useLocation, useHistory } from "react-router-dom";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { addSprintOperation } from "../../redux/operations/SprintOperation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
@@ -19,6 +20,8 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   const [titleErr, setTitleErr] = useState("");
   const [durationErr, setDurationErr] = useState("");
   const [dateErr, setDateErr] = useState("");
+  let newLocation = useLocation();
+  const projectId = newLocation.pathname.split("/")[2];
 
   const handleStartDate = (date) => {
     setStartDate(date);
@@ -76,6 +79,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
         startDate: formatedStartDate,
         duration,
         endDate: formatedEndDate,
+        projectId,
       };
       addSprint(sprint);
       onClose();
@@ -123,9 +127,9 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             type="text"
             required
             className={`${css.input__field} ${css.input__duration}`}
+            maxLength="3"
             onChange={handleDuration}
           />
-
           {durationErr ? <div className={css.error}>{durationErr}</div> : ""}
           <span className={css.highlight}> </span>
           <span className={css.bar}> </span>

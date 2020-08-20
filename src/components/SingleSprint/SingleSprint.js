@@ -1,9 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import { deleteSprintsOperation } from "../../redux/operations/SprintOperation";
 import css from "./SingleSprint.module.css";
 
-const SingleSprint = ({ sprint }) => {
+const SingleSprint = ({ sprint, deleteSprint, match, history, id }) => {
+  const openSprintPage = () => {
+    history.push(`${match.url}/${id}`);
+  };
+
   return (
-    <li className={css.single__item}>
+    <li className={css.single__item} onClick={openSprintPage}>
       <div className={css.single__chart}>
         <h3 className={css.chart__header}>{sprint.title}</h3>
         <div className={css.sprint__wrapper}>
@@ -28,10 +34,22 @@ const SingleSprint = ({ sprint }) => {
             {sprint.duration}
           </p>
         </div>
-        <button className={css.chart__button}></button>
+        <button
+          className={css.chart__button}
+          id={sprint.id}
+          onClick={deleteSprint}
+        ></button>
       </div>
     </li>
   );
 };
 
-export default SingleSprint;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteSprint: (e) => {
+      dispatch(deleteSprintsOperation(e));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SingleSprint);

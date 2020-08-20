@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import ProjectsSidebarList from "../ProjectsSidebarList/ProjectsSidebarlist";
-import css from "./ProjectSidebar.module.css";
 import ProjectCreationModal from "../../components/ProjectCreationModal/ProjectCreationModal";
+import css from "./ProjectSidebar.module.css";
+import projectsOperations from "../../redux/operations/projectsOperations";
 
-const ProjectSidebar = ({ match = "test" }) => {
+const ProjectSidebar = ({ getProjects }) => {
   const [modal, setModal] = useState(false);
+
+  // useEffect(() => {
+  //   getProjects();
+  // }, []);
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -13,8 +19,7 @@ const ProjectSidebar = ({ match = "test" }) => {
   return (
     <>
       <div className={css["project-sidebar__wrapper"]}>
-        <div className={css["project-sidebar__wrapper-link"]}></div>
-        <ProjectsSidebarList match={match} />
+        <ProjectsSidebarList />
         <div className={css["project-sidebar__add-wrapper"]}>
           <button
             className={css["project-sidebar__add-btn"]}
@@ -29,5 +34,11 @@ const ProjectSidebar = ({ match = "test" }) => {
     </>
   );
 };
+
+// const mapDispatchToProps = {
+//   getProjects: projectsOperations.getProjectsOperation,
+// };
+
+// export default connect(null, mapDispatchToProps)(ProjectSidebar);
 
 export default ProjectSidebar;

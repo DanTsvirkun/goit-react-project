@@ -65,14 +65,12 @@ const corrHoursArrChecker = (item) => {
   let correctArrHoursWastedPerDay = null;
   if (itemHoursPlanned >= itemHoursWasted) {
     correctArrHoursWastedPerDay = item.hoursWastedPerDay;
-    console.log("correct :>> ", correctArrHoursWastedPerDay);
   } else {
     correctArrHoursWastedPerDay = item.hoursWastedPerDay.map((el) => ({
       ...el,
       singleHoursWasted:
         (itemHoursPlanned / itemHoursWasted) * el.singleHoursWasted,
     }));
-    console.log("percent :>> ", correctArrHoursWastedPerDay);
   }
   return correctArrHoursWastedPerDay;
 };

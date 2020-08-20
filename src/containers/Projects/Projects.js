@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import ProjectsPageList from "../../components/ProjectsPageList/ProjectsPageList";
 import ProjectCreationModal from "../../components/ProjectCreationModal/ProjectCreationModal";
+import projectsSelectors from "../../redux/selectors/projectsSelectors";
 
 import projectStyles from "./Projects.module.css";
 
-const Projects = () => {
-  const [modal, setModal] = useState(false);
+const Projects = ({ projects}) => {
+  const [modal, setModal] = useState(false); 
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -24,10 +26,17 @@ const Projects = () => {
           Створити проект
         </label>
       </div>
+
       <ProjectCreationModal status={modal} onClose={modalToggle} />
-      <ProjectsPageList />
+      <ProjectsPageList />       
     </>
   );
 };
 
-export default Projects;
+const mapStateToProps = (state) => {
+  return {
+    projects: projectsSelectors.projectsSelector(state),  
+  };
+};
+
+export default connect(mapStateToProps)(Projects);
