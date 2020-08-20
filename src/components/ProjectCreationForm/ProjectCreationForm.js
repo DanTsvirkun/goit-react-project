@@ -118,6 +118,11 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     return !!Object.keys(errors).length;
   };
 
+  const customOnClose = () => {
+    onClose();
+    setErrors({});
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -133,13 +138,12 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
-      onClose();
-      setErrors({});
+      customOnClose()
     }
   };
 
   return (
-    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={onClose}>
+    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={customOnClose}>
       <form
         className={formStyles.form}
         noValidate
