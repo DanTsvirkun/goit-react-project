@@ -7,7 +7,6 @@
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
-  overflow-y: auto;
   width: 170px;
   height: 300px;
   margin: 70px 0;

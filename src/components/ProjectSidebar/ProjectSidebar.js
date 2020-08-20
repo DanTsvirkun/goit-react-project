@@ -8,9 +8,9 @@ import projectsOperations from "../../redux/operations/projectsOperations";
 const ProjectSidebar = ({ getProjects }) => {
   const [modal, setModal] = useState(false);
 
-  useEffect(() => {
-    getProjects();
-  }, [getProjects]);
+  // useEffect(() => {
+  //   getProjects();
+  // }, []);
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -35,8 +35,10 @@ const ProjectSidebar = ({ getProjects }) => {
   );
 };
 
-const mapDispatchToProps = {
-  getProjects: projectsOperations.getProjectsOperation,
-};
+// const mapDispatchToProps = {
+//   getProjects: projectsOperations.getProjectsOperation,
+// };
 
-export default connect(null, mapDispatchToProps)(ProjectSidebar);
+// export default connect(null, mapDispatchToProps)(ProjectSidebar);
+
+export default ProjectSidebar;

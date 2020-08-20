@@ -20,6 +20,9 @@ export const newState = (task, item) => {
 };
 
 export const findCurrentDay = ([task]) => {
+  if (!task) {
+    return 0
+  }
   const currentDate = moment().format('DD.MM.YYYY');
   const hoursWastedPerDay = task.hoursWastedPerDay;
   const res = hoursWastedPerDay.findIndex((el, idx) => {
@@ -29,7 +32,9 @@ export const findCurrentDay = ([task]) => {
       return el;
     }
     if (hoursWastedPerDay.length === idx + 1 && !isCorrectDay) {
-      return hoursWastedPerDay[idx];
+      // console.log(hoursWastedPerDay[idx]);
+
+      return hoursWastedPerDay[idx]
     }
   });
   return res;
