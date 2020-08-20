@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import { deleteSprintsOperation } from "../../redux/operations/SprintOperation";
 import css from "./SingleSprint.module.css";
 
-const SingleSprint = ({ sprint, deleteSprint }) => {
+const SingleSprint = ({ sprint, deleteSprint, match, history, id }) => {
+  const openSprintPage = () => {
+    history.push(`${match.url}/${id}`);
+  };
+
   return (
-    <li className={css.single__item}>
+    <li className={css.single__item} onClick={openSprintPage}>
       <div className={css.single__chart}>
         <h3 className={css.chart__header}>{sprint.title}</h3>
         <div className={css.sprint__wrapper}>

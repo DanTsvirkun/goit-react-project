@@ -47,7 +47,21 @@ const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
       await db.collection("sprints").doc(doc.id).delete();
       await db.collection("tasks").where("sprintId", "==", doc.id).delete();
     });
-    dispatch(projectsActions.deleteProject(id));
+  }
+};
+
+const getProjectsByEmailOperation = (email) => async (dispatch) => {
+  try {
+    dispatch(loaderOn());
+    const result = await db
+      .collection("projects")
+      .where("members", "array-contains", email)
+      .get();
+    const answer = result.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    dispatch(projectsActions.getProjects(answer));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -59,4 +73,5 @@ export default {
   addProjectOperation,
   getProjectsOperation,
   deleteProjectOperation,
+  getProjectsByEmailOperation,
 };
