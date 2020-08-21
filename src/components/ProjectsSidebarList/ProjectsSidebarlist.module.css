@@ -21,6 +21,7 @@
   width: 120px;
   height: 36px;
   position: relative;
+  transition: all 250ms linear;
 }
 
 .project__sidebar-item:not(:last-child) {

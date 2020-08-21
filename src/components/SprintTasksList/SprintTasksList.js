@@ -31,24 +31,6 @@ const SprintTasksList = ({
 }) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
 
-  // useEffect(() => {
-  //   const { sprintId } = match.params;
-  //   console.log(sprintId);
-  //   getTasks(sprintId);
-  // }, [match.params.sprintId]);
-
-  // useEffect(() => {
-  //   const parsed = queryString.parse(location.search);
-  //   const { task } = parsed;
-  //   if (task) {
-  //     filterAction(task);
-  //     toggleFilterAction(true);
-  //   }
-  //   if (!task) {
-  //     toggleFilterAction(false);
-  //     filterAction('');
-  //   }
-  // }, [match.params.sprintId]);
 
   const handleToggleAnalytic = () => {
     setToggleAnalytic(state => !state);
