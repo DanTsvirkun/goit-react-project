@@ -25,10 +25,10 @@ const NameTextField = withStyles({
       marginBottom: "0px",
     },
     "& label.Mui-focused": {
-      color: "#181c2799",
+      color: "#ff6b08",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#181c2799",
+      borderBottomColor: "#ff6b08",
     },
     "& .MuiFormHelperText-root.Mui-error": {
       marginBottom: "50px",
@@ -56,10 +56,10 @@ const DurationTextField = withStyles({
       marginBottom: "0px",
     },
     "& label.Mui-focused": {
-      color: "#181c2799",
+      color: "#ff6b08",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#181c2799",
+      borderBottomColor: "#ff6b08",
       width: "200px",
     },
     "& .MuiFormHelperText-root.Mui-error": {
@@ -198,6 +198,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             filterDate={isWeekday}
             minDate={moment().toDate()}
             showMonthPicker
+            className={css.date_picker}
           />
           <DurationTextField
             id="custom-css-standard-input"
