@@ -145,8 +145,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   };
 
   const handleSubmit = (e) => {
-    console.log(params.sprintId);
-
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const { sprintId } = params;

@@ -14,6 +14,7 @@
   padding: 30px;
   position: relative;
   /* border-right: 1px solid rgba(24, 28, 39, 0.1); */
+  /* min-height: calc(100vh - 81px); */
   min-height: calc(100vh - 81px);
 }
 
@@ -22,7 +23,8 @@
   display: block;
   position: absolute;
   border-right: 1px solid rgba(24, 28, 39, 0.1);
-  min-height: calc(100vh - 81px);
+  /* min-height: calc(100vh - 81px); */
+  height: 100%;
   top: 0;
   left: 0;
 }
@@ -32,7 +34,8 @@
   display: block;
   position: absolute;
   border-right: 1px solid rgba(24, 28, 39, 0.1);
-  min-height: calc(100vh - 81px);
+  /* min-height: calc(100vh - 81px); */
+  height: 100%;
   top: 0;
   right: 0;
 }

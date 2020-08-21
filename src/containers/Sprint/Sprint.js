@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import queryString from 'query-string';
-import SprintSidebar from '../../components/SprintSidebar/SprintSidebar';
-import css from './Sprint.module.css';
-import SprintHeader from '../../components/SprintHeader/SprintHeader';
+import React, { useEffect } from "react";
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import queryString from "query-string";
+import SprintSidebar from "../../components/SprintSidebar/SprintSidebar";
+import css from "./Sprint.module.css";
+import SprintHeader from "../../components/SprintHeader/SprintHeader";
 import {
   filterTasksAction,
   toggleFilterAction,
-} from '../../redux/actions/sprintTasksActions';
-import { getTasksOperation } from '../../redux/operations/TasksOperatins';
-import { getSprintByProjectId } from '../../redux/operations/SprintOperation';
-import SprintTableTitle from '../../components/SprintTableTitle/SprintTableTitle';
-import SprintTasksList from '../../components/SprintTasksList/SprintTasksList';
-import Loader from '../../components/Loader/Loader';
-import getProjectsbyEMAIL from '../../redux/operations/projectsOperations';
+} from "../../redux/actions/sprintTasksActions";
+import { getTasksOperation } from "../../redux/operations/TasksOperatins";
+import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
+import SprintTableTitle from "../../components/SprintTableTitle/SprintTableTitle";
+import SprintTasksList from "../../components/SprintTasksList/SprintTasksList";
+import Loader from "../../components/Loader/Loader";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import { getTasks } from "../../redux/actions/sprintTasksActions";
+
 const Sprint = ({
   match,
   toggleFilterAction,
@@ -31,10 +33,11 @@ const Sprint = ({
   sprints,
   tasks,
   projects,
+  clearTasks,
 }) => {
   const params = match.params;
 
-  const handleCloseFilter = e => {
+  const handleCloseFilter = (e) => {
     if (!e.target.dataset.filter) {
       toggleFilterAction(false);
       return;
@@ -46,7 +49,7 @@ const Sprint = ({
     async function fetchData() {
       currentProjects = await getByEmails(email);
       let currentProject = currentProjects.find(
-        project => project.id === projectId,
+        (project) => project.id === projectId
       );
       if (currentProject === undefined) {
         currentProject = {
@@ -54,8 +57,8 @@ const Sprint = ({
         };
       }
       if (!currentProject.members.includes(email)) {
-        history.replace('/projects');
-        alert('Ви не є участником цього проекту.');
+        history.replace("/projects");
+        alert("Ви не є участником цього проекту.");
       }
     }
     fetchData();
@@ -81,11 +84,11 @@ const Sprint = ({
         //   return;
         // }
         console.log(answer);
-        const hasSprint = answer.find(el => el.id === sprintId);
+        const hasSprint = answer.find((el) => el.id === sprintId);
         console.log(hasSprint);
         if (!hasSprint) {
-          alert('Шкода, але такого спринту немає');
-          history.replace('/projects');
+          alert("Шкода, але такого спринту немає");
+          history.replace("/projects");
           return;
         }
       }
@@ -103,16 +106,22 @@ const Sprint = ({
     }
     if (!task) {
       toggleFilterAction(false);
-      filterAction('');
+      filterAction("");
     }
   }, [match.params.sprintId]);
+
+  // useEffect(() => {
+  //   return function clearTasks() {
+  //     clearTasks([]);
+  //   };
+  // });
 
   return (
     <section className={css.container} onClick={handleCloseFilter}>
       <SprintSidebar />
-      <div className={css['sprint__main-wrapper']}>
+      <div className={css["sprint__main-wrapper"]}>
         {loader && (
-          <div className={css['sprint__loader-wrapper']}>
+          <div className={css["sprint__loader-wrapper"]}>
             <Loader />
           </div>
         )}
@@ -133,12 +142,13 @@ const mapDispatchToProps = {
   toggleFilterAction,
   getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
   getSprintByProjectId,
+  clearTasks: getTasks,
 };
 const mapStateToProps = (state, ownProps) => ({
   loader: state.loader,
   error: state.error,
   email: state.auth.email,
-  projectId: ownProps.location.pathname.split('/')[2],
+  projectId: ownProps.location.pathname.split("/")[2],
   sprints: state.sprints.items,
   tasks: state.tasks.items,
   projects: state.projects,
