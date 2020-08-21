@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-<<<<<<< HEAD
-=======
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
 import weekDays from "moment-business-days";
 import moment from "moment";
 import { connect } from "react-redux";
@@ -12,8 +9,6 @@ import { addTaskOperation } from "../../redux/operations/TasksOperatins";
 import css from "./SprintAddTaskForm.module.css";
 // import ModalTest from '../ModalTest/ModalTest';
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
-<<<<<<< HEAD
-=======
 
 const TitleField = withStyles({
   root: {
@@ -76,25 +71,13 @@ const PlanedDuration = withStyles({
   },
 })(TextField);
 
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
 const initialState = {
   title: "",
   hoursPlanned: "",
 };
 
 const oneDay = 86400000;
-<<<<<<< HEAD
-const SprintAddTaskForm = ({
-  startDate = "12.07.2020",
-  duration = 11,
-  endDate = 1598002200000,
-  addTask,
-  status,
-  onClose,
-}) => {
-=======
 const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
   const params = useParams();
   const [taskItem, setTaskItem] = useState(initialState);
   const [noValid, setNoValid] = useState("");
@@ -126,11 +109,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
 
     if (title.trim().length < 2) {
       setNoValidTitle(
-<<<<<<< HEAD
-        "Будь ласка, введіть більше 6 символів для корректной назви задачі."
-=======
         "Будь ласка, введіть більше 1 символа для корректной назви задачі."
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
       );
       return false;
     }
@@ -142,10 +121,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
       return false;
     }
 
-<<<<<<< HEAD
-    if (num.toString().length > 6) {
-      setNoValid("Занадто велика цифра. Будь ласка, введіть менше 6 символів");
-=======
     if (isNaN(num)) {
       setNoValid("введіть число");
       return false;
@@ -163,7 +138,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
 
     if (num.toString().length > 2) {
       setNoValid("Занадто велика цифра. Будь ласка, введіть менше 3 символів");
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
       return false;
     }
 
@@ -171,11 +145,8 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   };
 
   const handleSubmit = (e) => {
-<<<<<<< HEAD
-=======
     console.log(params.sprintId);
 
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const { sprintId } = params;
@@ -203,45 +174,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
         <h3 className={css["sprint__form-title"]}> Створення задачі </h3>
         <ul className={css["sprint__form-list"]}>
           <li className={css["sprint__form-item"]}>
-<<<<<<< HEAD
-            <label>
-              <input
-                className={css["sprint__form-field"]}
-                type="text"
-                value={taskItem.title}
-                name="title"
-                onChange={handleChangeInput}
-                required
-                placeholder="Назва задачі"
-                minLength="1"
-              />
-            </label>
-          </li>
-          <li className={css["sprint__form-item"]}>
-            <label>
-              <input
-                className={css["sprint__form-field"]}
-                type="text"
-                value={taskItem.hoursPlanned}
-                name="hoursPlanned"
-                onChange={handleChangeInput}
-                required
-                placeholder="Заплановано годин"
-                minLength="1"
-              />
-            </label>
-          </li>
-          {noValidTitle && (
-            <li className={css["sprint__form-field--validation-title"]}>
-              {noValidTitle}
-            </li>
-          )}
-          {noValid && (
-            <li className={css["sprint__form-field--validation-plan"]}>
-              {noValid}
-            </li>
-          )}
-=======
             <TitleField
               id="custom-css-standard-input"
               label="Назва задачі"
@@ -265,7 +197,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
               required
             />
           </li>
->>>>>>> 9c49dd51bca9c0172e6923d970b0eeed4aa75b1d
         </ul>
       </form>
     </ModalSidebar>
