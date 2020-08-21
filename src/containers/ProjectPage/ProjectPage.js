@@ -20,7 +20,9 @@ import MembersCreationModal from "../../components/MembersModal/MembersModal";
 import Loader from "../../components/Loader/Loader";
 import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
 import projectSelectors from "../../redux/selectors/projectsSelectors";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styles from "./ProjectPage.module.css";
+import transitionAnimation from "../../components/ProjectsPageList/transitionProjectStyles.module.css";
 
 const ProjectPage = ({
   history,
@@ -32,8 +34,6 @@ const ProjectPage = ({
   loader,
   error,
   getSprintByProjectId,
-  projectLength,
-  getSprintsOperation,
   getByEmails,
   email,
   projects,
@@ -70,7 +70,9 @@ const ProjectPage = ({
       }
     }
     fetchData();
-  }, []);
+  }, [match.params.projectId]);
+
+  const sprintsBool = !!sprints;
 
   // http://localhost:3000/projects/L7iOeUSqnngFrL1VRlbv/sprints
 
@@ -96,7 +98,7 @@ const ProjectPage = ({
                       <input
                         type="text"
                         className={styles.input_change}
-                        value={title}
+                        value={title || ""}
                         onChange={(e) => setTitle(e.target.value)}
                       />
                       <button
@@ -142,24 +144,33 @@ const ProjectPage = ({
                   </div>
                 </div>
               </div>
-              <div className={styles.project__info}></div>
-              <ul className={styles.sprints_container}>
-                {!sprints.length && (
-                  <h2 className={styles.emptyList}>
-                    Ваш проект не має спринтів, скористайтесь кнопкою "Створити
-                    спринт"
-                  </h2>
-                )}
+              {/* <div className={styles.project__info}></div> */}
+              {!sprints.length && (
+                <h2 className={styles.emptyList}>
+                  Ваш проект не має спринтів, скористайтесь кнопкою "Створити
+                  спринт"
+                </h2>
+              )}
+              <TransitionGroup
+                component="ul"
+                className={styles.sprints_container}
+              >
                 {sprints.map((sprint) => (
-                  <SingleSprint
+                  <CSSTransition
                     key={sprint.id}
-                    id={sprint.id}
-                    sprint={sprint}
-                    history={history}
-                    match={match}
-                  />
+                    in={sprintsBool}
+                    timeout={250}
+                    classNames={transitionAnimation}
+                  >
+                    <SingleSprint
+                      id={sprint.id}
+                      sprint={sprint}
+                      history={history}
+                      match={match}
+                    />
+                  </CSSTransition>
                 ))}
-              </ul>
+              </TransitionGroup>
               <SprintCreationModal status={modal} onClose={modalToggle} />
               <MembersCreationModal
                 status={membersModal}
