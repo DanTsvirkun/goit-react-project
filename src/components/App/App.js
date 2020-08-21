@@ -32,8 +32,8 @@ const App = () => {
         {/* <button onClick={modalToggle}>ON</button> */}
         {/* <ModalSidebar status={modal} onClose={modalToggle}></ModalSidebar> */}
         {/* Приммер подключения модального окна */}
-        {/* <Header />
-         <ProjectPage /> 
+        {/* <Header /> */}
+        {/* <ProjectPage /> */}
         {/* <SprintPage /> */}
         {/* <Registration />  */}
         {/* <Login /> */}
@@ -50,8 +50,8 @@ const App = () => {
               route.private ? (
                 <PrivateRoute key={route.label} {...route} />
               ) : (
-                  <PublicRoute key={route.label} {...route} />
-                )
+                <PublicRoute key={route.label} {...route} />
+              )
             )}
           </Switch>
         </Suspense>

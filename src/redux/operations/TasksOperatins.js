@@ -1,4 +1,6 @@
-import { db } from '../../config';
+import {
+  db
+} from '../../config';
 import firebase from 'firebase';
 import {
   getTasks,
@@ -8,10 +10,25 @@ import {
   showModalAddTaskAction,
   indexDayAction,
 } from '../actions/sprintTasksActions';
-import { errorOn, errorOff } from '../actions/errorActions';
-import { loaderOn, loaderOff } from '../actions/loaderActions';
-import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
-import { config } from 'react-transition-group';
+import {
+  errorOn,
+  errorOff
+} from '../actions/errorActions';
+import {
+  loaderOn,
+  loaderOff
+} from '../actions/loaderActions';
+import {
+  newState,
+  findCurrentDay
+} from '../../helpers/newArrayTasks';
+import {
+  config
+} from 'react-transition-group';
+
+import {
+  getSprints
+} from '../actions/sprintActions';
 
 export const getTasksOperation = sprintId => async dispatch => {
   try {
@@ -104,5 +121,25 @@ export const deleteTaskOperation = (idTask, index) => async dispatch => {
     dispatch(errorOn(error));
   } finally {
     // dispatch(loaderOff());
+  }
+};
+
+export const changeSprintTitle = (sprintId, title) => async (dispatch, getState) => {
+  try {
+    // const result = await db.collection("projects").doc(projectId).get();
+    const sprints = getState().sprints.items
+    await db.collection('sprints').doc(sprintId).update({
+      title: title,
+    });
+    const res = sprints.map(el => {
+      return sprintId === el.id ? {
+        ...el,
+        title
+      } : el
+    })
+
+    dispatch(getSprints(res))
+  } catch (error) {
+    dispatch(errorOn(error));
   }
 };

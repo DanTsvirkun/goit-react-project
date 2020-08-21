@@ -14,7 +14,6 @@ import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
 export const addSprintOperation = sprint => async dispatch => {
   try {
     dispatch(errorOff());
-    // dispatch(loaderOn());
     const formatedSprint = {
       ...sprint,
       startDate: moment(sprint.startDate).format('DD.MM.YYYY'),
@@ -28,8 +27,6 @@ export const addSprintOperation = sprint => async dispatch => {
     dispatch(showModalAddSprintAction(false));
   } catch (error) {
     dispatch(errorOn());
-  } finally {
-    // dispatch(loaderOff());
   }
 };
 
@@ -63,6 +60,7 @@ export const getSprintByProjectId = key => async dispatch => {
     }));
     // console.log("answer", answer);
     dispatch(getSprints(answer));
+    return answer;
   } catch (error) {
     dispatch(errorOn());
   } finally {
@@ -75,7 +73,6 @@ export const deleteSprintsOperation = ({
 }) => async dispatch => {
   try {
     dispatch(errorOff());
-    // dispatch(loaderOn());
     const tasksToDelete = await db
       .collection('tasks')
       .where('sprintId', '==', id)
@@ -87,7 +84,14 @@ export const deleteSprintsOperation = ({
     });
   } catch (error) {
     dispatch(errorOn(error));
-  } finally {
-    // dispatch(loaderOff());
+  }
+};
+
+export const changeProjectTitle = (projectId, title) => async (dispatch) => {
+  try {
+    const result = await db.collection("projects").doc(projectId).get();
+    await db.collection("projects").doc(projectId).update({ title: title });
+  } catch (error) {
+    dispatch(errorOn(error));
   }
 };

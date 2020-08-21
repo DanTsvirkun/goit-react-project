@@ -7,16 +7,18 @@
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
-  width: 170px;
+  width: 120px;
   height: 300px;
   margin: 70px 0;
   overflow-y: auto;
   list-style: none;
+  overflow-y: auto;
+  overflow-wrap: break-word;
 }
 
 .project__sidebar-item {
   text-align: left;
-  width: 170px;
+  width: 120px;
   height: 36px;
   position: relative;
 }
@@ -26,7 +28,7 @@
 }
 
 .project__sidebar-link {
-  width: 140px;
+  width: 30px;
   height: 36px;
   padding-left: 50px;
   font-family: "Montserrat";
@@ -77,6 +79,10 @@
 
 .project__sidebar-item:nth-child(4n + 4)::before {
   background-color: colorBlue;
+}
+
+.test {
+  overflow-wrap: break-word;
 }
 
 /* @value colorBlue: #4394f1;

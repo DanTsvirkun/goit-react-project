@@ -91,6 +91,16 @@
   align-items: center;
 }
 
+.project__button__wrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  max-width: 400px;
+}
+
 .project__header__wrapper .project__button__wrapper {
   margin-top: 40px;
 }
@@ -129,8 +139,56 @@
   background-image: url("../../Icons/pencil.svg");
 }
 
+.button__pencil--active {
+  width: 20px;
+  position: absolute;
+  height: 20px;
+  border: none;
+  right: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  background-image: url("../../Icons/pencil.svg");
+}
+
 .sprints_container {
   display: flex;
   flex-wrap: wrap;
-  /* padding-bottom: 30px; */
+}
+
+.edit__button {
+  display: block;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../Icons/pencil.svg");
+  transition: all 200ms linear;
+  width: 20px;
+  height: 20px;
+}
+
+.input_change {
+  width: 90%;
+  position: absolute;
+  left: 0;
+  border: none;
+  box-shadow: 2px 4px 8px rgba(0, 5, 97, 0.1);
+  border-radius: 5px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  padding: 6px 0 6px 5px;
+  outline: none;
+}
+
+.input_change_block {
+  display: flex;
+  justify-content: space-between;
 }
