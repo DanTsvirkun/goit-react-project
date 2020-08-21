@@ -160,15 +160,16 @@
 }
 
 .edit__button {
-  display: block;
-  outline: none;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  background-image: url("../../Icons/pencil.svg");
-  transition: all 200ms linear;
   width: 20px;
   height: 20px;
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  background-image: url("../../Icons/pencil.svg");
 }
 
 .input_change {
@@ -189,6 +190,27 @@
 }
 
 .input_change_block {
-  display: flex;
-  justify-content: space-between;
+  position: absolute;
+  width: 400px;
+  top: 50%;
+  height: 30px;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.edit__button--active {
+  width: 20px;
+  position: absolute;
+  height: 20px;
+  border: none;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  background-image: url("../../Icons/pencil.svg");
 }
