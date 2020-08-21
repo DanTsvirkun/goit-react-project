@@ -64,7 +64,7 @@ const BurndownChart = ({
     },
     elements: {
       line: {
-        tension: 0.3, // disables bezier curves
+        // tension: 0.3, // disables bezier curves
         borderWidth: 2,
       },
       point: {
