@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Line } from "react-chartjs-2";
 import { itemsSelector } from "../../redux/selectors/TasksSelectors";
 import {
+  sprintDurationSelector,
   chartDaysSelector,
   hoursPlannedSelector,
 } from "../../redux/selectors/BurndownChartSelectors";
@@ -155,7 +156,7 @@ const BurndownChart = ({
 
 const mapStateToProps = (state) => ({
   hoursPlanned: hoursPlannedSelector(state),
-  sprintDuration: itemsSelector(state)[0].hoursWastedPerDay.length,
+  sprintDuration: sprintDurationSelector(state),
   chartDays: chartDaysSelector(state),
   itemsArr: itemsSelector(state),
 });
