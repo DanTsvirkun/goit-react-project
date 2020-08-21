@@ -25,6 +25,11 @@
   background: #ffffff;
   box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
   border-radius: 5px;
+  transition: all 250ms linear;
+}
+
+.sprint__tasks-item:hover {
+  transform: scale(1.02)
 }
 
 .sprint__tasks-item:not(:last-child) {
