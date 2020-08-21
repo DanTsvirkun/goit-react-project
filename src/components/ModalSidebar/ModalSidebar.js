@@ -7,33 +7,34 @@ import modalTransition from "./transitions/Modal.module.css";
 
 const ModalSidebar = ({ children, onSubmit, status, onClose }) => {
   useEffect(() => {
-    status && addListener()
-  }, [status])
+    status && addListener();
+  }, [status]);
 
   const handleKeyDown = (e) => {
-    if (e.code === "Escape" && status === true) {
-      closeWindow()
+    if (e.code === "Escape") {
+      closeWindow();
     } else if (e.code === "Space") {
-      removeListener()
+      removeListener();
     }
+    removeListener();
   };
 
   const ready = (e = null) => {
-    onSubmit(e);
+    const result = onSubmit(e);
+    result ? addListener() : removeListener();
   };
 
   const closeWindow = () => {
-    removeListener()
-    onClose()
-  }
+    onClose();
+  };
 
   const addListener = () => {
     window.addEventListener("keydown", handleKeyDown);
-  }
+  };
 
   const removeListener = () => {
-    window.removeEventListener("keydown", handleKeyDown)
-  }
+    window.removeEventListener("keydown", handleKeyDown);
+  };
 
   return (
     <CSSTransition
@@ -67,7 +68,10 @@ const ModalSidebar = ({ children, onSubmit, status, onClose }) => {
               <button onClick={ready} className={css.modal__buttonReady}>
                 Готово
               </button>
-              <button onClick={closeWindow} className={css.modal__buttonCanceling}>
+              <button
+                onClick={closeWindow}
+                className={css.modal__buttonCanceling}
+              >
                 Відміна
               </button>
             </div>

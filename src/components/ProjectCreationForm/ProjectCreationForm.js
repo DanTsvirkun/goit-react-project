@@ -136,6 +136,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
       onClose();
       setErrors({});
     }
+    return result;
   };
 
   return (

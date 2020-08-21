@@ -83,9 +83,8 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       };
       addSprint(sprint);
       onClose();
-    } else {
-      return;
     }
+    return !formValidation();
   };
 
   return (
