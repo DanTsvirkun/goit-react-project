@@ -10,8 +10,7 @@ const SignInGoogle = () => {
   useEffect(() => {
     window.gapi.load("auth2", () => {
       window.gapi.auth2.init({
-        client_id:
-          "665112245664-i02dj6v1je0g62htl54t0cd7nl73e400.apps.googleusercontent.com",
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       });
     });
   }, []);

@@ -14,7 +14,7 @@ import { newState, findCurrentDay } from "../../helpers/newArrayTasks";
 export const addSprintOperation = (sprint) => async (dispatch) => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     const formatedSprint = {
       ...sprint,
       startDate: moment(sprint.startDate).format("DD.MM.YYYY"),
@@ -26,7 +26,7 @@ export const addSprintOperation = (sprint) => async (dispatch) => {
   } catch (error) {
     dispatch(errorOn());
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
 
@@ -72,7 +72,7 @@ export const deleteSprintsOperation = ({ target: { id } }) => async (
 ) => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     const tasksToDelete = await db
       .collection("tasks")
       .where("sprintId", "==", id)
@@ -85,6 +85,6 @@ export const deleteSprintsOperation = ({ target: { id } }) => async (
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
