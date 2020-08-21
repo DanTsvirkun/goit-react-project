@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./RegistrationForm.module.css";
 import { Registration } from "../../redux/operations/RegistarationOperation";
@@ -28,6 +28,18 @@ const RegistrationForm = () => {
   const [toggle, setToggle] = useState(false);
   const error = useSelector((state) => state.error);
   const dispatch = useDispatch();
+  let emailInput = React.createRef();
+  let passwordInput = React.createRef();
+
+  useEffect(() => {
+    if (error === "The email address is already in use by another account.") {
+      emailInput.current.firstChild.control.focus();
+    } else if (error === "The email address is badly formatted.") {
+      emailInput.current.firstChild.control.focus();
+    } else if (error === "Password should be at least 6 characters") {
+      passwordInput.current.children[0].control.focus();
+    }
+  }, [error]);
 
   const errorMessage = (error) => {
     if (error === "Password should be at least 6 characters") {
@@ -56,7 +68,7 @@ const RegistrationForm = () => {
     if (form.password === form.repeat_password) {
       setToggle(false);
       dispatch(Registration(form));
-      setForm(initialState);
+      // setForm(initialState);
     } else {
       dispatch(errorOff());
       setToggle(true);
@@ -75,6 +87,7 @@ const RegistrationForm = () => {
         value={form.email}
         onChange={inputHandler}
         required={true}
+        ref={emailInput}
       />
       <CssTextField
         type="password"
@@ -84,6 +97,7 @@ const RegistrationForm = () => {
         value={form.password}
         onChange={inputHandler}
         required={true}
+        ref={passwordInput}
       />
       <CssTextField
         type="password"
