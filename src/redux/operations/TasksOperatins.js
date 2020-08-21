@@ -26,38 +26,29 @@ import {
   config
 } from 'react-transition-group';
 
+import {
+  getSprints
+} from '../actions/sprintActions';
+
 export const getTasksOperation = sprintId => async dispatch => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
 
     const result = await db
-      .collection("tasks")
-      .where("sprintId", "==", sprintId)
+      .collection('tasks')
+      .where('sprintId', '==', sprintId)
       .get();
-    const answer = result.docs.map((doc) => ({
+
+    const answer = result.docs.map(doc => ({
       ...doc.data(),
       id: doc.id,
     }));
 
-    // const result = await db.collection('tasks').get();
-    // const answer = result.docs.reduce((acc, doc) => {
-    //   const item = doc.data();
-    //   console.log(item);
-
-    //   if (item.sprintId === sprintId) {
-    //     acc.push({
-    //       ...item,
-    //       id: doc.id,
-    //     });
-    //   }
-    //   return acc;
-    // }, []);
-    console.log(answer);
-
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     dispatch(getTasks(answer));
     dispatch(indexDayAction(findCurrentDay(answer)));
+    return answer;
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -130,5 +121,25 @@ export const deleteTaskOperation = (idTask, index) => async dispatch => {
     dispatch(errorOn(error));
   } finally {
     // dispatch(loaderOff());
+  }
+};
+
+export const changeSprintTitle = (sprintId, title) => async (dispatch, getState) => {
+  try {
+    // const result = await db.collection("projects").doc(projectId).get();
+    const sprints = getState().sprints.items
+    await db.collection('sprints').doc(sprintId).update({
+      title: title,
+    });
+    const res = sprints.map(el => {
+      return sprintId === el.id ? {
+        ...el,
+        title
+      } : el
+    })
+
+    dispatch(getSprints(res))
+  } catch (error) {
+    dispatch(errorOn(error));
   }
 };

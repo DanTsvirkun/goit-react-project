@@ -91,7 +91,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
       [name]: value,
     }));
   };
-  console.log(sprint);
 
   const durationSprint = (startDate, duration) => {
     let sprintDay = [];
