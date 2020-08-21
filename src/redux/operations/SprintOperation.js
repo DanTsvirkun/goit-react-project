@@ -57,6 +57,7 @@ export const getSprintByProjectId = (key) => async (dispatch) => {
     }));
     // console.log("answer", answer);
     dispatch(getSprints(answer));
+    return answer;
   } catch (error) {
     dispatch(errorOn());
   } finally {
@@ -84,8 +85,6 @@ export const deleteSprintsOperation = ({ target: { id } }) => async (
 };
 
 export const changeProjectTitle = (projectId, title) => async (dispatch) => {
-  console.log("title", title);
-  console.log("projectId", projectId);
   try {
     const result = await db.collection("projects").doc(projectId).get();
     await db.collection("projects").doc(projectId).update({ title: title });
