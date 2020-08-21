@@ -50,11 +50,23 @@
   justify-content: space-between;
 }
 
+.wrapper {
+  position: absolute;
+  width: 400px;
+  top: 50%;
+  height: 30px;
+  left: 0;
+  transform: translateY(-50%);
+}
+
 .sprint__title-wrapper {
   display: flex;
-  /* align-items: baseline; */
+
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
+  max-width: 400px;
 }
 
 .sprint__title {
@@ -74,6 +86,23 @@
   width: 20px;
   height: 20px;
   border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  background-image: url('../../Icons/pencil.svg');
+}
+
+.sprint__change-name-btn--active {
+  width: 20px;
+  position: absolute;
+  height: 20px;
+  border: none;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
