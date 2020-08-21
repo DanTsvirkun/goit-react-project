@@ -17,7 +17,13 @@ const ProjectsSidebarList = ({ projects }) => {
             activeClassName={css["project__sidebar-link--active"]}
             className={css["project__sidebar-link"]}
           >
-            {item.title}
+            <span className={css.test}>
+              {item.title
+                ? item.title.length > 7
+                  ? item.title.slice(0, 7).trim() + "..."
+                  : item.title
+                : ""}
+            </span>
           </NavLink>
         </li>
       ))}
