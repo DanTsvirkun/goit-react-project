@@ -1,6 +1,12 @@
 .single__item {
   list-style: none;
   margin-top: 30px;
+  cursor: pointer;
+  transition: all 300ms linear;
+}
+
+.single__item:hover {
+  transform: scale(1.05)
 }
 
 .single__item:not(:last-child) {

@@ -10,6 +10,7 @@
   width: 170px;
   height: 300px;
   margin: 70px 0;
+  overflow-y: auto;
   list-style: none;
 }
 
@@ -18,6 +19,11 @@
   width: 170px;
   height: 36px;
   position: relative;
+  transition: all 300ms linear;
+}
+
+.project__sidebar-item:hover {
+  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
 }
 
 .project__sidebar-item:not(:last-child) {
@@ -39,6 +45,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  word-wrap: break-word;
 }
 
 .project__sidebar-link--active {
