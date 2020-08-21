@@ -10,8 +10,78 @@ import { addSprintOperation } from "../../redux/operations/SprintOperation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import "react-datepicker/dist/react-datepicker.css";
 import "./overRidingStyles.css";
+import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
+import momentDays from "moment-business-days";
 
 registerLocale("uk", uk);
+
+const NameTextField = withStyles({
+  root: {
+    "& .MuiInputBase-root": {
+      marginBottom: "50px",
+    },
+    "& .MuiInputBase-root.Mui-error": {
+      marginBottom: "0px",
+    },
+    "& label.Mui-focused": {
+      color: "#ff6b08",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#ff6b08",
+    },
+    "& .MuiFormHelperText-root.Mui-error": {
+      marginBottom: "50px",
+      fontFamily: "Montserrat",
+      color: "red",
+      fontSize: "12px",
+    },
+    "& > *": {
+      fontFamily: "Montserrat",
+      fontWeight: "normal",
+      fontSize: "18px",
+      lineHeight: "22px",
+      width: "430px",
+      margin: "0 50px",
+    },
+  },
+})(TextField);
+
+const DurationTextField = withStyles({
+  root: {
+    "& .MuiInputBase-root": {
+      marginBottom: "60px",
+    },
+    "& .MuiInputBase-root.Mui-error": {
+      marginBottom: "0px",
+    },
+    "& label.Mui-focused": {
+      color: "#ff6b08",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#ff6b08",
+      width: "200px",
+    },
+    "& .MuiFormHelperText-root.Mui-error": {
+      marginBottom: "60px",
+      fontFamily: "Montserrat",
+      color: "red",
+      fontSize: "12px",
+    },
+    "& > *": {
+      width: "200px",
+      fontFamily: "Montserrat",
+      fontWeight: "normal",
+      fontSize: "18px",
+      lineHeight: "22px",
+      outline: "none",
+      marginLeft: "29px",
+    },
+    "& .MuiInputBase-input": {
+      marginBottom: "3px",
+    },
+  },
+})(TextField);
 
 const CreatingSprint = ({ addSprint, status, onClose }) => {
   const [title, setTitle] = useState("");
@@ -26,6 +96,13 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   const handleStartDate = (date) => {
     setStartDate(date);
     setDateErr("");
+  };
+
+  const onCustomClose = () => {
+    setTitleErr("");
+    setDurationErr("");
+    setDateErr("");
+    onClose();
   };
 
   const handleTitle = ({ target }) => {
@@ -62,15 +139,15 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       setDateErr("Будь ласка, введіть релевантний день початку спринта.");
       dateValid = false;
     }
+
     return titleValid && durationValid && dateValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formValidation()) {
-      var moment = require("moment-business-days");
       const formatedStartDate = new Date(startDate);
-      const endDate = moment(formatedStartDate, "DD-MM-YYYY").businessAdd(
+      const endDate = momentDays(formatedStartDate, "DD-MM-YYYY").businessAdd(
         duration - 1
       )._d;
       const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
@@ -82,6 +159,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
         projectId,
       };
       addSprint(sprint);
+
       onClose();
     } else {
       return;
@@ -89,24 +167,28 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   };
 
   return (
-    <ModalSidebar status={status} onClose={onClose} onSubmit={handleSubmit}>
+    <ModalSidebar
+      status={status}
+      onClose={onCustomClose}
+      onSubmit={handleSubmit}
+    >
       <h2 className={css.sprint__window__header}> Створення спринта </h2>
-      <form className={css.sprint__form} noValidate>
-        <div className={css.group}>
-          <input
-            type="text"
-            required
-            className={`${css.input__field} ${css.input__name}`}
-            onChange={handleTitle}
-          />
-          {titleErr ? <div className={css.error}>{titleErr}</div> : ""}
-          <span className={css.highlight}> </span>
-          <span className={css.bar}> </span>
-          <label className={css.sprint_label}> Назва спринта </label>
-        </div>
-        <div
-          className={`${css.group} ${css.group__inline} ${css.group__start}`}
-        >
+      <form
+        className={css.sprint__form}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <NameTextField
+          id="custom-css-standard-input"
+          label="Назва проекту"
+          name="title"
+          onChange={handleTitle}
+          error={titleErr ? true : undefined}
+          helperText={titleErr}
+        />
+
+        <div className={css.input_gather}>
           <DatePicker
             selected={startDate}
             onChange={handleStartDate}
@@ -117,24 +199,16 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             minDate={moment().toDate()}
             showMonthPicker
           />
-          {dateErr ? <div className={css.error}>{dateErr}</div> : ""}
-          <span className={css.highlight}> </span>
-          <span className={css.bar}> </span>
-          <label className={css.sprint_label}> </label>
-        </div>
-        <div className={`${css.group} ${css.group__inline}`}>
-          <input
-            type="text"
-            required
-            className={`${css.input__field} ${css.input__duration}`}
-            maxLength="3"
+          <DurationTextField
+            id="custom-css-standard-input"
+            label="Тривалість"
+            name="duration"
             onChange={handleDuration}
+            error={durationErr ? true : undefined}
+            helperText={durationErr}
           />
-          {durationErr ? <div className={css.error}>{durationErr}</div> : ""}
-          <span className={css.highlight}> </span>
-          <span className={css.bar}> </span>
-          <label className={css.sprint_label_duration}> Тривалість </label>
         </div>
+        {dateErr ? <div className={css.error}>{dateErr}</div> : ""}
       </form>
     </ModalSidebar>
   );

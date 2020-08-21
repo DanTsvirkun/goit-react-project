@@ -61,7 +61,8 @@
   line-height: 22px;
   color: #ffffff;
   letter-spacing: 0.04em;
-  transition: all 300ms linear;
+  margin-bottom: 20px;
+  transition: all 250ms linear;
 }
 
 .auth_btn:hover {

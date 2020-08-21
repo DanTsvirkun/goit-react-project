@@ -74,7 +74,7 @@
   border: none;
   background-color: transparent;
   background-image: url('./search.svg');
-  transition: all 200ms linear;
+  transition: all 250ms linear;
 }
 
 .sprint__filter-task-btn:hover {
