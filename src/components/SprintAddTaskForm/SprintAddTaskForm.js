@@ -176,7 +176,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
           <li className={css["sprint__form-item"]}>
             <TitleField
               id="custom-css-standard-input"
-              label="Назва проекту"
+              label="Назва задачі"
               name="title"
               value={taskItem.title}
               onChange={handleChangeInput}
