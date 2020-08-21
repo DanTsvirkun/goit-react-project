@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { CSSTransition } from 'react-transition-group';
 import css from './SprintHeader.module.css';
 import {
   showModalAddTaskAction,
@@ -13,7 +14,9 @@ import {
   findCurrentSprint,
 } from '../../redux/selectors/TasksSelectors';
 import SprintAddTaskForm from '../SprintAddTaskForm/SprintAddTaskForm';
-const currentDate = moment().format('DD.MM.YYYY');
+import { changeSprintTitle } from '../../redux/operations/TasksOperatins';
+import style from '../../containers/ProjectPage/ProjectPage.module.css';
+import animation from './animationExit.module.css';
 const SprintHeader = ({
   tasks,
   isShowModal,
@@ -23,17 +26,20 @@ const SprintHeader = ({
   indexDayAction,
   params,
   sprint,
+  changeSprintTitle,
 }) => {
   const [rightArrow, setRightArrow] = useState(false);
   const [leftArrow, setLeftArrow] = useState(false);
-
+  const [title, setTitle] = useState('');
+  const [isUpdate, setUpdate] = useState(true);
+  const [active, setActive] = useState(false);
+  const { sprintId } = params;
   const taskDay = () => {
     if (tasks.length > 0) {
       return tasks[0].hoursWastedPerDay[currentDayIdx].currentDay;
     }
     return null;
   };
-  console.log(sprint);
 
   const showModal = () => {
     showModalAction();
@@ -45,7 +51,6 @@ const SprintHeader = ({
       return;
     }
     const newIdx = currentDayIdx + 1;
-    console.log(newIdx);
 
     indexDayAction(newIdx);
   };
@@ -57,9 +62,9 @@ const SprintHeader = ({
       return;
     }
     const newIdx = currentDayIdx - 1;
-    console.log(newIdx);
 
     indexDayAction(newIdx);
+    const setShowButton = () => {};
   };
   return (
     <>
@@ -102,18 +107,60 @@ const SprintHeader = ({
           <div className={css['sprint__title-wrapper']}>
             {sprint && (
               <>
-                <h1 className={css['sprint__title']}> {sprint.title} </h1>
-                <button className={css['sprint__change-name-btn']}> </button>
+                <CSSTransition
+                  classNames={animation}
+                  in={active}
+                  timeout={300}
+                  mountOnEnter
+                  unmountOnExit
+                >
+                  <>
+                    <label className={css.wrapper}>
+                      <input
+                        type="text"
+                        className={style.input_change}
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          await changeSprintTitle(sprintId, title);
+
+                          setUpdate(!isUpdate);
+                        }}
+                        className={css['sprint__change-name-btn--active']}
+                      ></button>
+                    </label>
+                  </>
+                </CSSTransition>
+
+                <CSSTransition
+                  classNames={animation}
+                  in={isUpdate}
+                  timeout={300}
+                  unmountOnExit
+                  mountOnEnter
+                  onExited={() => setActive(true)}
+                  onEnter={() => setActive(false)}
+                >
+                  <>
+                    <h1 className={css['sprint__title']}> {sprint.title} </h1>
+                    <button
+                      onClick={() => setUpdate(!isUpdate)}
+                      className={css['sprint__change-name-btn']}
+                    ></button>
+                  </>
+                </CSSTransition>
               </>
             )}
           </div>
-
           <div className={css['sprint__add-task-wrapper']}>
             <button
               onClick={showModal}
               className={css['sprint__add-task-btn']}
             ></button>
-            <p className={css['sprint__add-task-offer']}>Створити задачу</p>
+            <p className={css['sprint__add-task-offer']}> Створити задачу </p>
           </div>
         </div>
       </div>
@@ -136,6 +183,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToPorps = {
   showModalAction: showModalAddTaskAction,
   indexDayAction,
+  changeSprintTitle,
 };
 
 export default connect(mapStateToProps, mapDispatchToPorps)(SprintHeader);
