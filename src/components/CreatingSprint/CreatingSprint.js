@@ -198,6 +198,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             filterDate={isWeekday}
             minDate={moment().toDate()}
             showMonthPicker
+            className={css.date_picker}
           />
           <DurationTextField
             id="custom-css-standard-input"
