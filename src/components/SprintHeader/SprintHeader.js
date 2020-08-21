@@ -33,7 +33,6 @@ const SprintHeader = ({
     }
     return null;
   };
-  console.log(sprint);
 
   const showModal = () => {
     showModalAction();
@@ -45,7 +44,6 @@ const SprintHeader = ({
       return;
     }
     const newIdx = currentDayIdx + 1;
-    console.log(newIdx);
 
     indexDayAction(newIdx);
   };
@@ -57,7 +55,6 @@ const SprintHeader = ({
       return;
     }
     const newIdx = currentDayIdx - 1;
-    console.log(newIdx);
 
     indexDayAction(newIdx);
   };

@@ -1,6 +1,4 @@
-import {
-  db
-} from '../../config';
+import { db } from '../../config';
 import firebase from 'firebase';
 import {
   getTasks,
@@ -10,21 +8,10 @@ import {
   showModalAddTaskAction,
   indexDayAction,
 } from '../actions/sprintTasksActions';
-import {
-  errorOn,
-  errorOff
-} from '../actions/errorActions';
-import {
-  loaderOn,
-  loaderOff
-} from '../actions/loaderActions';
-import {
-  newState,
-  findCurrentDay
-} from '../../helpers/newArrayTasks';
-import {
-  config
-} from 'react-transition-group';
+import { errorOn, errorOff } from '../actions/errorActions';
+import { loaderOn, loaderOff } from '../actions/loaderActions';
+import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
+import { config } from 'react-transition-group';
 
 export const getTasksOperation = sprintId => async dispatch => {
   try {
@@ -32,32 +19,19 @@ export const getTasksOperation = sprintId => async dispatch => {
     dispatch(loaderOn());
 
     const result = await db
-      .collection("tasks")
-      .where("sprintId", "==", sprintId)
+      .collection('tasks')
+      .where('sprintId', '==', sprintId)
       .get();
-    const answer = result.docs.map((doc) => ({
+
+    const answer = result.docs.map(doc => ({
       ...doc.data(),
       id: doc.id,
     }));
 
-    // const result = await db.collection('tasks').get();
-    // const answer = result.docs.reduce((acc, doc) => {
-    //   const item = doc.data();
-    //   console.log(item);
-
-    //   if (item.sprintId === sprintId) {
-    //     acc.push({
-    //       ...item,
-    //       id: doc.id,
-    //     });
-    //   }
-    //   return acc;
-    // }, []);
-    console.log(answer);
-
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     dispatch(getTasks(answer));
     dispatch(indexDayAction(findCurrentDay(answer)));
+    return answer;
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
