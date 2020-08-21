@@ -6,7 +6,6 @@ import projectsSelectors from "../../redux/selectors/projectsSelectors";
 import css from "./ProjectsSidebarlist.module.css";
 
 const ProjectsSidebarList = ({ projects }) => {
-  console.log(projects);
   return (
     <ul className={css["project__sidebar-list"]}>
       {projects.map((item) => (
@@ -18,7 +17,13 @@ const ProjectsSidebarList = ({ projects }) => {
             activeClassName={css["project__sidebar-link--active"]}
             className={css["project__sidebar-link"]}
           >
-            {item.title}
+            <span className={css.test}>
+              {item.title
+                ? item.title.length > 10
+                  ? item.title.slice(0, 6).trim() + "..."
+                  : item.title
+                : ""}
+            </span>
           </NavLink>
         </li>
       ))}

@@ -81,3 +81,12 @@ export const deleteSprintsOperation = ({ target: { id } }) => async (
     dispatch(loaderOff());
   }
 };
+
+export const changeProjectTitle = (projectId, title) => async (dispatch) => {
+  try {
+    const result = await db.collection("projects").doc(projectId).get();
+    await db.collection("projects").doc(projectId).update({ title: title });
+  } catch (error) {
+    dispatch(errorOn(error));
+  }
+};
