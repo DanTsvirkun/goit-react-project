@@ -20,9 +20,14 @@ const SignInGoogle = () => {
   };
 
   return (
-    <button type="button" className={styles.google} onClick={signIn}>
-      Увійти з Google Account
-    </button>
+    <>
+      <p className={styles.ride_line}>
+        <span className={styles.ride_line_span}>або</span>
+      </p>{" "}
+      <button type="button" className={styles.google} onClick={signIn}>
+        Увійти з Google Account
+      </button>
+    </>
   );
 };
 

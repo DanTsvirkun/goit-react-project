@@ -62,7 +62,7 @@
 }
 
 .item:nth-child(8n + 7) {
-  background-color: color_7;  
+  background-color: color_7;
 }
 
 .item:nth-child(8n + 8) {
@@ -125,6 +125,7 @@
 .item:nth-child(4n + 1)::before {
   content: url("./projectImg/Wave_1-1.png");
 }
+
 .item:nth-child(4n + 1)::after {
   content: url("./projectImg/Wave_1-2.png");
 }
@@ -132,6 +133,7 @@
 .item:nth-child(4n+2)::before {
   content: url("./projectImg/Wave_2-1.png");
 }
+
 .item:nth-child(4n+2)::after {
   content: url("./projectImg/Wave_2-2.png");
 }
@@ -139,6 +141,7 @@
 .item:nth-child(4n+3)::before {
   content: url("./projectImg/Wave_3-1.png");
 }
+
 .item:nth-child(4n+3)::after {
   content: url("./projectImg/Wave_3-2.png");
 }
@@ -146,6 +149,7 @@
 .item:nth-child(4n+4)::before {
   content: url("./projectImg/Wave_4-1.png");
 }
+
 .item:nth-child(4n+4)::after {
   content: url("./projectImg/Wave_4-2.png");
 }
@@ -189,16 +193,17 @@
 /* ========== */
 
 .item {
-  position: relative;  
+  position: relative;
   width: 270px;
-  height: 270px;  
+  height: 270px;
   border: none;
-  border-radius: 5px;  
+  border-radius: 5px;
   transition: 150ms linear;
   overflow: hidden;
+  transition: all 300ms linear;
 }
 
-.overlay{
+.overlay {
   position: absolute;
   padding: 28px 30px;
   top: 0;
@@ -209,7 +214,7 @@
   z-index: 1;
 }
 
-.itemTitle {  
+.itemTitle {
   word-wrap: break-word;
   font-family: "Montserrat";
   font-weight: 800;
@@ -232,7 +237,7 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #ffffff;
-  transition: 250ms;
+  transition: all 300ms linear;
 }
 
 .itemTrashBtn {
@@ -251,7 +256,7 @@
   background-position-y: -22px;
   cursor: pointer;
   z-index: 1;
-  transition: 150ms linear;
+  transition: all 300ms linear;
 }
 
 .itemTrashBtn:hover,

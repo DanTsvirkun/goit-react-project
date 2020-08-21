@@ -13,6 +13,11 @@
   text-align: left;
   width: 170px;
   position: relative;
+  transition: all 300ms linear;
+}
+
+.sprint__sidebar-item:hover {
+  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
 }
 
 .sprint__sidebar-item:first-child {
