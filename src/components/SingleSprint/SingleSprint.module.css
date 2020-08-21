@@ -1,11 +1,11 @@
 .single__item {
   list-style: none;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 .single__item:not(:last-child) {
   margin-right: 30px;
-  cursor: pointer;
 }
 
 .single__chart {

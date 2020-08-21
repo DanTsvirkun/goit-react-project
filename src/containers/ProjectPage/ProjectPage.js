@@ -11,8 +11,11 @@ import {
   itemsSelector,
   itemIdSelector,
 } from "../../redux/selectors/SprintsSelector";
-import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
-import { getSprintsOperation } from "../../redux/operations/SprintOperation";
+import {
+  getSprintsOperation,
+  changeProjectTitle,
+  getSprintByProjectId,
+} from "../../redux/operations/SprintOperation";
 import MembersCreationModal from "../../components/MembersModal/MembersModal";
 import Loader from "../../components/Loader/Loader";
 import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
@@ -33,9 +36,13 @@ const ProjectPage = ({
   getSprintsOperation,
   getByEmails,
   email,
+  changeProjectTitle,
+  getByEmailCustom,
 }) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
+  const [title, setTitle] = useState("");
+  const [isUpdate, setUpdate] = useState(false);
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -67,10 +74,36 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  <h2 className={styles.project__header}>{project.title}</h2>
-                  <button
-                    className={`${styles.button} ${styles.button__pencil}`}
-                  ></button>
+                  {isUpdate ? (
+                    <>
+                      <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                      {console.log("project", projectId)}
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          await changeProjectTitle(projectId, title);
+                          await getByEmailCustom(email);
+                          setUpdate(!isUpdate);
+                        }}
+                      >
+                        save
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className={styles.project__header}>
+                        {project.title}
+                      </h2>
+                      <button
+                        onClick={() => setUpdate(!isUpdate)}
+                        className={`${styles.button} ${styles.button__pencil}`}
+                      ></button>
+                    </>
+                  )}
                 </div>
                 <div className={styles.plusBtnWrapper}>
                   <div
@@ -134,6 +167,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   getSprintByProjectId,
   getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
+  changeProjectTitle,
+  getByEmailCustom: getProjectsbyEMAIL.getProjectsByEmailOperationCustom,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);
