@@ -85,6 +85,7 @@ const MembersForm = ({ addMember, status, onClose }) => {
         customOnClose();
       }
     }
+    return result;
   };
 
   return (

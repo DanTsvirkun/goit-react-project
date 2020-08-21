@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import weekDays from 'moment-business-days';
-import moment from 'moment';
-import { connect } from 'react-redux';
-import { addTaskOperation } from '../../redux/operations/TasksOperatins';
-import css from './SprintAddTaskForm.module.css';
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import weekDays from "moment-business-days";
+import moment from "moment";
+import { connect } from "react-redux";
+import { addTaskOperation } from "../../redux/operations/TasksOperatins";
+import css from "./SprintAddTaskForm.module.css";
 // import ModalTest from '../ModalTest/ModalTest';
-import ModalSidebar from '../ModalSidebar/ModalSidebar';
+import ModalSidebar from "../ModalSidebar/ModalSidebar";
 const initialState = {
-  title: '',
-  hoursPlanned: '',
+  title: "",
+  hoursPlanned: "",
 };
 
 const oneDay = 86400000;
 const SprintAddTaskForm = ({
-  startDate = '12.07.2020',
+  startDate = "12.07.2020",
   duration = 11,
   endDate = 1598002200000,
   addTask,
@@ -23,13 +23,13 @@ const SprintAddTaskForm = ({
 }) => {
   const params = useParams();
   const [taskItem, setTaskItem] = useState(initialState);
-  const [noValid, setNoValid] = useState('');
-  const [noValidTitle, setNoValidTitle] = useState('');
+  const [noValid, setNoValid] = useState("");
+  const [noValidTitle, setNoValidTitle] = useState("");
   const handleChangeInput = ({ target }) => {
     const { name, value } = target;
-    setNoValid('');
-    setNoValidTitle('');
-    setTaskItem(state => ({
+    setNoValid("");
+    setNoValidTitle("");
+    setTaskItem((state) => ({
       ...state,
       [name]: value,
     }));
@@ -38,9 +38,9 @@ const SprintAddTaskForm = ({
   const durationSprint = () => {
     let sprintDay = [];
     for (let i = 0; i < duration; i++) {
-      const day = weekDays(startDate, 'DD.MM.YYYY').businessAdd(i)._d;
+      const day = weekDays(startDate, "DD.MM.YYYY").businessAdd(i)._d;
       sprintDay.push({
-        currentDay: moment(day).format('DD.MM.YYYY'),
+        currentDay: moment(day).format("DD.MM.YYYY"),
         singleHoursWasted: 0,
       });
     }
@@ -52,27 +52,27 @@ const SprintAddTaskForm = ({
 
     if (title.trim().length < 5) {
       setNoValidTitle(
-        'Будь ласка, введіть більше 6 символів для корректной назви задачі.',
+        "Будь ласка, введіть більше 6 символів для корректной назви задачі."
       );
       return false;
     }
 
     if (!num) {
       setNoValid(
-        'Будь ласка, оберіть скільки годин вам потрібно для цієї задачі.',
+        "Будь ласка, оберіть скільки годин вам потрібно для цієї задачі."
       );
       return false;
     }
 
     if (num.toString().length > 6) {
-      setNoValid('Занадто велика цифра. Будь ласка, введіть менше 6 символів');
+      setNoValid("Занадто велика цифра. Будь ласка, введіть менше 6 символів");
       return false;
     }
 
     return true;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const { sprintId } = params;
@@ -91,16 +91,17 @@ const SprintAddTaskForm = ({
       addTask(task);
       setTaskItem(initialState);
     }
+    return !validation(hoursPlanned, title);
   };
   return (
     <ModalSidebar status={status} onSubmit={handleSubmit} onClose={onClose}>
-      <form className={css['sprint__form']} onSubmit={handleSubmit}>
-        <h3 className={css['sprint__form-title']}> Створення задачі </h3>
-        <ul className={css['sprint__form-list']}>
-          <li className={css['sprint__form-item']}>
+      <form className={css["sprint__form"]} onSubmit={handleSubmit}>
+        <h3 className={css["sprint__form-title"]}> Створення задачі </h3>
+        <ul className={css["sprint__form-list"]}>
+          <li className={css["sprint__form-item"]}>
             <label>
               <input
-                className={css['sprint__form-field']}
+                className={css["sprint__form-field"]}
                 type="text"
                 value={taskItem.title}
                 name="title"
@@ -111,10 +112,10 @@ const SprintAddTaskForm = ({
               />
             </label>
           </li>
-          <li className={css['sprint__form-item']}>
+          <li className={css["sprint__form-item"]}>
             <label>
               <input
-                className={css['sprint__form-field']}
+                className={css["sprint__form-field"]}
                 type="text"
                 value={taskItem.hoursPlanned}
                 name="hoursPlanned"
@@ -126,12 +127,12 @@ const SprintAddTaskForm = ({
             </label>
           </li>
           {noValidTitle && (
-            <li className={css['sprint__form-field--validation-title']}>
+            <li className={css["sprint__form-field--validation-title"]}>
               {noValidTitle}
             </li>
           )}
           {noValid && (
-            <li className={css['sprint__form-field--validation-plan']}>
+            <li className={css["sprint__form-field--validation-plan"]}>
               {noValid}
             </li>
           )}
