@@ -1,6 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { itemsSelector } from "./TasksSelectors";
-// import { sprintsSelector } from "./SprintsSelector";
 
 export const sprintDurationSelector = (state) =>
   itemsSelector(state)[0].hoursWastedPerDay.length;
