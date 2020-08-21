@@ -1,6 +1,6 @@
 .container {
   /* width: 970px; */
-  padding: 0px 30px 0 70px;
+  /* padding: 0px 30px 0 70px; */
   margin-bottom: 30px;
 }
 
@@ -50,14 +50,27 @@
   justify-content: space-between;
 }
 
-.sprint__title-wrapper {
+.wrapper {
+  position: absolute;
   width: 400px;
+  top: 50%;
+  height: 30px;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.sprint__title-wrapper {
   display: flex;
-  align-items: baseline;
+
+  align-items: center;
   justify-content: space-between;
+
+  position: relative;
+  max-width: 400px;
 }
 
 .sprint__title {
+  margin-right: 40px;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
@@ -65,13 +78,31 @@
   line-height: 44px;
   letter-spacing: 0.04em;
   color: #181c27;
-  width: 338px;
+  max-width: 340px;
+  word-wrap: break-word;
 }
 
 .sprint__change-name-btn {
   width: 20px;
   height: 20px;
   border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  background-image: url('../../Icons/pencil.svg');
+}
+
+.sprint__change-name-btn--active {
+  width: 20px;
+  position: absolute;
+  height: 20px;
+  border: none;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

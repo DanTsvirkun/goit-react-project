@@ -6,8 +6,8 @@ import projectsSelectors from "../../redux/selectors/projectsSelectors";
 
 import projectStyles from "./Projects.module.css";
 
-const Projects = ({projects}) => {
-  const [modal, setModal] = useState(false);
+const Projects = ({ projects}) => {
+  const [modal, setModal] = useState(false); 
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -26,16 +26,16 @@ const Projects = ({projects}) => {
           Створити проект
         </label>
       </div>
-      {projects.length === 0 && <h2 className={projectStyles.emptyList}>Ваша колекція проектів порожня, скористайтесь кнопкою "Створити проект"</h2>} 
-      <ProjectCreationModal status={modal} onClose={modalToggle} />       
-      <ProjectsPageList />    
+
+      <ProjectCreationModal status={modal} onClose={modalToggle} />
+      <ProjectsPageList />       
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    projects: projectsSelectors.projectsSelector(state),   
+    projects: projectsSelectors.projectsSelector(state),  
   };
 };
 

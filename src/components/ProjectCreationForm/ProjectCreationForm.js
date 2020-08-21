@@ -17,10 +17,10 @@ const NameTextField = withStyles({
       marginBottom: "0px",
     },
     "& label.Mui-focused": {
-      color: "#181c2799",
+      color: "#ff6b08",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#181c2799",
+      borderBottomColor: "#ff6b08",
     },
     "& .MuiFormHelperText-root.Mui-error": {
       marginBottom: "50px",
@@ -47,10 +47,10 @@ const DescriptionTextField = withStyles({
       marginBottom: "0px",
     },
     "& label.Mui-focused": {
-      color: "#181c2799",
+      color: "#ff6b08",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#181c2799",
+      borderBottomColor: "#ff6b08",
     },
     "& .MuiFormHelperText-root.Mui-error": {
       marginBottom: "60px",
@@ -90,33 +90,38 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     const errors = {};
 
     if (title.length < 2) {
-      errors.title = "Title length is too short";
+      errors.title = "Довжина назви проекту надто коротка.";
     }
 
     if (title.length > 40) {
-      errors.title = "Title length is too long";
+      errors.title = "Довжина назви проекту надто довга.";
     }
 
     if (description.length < 2) {
-      errors.description = "Description length is too short";
+      errors.description = "Довжина опису проекту надто коротка.";
     }
 
     if (description.length > 160) {
-      errors.description = "Description length is too long";
+      errors.description = "Довжина опису проекту надто довга.";
     }
 
     if (title.length === 0) {
-      errors.title = "Required field";
+      errors.title = "Це поле є обов'язковим для заповнення.";
     }
 
     if (description.length === 0) {
-      errors.description = "Required field";
+      errors.description = "Це поле є обов'язковим для заповнення.";
     }
 
     setErrors(errors);
 
     return !!Object.keys(errors).length;
   };
+
+  const customOnClose = () => {
+    onClose();
+    setErrors({});
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -133,14 +138,13 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
-      onClose();
-      setErrors({});
+      customOnClose()
     }
     return result;
   };
 
   return (
-    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={onClose}>
+    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={customOnClose}>
       <form
         className={formStyles.form}
         noValidate

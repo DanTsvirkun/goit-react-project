@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BurndawnChart from "../BurndownChart/BurndawnChart";
+import BurndawnChart from "../BurndownChart/BurndownChart";
 import styles from "./BurndownChartModalWindow.module.css";
 
 class BurndownChartModalWindow extends Component {

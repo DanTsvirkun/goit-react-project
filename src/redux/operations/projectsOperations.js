@@ -35,18 +35,25 @@ const getProjectsOperation = () => async (dispatch) => {
   }
 };
 
-const getProjectsByEmailOperation = (email) => async (dispatch) => {  
+const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    const result = await db
-      .collection("projects")
-      .where("members", "array-contains", email)
+    const sprintsToDelete = await db
+      .collection("sprints")
+      .where("projectId", "==", id)
       .get();
-       const answer = result.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    dispatch(projectsActions.getProjects(answer));
+    await db.collection("projects").doc(id).delete();
+    dispatch(projectsActions.deleteProject(id));
+    sprintsToDelete.docs.forEach(async (doc) => {
+      await db.collection("sprints").doc(doc.id).delete();
+      const tasksToDelete = await db
+        .collection("tasks")
+        .where("sprintId", "==", doc.id)
+        .get();
+      tasksToDelete.docs.forEach(async (task) => {
+        await db.collection("tasks").doc(task.id).delete();
+      });
+    });
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -54,15 +61,40 @@ const getProjectsByEmailOperation = (email) => async (dispatch) => {
   }
 };
 
-const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
+const getProjectsByEmailOperation = (email) => async (dispatch) => {
   try {
     dispatch(loaderOn());
-    const result = await db.collection("projects").doc(id).delete();
-    dispatch(projectsActions.deleteProject(id));
+    const result = await db
+      .collection("projects")
+      .where("members", "array-contains", email)
+      .get();
+    const answer = result.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    dispatch(projectsActions.getProjects(answer));
+    return answer;
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
     dispatch(loaderOff());
+  }
+};
+
+const getProjectsByEmailOperationCustom = (email) => async (dispatch) => {
+  try {
+    const result = await db
+      .collection("projects")
+      .where("members", "array-contains", email)
+      .get();
+    const answer = result.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    dispatch(projectsActions.getProjects(answer));
+  } catch (error) {
+    dispatch(errorOn(error));
+  } finally {
   }
 };
 
@@ -71,4 +103,5 @@ export default {
   getProjectsOperation,
   deleteProjectOperation,
   getProjectsByEmailOperation,
+  getProjectsByEmailOperationCustom,
 };

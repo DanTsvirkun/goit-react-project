@@ -2,14 +2,15 @@
   width: 200px;
   /* padding: 20px 0 0 0; */
   position: relative;
+  /* padding-bottom: 30px; */
 }
 
 .project-sidebar__wrapper::before {
   content: "";
+  display: block;
   position: absolute;
-  height: 100%;
-  width: 1px;
-  background-color: rgba(24, 28, 39, 0.1);
+  min-height: calc(100vh - 81px);
+  border-right: 1px solid rgba(24, 28, 39, 0.1);
   top: 0;
   right: 0;
 }
@@ -50,7 +51,7 @@
   cursor: pointer;
   outline: transparent;
   background-image: url("../../Icons/plus.svg");
-  transition: 300ms;
+  transition: all 250ms linear;
 }
 
 .project-sidebar__add-btn:hover,
