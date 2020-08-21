@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LogIn from "../../redux/operations/LogInOperation";
 import { errorOff } from "../../redux/actions/errorActions";
 import SignInGoogle from "../SignInGoogle/SignInGoogle";
+import { NavLink } from "react-router-dom";
 
 const CssTextField = withStyles((theme) => ({
   root: {
@@ -101,6 +102,12 @@ const LogInForm = () => {
       {error !== false && <p className={styles.wrong}>{errorMessage(error)}</p>}
       <button className={styles.auth_btn}>Увійти</button>
       <SignInGoogle />
+      <p className={styles.account}>
+        Ще не зареєстровані?{" "}
+        <NavLink className={styles.account_link} to="/registration">
+          Зареєструватися
+        </NavLink>
+      </p>
     </form>
   );
 };
