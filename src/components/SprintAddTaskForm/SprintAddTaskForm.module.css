@@ -69,12 +69,7 @@
   outline: none;
 }
 
-.sprint__form-field::placeholder {
-  content: '';
-  color: rgba(24, 28, 39, 0.6);
-}
-
-.sprint__form-field--validation-title {
+/* .sprint__form-field--validation-title {
   font-size: 16px;
   color: red;
   position: absolute;
@@ -90,7 +85,7 @@
   bottom: 0;
   left: 0;
   opacity: 0.6;
-}
+} */
 
 /* .sprint__form-field:required:focus:valid:not(:placeholder-shown) {
   outline: 1px solid rgb(0, 255, 0);
