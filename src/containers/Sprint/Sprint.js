@@ -1,44 +1,128 @@
-import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
-import SprintSidebar from '../../components/SprintSidebar/SprintSidebar';
-import css from './Sprint.module.css';
-import SprintHeader from '../../components/SprintHeader/SprintHeader';
-import { toggleFilterAction } from '../../redux/actions/sprintTasksActions';
-import SprintTableTitle from '../../components/SprintTableTitle/SprintTableTitle';
-import SprintTasksList from '../../components/SprintTasksList/SprintTasksList';
-import { connect } from 'react-redux';
-const Sprint = ({ match, toggleFilterAction, location, history }) => {
-  const handleCloseFilter = e => {
-    // console.log(e);
+import React, { useEffect } from "react";
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import queryString from "query-string";
+import SprintSidebar from "../../components/SprintSidebar/SprintSidebar";
+import css from "./Sprint.module.css";
+import SprintHeader from "../../components/SprintHeader/SprintHeader";
+import {
+  filterTasksAction,
+  toggleFilterAction,
+} from "../../redux/actions/sprintTasksActions";
+import { getTasksOperation } from "../../redux/operations/TasksOperatins";
+import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
+import SprintTableTitle from "../../components/SprintTableTitle/SprintTableTitle";
+import SprintTasksList from "../../components/SprintTasksList/SprintTasksList";
+import Loader from "../../components/Loader/Loader";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+const Sprint = ({
+  match,
+  toggleFilterAction,
+  location,
+  history,
+  loader,
+  error,
+  getByEmails,
+  email,
+  projectId,
+  filterAction,
+  getTasks,
+  getSprintByProjectId,
+  sprints,
+  tasks,
+}) => {
+  const params = match.params;
 
+  const handleCloseFilter = (e) => {
     if (!e.target.dataset.filter) {
       toggleFilterAction(false);
       return;
     }
   };
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    let currentProjects;
+    async function fetchData() {
+      currentProjects = await getByEmails(email);
+      let currentProject = currentProjects.find(
+        (project) => project.id === projectId
+      );
+      if (currentProject === undefined) {
+        currentProject = { members: [] };
+      }
+      if (!currentProject.members.includes(email)) {
+        history.replace("/projects");
+        alert("Ви не є участником цього проекту.");
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const { sprintId } = params;
+    const { projectId } = params;
+    console.log(sprintId);
+    console.log(projectId);
+
+    if (!sprintId && !projectId) {
+      return;
+    }
+    if (sprints.length === 0) {
+      getSprintByProjectId(projectId);
+    }
+    getTasks(sprintId);
+  }, [match.params.sprintId]);
+
+  useEffect(() => {
+    const parsed = queryString.parse(location.search);
+    const { task } = parsed;
+    if (task) {
+      filterAction(task);
+      toggleFilterAction(true);
+    }
+    if (!task) {
+      toggleFilterAction(false);
+      filterAction("");
+    }
+  }, [match.params.sprintId]);
 
   return (
-    <section className={css.sprint}>
-      <div className={css.container} onClick={handleCloseFilter}>
-        <SprintSidebar />
-        <div className={css['sprint__main-wrapper']}>
-          <SprintHeader />
-          <SprintTableTitle />
+    <section className={css.container} onClick={handleCloseFilter}>
+      <SprintSidebar />
+      <div className={css["sprint__main-wrapper"]}>
+        {loader && (
+          <div className={css["sprint__loader-wrapper"]}>
+            <Loader />
+          </div>
+        )}
 
-          <SprintTasksList
-            match={match}
-            location={location}
-            history={history}
-          />
-        </div>
+        <SprintHeader params={params} />
+        <SprintTableTitle />
+        <SprintTasksList match={match} location={location} history={history} />
+        {!tasks.length && !loader && (
+          <h2 className={css.emptyList}>
+            Ваш спринт не має задач. Скористайтеся кнопкою "Створити задачу"
+          </h2>
+        )}
       </div>
     </section>
   );
 };
 const mapDispatchToProps = {
+  getTasks: getTasksOperation,
+  filterAction: filterTasksAction,
   toggleFilterAction,
+  getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
+  getSprintByProjectId,
 };
-export default connect(null, mapDispatchToProps)(Sprint);
+const mapStateToProps = (state, ownProps) => ({
+  loader: state.loader,
+  error: state.error,
+  email: state.auth.email,
+  projectId: ownProps.location.pathname.split("/")[2],
+  sprints: state.sprints.items,
+  tasks: state.tasks.items,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Sprint);
 
 // <Route path={`${match.path}/:sprintId`} component={SprintTasksList} />;

@@ -9,10 +9,10 @@ const SingleSprint = ({ sprint, deleteSprint, match, history, id }) => {
   };
 
   return (
-    <li className={css.single__item} onClick={openSprintPage}>
+    <li className={css.single__item}>
       <div className={css.single__chart}>
         <h3 className={css.chart__header}>{sprint.title}</h3>
-        <div className={css.sprint__wrapper}>
+        <div className={css.sprint__wrapper} onClick={openSprintPage}>
           <p className={`${css.chart__content} ${css.chart__content_header}`}>
             Дата початку
           </p>
