@@ -19,8 +19,8 @@ const ProjectsSidebarList = ({ projects }) => {
           >
             <span className={css.test}>
               {item.title
-                ? item.title.length > 10
-                  ? item.title.slice(0, 6).trim() + "..."
+                ? item.title.length > 7
+                  ? item.title.slice(0, 7).trim() + "..."
                   : item.title
                 : ""}
             </span>

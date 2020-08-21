@@ -30,17 +30,30 @@ export const getTasksOperation = sprintId => async dispatch => {
   try {
     dispatch(errorOff());
     dispatch(loaderOn());
-    const result = await db.collection('tasks').get();
-    const answer = result.docs.reduce((acc, doc) => {
-      const item = doc.data();
-      if (Number(item.sprintId) === Number(sprintId)) {
-        acc.push({
-          ...item,
-          id: doc.id,
-        });
-      }
-      return acc;
-    }, []);
+
+    const result = await db
+      .collection("tasks")
+      .where("sprintId", "==", sprintId)
+      .get();
+    const answer = result.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+
+    // const result = await db.collection('tasks').get();
+    // const answer = result.docs.reduce((acc, doc) => {
+    //   const item = doc.data();
+    //   console.log(item);
+
+    //   if (item.sprintId === sprintId) {
+    //     acc.push({
+    //       ...item,
+    //       id: doc.id,
+    //     });
+    //   }
+    //   return acc;
+    // }, []);
+    console.log(answer);
 
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     dispatch(getTasks(answer));
@@ -55,7 +68,7 @@ export const getTasksOperation = sprintId => async dispatch => {
 export const addTaskOperation = task => async dispatch => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     const result = await db.collection('tasks').add(task);
     const answer = {
       ...task,
@@ -66,7 +79,7 @@ export const addTaskOperation = task => async dispatch => {
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
 
@@ -79,9 +92,8 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
       return;
     }
 
-
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     const tasks = [...getTasks().tasks.items];
     const task = {
       ...tasks[item.indexArray],
@@ -99,26 +111,24 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
         ...newTask,
       });
 
-
-    dispatch(indexDayAction(item.idx));
+    // dispatch(indexDayAction(item.idx));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };
 
 export const deleteTaskOperation = (idTask, index) => async dispatch => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
+    // dispatch(loaderOn());
     await db.collection('tasks').doc(idTask).delete();
-
 
     dispatch(deleteTask(index));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
+    // dispatch(loaderOff());
   }
 };

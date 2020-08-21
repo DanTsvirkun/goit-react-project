@@ -35,6 +35,32 @@ const getProjectsOperation = () => async (dispatch) => {
   }
 };
 
+const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
+  try {
+    dispatch(loaderOn());
+    const sprintsToDelete = await db
+      .collection("sprints")
+      .where("projectId", "==", id)
+      .get();
+    await db.collection("projects").doc(id).delete();
+    dispatch(projectsActions.deleteProject(id));
+    sprintsToDelete.docs.forEach(async (doc) => {
+      await db.collection("sprints").doc(doc.id).delete();
+      const tasksToDelete = await db
+        .collection("tasks")
+        .where("sprintId", "==", doc.id)
+        .get();
+      tasksToDelete.docs.forEach(async (task) => {
+        await db.collection("tasks").doc(task.id).delete();
+      });
+    });
+  } catch (error) {
+    dispatch(errorOn(error));
+  } finally {
+    dispatch(loaderOff());
+  }
+};
+
 const getProjectsByEmailOperation = (email) => async (dispatch) => {
   try {
     dispatch(loaderOn());
@@ -47,6 +73,7 @@ const getProjectsByEmailOperation = (email) => async (dispatch) => {
       id: doc.id,
     }));
     dispatch(projectsActions.getProjects(answer));
+    return answer;
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
@@ -65,21 +92,9 @@ const getProjectsByEmailOperationCustom = (email) => async (dispatch) => {
       id: doc.id,
     }));
     dispatch(projectsActions.getProjects(answer));
-    console.log("what the fuck");
-  } catch (error) {
-    dispatch(errorOn(error));
-  }
-};
-
-const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
-  try {
-    dispatch(loaderOn());
-    const result = await db.collection("projects").doc(id).delete();
-    dispatch(projectsActions.deleteProject(id));
   } catch (error) {
     dispatch(errorOn(error));
   } finally {
-    dispatch(loaderOff());
   }
 };
 

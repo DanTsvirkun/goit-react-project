@@ -4,20 +4,21 @@
   position: relative;
 }
 
-.sprint-sidebar__wrapper::before {
+/* .sprint-sidebar__wrapper::before {
   content: "";
   position: absolute;
-  /* height: calc(100vh - 80px); */
+  
   height: 100%;
   width: 1px;
   background-color: rgba(24, 28, 39, 0.1);
   top: 0;
   right: 0;
-}
+} */
 
 .sprint-sidebar__wrapper-link {
   width: 170px;
   text-align: left;
+  margin-bottom: 96px;
 }
 
 .sprint-sidebar__link {

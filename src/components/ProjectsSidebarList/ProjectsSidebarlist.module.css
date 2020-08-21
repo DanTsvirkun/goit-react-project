@@ -10,6 +10,7 @@
   width: 120px;
   height: 300px;
   margin: 70px 0;
+  overflow-y: auto;
   list-style: none;
   overflow-y: auto;
   overflow-wrap: break-word;
@@ -41,6 +42,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  word-wrap: break-word;
 }
 
 .project__sidebar-link--active {

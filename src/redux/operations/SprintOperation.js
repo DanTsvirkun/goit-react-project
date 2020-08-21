@@ -14,7 +14,6 @@ import { newState, findCurrentDay } from "../../helpers/newArrayTasks";
 export const addSprintOperation = (sprint) => async (dispatch) => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
     const formatedSprint = {
       ...sprint,
       startDate: moment(sprint.startDate).format("DD.MM.YYYY"),
@@ -25,8 +24,6 @@ export const addSprintOperation = (sprint) => async (dispatch) => {
     dispatch(showModalAddSprintAction(false));
   } catch (error) {
     dispatch(errorOn());
-  } finally {
-    dispatch(loaderOff());
   }
 };
 
@@ -72,17 +69,23 @@ export const deleteSprintsOperation = ({ target: { id } }) => async (
 ) => {
   try {
     dispatch(errorOff());
-    dispatch(loaderOn());
-    const result = await db.collection("sprints").doc(id).delete();
+    const tasksToDelete = await db
+      .collection("tasks")
+      .where("sprintId", "==", id)
+      .get();
+    await db.collection("sprints").doc(id).delete();
     dispatch(deleteSprints(id));
+    tasksToDelete.docs.forEach(async (task) => {
+      await db.collection("tasks").doc(task.id).delete();
+    });
   } catch (error) {
     dispatch(errorOn(error));
-  } finally {
-    dispatch(loaderOff());
   }
 };
 
 export const changeProjectTitle = (projectId, title) => async (dispatch) => {
+  console.log("title", title);
+  console.log("projectId", projectId);
   try {
     const result = await db.collection("projects").doc(projectId).get();
     await db.collection("projects").doc(projectId).update({ title: title });
