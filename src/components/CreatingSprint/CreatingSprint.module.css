@@ -33,3 +33,7 @@
   margin: 0 50px;
   align-items: baseline;
 }
+
+.date_picker {
+  outline: none;
+}
