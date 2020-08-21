@@ -1,38 +1,39 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import css from "./SprintsSidebarList.module.css";
-const SprintsSidebarList = ({ match = "test" }) => {
+import React from 'react';
+import { connect } from 'react-redux';
+import {
+  NavLink,
+  useParams,
+  useRouteMatch,
+  useHistory,
+} from 'react-router-dom';
+import css from './SprintsSidebarList.module.css';
+const SprintsSidebarList = ({ sprints }) => {
+  const params = useParams();
+  const match = useRouteMatch();
+  const history = useHistory();
+
+  const handleClickOnLi = ({ target }) => {
+    console.log(target.dataset.id);
+    const id = target.dataset.id;
+    history.push(`/projects/${params.projectId}/sprints/${id}`);
+  };
+
   return (
-    <ul className={css["sprint__sidebar-list"]}>
-      {[
-        {
-          title: "Sprint Burndown Chart 1",
-          id: 1,
-        },
-        {
-          title: "Sprint Burndown Chart 2",
-          id: 2,
-        },
-        {
-          title: "Sprint Burndown Chart 3",
-          id: 3,
-        },
-        {
-          title: "Sprint Burndown Chart 4",
-          id: 4,
-        },
-        {
-          title: "Sprint Burndown Chart 5",
-          id: 5,
-        },
-      ].map((item) => (
-        <li key={item.id} className={css["sprint__sidebar-item"]}>
+    <ul className={css['sprint__sidebar-list']}>
+      {sprints.map(sprint => (
+        <li
+          onClick={handleClickOnLi}
+          key={sprint.id}
+          className={css['sprint__sidebar-item']}
+          data-id={sprint.id}
+        >
           <NavLink
-            to={`/projects/fgqef/sprints/${item.id}`}
-            activeClassName={css["sprint__sidebar-link--active"]}
-            className={css["sprint__sidebar-link"]}
+            to={`/projects/${params.projectId}/sprints/${sprint.id}`}
+            activeClassName={css['sprint__sidebar-link--active']}
+            className={css['sprint__sidebar-link']}
+            data-id={sprint.id}
           >
-            {item.title}
+            {sprint.title}
           </NavLink>
         </li>
       ))}
@@ -40,4 +41,8 @@ const SprintsSidebarList = ({ match = "test" }) => {
   );
 };
 
-export default SprintsSidebarList;
+const mapStateToProps = state => ({
+  sprints: state.sprints.items,
+});
+
+export default connect(mapStateToProps)(SprintsSidebarList);

@@ -7,6 +7,7 @@ const projects = createReducer(initialState, {
   [projectsActions.getProjects]: (_, { payload }) => payload,
   [projectsActions.deleteProject]: (state, { payload }) =>
     state.filter((project) => project.id !== payload),
+  [projectsActions.cleanProjectsOnLogout]: () => [],
 });
 
 export default projects;

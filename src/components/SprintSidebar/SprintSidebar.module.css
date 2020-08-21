@@ -4,26 +4,27 @@
   position: relative;
 }
 
-.sprint-sidebar__wrapper::before {
+/* .sprint-sidebar__wrapper::before {
   content: "";
   position: absolute;
-  /* height: calc(100vh - 80px); */
+  
   height: 100%;
   width: 1px;
   background-color: rgba(24, 28, 39, 0.1);
   top: 0;
   right: 0;
-}
+} */
 
 .sprint-sidebar__wrapper-link {
   width: 170px;
   text-align: left;
+  margin-bottom: 112px;
 }
 
 .sprint-sidebar__link {
   width: 120px;
   padding: 0 0px 0 50px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -41,8 +42,8 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  content: "";
-  background-image: url("./Arrow.svg");
+  content: '';
+  background-image: url('./Arrow.svg');
   width: 30px;
   height: 8px;
   outline: none;
@@ -64,9 +65,9 @@
   background-repeat: no-repeat;
   margin-bottom: 14px;
   cursor: pointer;
-  background-image: url("../../Icons/plus.svg");
+  background-image: url('../../Icons/plus.svg');
   outline: none;
-  transition: all 300ms linear;
+  transition: all 250ms linear;
 }
 
 .sprint-sidebar__add-btn:hover,
@@ -76,7 +77,7 @@
 }
 
 .sprint-sidebar__add-description {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
