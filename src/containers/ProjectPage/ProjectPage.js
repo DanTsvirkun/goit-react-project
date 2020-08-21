@@ -23,6 +23,7 @@ import projectSelectors from "../../redux/selectors/projectsSelectors";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styles from "./ProjectPage.module.css";
 import transitionAnimation from "../../components/ProjectsPageList/transitionProjectStyles.module.css";
+import animation from "../../components/SprintHeader/animationExit.module.css";
 
 const ProjectPage = ({
   history,
@@ -43,7 +44,8 @@ const ProjectPage = ({
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
   const [title, setTitle] = useState(project.title);
-  const [isUpdate, setUpdate] = useState(false);
+  const [isUpdate, setUpdate] = useState(true);
+  const [active, setActive] = useState(false);
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -93,7 +95,13 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  {isUpdate ? (
+                  <CSSTransition
+                    classNames={animation}
+                    in={active}
+                    timeout={300}
+                    mountOnEnter
+                    unmountOnExit
+                  >
                     <div className={styles.input_change_block}>
                       <input
                         type="text"
@@ -108,20 +116,30 @@ const ProjectPage = ({
                           await getByEmailCustom(email);
                           setUpdate(!isUpdate);
                         }}
-                        className={styles.edit__button}
+                        className={styles["edit__button--active"]}
                       ></button>
                     </div>
-                  ) : (
+                  </CSSTransition>
+
+                  <CSSTransition
+                    classNames={animation}
+                    in={isUpdate}
+                    timeout={300}
+                    unmountOnExit
+                    mountOnEnter
+                    onExited={() => setActive(true)}
+                    onEnter={() => setActive(false)}
+                  >
                     <>
                       <h2 className={styles.project__header}>
                         {project.title}
                       </h2>
                       <button
                         onClick={() => setUpdate(!isUpdate)}
-                        className={`${styles.button} ${styles.button__pencil}`}
+                        className={styles.edit__button}
                       ></button>
                     </>
-                  )}
+                  </CSSTransition>
                 </div>
                 <div className={styles.plusBtnWrapper}>
                   <div
@@ -144,7 +162,7 @@ const ProjectPage = ({
                   </div>
                 </div>
               </div>
-              {/* <div className={styles.project__info}></div> */}
+              <div className={styles.project__info}></div>
               {!sprints.length && (
                 <h2 className={styles.emptyList}>
                   Ваш проект не має спринтів, скористайтесь кнопкою "Створити
