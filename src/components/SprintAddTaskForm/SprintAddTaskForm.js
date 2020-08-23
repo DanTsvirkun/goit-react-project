@@ -144,16 +144,12 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   };
 
   const handleSubmit = e => {
-    console.log(params.sprintId);
-    console.log(sprint);
-
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const { sprintId } = params;
     if (!sprint) {
       return;
     }
-    console.log(sprint);
 
     if (validation(hoursPlanned, title)) {
       const task = {
@@ -163,10 +159,11 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
         hoursWasted: 0,
         hoursWastedPerDay: durationSprint(sprint.startDate, sprint.duration),
       };
-      console.log(task);
+
       addTask(task);
       setTaskItem(initialState);
     }
+    return !validation(hoursPlanned, title);
   };
   return (
     <ModalSidebar status={status} onSubmit={handleSubmit} onClose={onClose}>

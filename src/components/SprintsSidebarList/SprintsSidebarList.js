@@ -13,7 +13,6 @@ const SprintsSidebarList = ({ sprints }) => {
   const history = useHistory();
 
   const handleClickOnLi = ({ target }) => {
-    console.log(target.dataset.id);
     const id = target.dataset.id;
     history.push(`/projects/${params.projectId}/sprints/${id}`);
   };

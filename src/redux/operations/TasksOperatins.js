@@ -1,4 +1,6 @@
-import { db } from '../../config';
+import {
+  db
+} from '../../config';
 import firebase from 'firebase';
 import {
   getTasks,
@@ -8,16 +10,29 @@ import {
   showModalAddTaskAction,
   indexDayAction,
 } from '../actions/sprintTasksActions';
-import { errorOn, errorOff } from '../actions/errorActions';
-import { loaderOn, loaderOff } from '../actions/loaderActions';
-import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
-import { config } from 'react-transition-group';
+import {
+  errorOn,
+  errorOff
+} from '../actions/errorActions';
+import {
+  loaderOn,
+  loaderOff
+} from '../actions/loaderActions';
+import {
+  newState,
+  findCurrentDay
+} from '../../helpers/newArrayTasks';
+import {
+  config
+} from 'react-transition-group';
 
-import { getSprints } from '../actions/sprintActions';
+import {
+  getSprints
+} from '../actions/sprintActions';
 
 export const getTasksOperation = sprintId => async dispatch => {
   try {
-    console.log('GOGO request');
+
     await dispatch(getTasks([]));
     await dispatch(indexDayAction(0));
     dispatch(errorOff());
@@ -32,7 +47,7 @@ export const getTasksOperation = sprintId => async dispatch => {
       ...doc.data(),
       id: doc.id,
     }));
-    console.log('answer', answer);
+
 
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
     await dispatch(indexDayAction(findCurrentDay(answer)));
@@ -84,7 +99,7 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
 
     dispatch(changeTask(tasks));
 
-    console.log('request');
+
     await db
       .collection('tasks')
       .doc(item.taskId)
@@ -125,12 +140,12 @@ export const changeSprintTitle = (sprintId, title) => async (
       title: title,
     });
     const res = sprints.map(el => {
-      return sprintId === el.id
-        ? {
-            ...el,
-            title,
-          }
-        : el;
+      return sprintId === el.id ?
+        {
+          ...el,
+          title,
+        } :
+        el;
     });
 
     dispatch(getSprints(res));

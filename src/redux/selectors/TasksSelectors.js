@@ -1,10 +1,9 @@
 import moment from 'moment';
-import { createSelector } from '@reduxjs/toolkit';
-// import {
-//   itemsSelector
-// } from './SprintsSelector'
+import {
+  createSelector
+} from '@reduxjs/toolkit';
 const currentDate = moment().format('ll');
-// console.log(currentDate);
+
 
 export const tasksSelector = state => state.tasks;
 export const itemsSelector = state => tasksSelector(state).items;
@@ -16,24 +15,23 @@ export const filterSelector = state => tasksSelector(state).filterTasks;
 export const filteredTasksSelector = createSelector(
   [itemsSelector, filterSelector],
   (items, filterValue) => {
-    return filterValue
-      ? items.filter(el =>
-          el.title.toLowerCase().includes(filterValue.toLowerCase()),
-        )
-      : items;
+    return filterValue ?
+      items.filter(el =>
+        el.title.toLowerCase().includes(filterValue.toLowerCase()),
+      ) :
+      items;
   },
 );
 export const validHourSelector = createSelector(
   [(state, hoursWastedPerDay) => hoursWastedPerDay, currentIdxDaySelector],
   (hoursWastedPerDay, idx) => {
-    // console.log('hoursWastedPerDay', hoursWastedPerDay);
-    // console.log('idx', idx);
+
     if (idx < hoursWastedPerDay.length) {
-      console.log('WEWEWEWEWEWE');
+
 
       return hoursWastedPerDay[idx].singleHoursWasted;
     }
-    console.log('QWEQWEQWEQWEQWE');
+
 
     return 0;
   },
