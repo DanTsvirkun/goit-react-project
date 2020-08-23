@@ -140,6 +140,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
       setProjectItem(initialState);
       customOnClose()
     }
+    return result;
   };
 
   return (

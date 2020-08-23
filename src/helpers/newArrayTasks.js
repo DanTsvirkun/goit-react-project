@@ -20,8 +20,6 @@ export const newState = (task, item) => {
 };
 
 export const findCurrentDay = ([task]) => {
-  console.log(task);
-  
   if (!task) {
     return 0;
   }
@@ -29,28 +27,20 @@ export const findCurrentDay = ([task]) => {
   const hoursWastedPerDay = task.hoursWastedPerDay;
   const res = hoursWastedPerDay.findIndex((el, idx) => {
     const isCorrectDay = el.currentDay === currentDate;
-    // console.log('day in array', el.currentDay);
-    // console.log('now day today', currentDate);
-    console.log(isCorrectDay);
 
     if (isCorrectDay) {
-     
       return el;
     }
     if (hoursWastedPerDay.length === idx + 1 && !isCorrectDay) {
       const firstElArray = idx + 1 - hoursWastedPerDay.length;
-      
 
-      return 0
+      return;
     }
-    
   });
+
   if (res < 0) {
-    console.log('ZDECCCCCCCCC');
-    
-    return 0
+    return 0;
   }
-  console.log('RESSSSSSSSS',res);
-  
+
   return res;
 };

@@ -64,7 +64,6 @@ const SprintTaskInput = ({
 }) => {
   const [noValid, setNoValid] = useState('');
   const [inputValue, setInputValue] = useState(0);
-  console.log('validHour', validHour);
 
   useEffect(() => {
     setInputValue(validHour);
@@ -122,20 +121,6 @@ const SprintTaskInput = ({
     />
   );
 };
-
-// <input
-//   className={css['sprints__task-spent']}
-//   type="text"
-//   name="single_hours_wasted"
-//   value={inputValue}
-//   onChange={handleOnChange}
-//   maxLength="2"
-// />;
-// {
-//   noValid && (
-//     <div className={css['sprints__task-spent--validation']}>{noValid}</div>
-//   );
-// }
 
 const mapStateToProps = (state, props) => {
   return {

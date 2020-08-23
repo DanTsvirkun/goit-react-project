@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import animation from './animationExit.module.css';
 import css from './EditTitle.module.css';
 const EditTitle = ({ valueTitle, elementID, editOperation }) => {
-  console.log('TYTY');
-
   const [title, setTitle] = useState(valueTitle);
   const [isUpdate, setUpdate] = useState(true);
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    setTitle(valueTitle);
+  }, [valueTitle]);
   return (
     <>
       <CSSTransition

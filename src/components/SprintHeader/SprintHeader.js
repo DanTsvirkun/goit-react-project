@@ -1,10 +1,5 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
-import {
-  connect
-} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import css from './SprintHeader.module.css';
 import {
   showModalAddTaskAction,
@@ -17,9 +12,7 @@ import {
   findCurrentSprint,
 } from '../../redux/selectors/TasksSelectors';
 import SprintAddTaskForm from '../SprintAddTaskForm/SprintAddTaskForm';
-import {
-  changeSprintTitle
-} from '../../redux/operations/TasksOperatins';
+import { changeSprintTitle } from '../../redux/operations/TasksOperatins';
 import EditTitle from '../EditTitle/EditTitle';
 const SprintHeader = ({
   tasks,
@@ -34,15 +27,9 @@ const SprintHeader = ({
 }) => {
   const [rightArrow, setRightArrow] = useState(false);
   const [leftArrow, setLeftArrow] = useState(false);
-  const {
-    sprintId
-  } = params;
-  console.log('sprint', sprint);
-
+  const { sprintId } = params;
   const taskDay = () => {
-    if (tasks.length > 0) {
-      console.log(currentDayIdx);
-
+    if (tasks.length > 0 && currentDayIdx < tasks[0].hoursWastedPerDay.length) {
       return tasks[0].hoursWastedPerDay[currentDayIdx].currentDay;
     }
     return null;
@@ -73,117 +60,69 @@ const SprintHeader = ({
     indexDayAction(newIdx);
     const setShowButton = () => {};
   };
-  return ( <
-    >
-    <
-    div className = {
-      css.container
-    } > {
-      tasks.length > 0 && sprint && ( <
-        >
-        <
-        div className = {
-          css['sprint__date']
-        } >
-        <
-        p className = {
-          css['sprint__date-sprint']
-        } > {
-          currentDayIdx !== 0 && ( <
-            span onClick = {
-              minusIdx
-            }
-            className = {
-              leftArrow ?
-              `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}` : css['sprint__date-arrow']
-            } >
-            <
-            /span>
-          )
-        } {
-          tasks.length > 0 && currentDayIdx + 1
-        } {
-          tasks.length > 0 && ( <
-            span className = {
-              css['sprint__date-sprint--span']
-            } >
-            /{tasks[0].hoursWastedPerDay.length} < /
-            span >
-          )
-        }
-
-        {
-          tasks[0].hoursWastedPerDay.length !== currentDayIdx + 1 && ( <
-            span onClick = {
-              plusIdx
-            }
-            className = {
-              rightArrow ?
-              `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}` : css['sprint__date-arrow']
-            } >
-            <
-            /span>
-          )
-        } <
-        /p> <
-        p className = {
-          css['sprint__current-date']
-        } > {
-          taskDay()
-        } < /p> < /
-        div > <
-        />
-      )
-    } <
-    div className = {
-      css['sprint__header-wrapper']
-    } >
-    <
-    div className = {
-      css['sprint__title-wrapper']
-    } > {
-      sprint && ( <
-        EditTitle valueTitle = {
-          sprint.title
-        }
-        editOperation = {
-          changeSprintTitle
-        }
-        elementID = {
-          sprintId
-        }
-        />
-      )
-    } <
-    /div> <
-    div className = {
-      css['sprint__add-task-wrapper']
-    } >
-    <
-    button onClick = {
-      showModal
-    }
-    className = {
-      css['sprint__add-task-btn']
-    } >
-    <
-    /button> <
-    p className = {
-      css['sprint__add-task-offer']
-    } > Створити задачу < /p> < /
-    div > <
-    /div> < /
-    div > <
-    SprintAddTaskForm status = {
-      isShowModal
-    }
-    sprint = {
-      sprint
-    }
-    onClose = {
-      showModal
-    }
-    /> < / >
+  return (
+    <>
+      <div className={css.container}>
+        {tasks.length > 0 && sprint && (
+          <>
+            <div className={css['sprint__date']}>
+              <p className={css['sprint__date-sprint']}>
+                {currentDayIdx !== 0 && (
+                  <span
+                    onClick={minusIdx}
+                    className={
+                      leftArrow
+                        ? `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}`
+                        : css['sprint__date-arrow']
+                    }
+                  ></span>
+                )}
+                {tasks.length > 0 && currentDayIdx + 1}
+                {tasks.length > 0 && (
+                  <span className={css['sprint__date-sprint--span']}>
+                    /{tasks[0].hoursWastedPerDay.length}
+                  </span>
+                )}
+                {tasks[0].hoursWastedPerDay.length !== currentDayIdx + 1 && (
+                  <span
+                    onClick={plusIdx}
+                    className={
+                      rightArrow
+                        ? `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}`
+                        : css['sprint__date-arrow']
+                    }
+                  ></span>
+                )}
+              </p>
+              <p className={css['sprint__current-date']}> {taskDay()} </p>
+            </div>
+          </>
+        )}
+        <div className={css['sprint__header-wrapper']}>
+          <div className={css['sprint__title-wrapper']}>
+            {sprint && (
+              <EditTitle
+                valueTitle={sprint.title}
+                editOperation={changeSprintTitle}
+                elementID={sprintId}
+              />
+            )}
+          </div>
+          <div className={css['sprint__add-task-wrapper']}>
+            <button
+              onClick={showModal}
+              className={css['sprint__add-task-btn']}
+            ></button>
+            <p className={css['sprint__add-task-offer']}> Створити задачу </p>
+          </div>
+        </div>
+      </div>
+      <SprintAddTaskForm
+        status={isShowModal}
+        sprint={sprint}
+        onClose={showModal}
+      />
+    </>
   );
 };
 const mapStateToProps = (state, ownProps) => ({

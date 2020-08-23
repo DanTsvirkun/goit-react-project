@@ -64,12 +64,6 @@ const Sprint = ({
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   return () => {
-  //     console.log('asqweqweqweqwe');
-  //   };
-  // }, []);
-
   useEffect(() => {
     const { sprintId } = params;
     const { projectId } = params;
@@ -81,24 +75,21 @@ const Sprint = ({
     const getRequst = async () => {
       if (sprints.length < 1) {
         const answer = await getSprintByProjectId(projectId);
-        // console.log(answer);
+
         const hasSprint = answer.find(el => el.id === sprintId);
-        // console.log(hasSprint);
+
         if (!hasSprint) {
           alert('Шкода, але такого спринту немає');
           history.replace('/projects');
           return;
         }
       }
-      console.log('TETETEOPTOEPTOEPOTEPT');
 
       const answerTasks = await getTasks(sprintId);
       // indexDayAction(findCurrentDay(answerTasks));
     };
     getRequst();
-    return () => {
-      console.log('asqweqweqweqwe');
-    };
+    return () => {};
   }, [match.params.sprintId]);
 
   useEffect(() => {
