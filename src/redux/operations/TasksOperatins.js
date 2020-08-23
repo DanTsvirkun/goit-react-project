@@ -1,6 +1,4 @@
-import {
-  db
-} from '../../config';
+import { db } from '../../config';
 import firebase from 'firebase';
 import {
   getTasks,
@@ -10,28 +8,18 @@ import {
   showModalAddTaskAction,
   indexDayAction,
 } from '../actions/sprintTasksActions';
-import {
-  errorOn,
-  errorOff
-} from '../actions/errorActions';
-import {
-  loaderOn,
-  loaderOff
-} from '../actions/loaderActions';
-import {
-  newState,
-  findCurrentDay
-} from '../../helpers/newArrayTasks';
-import {
-  config
-} from 'react-transition-group';
+import { errorOn, errorOff } from '../actions/errorActions';
+import { loaderOn, loaderOff } from '../actions/loaderActions';
+import { newState, findCurrentDay } from '../../helpers/newArrayTasks';
+import { config } from 'react-transition-group';
 
-import {
-  getSprints
-} from '../actions/sprintActions';
+import { getSprints } from '../actions/sprintActions';
 
 export const getTasksOperation = sprintId => async dispatch => {
   try {
+    console.log('GOGO request');
+    await dispatch(getTasks([]));
+    await dispatch(indexDayAction(0));
     dispatch(errorOff());
     dispatch(loaderOn());
 
@@ -44,10 +32,12 @@ export const getTasksOperation = sprintId => async dispatch => {
       ...doc.data(),
       id: doc.id,
     }));
+    console.log('answer', answer);
 
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
+    await dispatch(indexDayAction(findCurrentDay(answer)));
     dispatch(getTasks(answer));
-    dispatch(indexDayAction(findCurrentDay(answer)));
+
     return answer;
   } catch (error) {
     dispatch(errorOn(error));
@@ -124,21 +114,26 @@ export const deleteTaskOperation = (idTask, index) => async dispatch => {
   }
 };
 
-export const changeSprintTitle = (sprintId, title) => async (dispatch, getState) => {
+export const changeSprintTitle = (sprintId, title) => async (
+  dispatch,
+  getState,
+) => {
   try {
     // const result = await db.collection("projects").doc(projectId).get();
-    const sprints = getState().sprints.items
+    const sprints = getState().sprints.items;
     await db.collection('sprints').doc(sprintId).update({
       title: title,
     });
     const res = sprints.map(el => {
-      return sprintId === el.id ? {
-        ...el,
-        title
-      } : el
-    })
+      return sprintId === el.id
+        ? {
+            ...el,
+            title,
+          }
+        : el;
+    });
 
-    dispatch(getSprints(res))
+    dispatch(getSprints(res));
   } catch (error) {
     dispatch(errorOn(error));
   }

@@ -33,7 +33,9 @@ const SprintsSidebarList = ({ sprints }) => {
             className={css['sprint__sidebar-link']}
             data-id={sprint.id}
           >
-            {sprint.title}
+            {sprint.title.trim().length > 14
+              ? `${sprint.title.slice(0, 14)}...`
+              : `${sprint.title}`}
           </NavLink>
         </li>
       ))}
