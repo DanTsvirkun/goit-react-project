@@ -1,7 +1,11 @@
 .sprint-sidebar__wrapper {
   width: 200px;
   padding: 20px 0 0 0;
-  position: relative;
+  /* position: relative; */
+  /* position: fixed; */
+  height: 100%;
+  position: sticky;
+  top: 0px;
 }
 
 /* .sprint-sidebar__wrapper::before {
@@ -18,7 +22,7 @@
 .sprint-sidebar__wrapper-link {
   width: 170px;
   text-align: left;
-  margin-bottom: 112px;
+  margin-bottom: 104px;
 }
 
 .sprint-sidebar__link {

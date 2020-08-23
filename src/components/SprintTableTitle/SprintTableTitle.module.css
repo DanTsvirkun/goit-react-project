@@ -79,4 +79,5 @@
 
 .sprint__filter-task-btn:hover {
   transform: scale(1.2);
+  background-image: url('./searchActive.svg');
 }

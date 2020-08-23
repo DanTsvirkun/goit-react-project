@@ -1,3 +1,23 @@
+@keyframes rotateOutDownLeft {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: rotate3d(0, 0, 1, 55deg);
+
+  }
+
+  80% {
+    tranform: rotate3d(0, 0, 1, 0deg)
+  }
+}
+
+.rotateOutDownLeft {
+  animation-name: rotateOutDownLeft;
+  transform-origin: left bottom;
+}
+
 .sprint__task-list {
   display: flex;
   align-items: flex-end;
@@ -65,6 +85,7 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
+
 }
 
 .sprint__tasks-name {
@@ -89,8 +110,17 @@
   background-size: contain;
   background-color: transparent;
   cursor: pointer;
-  background-image: url("./delete.svg");
+  background-image: url("../../Icons/trash.svg");
   outline: none;
+  transition: all 500ms linear;
+}
+
+.sprint__task-delete-btn:hover {
+  background-image: url("../../Icons/trashActive.svg");
+  /* animation: rotateOutDownLeft 600ms linear; */
+  /* animation-fill-mode: forwards; */
+  transform: rotate3d(0, 0, 1, 55deg);
+
 }
 
 .sprint__task-React-Tooltiop {
