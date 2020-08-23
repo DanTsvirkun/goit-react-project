@@ -1,37 +1,48 @@
-import moment from "moment";
-import { createSelector } from "@reduxjs/toolkit";
+import moment from 'moment';
+import { createSelector } from '@reduxjs/toolkit';
 // import {
 //   itemsSelector
 // } from './SprintsSelector'
-const currentDate = moment().format("ll");
+const currentDate = moment().format('ll');
 // console.log(currentDate);
 
-export const tasksSelector = (state) => state.tasks;
-export const itemsSelector = (state) => tasksSelector(state).items;
-export const showModalSelector = (state) =>
-  tasksSelector(state).showModalAddTask;
-export const currentIdxDaySelector = (state) =>
+export const tasksSelector = state => state.tasks;
+export const itemsSelector = state => tasksSelector(state).items;
+export const showModalSelector = state => tasksSelector(state).showModalAddTask;
+export const currentIdxDaySelector = state =>
   tasksSelector(state).indexCurrentDay;
-export const filterSelector = (state) => tasksSelector(state).filterTasks;
+
+export const filterSelector = state => tasksSelector(state).filterTasks;
 export const filteredTasksSelector = createSelector(
   [itemsSelector, filterSelector],
   (items, filterValue) => {
     return filterValue
-      ? items.filter((el) =>
-          el.title.toLowerCase().includes(filterValue.toLowerCase())
+      ? items.filter(el =>
+          el.title.toLowerCase().includes(filterValue.toLowerCase()),
         )
       : items;
-  }
+  },
 );
 export const validHourSelector = createSelector(
   [(state, hoursWastedPerDay) => hoursWastedPerDay, currentIdxDaySelector],
-  (hoursWastedPerDay, idx) => hoursWastedPerDay[idx].singleHoursWasted
+  (hoursWastedPerDay, idx) => {
+    // console.log('hoursWastedPerDay', hoursWastedPerDay);
+    // console.log('idx', idx);
+    if (idx < hoursWastedPerDay.length) {
+      console.log('WEWEWEWEWEWE');
+
+      return hoursWastedPerDay[idx].singleHoursWasted;
+    }
+    console.log('QWEQWEQWEQWEQWE');
+
+    return 0;
+  },
 );
 
-const sprintsSelector = (state) => state.sprints;
-const itemsSprintsSelector = (state) => sprintsSelector(state).items;
+const sprintsSelector = state => state.sprints;
+const itemsSprintsSelector = state => sprintsSelector(state).items;
 
 export const findCurrentSprint = createSelector(
   [(state, params) => params, itemsSprintsSelector],
-  (params, sprints) => sprints.find((el) => el.id === params.sprintId)
+  (params, sprints) => sprints.find(el => el.id === params.sprintId),
 );

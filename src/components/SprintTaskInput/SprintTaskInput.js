@@ -1,28 +1,17 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
-import {
-  connect
-} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import WeekDays from 'moment-business-days';
 import moment from 'moment';
 import {} from '../../redux/operations/TasksOperatins';
-import {
-  withStyles
-} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {
   hoursWastedPerDay,
   currentIdxDaySelector,
   validHourSelector,
 } from '../../redux/selectors/TasksSelectors';
-import {
-  indexDayAction
-} from '../../redux/actions/sprintTasksActions';
-import {
-  changeTaskSingleHour
-} from '../../redux/operations/TasksOperatins';
+import { indexDayAction } from '../../redux/actions/sprintTasksActions';
+import { changeTaskSingleHour } from '../../redux/operations/TasksOperatins';
 import css from './SprintTaskInput.module.css';
 
 const HoursWasted = withStyles({
@@ -74,11 +63,13 @@ const SprintTaskInput = ({
   indexArray,
 }) => {
   const [noValid, setNoValid] = useState('');
-  const [inputValue, setInputValue] = useState(validHour);
+  const [inputValue, setInputValue] = useState(0);
+  console.log('validHour', validHour);
 
   useEffect(() => {
     setInputValue(validHour);
   }, [validHour]);
+
   const validation = value => {
     const num = Number(value);
 
@@ -104,11 +95,7 @@ const SprintTaskInput = ({
     return true;
   };
 
-  const handleOnChange = ({
-    target: {
-      value
-    }
-  }) => {
+  const handleOnChange = ({ target: { value } }) => {
     const isValid = validation(value);
     setInputValue(value);
     const numValue = value;
@@ -123,23 +110,16 @@ const SprintTaskInput = ({
       });
     }
   };
-  return ( <
-    HoursWasted id = "custom-css-standard-input"
-    name = "single_hours_wasted"
-    value = {
-      inputValue
-    }
-    onChange = {
-      handleOnChange
-    }
-    error = {
-      noValid ? true : undefined
-    }
-    helperText = {
-      noValid
-    }
-    margin = "none" /
-    >
+  return (
+    <HoursWasted
+      id="custom-css-standard-input"
+      name="single_hours_wasted"
+      value={inputValue}
+      onChange={handleOnChange}
+      error={noValid ? true : undefined}
+      helperText={noValid}
+      margin="none"
+    />
   );
 };
 

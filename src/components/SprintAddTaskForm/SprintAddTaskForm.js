@@ -1,92 +1,91 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import weekDays from "moment-business-days";
-import moment from "moment";
-import { connect } from "react-redux";
-import { addTaskOperation } from "../../redux/operations/TasksOperatins";
-import css from "./SprintAddTaskForm.module.css";
-// import ModalTest from '../ModalTest/ModalTest';
-import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import weekDays from 'moment-business-days';
+import moment from 'moment';
+import { connect } from 'react-redux';
+import { addTaskOperation } from '../../redux/operations/TasksOperatins';
+import css from './SprintAddTaskForm.module.css';
+import ModalSidebar from '../ModalSidebar/ModalSidebar';
 
 const TitleField = withStyles({
   root: {
-    "& .MuiInputBase-root": {
-      marginBottom: "50px",
+    '& .MuiInputBase-root': {
+      marginBottom: '50px',
     },
-    "& .MuiInputBase-root.Mui-error": {
-      marginBottom: "0px",
+    '& .MuiInputBase-root.Mui-error': {
+      marginBottom: '0px',
     },
-    "& label.Mui-focused": {
-      color: "#ff6b08",
+    '& label.Mui-focused': {
+      color: '#ff6b08',
     },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#ff6b08",
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#ff6b08',
     },
-    "& .MuiFormHelperText-root.Mui-error": {
-      marginBottom: "50px",
-      fontFamily: "Montserrat",
-      color: "red",
-      fontSize: "12px",
+    '& .MuiFormHelperText-root.Mui-error': {
+      marginBottom: '50px',
+      fontFamily: 'Montserrat',
+      color: 'red',
+      fontSize: '12px',
     },
-    "& > *": {
-      width: "430px",
-      fontFamily: "Montserrat",
-      fontWeight: "normal",
-      fontSize: "18px",
-      lineHeight: "22px",
+    '& > *': {
+      width: '430px',
+      fontFamily: 'Montserrat',
+      fontWeight: 'normal',
+      fontSize: '18px',
+      lineHeight: '22px',
     },
   },
 })(TextField);
 
 const PlanedDuration = withStyles({
   root: {
-    "& .MuiInputBase-root": {
-      marginBottom: "60px",
+    '& .MuiInputBase-root': {
+      marginBottom: '60px',
     },
-    "& .MuiInputBase-root.Mui-error": {
-      marginBottom: "0px",
+    '& .MuiInputBase-root.Mui-error': {
+      marginBottom: '0px',
     },
-    "& label.Mui-focused": {
-      color: "#ff6b08",
+    '& label.Mui-focused': {
+      color: '#ff6b08',
     },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#ff6b08",
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#ff6b08',
     },
-    "& .MuiFormHelperText-root.Mui-error": {
-      marginBottom: "60px",
-      fontFamily: "Montserrat",
-      color: "red",
-      fontSize: "12px",
+    '& .MuiFormHelperText-root.Mui-error': {
+      marginBottom: '60px',
+      fontFamily: 'Montserrat',
+      color: 'red',
+      fontSize: '12px',
     },
-    "& > *": {
-      width: " 220px;",
-      fontFamily: "Montserrat",
-      fontWeight: "normal",
-      fontSize: "18px",
-      lineHeight: "22px",
-      outline: "none",
+    '& > *': {
+      width: ' 430px;',
+      fontFamily: 'Montserrat',
+      fontWeight: 'normal',
+      fontSize: '18px',
+      lineHeight: '22px',
+      outline: 'none',
     },
   },
 })(TextField);
 
 const initialState = {
-  title: "",
-  hoursPlanned: "",
+  title: '',
+  hoursPlanned: '',
 };
 
 const oneDay = 86400000;
 const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   const params = useParams();
   const [taskItem, setTaskItem] = useState(initialState);
-  const [noValid, setNoValid] = useState("");
-  const [noValidTitle, setNoValidTitle] = useState("");
+  const [noValid, setNoValid] = useState('');
+  const [noValidTitle, setNoValidTitle] = useState('');
   const handleChangeInput = ({ target }) => {
     const { name, value } = target;
-    setNoValid("");
-    setNoValidTitle("");
-    setTaskItem((state) => ({
+    setNoValid('');
+    setNoValidTitle('');
+    setTaskItem(state => ({
       ...state,
       [name]: value,
     }));
@@ -95,9 +94,9 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   const durationSprint = (startDate, duration) => {
     let sprintDay = [];
     for (let i = 0; i < duration; i++) {
-      const day = weekDays(startDate, "DD.MM.YYYY").businessAdd(i)._d;
+      const day = weekDays(startDate, 'DD.MM.YYYY').businessAdd(i)._d;
       sprintDay.push({
-        currentDay: moment(day).format("DD.MM.YYYY"),
+        currentDay: moment(day).format('DD.MM.YYYY'),
         singleHoursWasted: 0,
       });
     }
@@ -109,43 +108,44 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
 
     if (title.trim().length < 2) {
       setNoValidTitle(
-        "Будь ласка, введіть більше 1 символа для корректной назви задачі."
+        'Будь ласка, введіть більше 1 символа для корректной назви задачі.',
       );
       return false;
     }
 
     if (!num) {
       setNoValid(
-        "Будь ласка, оберіть скільки годин вам потрібно для цієї задачі."
+        'Будь ласка, оберіть скільки годин вам потрібно для цієї задачі.',
       );
       return false;
     }
 
     if (isNaN(num)) {
-      setNoValid("введіть число");
+      setNoValid('введіть число');
       return false;
     }
 
     if (num <= 0) {
-      setNoValid("введіть число більше 0");
+      setNoValid('введіть число більше 0');
       return false;
     }
 
-    if (value.length > 1 && value[0] === "0") {
-      setNoValid("введіть число більше 0");
+    if (value.length > 1 && value[0] === '0') {
+      setNoValid('введіть число більше 0');
       return false;
     }
 
     if (num.toString().length > 2) {
-      setNoValid("Занадто велика цифра. Будь ласка, введіть менше 3 символів");
+      setNoValid('Занадто велика цифра. Будь ласка, введіть менше 3 символів');
       return false;
     }
 
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     console.log(params.sprintId);
+    console.log(sprint);
 
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
@@ -153,6 +153,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
     if (!sprint) {
       return;
     }
+    console.log(sprint);
 
     if (validation(hoursPlanned, title)) {
       const task = {
@@ -169,10 +170,10 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   };
   return (
     <ModalSidebar status={status} onSubmit={handleSubmit} onClose={onClose}>
-      <form className={css["sprint__form"]} onSubmit={handleSubmit}>
-        <h3 className={css["sprint__form-title"]}> Створення задачі </h3>
-        <ul className={css["sprint__form-list"]}>
-          <li className={css["sprint__form-item"]}>
+      <form className={css['sprint__form']} onSubmit={handleSubmit}>
+        <h3 className={css['sprint__form-title']}> Створення задачі </h3>
+        <ul className={css['sprint__form-list']}>
+          <li className={css['sprint__form-item']}>
             <TitleField
               id="custom-css-standard-input"
               label="Назва задачі"
@@ -184,7 +185,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
               required
             />
           </li>
-          <li className={css["sprint__form-item"]}>
+          <li className={css['sprint__form-item']}>
             <PlanedDuration
               id="custom-css-standard-input"
               label="Заплановано годин"
@@ -202,7 +203,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   sprints: state.sprints.items,
 });
 
