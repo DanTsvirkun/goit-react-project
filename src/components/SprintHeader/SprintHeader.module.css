@@ -50,15 +50,6 @@
   justify-content: space-between;
 }
 
-.wrapper {
-  position: absolute;
-  width: 400px;
-  top: 50%;
-  height: 30px;
-  left: 0;
-  transform: translateY(-50%);
-}
-
 .sprint__title-wrapper {
   display: flex;
 
@@ -67,49 +58,6 @@
 
   position: relative;
   max-width: 400px;
-}
-
-.sprint__title {
-  margin-right: 40px;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
-  letter-spacing: 0.04em;
-  color: #181c27;
-  max-width: 340px;
-  word-wrap: break-word;
-}
-
-.sprint__change-name-btn {
-  width: 20px;
-  height: 20px;
-  border: none;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  background-image: url('../../Icons/pencil.svg');
-}
-
-.sprint__change-name-btn--active {
-  width: 20px;
-  position: absolute;
-  height: 20px;
-  border: none;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  background-image: url('../../Icons/pencil.svg');
 }
 
 .sprint__add-task-wrapper {

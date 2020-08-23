@@ -31,7 +31,6 @@ const SprintTasksList = ({
 }) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
 
-
   const handleToggleAnalytic = () => {
     setToggleAnalytic(state => !state);
     document.querySelector('body').style.overflow = 'hidden';
@@ -46,7 +45,7 @@ const SprintTasksList = ({
           </CSSTransition>
         ))}
       </TransitionGroup>
-      {!toggleAnalytic && items.length > 1 && (
+      {!toggleAnalytic && items.length > 2 && (
         <BurndownChartBtn openModal={handleToggleAnalytic} />
       )}
       {toggleAnalytic && (
