@@ -1,13 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { sprintsSelector } from "./SprintsSelector";
 import { itemsSelector } from "./TasksSelectors";
 
-const sprintsItemsSelector = (state) => sprintsSelector(state).items;
-
-export const sprintDurationSelector = createSelector(
-  [sprintsItemsSelector],
-  (items) => items.map((sprint) => Number(sprint.duration))
-);
+export const sprintDurationSelector = (state) =>
+  itemsSelector(state)[0].hoursWastedPerDay.length;
 
 export const chartDaysSelector = createSelector([itemsSelector], (items) =>
   items[0].hoursWastedPerDay.map((task) => task.currentDay)
@@ -29,5 +24,9 @@ export const sumHoursWastedSelector = createSelector([itemsSelector], (items) =>
     }, 0)
 );
 
-// export const sprintDurationSelector = (state) =>
-//   itemsSelector(state)[0].hoursWastedPerDay.length;
+// const sprintsItemsSelector = (state) => sprintsSelector(state).items;
+
+// export const sprintDurationSelector = createSelector(
+//   [sprintsItemsSelector],
+//   (items) => items.map((sprint) => Number(sprint.duration))
+// );
