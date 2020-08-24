@@ -76,6 +76,12 @@
   right: 10px;
   bottom: 10px;
   background-color: transparent;
+  transition: all 500ms linear;
+}
+
+.chart__button:hover {
+  background-image: url("../../Icons/trashActive.svg");
+  transform: rotate3d(0, 0, 1, 65deg);
 }
 
 
