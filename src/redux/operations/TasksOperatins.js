@@ -32,6 +32,9 @@ import {
 
 export const getTasksOperation = sprintId => async dispatch => {
   try {
+
+    await dispatch(getTasks([]));
+    await dispatch(indexDayAction(0));
     dispatch(errorOff());
     dispatch(loaderOn());
 
@@ -45,9 +48,11 @@ export const getTasksOperation = sprintId => async dispatch => {
       id: doc.id,
     }));
 
+
     // const filteredAnswer = answer.filter((el) => Number(sprintId) === el.sprintId)
+    await dispatch(indexDayAction(findCurrentDay(answer)));
     dispatch(getTasks(answer));
-    dispatch(indexDayAction(findCurrentDay(answer)));
+
     return answer;
   } catch (error) {
     dispatch(errorOn(error));
@@ -94,7 +99,7 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
 
     dispatch(changeTask(tasks));
 
-    console.log('request');
+
     await db
       .collection('tasks')
       .doc(item.taskId)
@@ -124,21 +129,26 @@ export const deleteTaskOperation = (idTask, index) => async dispatch => {
   }
 };
 
-export const changeSprintTitle = (sprintId, title) => async (dispatch, getState) => {
+export const changeSprintTitle = (sprintId, title) => async (
+  dispatch,
+  getState,
+) => {
   try {
     // const result = await db.collection("projects").doc(projectId).get();
-    const sprints = getState().sprints.items
+    const sprints = getState().sprints.items;
     await db.collection('sprints').doc(sprintId).update({
       title: title,
     });
     const res = sprints.map(el => {
-      return sprintId === el.id ? {
-        ...el,
-        title
-      } : el
-    })
+      return sprintId === el.id ?
+        {
+          ...el,
+          title,
+        } :
+        el;
+    });
 
-    dispatch(getSprints(res))
+    dispatch(getSprints(res));
   } catch (error) {
     dispatch(errorOn(error));
   }
