@@ -131,10 +131,24 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       setTitleErr("Будь ласка, введіть коректну назву спринту.");
       titleValid = false;
     }
+
+    if (title.length > 40) {
+      setTitleErr(
+        `Довжина назви спринта задовга: ${title.length} символів. Допустимо: 40.`
+      );
+      titleValid = false;
+    }
+
     if (!Number(duration)) {
       setDurationErr("Будь ласка, оберіть тривалість спринта.");
       durationValid = false;
     }
+
+    if (duration.length > 3) {
+      setDurationErr("Тривалість спринта, має містити не більше 3-х символів.");
+      durationValid = false;
+    }
+
     if (!startDate) {
       setDateErr("Будь ласка, введіть релевантний день початку спринта.");
       dateValid = false;
@@ -180,7 +194,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       >
         <NameTextField
           id="custom-css-standard-input"
-          label="Назва проекту"
+          label="Назва спринта"
           name="title"
           onChange={handleTitle}
           error={titleErr ? true : undefined}
