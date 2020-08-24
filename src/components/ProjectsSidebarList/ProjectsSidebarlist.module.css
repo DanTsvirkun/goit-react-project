@@ -7,19 +7,16 @@
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
-  width: 120px;
-  height: 300px;
-  margin: 70px 0;
-  overflow-y: auto;
+  width: 200px;
+  height: 330px;
+  margin: 170px 0 100px;
   list-style: none;
   overflow-y: auto;
-  overflow-wrap: break-word;
 }
 
 .project__sidebar-item {
   text-align: left;
-  width: 120px;
-  height: 36px;
+  width: 100%;
   position: relative;
   transition: all 250ms linear;
 }
@@ -29,8 +26,8 @@
 }
 
 .project__sidebar-link {
-  width: 30px;
-  height: 36px;
+  width: 100%;
+  min-height: 36px;
   padding-left: 50px;
   font-family: "Montserrat";
   font-style: normal;
@@ -83,10 +80,6 @@
 }
 
 .test {
+  width: 142px;
   overflow-wrap: break-word;
 }
-
-/* @value colorBlue: #4394f1;
-@value colorPurple: #8c72df;
-@value colorRed: #ff765f;
-@value colorGreen: #71df87; */

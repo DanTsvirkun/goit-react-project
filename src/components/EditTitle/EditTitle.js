@@ -32,6 +32,7 @@ const EditTitle = ({
               className={css.input_change}
               value={title}
               onChange={e => setTitle(e.target.value)}
+              maxLength="40"
             />
             <button
               type="button"
