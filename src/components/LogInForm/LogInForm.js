@@ -40,7 +40,10 @@ const LogInForm = () => {
     ) {
       emailInput.current.firstChild.control.focus();
     }
-  }, [error]);
+    return () => {
+      dispatch(errorOff());
+    };
+  }, []);
 
   const errorMessage = (error) => {
     if (
