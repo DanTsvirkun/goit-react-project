@@ -11,8 +11,8 @@ const dateChanger = (data) => {
 };
 
 export const convertFormToUppercase = (date) => {
-  const one = dateChanger(date).split("");
-  const firstLetterToUppercase = one[3].toUpperCase();
-  one.splice(3, 1, firstLetterToUppercase);
-  return one.join("");
+  const result = dateChanger(date).split("");
+  const firstLetterToUppercase = result[3].toUpperCase();
+  result.splice(3, 1, firstLetterToUppercase);
+  return result.join("");
 };
