@@ -8,8 +8,9 @@ const UserMenu = () => {
   const uid = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
 
-  const logOut = () => {
-    dispatch(LogOutOperation(uid));
+  const logOut = async () => {
+    const GoogleAuth = await window.gapi.auth2.getAuthInstance();
+    dispatch(LogOutOperation(uid, GoogleAuth));
   };
   return (
     <div className={styles.menu_container}>
