@@ -15,8 +15,10 @@ const SignInGoogle = () => {
     });
   }, []);
 
-  const signIn = () => {
-    dispatch(SignInOperation());
+  const signIn = async () => {
+    const GoogleAuth = window.gapi.auth2.getAuthInstance();
+    const result = await GoogleAuth.signIn();
+    dispatch(SignInOperation(result));
   };
 
   return (
