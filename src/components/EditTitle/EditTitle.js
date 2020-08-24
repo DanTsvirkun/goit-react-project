@@ -59,8 +59,7 @@ const EditTitle = ({
       >
         <>
           <h1 className={email ? css['project__header'] : css['sprint__title']}>
-            {' '}
-            {title}{' '}
+            {title}
           </h1>
           <button
             onClick={() => setUpdate(!isUpdate)}

@@ -11,13 +11,13 @@
   font-size: 14px;
   letter-spacing: 0.04em;
   color: #181c27;
-  padding: 6px 0 6px 5px;
+  padding: 6px 5px;
   outline: none;
 }
 
 .wrapper {
   position: absolute;
-  width: 400px;
+  width: 370px;
   top: 50%;
   height: 30px;
   left: 0;
