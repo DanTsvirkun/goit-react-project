@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { errorOff } from "../../redux/actions/errorActions";
-import SignInGoogle from "../SignInGoogle/SignInGoogle";
 
 const CssTextField = withStyles((theme) => ({
   root: {
@@ -39,7 +38,10 @@ const RegistrationForm = () => {
     } else if (error === "Password should be at least 6 characters") {
       passwordInput.current.children[0].control.focus();
     }
-  }, [error]);
+    return () => {
+      dispatch(errorOff());
+    };
+  }, []);
 
   const errorMessage = (error) => {
     if (error === "Password should be at least 6 characters") {
