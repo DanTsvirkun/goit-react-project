@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { deleteSprintsOperation } from "../../redux/operations/SprintOperation";
+import { convertFormToUppercase } from "../../helpers/dataFormatChangerForSingleSprint";
 import css from "./SingleSprint.module.css";
 
 const SingleSprint = ({ sprint, deleteSprint, match, history, id }) => {
@@ -17,13 +18,13 @@ const SingleSprint = ({ sprint, deleteSprint, match, history, id }) => {
             Дата початку
           </p>
           <p className={`${css.chart__content} ${css.chart__content_info}`}>
-            {sprint.startDate}
+            {convertFormToUppercase(sprint.startDate)}
           </p>
           <p className={`${css.chart__content} ${css.chart__content_header}`}>
             Дата закінчення
           </p>
           <p className={`${css.chart__content} ${css.chart__content_info}`}>
-            {sprint.endDate}
+            {convertFormToUppercase(sprint.endDate)}
           </p>
           <p className={`${css.chart__content} ${css.chart__content_header}`}>
             Тривалість
