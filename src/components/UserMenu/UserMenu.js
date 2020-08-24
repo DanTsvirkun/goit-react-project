@@ -5,10 +5,11 @@ import LogOutOperation from "../../redux/operations/LogOutOperation";
 
 const UserMenu = () => {
   const email = useSelector((state) => state.auth.email);
+  const uid = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
 
   const logOut = () => {
-    dispatch(LogOutOperation());
+    dispatch(LogOutOperation(uid));
   };
   return (
     <div className={styles.menu_container}>
