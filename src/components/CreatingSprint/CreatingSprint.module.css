@@ -29,6 +29,7 @@
 }
 
 .input_gather {
+  position: relative;
   display: flex;
   margin: 0 50px;
   align-items: baseline;
@@ -36,4 +37,22 @@
 
 .date_picker {
   outline: none;
+}
+
+.checkbox_past_date {
+  position: absolute;
+  top: 26px;
+  left: 180px;
+  display: block;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.hint {
+  position: absolute;
+  top: 3px;
+  width: 200px;
+  font-family: "Montserrat";
+  font-size: 12px;
 }

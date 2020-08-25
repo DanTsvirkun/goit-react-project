@@ -4,8 +4,8 @@ import css from "./CreatingSprint.module.css";
 import DatePicker from "react-datepicker";
 import uk from "date-fns/locale/uk";
 import { connect } from "react-redux";
-import { useLocation, useHistory } from "react-router-dom";
-import { registerLocale, setDefaultLocale } from "react-datepicker";
+import { useLocation } from "react-router-dom";
+import { registerLocale } from "react-datepicker";
 import { addSprintOperation } from "../../redux/operations/SprintOperation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import "react-datepicker/dist/react-datepicker.css";
@@ -77,13 +77,12 @@ const DurationTextField = withStyles({
       outline: "none",
       marginLeft: "29px",
     },
-    "& .MuiInputBase-input": {
-      marginBottom: "3px",
-    },
   },
 })(TextField);
 
 const CreatingSprint = ({ addSprint, status, onClose }) => {
+  const [hidePastDays, setHidePastDays] = useState(false);
+  const [hint, setHint] = useState(false);
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
   const [duration, setDuration] = useState("");
@@ -92,6 +91,14 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   const [dateErr, setDateErr] = useState("");
   let newLocation = useLocation();
   const projectId = newLocation.pathname.split("/")[2];
+
+  const pastDaysToggle = () => {
+    setHidePastDays((state) => !state);
+  };
+
+  const hintActivator = () => {
+    setHint((state) => !state);
+  };
 
   const handleStartDate = (date) => {
     setStartDate(date);
@@ -209,10 +216,20 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             dateFormat="dd.MM.yyyy"
             placeholderText="Дата початку"
             filterDate={isWeekday}
-            minDate={moment().toDate()}
+            minDate={!hidePastDays && moment().toDate()}
             showMonthPicker
             className={css.date_picker}
           />
+
+          <input
+            className={css.checkbox_past_date}
+            onChange={pastDaysToggle}
+            onMouseEnter={hintActivator}
+            onMouseLeave={hintActivator}
+            type="checkbox"
+          />
+          {hint && <p className={css.hint}>Вкл/Выкл попереднi днi</p>}
+
           <DurationTextField
             id="custom-css-standard-input"
             label="Тривалість"
