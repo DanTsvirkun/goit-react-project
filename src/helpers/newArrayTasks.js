@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 export const newState = (task, item) => {
   const newArray = [...task.hoursWastedPerDay];
@@ -23,7 +23,7 @@ export const findCurrentDay = ([task]) => {
   if (!task) {
     return 0;
   }
-  const currentDate = moment().format('DD.MM.YYYY');
+  const currentDate = moment().format("DD.MM.YYYY");
   const hoursWastedPerDay = task.hoursWastedPerDay;
   const res = hoursWastedPerDay.findIndex((el, idx) => {
     const isCorrectDay = el.currentDay === currentDate;

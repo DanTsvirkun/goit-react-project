@@ -8,10 +8,11 @@
   align-content: flex-start;
   flex-wrap: wrap;
   width: 200px;
-  height: 330px;
-  margin: 170px 0 100px;
+  height: 290px;
   list-style: none;
   overflow-y: auto;
+  margin: 170px 0 100px;
+  padding-bottom: 5px;
 }
 
 .project__sidebar-item {
@@ -59,7 +60,7 @@
   transform: translateY(-50%);
   width: 36px;
   height: 36px;
-  box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  box-shadow: 2px 2px 4px rgba(0, 5, 97, 0.2);
   border-radius: 5px;
 }
 
@@ -80,6 +81,6 @@
 }
 
 .test {
-  width: 142px;
+  width: 135px;
   overflow-wrap: break-word;
 }
