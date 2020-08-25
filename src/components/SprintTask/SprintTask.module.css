@@ -117,9 +117,7 @@
 
 .sprint__task-delete-btn:hover {
   background-image: url("../../Icons/trashActive.svg");
-  /* animation: rotateOutDownLeft 600ms linear; */
-  /* animation-fill-mode: forwards; */
-  transform: rotate3d(0, 0, 1, 55deg);
+  transform: rotate3d(0, 0, 1, 65deg);
 
 }
 
