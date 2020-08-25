@@ -23,10 +23,3 @@ export const sumHoursWastedSelector = createSelector([itemsSelector], (items) =>
       return (acc += taskValue);
     }, 0)
 );
-
-// const sprintsItemsSelector = (state) => sprintsSelector(state).items;
-
-// export const sprintDurationSelector = createSelector(
-//   [sprintsItemsSelector],
-//   (items) => items.map((sprint) => Number(sprint.duration))
-// );
