@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import queryString from "query-string";
-import { connect, useSelector } from "react-redux";
-import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
-import SingleSprint from "../../components/SingleSprint/SingleSprint";
-import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
-import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
-import { getSprints } from "../../redux/actions/sprintActions";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
+import { connect, useSelector } from 'react-redux';
+import ProjectSidebar from '../../components/ProjectSidebar/ProjectSidebar';
+import SingleSprint from '../../components/SingleSprint/SingleSprint';
+import CreatingSprint from '../../components/CreatingSprint/CreatingSprint';
+import SprintCreationModal from '../../components/SprintCreationModal/SprintCreationModal';
+import { getSprints } from '../../redux/actions/sprintActions';
 import {
   itemsSelector,
   itemIdSelector,
-} from "../../redux/selectors/SprintsSelector";
+} from '../../redux/selectors/SprintsSelector';
 import {
   getSprintsOperation,
   changeProjectTitle,
   getSprintByProjectId,
-} from "../../redux/operations/SprintOperation";
-import MembersCreationModal from "../../components/MembersModal/MembersModal";
-import Loader from "../../components/Loader/Loader";
-import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
-import projectSelectors from "../../redux/selectors/projectsSelectors";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import styles from "./ProjectPage.module.css";
-import transitionAnimation from "../../components/ProjectsPageList/transitionProjectStyles.module.css";
-import animation from "../../components/SprintHeader/animationExit.module.css";
+} from '../../redux/operations/SprintOperation';
+import MembersCreationModal from '../../components/MembersModal/MembersModal';
+import Loader from '../../components/Loader/Loader';
+import getProjectsbyEMAIL from '../../redux/operations/projectsOperations';
+import projectSelectors from '../../redux/selectors/projectsSelectors';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import styles from './ProjectPage.module.css';
+import transitionAnimation from '../../components/ProjectsPageList/transitionProjectStyles.module.css';
+import animation from '../../components/SprintHeader/animationExit.module.css';
+import EditTitle from '../../components/EditTitle/EditTitle';
 
 const ProjectPage = ({
   history,
@@ -48,11 +49,11 @@ const ProjectPage = ({
   const [active, setActive] = useState(false);
 
   const modalToggle = () => {
-    setModal((state) => !state);
+    setModal(state => !state);
   };
 
   const membersModalToggle = () => {
-    setMembersModal((state) => !state);
+    setMembersModal(state => !state);
   };
 
   useEffect(() => {
@@ -61,14 +62,14 @@ const ProjectPage = ({
       currentProjects = await getByEmails(email);
       await getSprintByProjectId(projectId);
       let currentProject = currentProjects.find(
-        (project) => project.id === projectId
+        project => project.id === projectId,
       );
       if (currentProject === undefined) {
         currentProject = { members: [] };
       }
       if (!currentProject.members.includes(email)) {
-        history.replace("/projects");
-        alert("Ви не є участником цього проекту.");
+        history.replace('/projects');
+        alert('Ви не є участником цього проекту.');
       }
     }
     fetchData();
@@ -95,51 +96,13 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  <CSSTransition
-                    classNames={animation}
-                    in={active}
-                    timeout={300}
-                    mountOnEnter
-                    unmountOnExit
-                  >
-                    <div className={styles.input_change_block}>
-                      <input
-                        type="text"
-                        className={styles.input_change}
-                        value={title || ""}
-                        onChange={(e) => setTitle(e.target.value)}
-                      />
-                      <button
-                        type="button"
-                        onClick={async () => {
-                          await changeProjectTitle(projectId, title);
-                          await getByEmailCustom(email);
-                          setUpdate(!isUpdate);
-                        }}
-                        className={styles["edit__button--active"]}
-                      ></button>
-                    </div>
-                  </CSSTransition>
-
-                  <CSSTransition
-                    classNames={animation}
-                    in={isUpdate}
-                    timeout={300}
-                    unmountOnExit
-                    mountOnEnter
-                    onExited={() => setActive(true)}
-                    onEnter={() => setActive(false)}
-                  >
-                    <>
-                      <h2 className={styles.project__header}>
-                        {project.title}
-                      </h2>
-                      <button
-                        onClick={() => setUpdate(!isUpdate)}
-                        className={styles.edit__button}
-                      ></button>
-                    </>
-                  </CSSTransition>
+                  <EditTitle
+                    valueTitle={project.title}
+                    editOperation={changeProjectTitle}
+                    elementID={projectId}
+                    getByEmailCustom={getByEmailCustom}
+                    email={email}
+                  />
                 </div>
                 <div className={styles.plusBtnWrapper}>
                   <div
@@ -173,7 +136,7 @@ const ProjectPage = ({
                 component="ul"
                 className={styles.sprints_container}
               >
-                {sprints.map((sprint) => (
+                {sprints.map(sprint => (
                   <CSSTransition
                     key={sprint.id}
                     in={sprintsBool}
@@ -205,9 +168,9 @@ const ProjectPage = ({
 const mapStateToProps = (state, ownProps) => {
   return {
     sprints: itemsSelector(state),
-    project: itemIdSelector(state, ownProps.location.pathname.split("/")[2]),
+    project: itemIdSelector(state, ownProps.location.pathname.split('/')[2]),
     location: ownProps.location,
-    projectId: ownProps.location.pathname.split("/")[2],
+    projectId: ownProps.location.pathname.split('/')[2],
     loader: state.loader,
     error: state.error,
     projectsLength: state.projects.length,
