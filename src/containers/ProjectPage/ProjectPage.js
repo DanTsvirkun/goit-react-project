@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import queryString from 'query-string';
-import { connect, useSelector } from 'react-redux';
-import ProjectSidebar from '../../components/ProjectSidebar/ProjectSidebar';
-import SingleSprint from '../../components/SingleSprint/SingleSprint';
-import CreatingSprint from '../../components/CreatingSprint/CreatingSprint';
-import SprintCreationModal from '../../components/SprintCreationModal/SprintCreationModal';
-import { getSprints } from '../../redux/actions/sprintActions';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
+import { connect, useSelector } from "react-redux";
+import ProjectSidebar from "../../components/ProjectSidebar/ProjectSidebar";
+import SingleSprint from "../../components/SingleSprint/SingleSprint";
+import CreatingSprint from "../../components/CreatingSprint/CreatingSprint";
+import SprintCreationModal from "../../components/SprintCreationModal/SprintCreationModal";
+import { getSprints } from "../../redux/actions/sprintActions";
 import {
   itemsSelector,
   itemIdSelector,
-} from '../../redux/selectors/SprintsSelector';
+} from "../../redux/selectors/SprintsSelector";
 import {
   getSprintsOperation,
   changeProjectTitle,
   getSprintByProjectId,
-} from '../../redux/operations/SprintOperation';
-import MembersCreationModal from '../../components/MembersModal/MembersModal';
-import Loader from '../../components/Loader/Loader';
-import getProjectsbyEMAIL from '../../redux/operations/projectsOperations';
-import projectSelectors from '../../redux/selectors/projectsSelectors';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import styles from './ProjectPage.module.css';
-import transitionAnimation from '../../components/ProjectsPageList/transitionProjectStyles.module.css';
-import animation from '../../components/SprintHeader/animationExit.module.css';
-import EditTitle from '../../components/EditTitle/EditTitle';
+} from "../../redux/operations/SprintOperation";
+import MembersCreationModal from "../../components/MembersModal/MembersModal";
+import Loader from "../../components/Loader/Loader";
+import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import projectSelectors from "../../redux/selectors/projectsSelectors";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styles from "./ProjectPage.module.css";
+import transitionAnimation from "../../components/ProjectsPageList/transitionProjectStyles.module.css";
+import animation from "../../components/SprintHeader/animationExit.module.css";
+import EditTitle from "../../components/EditTitle/EditTitle";
 
 const ProjectPage = ({
   history,
@@ -49,11 +49,11 @@ const ProjectPage = ({
   const [active, setActive] = useState(false);
 
   const modalToggle = () => {
-    setModal(state => !state);
+    setModal((state) => !state);
   };
 
   const membersModalToggle = () => {
-    setMembersModal(state => !state);
+    setMembersModal((state) => !state);
   };
 
   useEffect(() => {
@@ -62,14 +62,14 @@ const ProjectPage = ({
       currentProjects = await getByEmails(email);
       await getSprintByProjectId(projectId);
       let currentProject = currentProjects.find(
-        project => project.id === projectId,
+        (project) => project.id === projectId
       );
       if (currentProject === undefined) {
         currentProject = { members: [] };
       }
       if (!currentProject.members.includes(email)) {
-        history.replace('/projects');
-        alert('Ви не є участником цього проекту.');
+        history.replace("/projects");
+        alert("Ви не є участником цього проекту.");
       }
     }
     fetchData();
@@ -136,7 +136,7 @@ const ProjectPage = ({
                 component="ul"
                 className={styles.sprints_container}
               >
-                {sprints.map(sprint => (
+                {sprints.map((sprint) => (
                   <CSSTransition
                     key={sprint.id}
                     in={sprintsBool}
@@ -168,9 +168,9 @@ const ProjectPage = ({
 const mapStateToProps = (state, ownProps) => {
   return {
     sprints: itemsSelector(state),
-    project: itemIdSelector(state, ownProps.location.pathname.split('/')[2]),
+    project: itemIdSelector(state, ownProps.location.pathname.split("/")[2]),
     location: ownProps.location,
-    projectId: ownProps.location.pathname.split('/')[2],
+    projectId: ownProps.location.pathname.split("/")[2],
     loader: state.loader,
     error: state.error,
     projectsLength: state.projects.length,

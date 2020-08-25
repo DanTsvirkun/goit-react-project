@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { deleteSprintsOperation } from "../../redux/operations/SprintOperation";
-import { convertFormToUppercase } from "../../helpers/dataFormatChangerForSingleSprint";
+import { convertFormToUppercase } from "../../helpers/datasetsForBurndownChart";
 import css from "./SingleSprint.module.css";
 
 const SingleSprint = ({ sprint, deleteSprint, match, history, id }) => {
