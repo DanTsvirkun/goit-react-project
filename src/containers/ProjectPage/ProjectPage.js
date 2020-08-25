@@ -24,6 +24,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styles from "./ProjectPage.module.css";
 import transitionAnimation from "../../components/ProjectsPageList/transitionProjectStyles.module.css";
 import animation from "../../components/SprintHeader/animationExit.module.css";
+import EditTitle from "../../components/EditTitle/EditTitle";
 
 const ProjectPage = ({
   history,
@@ -95,52 +96,13 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  <CSSTransition
-                    classNames={animation}
-                    in={active}
-                    timeout={300}
-                    mountOnEnter
-                    unmountOnExit
-                  >
-                    <div className={styles.input_change_block}>
-                      <input
-                        type="text"
-                        className={styles.input_change}
-                        value={title || ""}
-                        onChange={(e) => setTitle(e.target.value)}
-                        maxLength={40}
-                      />
-                      <button
-                        type="button"
-                        onClick={async () => {
-                          await changeProjectTitle(projectId, title);
-                          await getByEmailCustom(email);
-                          setUpdate(!isUpdate);
-                        }}
-                        className={styles["edit__button--active"]}
-                      ></button>
-                    </div>
-                  </CSSTransition>
-
-                  <CSSTransition
-                    classNames={animation}
-                    in={isUpdate}
-                    timeout={300}
-                    unmountOnExit
-                    mountOnEnter
-                    onExited={() => setActive(true)}
-                    onEnter={() => setActive(false)}
-                  >
-                    <>
-                      <h2 className={styles.project__header}>
-                        {project.title}
-                      </h2>
-                      <button
-                        onClick={() => setUpdate(!isUpdate)}
-                        className={styles.edit__button}
-                      ></button>
-                    </>
-                  </CSSTransition>
+                  <EditTitle
+                    valueTitle={project.title}
+                    editOperation={changeProjectTitle}
+                    elementID={projectId}
+                    getByEmailCustom={getByEmailCustom}
+                    email={email}
+                  />
                 </div>
                 <div className={styles.plusBtnWrapper}>
                   <div
