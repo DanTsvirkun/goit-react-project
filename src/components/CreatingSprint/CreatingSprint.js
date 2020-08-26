@@ -91,7 +91,6 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   const [dateErr, setDateErr] = useState("");
   let newLocation = useLocation();
   const projectId = newLocation.pathname.split("/")[2];
-
   const pastDaysToggle = () => {
     setHidePastDays((state) => !state);
   };
@@ -119,8 +118,19 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   };
 
   const isWeekday = (date) => {
-    const day = date.getDay(date);
+    const day = date.getDay();
     return day !== 0 && day !== 6;
+  };
+
+  const ifIsWeekEnd = (date) => {
+    const dateToFormat = new Date(date);
+    const day = dateToFormat.getDay();
+    if (day === 6) {
+      return date + 172800000;
+    } else if (day === 0) {
+      return date + 86400000;
+    }
+    return date;
   };
 
   const handleDuration = ({ target }) => {
@@ -210,7 +220,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
 
         <div className={css.input_gather}>
           <DatePicker
-            selected={startDate}
+            selected={ifIsWeekEnd(startDate)}
             onChange={handleStartDate}
             locale="uk"
             dateFormat="dd.MM.yyyy"
