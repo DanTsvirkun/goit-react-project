@@ -117,7 +117,7 @@
 }
 .react-datepicker__input-container input {
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  padding: 6px 0 7px;
   display: block;
   width: 200px;
   border: none;

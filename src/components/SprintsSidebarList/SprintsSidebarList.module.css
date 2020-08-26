@@ -3,6 +3,7 @@
   align-content: flex-start;
   flex-wrap: wrap;
   overflow-y: auto;
+  overflow-x: hidden;
   width: 200px;
   height: 290px;
   margin: 0px 0 110px;
@@ -22,7 +23,8 @@
   overflow-wrap: break-word;
 }
 
-.sprint__sidebar-item:first-child {}
+.sprint__sidebar-item:first-child {
+}
 
 .sprint__sidebar-item::before {
   position: absolute;
@@ -58,7 +60,6 @@
   /* display: block; */
   min-height: 36px;
   align-items: center;
-
 }
 
 .span {
@@ -73,3 +74,4 @@
 .sprint__sidebar-link:not(:last-child) {
   margin-bottom: 30px;
 }
+overflow-x: hidden;
