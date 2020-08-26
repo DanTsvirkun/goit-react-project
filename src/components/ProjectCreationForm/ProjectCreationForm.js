@@ -94,7 +94,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     }
 
     if (title.length > 40) {
-      errors.title = "Довжина назви проекту надто довга.";
+      errors.title = `Довжина назви проекту надто довга: ${title.length} символів. Допустимо: 40`;
     }
 
     if (description.length < 2) {
@@ -102,7 +102,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     }
 
     if (description.length > 160) {
-      errors.description = "Довжина опису проекту надто довга.";
+      errors.description = `Довжина опису проекту надто довга: ${description.length} символів. Допустимо: 160`;
     }
 
     if (title.length === 0) {
@@ -121,7 +121,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
   const customOnClose = () => {
     onClose();
     setErrors({});
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -138,13 +138,17 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
-      customOnClose()
+      customOnClose();
     }
     return result;
   };
 
   return (
-    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={customOnClose}>
+    <ModalSidebar
+      onSubmit={handleSubmit}
+      status={status}
+      onClose={customOnClose}
+    >
       <form
         className={formStyles.form}
         noValidate

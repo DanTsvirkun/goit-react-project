@@ -20,9 +20,19 @@
 }
 
 .projectWrapper {
-  width: 970px;
-  margin-left: 70px;
-  height: calc(100vh - 80px);
+  width: 940px;
+  padding-left: 70px;
+  position: relative;
+}
+
+.projectWrapper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  border-right: 1px solid rgba(24, 28, 39, 0.1);
+  top: 0;
+  left: 0;
 }
 
 .loader__tuning {
@@ -82,7 +92,7 @@
 }
 
 .project__wrapper {
-  margin-right: 80px;
+  margin-right: 50px;
 }
 
 .project__header__wrapper {
@@ -157,6 +167,7 @@
 .sprints_container {
   display: flex;
   flex-wrap: wrap;
+  padding: 30px 0;
 }
 
 .edit__button {

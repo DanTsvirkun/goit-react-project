@@ -1,18 +1,7 @@
 .project-sidebar__wrapper {
-  width: 200px;
-  /* padding: 20px 0 0 0; */
-  position: relative;
-  /* padding-bottom: 30px; */
-}
-
-.project-sidebar__wrapper::before {
-  content: "";
-  display: block;
-  position: absolute;
-  min-height: calc(100vh - 81px);
-  border-right: 1px solid rgba(24, 28, 39, 0.1);
+  height: 100vh;
   top: 0;
-  right: 0;
+  position: sticky;
 }
 
 .project-sidebar__link {
@@ -34,7 +23,6 @@
 .project-sidebar__add-wrapper {
   width: 162px;
   height: 76px;
-  /* margin-bottom: 50px; */
 }
 
 .project-sidebar__add-btn {

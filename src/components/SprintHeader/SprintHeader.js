@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import css from './SprintHeader.module.css';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import css from "./SprintHeader.module.css";
 import {
   showModalAddTaskAction,
   indexDayAction,
-} from '../../redux/actions/sprintTasksActions';
+} from "../../redux/actions/sprintTasksActions";
 import {
   itemsSelector,
   showModalSelector,
   currentIdxDaySelector,
   findCurrentSprint,
-} from '../../redux/selectors/TasksSelectors';
-import SprintAddTaskForm from '../SprintAddTaskForm/SprintAddTaskForm';
-import { changeSprintTitle } from '../../redux/operations/TasksOperatins';
-import EditTitle from '../EditTitle/EditTitle';
+} from "../../redux/selectors/TasksSelectors";
+import SprintAddTaskForm from "../SprintAddTaskForm/SprintAddTaskForm";
+import { changeSprintTitle } from "../../redux/operations/TasksOperatins";
+import EditTitle from "../EditTitle/EditTitle";
 const SprintHeader = ({
   tasks,
   isShowModal,
@@ -65,21 +65,21 @@ const SprintHeader = ({
       <div className={css.container}>
         {tasks.length > 0 && sprint && (
           <>
-            <div className={css['sprint__date']}>
-              <p className={css['sprint__date-sprint']}>
+            <div className={css["sprint__date"]}>
+              <p className={css["sprint__date-sprint"]}>
                 {currentDayIdx !== 0 && (
                   <span
                     onClick={minusIdx}
                     className={
                       leftArrow
-                        ? `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}`
-                        : css['sprint__date-arrow']
+                        ? `${css["sprint__date-arrow"]} ${css["sprint__date-arrow--active"]}`
+                        : css["sprint__date-arrow"]
                     }
                   ></span>
                 )}
                 {tasks.length > 0 && currentDayIdx + 1}
                 {tasks.length > 0 && (
-                  <span className={css['sprint__date-sprint--span']}>
+                  <span className={css["sprint__date-sprint--span"]}>
                     /{tasks[0].hoursWastedPerDay.length}
                   </span>
                 )}
@@ -88,18 +88,18 @@ const SprintHeader = ({
                     onClick={plusIdx}
                     className={
                       rightArrow
-                        ? `${css['sprint__date-arrow']} ${css['sprint__date-arrow--active']}`
-                        : css['sprint__date-arrow']
+                        ? `${css["sprint__date-arrow"]} ${css["sprint__date-arrow--active"]}`
+                        : css["sprint__date-arrow"]
                     }
                   ></span>
                 )}
               </p>
-              <p className={css['sprint__current-date']}> {taskDay()} </p>
+              <p className={css["sprint__current-date"]}> {taskDay()} </p>
             </div>
           </>
         )}
-        <div className={css['sprint__header-wrapper']}>
-          <div className={css['sprint__title-wrapper']}>
+        <div className={css["sprint__header-wrapper"]}>
+          <div className={css["sprint__title-wrapper"]}>
             {sprint && (
               <EditTitle
                 valueTitle={sprint.title}
@@ -108,12 +108,12 @@ const SprintHeader = ({
               />
             )}
           </div>
-          <div className={css['sprint__add-task-wrapper']}>
+          <div className={css["sprint__add-task-wrapper"]}>
             <button
               onClick={showModal}
-              className={css['sprint__add-task-btn']}
+              className={css["sprint__add-task-btn"]}
             ></button>
-            <p className={css['sprint__add-task-offer']}> Створити задачу </p>
+            <p className={css["sprint__add-task-offer"]}> Створити задачу </p>
           </div>
         </div>
       </div>
