@@ -9,15 +9,14 @@ const SignInGoogle = () => {
 
   useEffect(() => {
     window.gapi.load("auth2", () => {
-      window.gapi.auth2.init({
+      gapi.auth2.init({
         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       });
     });
   }, []);
 
   const signIn = async () => {
-    const GoogleAuth = window.gapi.auth2.getAuthInstance();
-    const result = await GoogleAuth.signIn();
+    const result = await window.gapi.auth2.getAuthInstance().signIn();
     dispatch(SignInOperation(result));
   };
 
