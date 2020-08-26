@@ -4,13 +4,13 @@ import { errorOn } from "../actions/errorActions";
 import { resetUser } from "../actions/logInRegistaration";
 import resetProjects from "../actions/projectsActions";
 
-const LogOutOperation = (uid, GoogleAuth) => async (dispatch) => {
+const LogOutOperation = (uid) => async (dispatch) => {
   try {
     dispatch(loaderOn());
     if (uid.length <= 28) {
       await auth.signOut();
     } else if (uid.length > 28) {
-      GoogleAuth.signOut();
+      await window.gapi.auth2.getAuthInstance().signOut();
     }
     dispatch(resetUser());
     dispatch(resetProjects.cleanProjectsOnLogout());
