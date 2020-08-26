@@ -4,8 +4,8 @@ import css from "./CreatingSprint.module.css";
 import DatePicker from "react-datepicker";
 import uk from "date-fns/locale/uk";
 import { connect } from "react-redux";
-import { useLocation, useHistory } from "react-router-dom";
-import { registerLocale, setDefaultLocale } from "react-datepicker";
+import { useLocation } from "react-router-dom";
+import { registerLocale } from "react-datepicker";
 import { addSprintOperation } from "../../redux/operations/SprintOperation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import "react-datepicker/dist/react-datepicker.css";
@@ -77,13 +77,12 @@ const DurationTextField = withStyles({
       outline: "none",
       marginLeft: "29px",
     },
-    "& .MuiInputBase-input": {
-      marginBottom: "3px",
-    },
   },
 })(TextField);
 
 const CreatingSprint = ({ addSprint, status, onClose }) => {
+  const [hidePastDays, setHidePastDays] = useState(false);
+  const [hint, setHint] = useState(false);
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
   const [duration, setDuration] = useState("");
@@ -92,6 +91,13 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   const [dateErr, setDateErr] = useState("");
   let newLocation = useLocation();
   const projectId = newLocation.pathname.split("/")[2];
+  const pastDaysToggle = () => {
+    setHidePastDays((state) => !state);
+  };
+
+  const hintActivator = () => {
+    setHint((state) => !state);
+  };
 
   const handleStartDate = (date) => {
     setStartDate(date);
@@ -112,8 +118,19 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
   };
 
   const isWeekday = (date) => {
-    const day = date.getDay(date);
+    const day = date.getDay();
     return day !== 0 && day !== 6;
+  };
+
+  const ifIsWeekEnd = (date) => {
+    const dateToFormat = new Date(date);
+    const day = dateToFormat.getDay();
+    if (day === 6) {
+      return date + 172800000;
+    } else if (day === 0) {
+      return date + 86400000;
+    }
+    return date;
   };
 
   const handleDuration = ({ target }) => {
@@ -131,10 +148,24 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       setTitleErr("Будь ласка, введіть коректну назву спринту.");
       titleValid = false;
     }
+
+    if (title.length > 40) {
+      setTitleErr(
+        `Довжина назви спринта задовга: ${title.length} символів. Допустимо: 40.`
+      );
+      titleValid = false;
+    }
+
     if (!Number(duration)) {
       setDurationErr("Будь ласка, оберіть тривалість спринта.");
       durationValid = false;
     }
+
+    if (duration.length > 3) {
+      setDurationErr("Тривалість спринта, має містити не більше 3-х символів.");
+      durationValid = false;
+    }
+
     if (!startDate) {
       setDateErr("Будь ласка, введіть релевантний день початку спринта.");
       dateValid = false;
@@ -180,7 +211,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       >
         <NameTextField
           id="custom-css-standard-input"
-          label="Назва проекту"
+          label="Назва спринта"
           name="title"
           onChange={handleTitle}
           error={titleErr ? true : undefined}
@@ -189,16 +220,26 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
 
         <div className={css.input_gather}>
           <DatePicker
-            selected={startDate}
+            selected={ifIsWeekEnd(startDate)}
             onChange={handleStartDate}
             locale="uk"
             dateFormat="dd.MM.yyyy"
             placeholderText="Дата початку"
             filterDate={isWeekday}
-            minDate={moment().toDate()}
+            minDate={!hidePastDays && moment().toDate()}
             showMonthPicker
             className={css.date_picker}
           />
+
+          <input
+            className={css.checkbox_past_date}
+            onChange={pastDaysToggle}
+            onMouseEnter={hintActivator}
+            onMouseLeave={hintActivator}
+            type="checkbox"
+          />
+          {hint && <p className={css.hint}>Вкл/Выкл попереднi днi</p>}
+
           <DurationTextField
             id="custom-css-standard-input"
             label="Тривалість"
