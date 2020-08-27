@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader.js";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -10,7 +10,8 @@ import listStyle from "./ProjectsPageList.module.css";
 import projectsListTransition from "./transitionProjectStyles.module.css";
 
 const ProjectsPageList = ({ projects = [], email, getProjects, loader }) => {
-  useEffect(() => {
+
+  useEffect(() => {    
     getProjects(email);
   }, []);
 
