@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import projectsOperations from "../../redux/operations/projectsOperations.js";
 
 import itemStyle from "./ProjectsPageItem.module.css";
-
-import imgDel from "./projectImg/delete.svg";
-import { NavLink } from "react-router-dom";
 
 const ProjectsPageItem = ({
   project: { title, description, id },
