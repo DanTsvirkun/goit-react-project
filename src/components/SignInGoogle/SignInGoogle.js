@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { gapi } from "gapi-script";
 import styles from "./SignInGoogle.module.css";
 import { useDispatch } from "react-redux";
