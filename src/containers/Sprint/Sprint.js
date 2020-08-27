@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import queryString from "query-string";
 import SprintSidebar from "../../components/SprintSidebar/SprintSidebar";
-import css from "./Sprint.module.css";
 import SprintHeader from "../../components/SprintHeader/SprintHeader";
 import {
   filterTasksAction,
   toggleFilterAction,
+  indexDayAction,
 } from "../../redux/actions/sprintTasksActions";
 import { getTasksOperation } from "../../redux/operations/TasksOperatins";
 import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
@@ -15,6 +14,9 @@ import SprintTableTitle from "../../components/SprintTableTitle/SprintTableTitle
 import SprintTasksList from "../../components/SprintTasksList/SprintTasksList";
 import Loader from "../../components/Loader/Loader";
 import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
+import { itemsSelector } from "../../redux/selectors/TasksSelectors";
+import { findCurrentDay } from "../../helpers/newArrayTasks";
+import css from "./Sprint.module.css";
 const Sprint = ({
   match,
   toggleFilterAction,
@@ -30,6 +32,8 @@ const Sprint = ({
   getSprintByProjectId,
   sprints,
   tasks,
+  projects,
+  indexDayAction,
 }) => {
   const params = match.params;
 
@@ -48,7 +52,9 @@ const Sprint = ({
         (project) => project.id === projectId
       );
       if (currentProject === undefined) {
-        currentProject = { members: [] };
+        currentProject = {
+          members: [],
+        };
       }
       if (!currentProject.members.includes(email)) {
         history.replace("/projects");
@@ -61,16 +67,29 @@ const Sprint = ({
   useEffect(() => {
     const { sprintId } = params;
     const { projectId } = params;
-    console.log(sprintId);
-    console.log(projectId);
 
     if (!sprintId && !projectId) {
       return;
     }
-    if (sprints.length === 0) {
-      getSprintByProjectId(projectId);
-    }
-    getTasks(sprintId);
+
+    const getRequst = async () => {
+      if (sprints.length < 1) {
+        const answer = await getSprintByProjectId(projectId);
+
+        const hasSprint = answer.find((el) => el.id === sprintId);
+
+        if (!hasSprint) {
+          alert("Шкода, але такого спринту немає");
+          history.replace("/projects");
+          return;
+        }
+      }
+
+      const answerTasks = await getTasks(sprintId);
+      // indexDayAction(findCurrentDay(answerTasks));
+    };
+    getRequst();
+    return () => {};
   }, [match.params.sprintId]);
 
   useEffect(() => {
@@ -90,18 +109,17 @@ const Sprint = ({
     <section className={css.container} onClick={handleCloseFilter}>
       <SprintSidebar />
       <div className={css["sprint__main-wrapper"]}>
-        {loader && (
+        {loader && tasks.length < 1 && (
           <div className={css["sprint__loader-wrapper"]}>
             <Loader />
           </div>
         )}
-
-        <SprintHeader params={params} />
-        <SprintTableTitle />
+        <SprintHeader params={params} /> <SprintTableTitle />
         <SprintTasksList match={match} location={location} history={history} />
         {!tasks.length && !loader && (
           <h2 className={css.emptyList}>
-            Ваш спринт не має задач. Скористайтеся кнопкою "Створити задачу"
+            Ваш спринт не має задач.Скористайтеся кнопкою "Створити задачу". Для
+            появи аналітики вам треба додати мінімум 3 завдання
           </h2>
         )}
       </div>
@@ -114,6 +132,7 @@ const mapDispatchToProps = {
   toggleFilterAction,
   getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
   getSprintByProjectId,
+  indexDayAction,
 };
 const mapStateToProps = (state, ownProps) => ({
   loader: state.loader,
@@ -122,6 +141,7 @@ const mapStateToProps = (state, ownProps) => ({
   projectId: ownProps.location.pathname.split("/")[2],
   sprints: state.sprints.items,
   tasks: state.tasks.items,
+  projects: state.projects,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Sprint);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
 import projectsSelectors from "../../redux/selectors/projectsSelectors";
@@ -17,7 +17,7 @@ const ProjectsSidebarList = ({ projects }) => {
             activeClassName={css["project__sidebar-link--active"]}
             className={css["project__sidebar-link"]}
           >
-            {item.title}
+            <span className={css.test}>{item.title}</span>
           </NavLink>
         </li>
       ))}

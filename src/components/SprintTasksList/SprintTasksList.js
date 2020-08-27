@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import queryString from 'query-string';
-import { connect } from 'react-redux';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import SprintTask from '../SprintTask/SprintTask';
-import css from './SprintTasksList.module.css';
-import BurndownChartBtn from '../BurndownChartBtn/BurndownChartBtn';
-import BurndownChartModalWindow from '../BurndownChartModalWindow/BurndownChartModalWindow';
-import { getTasksOperation } from '../../redux/operations/TasksOperatins';
+import React, { useState, useEffect } from "react";
+import queryString from "query-string";
+import { connect } from "react-redux";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import SprintTask from "../SprintTask/SprintTask";
+import css from "./SprintTasksList.module.css";
+import BurndownChartBtn from "../BurndownChartBtn/BurndownChartBtn";
+import BurndownChartModalWindow from "../BurndownChartModalWindow/BurndownChartModalWindow";
+import { getTasksOperation } from "../../redux/operations/TasksOperatins";
 import {
   filterTasksAction,
   toggleFilterAction,
-} from '../../redux/actions/sprintTasksActions';
+} from "../../redux/actions/sprintTasksActions";
 import {
   itemsSelector,
   filteredTasksSelector,
-} from '../../redux/selectors/TasksSelectors';
-import Loader from '../Loader/Loader';
-import animation from './animationSprintZoom.module.css';
+} from "../../redux/selectors/TasksSelectors";
+import Loader from "../Loader/Loader";
+import animation from "./animationSprintZoom.module.css";
 const SprintTasksList = ({
   tasks,
   getTasks,
@@ -31,40 +31,21 @@ const SprintTasksList = ({
 }) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
 
-  // useEffect(() => {
-  //   const { sprintId } = match.params;
-  //   console.log(sprintId);
-  //   getTasks(sprintId);
-  // }, [match.params.sprintId]);
-
-  // useEffect(() => {
-  //   const parsed = queryString.parse(location.search);
-  //   const { task } = parsed;
-  //   if (task) {
-  //     filterAction(task);
-  //     toggleFilterAction(true);
-  //   }
-  //   if (!task) {
-  //     toggleFilterAction(false);
-  //     filterAction('');
-  //   }
-  // }, [match.params.sprintId]);
-
   const handleToggleAnalytic = () => {
-    setToggleAnalytic(state => !state);
-    document.querySelector('body').style.overflow = 'hidden';
+    setToggleAnalytic((state) => !state);
+    document.querySelector("body").style.overflow = "hidden";
   };
 
   return (
     <div className={css.wrapper}>
-      <TransitionGroup component="ul" className={css['sprint__tasks-list']}>
+      <TransitionGroup component="ul" className={css["sprint__tasks-list"]}>
         {tasks.map((task, idx) => (
           <CSSTransition key={task.id} classNames={animation} timeout={300}>
             <SprintTask {...task} index={idx} />
           </CSSTransition>
         ))}
       </TransitionGroup>
-      {!toggleAnalytic && items.length > 1 && (
+      {!toggleAnalytic && items.length > 2 && (
         <BurndownChartBtn openModal={handleToggleAnalytic} />
       )}
       {toggleAnalytic && (
@@ -73,7 +54,7 @@ const SprintTasksList = ({
     </div>
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loader: state.loader,
   error: state.error,
   items: itemsSelector(state),

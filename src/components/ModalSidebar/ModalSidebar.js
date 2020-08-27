@@ -11,18 +11,20 @@ const ModalSidebar = ({ children, onSubmit, status, onClose }) => {
   }, [status]);
 
   const handleKeyDown = (e) => {
-    if (e.code === "Escape" && status === true) {
+    if (e.code === "Escape") {
       closeWindow();
     } else if (e.code === "Space") {
       removeListener();
     }
+    removeListener();
   };
 
   const ready = (e = null) => {
-    onSubmit(e);
+    const result = onSubmit(e);
+    result ? addListener() : removeListener();
   };
 
-  const closeWindow = async () => {
+  const closeWindow = () => {
     removeListener();
     onClose();
   };

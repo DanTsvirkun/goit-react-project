@@ -117,7 +117,7 @@
 }
 .react-datepicker__input-container input {
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  padding: 6px 0 7px;
   display: block;
   width: 200px;
   border: none;
@@ -127,4 +127,8 @@
 
 .react-datepicker__input-container input {
   cursor: pointer;
+}
+
+.react-datepicker__input-container input {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
 }

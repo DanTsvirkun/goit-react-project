@@ -17,10 +17,10 @@ const NameTextField = withStyles({
       marginBottom: "0px",
     },
     "& label.Mui-focused": {
-      color: "#181c2799",
+      color: "#ff6b08",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#181c2799",
+      borderBottomColor: "#ff6b08",
     },
     "& .MuiFormHelperText-root.Mui-error": {
       marginBottom: "50px",
@@ -47,10 +47,10 @@ const DescriptionTextField = withStyles({
       marginBottom: "0px",
     },
     "& label.Mui-focused": {
-      color: "#181c2799",
+      color: "#ff6b08",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#181c2799",
+      borderBottomColor: "#ff6b08",
     },
     "& .MuiFormHelperText-root.Mui-error": {
       marginBottom: "60px",
@@ -94,7 +94,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     }
 
     if (title.length > 40) {
-      errors.title = "Довжина назви проекту надто довга.";
+      errors.title = `Довжина назви проекту надто довга: ${title.length} символів. Допустимо: 40`;
     }
 
     if (description.length < 2) {
@@ -102,7 +102,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     }
 
     if (description.length > 160) {
-      errors.description = "Довжина опису проекту надто довга.";
+      errors.description = `Довжина опису проекту надто довга: ${description.length} символів. Допустимо: 160`;
     }
 
     if (title.length === 0) {
@@ -140,6 +140,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
       setProjectItem(initialState);
       customOnClose();
     }
+    return result;
   };
 
   return (

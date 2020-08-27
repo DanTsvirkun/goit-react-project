@@ -7,7 +7,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { addTaskOperation } from '../../redux/operations/TasksOperatins';
 import css from './SprintAddTaskForm.module.css';
-// import ModalTest from '../ModalTest/ModalTest';
 import ModalSidebar from '../ModalSidebar/ModalSidebar';
 
 const TitleField = withStyles({
@@ -19,10 +18,10 @@ const TitleField = withStyles({
       marginBottom: '0px',
     },
     '& label.Mui-focused': {
-      color: '#181c2799',
+      color: '#ff6b08',
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: '#181c2799',
+      borderBottomColor: '#ff6b08',
     },
     '& .MuiFormHelperText-root.Mui-error': {
       marginBottom: '50px',
@@ -49,10 +48,10 @@ const PlanedDuration = withStyles({
       marginBottom: '0px',
     },
     '& label.Mui-focused': {
-      color: '#181c2799',
+      color: '#ff6b08',
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: '#181c2799',
+      borderBottomColor: '#ff6b08',
     },
     '& .MuiFormHelperText-root.Mui-error': {
       marginBottom: '60px',
@@ -61,7 +60,7 @@ const PlanedDuration = withStyles({
       fontSize: '12px',
     },
     '& > *': {
-      width: ' 220px;',
+      width: ' 430px;',
       fontFamily: 'Montserrat',
       fontWeight: 'normal',
       fontSize: '18px',
@@ -91,7 +90,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
       [name]: value,
     }));
   };
-  console.log(sprint);
 
   const durationSprint = (startDate, duration) => {
     let sprintDay = [];
@@ -146,8 +144,6 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   };
 
   const handleSubmit = e => {
-    console.log(params.sprintId);
-
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const { sprintId } = params;
@@ -163,10 +159,11 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
         hoursWasted: 0,
         hoursWastedPerDay: durationSprint(sprint.startDate, sprint.duration),
       };
-      console.log(task);
+
       addTask(task);
       setTaskItem(initialState);
     }
+    return !validation(hoursPlanned, title);
   };
   return (
     <ModalSidebar status={status} onSubmit={handleSubmit} onClose={onClose}>
@@ -176,7 +173,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
           <li className={css['sprint__form-item']}>
             <TitleField
               id="custom-css-standard-input"
-              label="Назва проекту"
+              label="Назва задачі"
               name="title"
               value={taskItem.title}
               onChange={handleChangeInput}

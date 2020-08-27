@@ -11,13 +11,20 @@ import {
   itemsSelector,
   itemIdSelector,
 } from "../../redux/selectors/SprintsSelector";
-import { getSprintByProjectId } from "../../redux/operations/SprintOperation";
-import { getSprintsOperation } from "../../redux/operations/SprintOperation";
+import {
+  getSprintsOperation,
+  changeProjectTitle,
+  getSprintByProjectId,
+} from "../../redux/operations/SprintOperation";
 import MembersCreationModal from "../../components/MembersModal/MembersModal";
 import Loader from "../../components/Loader/Loader";
 import getProjectsbyEMAIL from "../../redux/operations/projectsOperations";
 import projectSelectors from "../../redux/selectors/projectsSelectors";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styles from "./ProjectPage.module.css";
+import transitionAnimation from "../../components/ProjectsPageList/transitionProjectStyles.module.css";
+import animation from "../../components/SprintHeader/animationExit.module.css";
+import EditTitle from "../../components/EditTitle/EditTitle";
 
 const ProjectPage = ({
   history,
@@ -29,14 +36,17 @@ const ProjectPage = ({
   loader,
   error,
   getSprintByProjectId,
-  projectLength,
-  getSprintsOperation,
   getByEmails,
   email,
   projects,
+  getByEmailCustom,
+  changeProjectTitle,
 }) => {
   const [modal, setModal] = useState(false);
   const [membersModal, setMembersModal] = useState(false);
+  const [title, setTitle] = useState(project.title);
+  const [isUpdate, setUpdate] = useState(true);
+  const [active, setActive] = useState(false);
 
   const modalToggle = () => {
     setModal((state) => !state);
@@ -63,7 +73,9 @@ const ProjectPage = ({
       }
     }
     fetchData();
-  }, []);
+  }, [match.params.projectId]);
+
+  const sprintsBool = !!sprints;
 
   // http://localhost:3000/projects/L7iOeUSqnngFrL1VRlbv/sprints
 
@@ -84,10 +96,13 @@ const ProjectPage = ({
                 <div
                   className={`${styles.project__button__wrapper} ${styles.project__wrapper}`}
                 >
-                  <h2 className={styles.project__header}>{project.title}</h2>
-                  <button
-                    className={`${styles.button} ${styles.button__pencil}`}
-                  ></button>
+                  <EditTitle
+                    valueTitle={project.title}
+                    editOperation={changeProjectTitle}
+                    elementID={projectId}
+                    getByEmailCustom={getByEmailCustom}
+                    email={email}
+                  />
                 </div>
                 <div className={styles.plusBtnWrapper}>
                   <div
@@ -111,23 +126,32 @@ const ProjectPage = ({
                 </div>
               </div>
               <div className={styles.project__info}></div>
-              <ul className={styles.sprints_container}>
-                {!sprints.length && (
-                  <h2 className={styles.emptyList}>
-                    Ваш проект не має спринтів, скористайтесь кнопкою "Створити
-                    спринт"
-                  </h2>
-                )}
+              {!sprints.length && (
+                <h2 className={styles.emptyList}>
+                  Ваш проект не має спринтів, скористайтесь кнопкою "Створити
+                  спринт"
+                </h2>
+              )}
+              <TransitionGroup
+                component="ul"
+                className={styles.sprints_container}
+              >
                 {sprints.map((sprint) => (
-                  <SingleSprint
+                  <CSSTransition
                     key={sprint.id}
-                    id={sprint.id}
-                    sprint={sprint}
-                    history={history}
-                    match={match}
-                  />
+                    in={sprintsBool}
+                    timeout={250}
+                    classNames={transitionAnimation}
+                  >
+                    <SingleSprint
+                      id={sprint.id}
+                      sprint={sprint}
+                      history={history}
+                      match={match}
+                    />
+                  </CSSTransition>
                 ))}
-              </ul>
+              </TransitionGroup>
               <SprintCreationModal status={modal} onClose={modalToggle} />
               <MembersCreationModal
                 status={membersModal}
@@ -158,6 +182,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   getSprintByProjectId,
   getByEmails: getProjectsbyEMAIL.getProjectsByEmailOperation,
+  changeProjectTitle,
+  getByEmailCustom: getProjectsbyEMAIL.getProjectsByEmailOperationCustom,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage);

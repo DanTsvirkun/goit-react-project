@@ -1,11 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink, useParams, useRouteMatch } from "react-router-dom";
+import {
+  NavLink,
+  useParams,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom";
 import css from "./SprintsSidebarList.module.css";
 const SprintsSidebarList = ({ sprints }) => {
   const params = useParams();
   const match = useRouteMatch();
-  console.log(match);
+  const history = useHistory();
 
   return (
     <ul className={css["sprint__sidebar-list"]}>
@@ -16,7 +21,7 @@ const SprintsSidebarList = ({ sprints }) => {
             activeClassName={css["sprint__sidebar-link--active"]}
             className={css["sprint__sidebar-link"]}
           >
-            {sprint.title}
+            <span className={css.span}>{sprint.title}</span>
           </NavLink>
         </li>
       ))}

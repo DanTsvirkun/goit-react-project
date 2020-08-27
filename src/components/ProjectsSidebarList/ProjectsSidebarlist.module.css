@@ -7,18 +7,20 @@
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
-  width: 170px;
-  height: 300px;
-  margin: 70px 0;
-  overflow-y: auto;
+  width: 200px;
+  height: 290px;
   list-style: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 170px 0 100px;
+  padding-bottom: 5px;
 }
 
 .project__sidebar-item {
   text-align: left;
-  width: 170px;
-  height: 36px;
+  width: 100%;
   position: relative;
+  transition: all 250ms linear;
 }
 
 .project__sidebar-item:not(:last-child) {
@@ -26,8 +28,8 @@
 }
 
 .project__sidebar-link {
-  width: 140px;
-  height: 36px;
+  width: 100%;
+  min-height: 36px;
   padding-left: 50px;
   font-family: "Montserrat";
   font-style: normal;
@@ -59,7 +61,7 @@
   transform: translateY(-50%);
   width: 36px;
   height: 36px;
-  box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  box-shadow: 2px 2px 4px rgba(0, 5, 97, 0.2);
   border-radius: 5px;
 }
 
@@ -79,7 +81,7 @@
   background-color: colorBlue;
 }
 
-/* @value colorBlue: #4394f1;
-@value colorPurple: #8c72df;
-@value colorRed: #ff765f;
-@value colorGreen: #71df87; */
+.test {
+  width: 135px;
+  overflow-wrap: break-word;
+}

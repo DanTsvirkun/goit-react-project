@@ -1,4 +1,7 @@
-import { createReducer, combineReducers } from "@reduxjs/toolkit";
+import {
+  createReducer,
+  combineReducers
+} from "@reduxjs/toolkit";
 import {
   getSprints,
   addSprint,
@@ -9,16 +12,24 @@ import {
 const initialState = [];
 
 const items = createReducer(initialState, {
-  [addSprint]: (state, { payload }) => {
+  [addSprint]: (state, {
+    payload
+  }) => {
     return [...state, payload];
   },
-  [getSprints]: (_, { payload }) => payload,
-  [deleteSprints]: (state, { payload }) =>
+  [getSprints]: (_, {
+    payload
+  }) => payload,
+  [deleteSprints]: (state, {
+      payload
+    }) =>
     state.filter((item) => item.id !== payload),
 });
 
 const showModalAddSprint = createReducer(false, {
-  [showModalAddSprintAction]: (_, { payload }) => payload,
+  [showModalAddSprintAction]: (_, {
+    payload
+  }) => payload,
 });
 
 export default combineReducers({
