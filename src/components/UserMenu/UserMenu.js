@@ -8,14 +8,6 @@ const UserMenu = () => {
   const uid = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    window.gapi.load("auth2", () => {
-      window.gapi.auth2.init({
-        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      });
-    });
-  }, []);
-
   const logOut = async () => {
     dispatch(LogOutOperation(uid));
   };

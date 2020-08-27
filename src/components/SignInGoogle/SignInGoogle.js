@@ -7,14 +7,6 @@ import SignInOperation from "../../redux/operations/SignInOperation";
 const SignInGoogle = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    window.gapi.load("auth2", () => {
-      gapi.auth2.init({
-        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      });
-    });
-  }, []);
-
   const signIn = async () => {
     const result = await window.gapi.auth2.getAuthInstance().signIn();
     dispatch(SignInOperation(result));
