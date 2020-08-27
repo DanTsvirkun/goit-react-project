@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Loader from "../../components/Loader/Loader.js";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";

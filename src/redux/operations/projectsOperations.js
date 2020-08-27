@@ -63,6 +63,7 @@ const deleteProjectOperation = ({ target: { id } }) => async (dispatch) => {
 
 const getProjectsByEmailOperation = (email) => async (dispatch) => {
   try {    
+    dispatch(loaderOn());
     const result = await db
       .collection("projects")
       .where("members", "array-contains", email)
