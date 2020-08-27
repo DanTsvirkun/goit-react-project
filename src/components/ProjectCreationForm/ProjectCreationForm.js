@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import projectsOperations from "../../redux/operations/projectsOperations";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import projectsOperations from "../../redux/operations/projectsOperations";
 import projectsSelectors from "../../redux/selectors/projectsSelectors";
+import ModalSidebar from "../ModalSidebar/ModalSidebar";
 
 import formStyles from "./ProjectCreationForm.module.css";
 
@@ -121,7 +121,7 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
   const customOnClose = () => {
     onClose();
     setErrors({});
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -138,12 +138,16 @@ const ProjectCreationForm = ({ addProject, status, onClose, email }) => {
     if (!result) {
       addProject(project);
       setProjectItem(initialState);
-      customOnClose()
+      customOnClose();
     }
   };
 
   return (
-    <ModalSidebar onSubmit={handleSubmit} status={status} onClose={customOnClose}>
+    <ModalSidebar
+      onSubmit={handleSubmit}
+      status={status}
+      onClose={customOnClose}
+    >
       <form
         className={formStyles.form}
         noValidate
