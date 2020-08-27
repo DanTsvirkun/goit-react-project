@@ -238,7 +238,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
             onMouseLeave={hintActivator}
             type="checkbox"
           />
-          {hint && <p className={css.hint}>Вкл/Выкл попереднi днi</p>}
+          {hint && <p className={css.hint}>Вкл/Викл попереднi днi</p>}
 
           <DurationTextField
             id="custom-css-standard-input"

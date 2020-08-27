@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./userMenu.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import LogOutOperation from "../../redux/operations/LogOutOperation";
