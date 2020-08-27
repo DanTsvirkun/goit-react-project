@@ -1,0 +1,88 @@
+.input_change {
+  width: 90%;
+  position: absolute;
+  left: 0;
+  border: none;
+  box-shadow: 2px 4px 8px rgba(0, 5, 97, 0.1);
+  border-radius: 5px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  padding: 6px 5px;
+  outline: none;
+}
+
+.wrapper {
+  position: absolute;
+  width: 370px;
+  top: 50%;
+  height: 30px;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.sprint__change-name-btn {
+  composes: btn;
+  background-image: url('../../Icons/pencil.svg');
+  transition: all 200ms linear;
+}
+
+.sprint__change-name-btn--active {
+  composes: btn;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url('../../Icons/saver.svg');
+  transition: all 200ms linear;
+}
+
+.sprint__change-name-btn:hover {
+  transform: scale(1.2);
+  background-image: url('../../Icons/pencilActive.svg');
+}
+
+.sprint__change-name-btn--active:hover {
+  background-image: url('../../Icons/saverActive.svg');
+}
+
+.sprint__title {
+  margin-right: 40px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  max-width: 340px;
+  word-wrap: break-word;
+}
+
+.project__header {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+  display: inline-block;
+  margin-right: 20px;
+  word-wrap: break-word;
+  max-width: 300px;
+}

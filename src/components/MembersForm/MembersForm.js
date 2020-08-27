@@ -96,6 +96,7 @@ const MembersForm = ({
         setErrors({});
       }
     }
+    return result;
   };
 
   return (

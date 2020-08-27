@@ -1,0 +1,42 @@
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(10%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    visibility: hidden;
+    transform: translate3d(10%, 0, 0);
+  }
+}
+
+.enter {
+  animation: slideInRight 200ms;
+}
+
+.enterActive {
+  animation: slideInRight 200ms;
+}
+
+/* 
+.exit {
+    animation: slideOutRight 100ms;
+}
+
+.exitActive {
+    animation: slideOutRight 100ms;
+} */

@@ -9,21 +9,26 @@ const SignInGoogle = () => {
 
   useEffect(() => {
     window.gapi.load("auth2", () => {
-      window.gapi.auth2.init({
-        client_id:
-          "665112245664-i02dj6v1je0g62htl54t0cd7nl73e400.apps.googleusercontent.com",
+      gapi.auth2.init({
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       });
     });
   }, []);
 
-  const signIn = () => {
-    dispatch(SignInOperation());
+  const signIn = async () => {
+    const result = await window.gapi.auth2.getAuthInstance().signIn();
+    dispatch(SignInOperation(result));
   };
 
   return (
-    <button type="button" className={styles.google} onClick={signIn}>
-      Увійти з Google Account
-    </button>
+    <>
+      <p className={styles.ride_line}>
+        <span className={styles.ride_line_span}>або</span>
+      </p>{" "}
+      <button type="button" className={styles.google} onClick={signIn}>
+        Увійти з Google Account
+      </button>
+    </>
   );
 };
 
