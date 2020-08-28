@@ -57,3 +57,12 @@ li {
   padding: 0;
   list-style: none;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ff6b08;
+}
