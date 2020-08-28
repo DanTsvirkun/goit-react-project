@@ -9,9 +9,9 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   const logOut = async () => {
-    const GoogleAuth = await window.gapi.auth2.getAuthInstance();
-    dispatch(LogOutOperation(uid, GoogleAuth));
+    dispatch(LogOutOperation(uid));
   };
+
   return (
     <div className={styles.menu_container}>
       <span className={styles.user_email}>{email}</span>{" "}
