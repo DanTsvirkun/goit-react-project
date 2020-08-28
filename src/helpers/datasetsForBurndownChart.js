@@ -11,7 +11,7 @@ const formatDate = (chartDays) =>
   chartDays.map((data) => convertFormToUppercase(data));
 
 export const convertFormToUppercase = (date) => {
-  const newFormatDayMounth = moment(returnDayFormat(date))
+  const newFormatDayMounth = moment(returnDayFormat(date), "DD MMM")
     .locale("uk")
     .format("DD MMM");
   const result = newFormatDayMounth.split("");
@@ -34,7 +34,7 @@ export const getRedLineArr = (hoursPlanned, sprintDuration) => {
   let remainingHours = hoursPlanned;
 
   for (let i = 0; i < sprintDuration; i += 1) {
-    result.push((remainingHours - sprintHoursPerDay).toFixed(1));
+    result.push((remainingHours - sprintHoursPerDay).toFixed(2));
     remainingHours -= sprintHoursPerDay;
   }
   return result;
@@ -49,7 +49,7 @@ export const getBlueLineArr = (hoursPlanned, sprintDuration, itemsArr) => {
   let remainingHours = hoursPlanned;
 
   for (let hoursPersingleDay of arrOftotalHoursPerDay) {
-    result.push((remainingHours - hoursPersingleDay).toFixed(1));
+    result.push((remainingHours - hoursPersingleDay).toFixed(2));
     remainingHours -= hoursPersingleDay;
   }
   return result;
