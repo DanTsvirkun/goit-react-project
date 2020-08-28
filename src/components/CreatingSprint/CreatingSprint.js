@@ -195,6 +195,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       addSprint(sprint);
 
       onClose();
+      setStartDate(Date.now());
     }
     return !formValidation();
   };
