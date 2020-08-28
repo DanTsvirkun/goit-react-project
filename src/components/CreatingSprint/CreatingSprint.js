@@ -109,6 +109,7 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
     setDurationErr("");
     setDateErr("");
     onClose();
+    setStartDate(Date.now());
   };
 
   const handleTitle = ({ target }) => {
