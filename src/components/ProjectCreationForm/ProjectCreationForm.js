@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import projectsOperations from "../../redux/operations/projectsOperations";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import projectsOperations from "../../redux/operations/projectsOperations";
 import projectsSelectors from "../../redux/selectors/projectsSelectors";
+import ModalSidebar from "../ModalSidebar/ModalSidebar";
 
 import formStyles from "./ProjectCreationForm.module.css";
 

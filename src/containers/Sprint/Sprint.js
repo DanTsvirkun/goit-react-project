@@ -124,8 +124,8 @@ const Sprint = ({
         />
         {!tasks.length && !loader && (
           <h2 className={css.emptyList}>
-            Ваш спринт не має задач.Скористайтеся кнопкою "Створити задачу". Для
-            появи аналітики вам треба додати мінімум 3 завдання
+            Ваш спринт не має задач. Скористайтеся кнопкою "Створити задачу".
+            Для появи аналітики вам треба додати мінімум 3 завдання
           </h2>
         )}
       </div>
@@ -152,3 +152,4 @@ const mapStateToProps = (state, ownProps) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Sprint);
 
 // <Route path={`${match.path}/:sprintId`} component={SprintTasksList} />;
+

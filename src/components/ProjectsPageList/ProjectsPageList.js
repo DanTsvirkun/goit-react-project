@@ -10,7 +10,8 @@ import listStyle from "./ProjectsPageList.module.css";
 import projectsListTransition from "./transitionProjectStyles.module.css";
 
 const ProjectsPageList = ({ projects = [], email, getProjects, loader }) => {
-  useEffect(() => {
+
+  useEffect(() => {    
     getProjects(email);
   }, []);
 
