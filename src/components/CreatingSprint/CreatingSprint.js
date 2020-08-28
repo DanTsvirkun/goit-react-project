@@ -181,7 +181,9 @@ const CreatingSprint = ({ addSprint, status, onClose }) => {
       const endDate = momentDays(formatedStartDate, "DD-MM-YYYY").businessAdd(
         duration - 1
       )._d;
-      const formatedEndDate = moment(endDate).format("DD.MM.YYYY");
+      const formatedEndDate = moment(endDate, "DD.MM.YYYY").format(
+        "DD.MM.YYYY"
+      );
       const sprint = {
         title,
         startDate: formatedStartDate,
