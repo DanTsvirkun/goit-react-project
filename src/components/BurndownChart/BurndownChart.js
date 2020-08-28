@@ -31,7 +31,7 @@ const BurndownChart = ({
       labels: formatDateChanger(chartDays),
       datasets: [
         {
-          label: "Актуальний залишок трудовитрат",
+          label: "Запланований залишок трудовитрат",
           fill: false,
           lineTension: 0,
           borderColor: "rgb(255, 0, 0)",
@@ -39,7 +39,7 @@ const BurndownChart = ({
           data: getRedLineArr(hoursPlanned, sprintDuration),
         },
         {
-          label: "Запланований залишок трудовитрат",
+          label: "Актуальний залишок трудовитрат",
           fill: false,
           lineTension: 0.3,
           borderColor: "rgb(0, 89, 255)",
