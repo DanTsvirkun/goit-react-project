@@ -27,6 +27,7 @@ const SprintTasksList = ({
   filterAction,
   history,
   toggleFilterAction,
+  params,
   items,
 }) => {
   const [toggleAnalytic, setToggleAnalytic] = useState(false);
@@ -49,7 +50,10 @@ const SprintTasksList = ({
         <BurndownChartBtn openModal={handleToggleAnalytic} />
       )}
       {toggleAnalytic && (
-        <BurndownChartModalWindow onClose={handleToggleAnalytic} />
+        <BurndownChartModalWindow
+          onClose={handleToggleAnalytic}
+          params={params}
+        />
       )}
     </div>
   );

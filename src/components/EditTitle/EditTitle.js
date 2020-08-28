@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import animation from './animationExit.module.css';
-import css from './EditTitle.module.css';
+import React, { useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
+import animation from "./animationExit.module.css";
+import css from "./EditTitle.module.css";
 const EditTitle = ({
   valueTitle,
   elementID,
@@ -31,7 +31,7 @@ const EditTitle = ({
               type="text"
               className={css.input_change}
               value={title}
-              onChange={e => setTitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
               maxLength="40"
             />
             <button
@@ -43,7 +43,7 @@ const EditTitle = ({
                 }
                 setUpdate(!isUpdate);
               }}
-              className={css['sprint__change-name-btn--active']}
+              className={css["sprint__change-name-btn--active"]}
             ></button>
           </label>
         </>
@@ -58,12 +58,12 @@ const EditTitle = ({
         onEnter={() => setActive(false)}
       >
         <>
-          <h1 className={email ? css['project__header'] : css['sprint__title']}>
+          <h1 className={email ? css["project__header"] : css["sprint__title"]}>
             {title}
           </h1>
           <button
             onClick={() => setUpdate(!isUpdate)}
-            className={css['sprint__change-name-btn']}
+            className={css["sprint__change-name-btn"]}
           ></button>
         </>
       </CSSTransition>
