@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Line } from "react-chartjs-2";
-import { itemsSelector } from "../../redux/selectors/TasksSelectors";
+import {
+  findCurrentSprint,
+  itemsSelector,
+} from "../../redux/selectors/TasksSelectors";
 import {
   sprintDurationSelector,
   chartDaysSelector,
@@ -19,6 +22,7 @@ const BurndownChart = ({
   sprintDuration,
   chartDays,
   itemsArr,
+  sprint,
 }) => {
   const [chartData, setChartData] = useState({});
 
@@ -29,6 +33,7 @@ const BurndownChart = ({
         {
           label: "Актуальний залишок трудовитрат",
           fill: false,
+          lineTension: 0,
           borderColor: "rgb(255, 0, 0)",
           backgroundColor: "rgb(255, 0, 0)",
           data: getRedLineArr(hoursPlanned, sprintDuration),
@@ -36,6 +41,7 @@ const BurndownChart = ({
         {
           label: "Запланований залишок трудовитрат",
           fill: false,
+          lineTension: 0.3,
           borderColor: "rgb(0, 89, 255)",
           backgroundColor: "rgb(0, 89, 255)",
           data: getBlueLineArr(hoursPlanned, sprintDuration, itemsArr),
@@ -56,7 +62,7 @@ const BurndownChart = ({
     responsive: true,
     title: {
       display: true,
-      text: "Burndown Chart (Calendar Team)",
+      text: sprint.title,
       fontColor: "#181C27",
       fontFamily: "'Montserrat', 'sans-serif'",
       fontSize: 20,
@@ -64,7 +70,6 @@ const BurndownChart = ({
     },
     elements: {
       line: {
-        // tension: 0.3, // disables bezier curves
         borderWidth: 2,
       },
       point: {
@@ -154,11 +159,12 @@ const BurndownChart = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   hoursPlanned: hoursPlannedSelector(state),
   sprintDuration: sprintDurationSelector(state),
   chartDays: chartDaysSelector(state),
   itemsArr: itemsSelector(state),
+  sprint: findCurrentSprint(state, ownProps.params),
 });
 
 export default connect(mapStateToProps)(BurndownChart);

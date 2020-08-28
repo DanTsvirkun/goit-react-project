@@ -114,8 +114,14 @@ const Sprint = ({
             <Loader />
           </div>
         )}
-        <SprintHeader params={params} /> <SprintTableTitle />
-        <SprintTasksList match={match} location={location} history={history} />
+        <SprintHeader params={params} />
+        <SprintTableTitle />
+        <SprintTasksList
+          match={match}
+          location={location}
+          history={history}
+          params={params}
+        />
         {!tasks.length && !loader && (
           <h2 className={css.emptyList}>
             Ваш спринт не має задач. Скористайтеся кнопкою "Створити задачу".

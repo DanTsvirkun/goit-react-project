@@ -34,7 +34,7 @@ class BurndownChartModalWindow extends Component {
     return (
       <div className={styles.overlay} onClick={this.handleClickOnOverlay}>
         <div className={styles.modal}>
-          <BurndawnChart />
+          <BurndawnChart params={this.props.params} />
           <button
             type="button"
             className={styles.closeGraphicBtn}
