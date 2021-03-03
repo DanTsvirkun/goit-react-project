@@ -24,7 +24,6 @@ const SprintTableTitle = ({
   const location = useLocation();
   const handleTaskFilter = ({ target }) => {
     if (!target.value) {
-      console.log("wewe");
       history.push({
         ...location,
         search: "",

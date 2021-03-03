@@ -87,7 +87,6 @@ const MembersForm = ({
 
     if (!result) {
       const answer = await addMember(value);
-      console.log(answer);
       if (answer === "Цей користувач вже є участником") {
         setErrors({ title: "Цей користувач вже є участником" });
       } else {
