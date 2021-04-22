@@ -40,7 +40,7 @@ const SprintTasksList = ({
   return (
     <div className={css.wrapper}>
       <TransitionGroup component="ul" className={css["sprint__tasks-list"]}>
-        {tasks.map((task, idx) => (
+        {tasks.slice().sort((a, b) => a.createDate - b.createDate).map((task, idx) => (
           <CSSTransition key={task.id} classNames={animation} timeout={300}>
             <SprintTask {...task} index={idx} />
           </CSSTransition>

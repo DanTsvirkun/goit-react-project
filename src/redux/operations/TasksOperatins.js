@@ -88,12 +88,12 @@ export const changeTaskSingleHour = item => async (dispatch, getTasks) => {
       return;
     }
 
+    const currentTaskId = item.taskId
+
     dispatch(errorOff());
     // dispatch(loaderOn());
     const tasks = [...getTasks().tasks.items];
-    const task = {
-      ...tasks[item.indexArray],
-    };
+    const task = tasks.find(item => item.id === currentTaskId)
     const newTask = newState(task, item);
     tasks.splice(item.indexArray, 1, newTask);
 
