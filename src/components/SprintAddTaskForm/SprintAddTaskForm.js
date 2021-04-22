@@ -144,6 +144,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
   };
 
   const handleSubmit = (e) => {
+    const dateNow = moment().format('x');
     e.preventDefault();
     const { title, hoursPlanned } = taskItem;
     const { sprintId } = params;
@@ -153,6 +154,7 @@ const SprintAddTaskForm = ({ addTask, status, onClose, sprint }) => {
 
     if (validation(hoursPlanned, title)) {
       const task = {
+        createDate: dateNow,
         sprintId: sprint.id,
         title,
         hoursPlanned,
